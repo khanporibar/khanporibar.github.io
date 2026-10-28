@@ -1,0 +1,466 @@
+<!DOCTYPE html><html lang="bn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>খান পরিবারের বংশবৃক্ষ</title><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#0d9488"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="খান পরিবার"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&display=swap" rel="stylesheet"><style>
+:root{--bg:#f6f3ea;--card:#fff;--ink:#1d2b22;--mut:#6b7a70;--g:#1f6b45;--g2:#2e8b5a;--gold:#c9a227;--boy:#2f6fb5;--girl:#d4568a;--line:#d9d3c0;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121a15;--card:#1c2822;--ink:#eaf1ec;--mut:#98a89d;--g:#3aa56f;--g2:#4cbd83;--line:#33443a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121a15;--card:#1c2822;--ink:#eaf1ec;--mut:#98a89d;--g:#3aa56f;--g2:#4cbd83;--line:#33443a;color-scheme:dark}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:"Noto Sans Bengali",system-ui,sans-serif;line-height:1.5}
+header{background:linear-gradient(135deg,var(--g),var(--g2));color:#fff;padding:22px 16px 56px;text-align:center;border-bottom:4px solid var(--gold)}
+header h1{margin:0;font-size:26px}header p{margin:4px 0 0;opacity:.9;font-size:14px}
+main{max-width:860px;margin:-36px auto 40px;padding:0 12px}
+.bar{background:var(--card);border-radius:14px;padding:10px;box-shadow:0 4px 14px #0002;display:flex;gap:8px;flex-wrap:wrap}
+.bar input{flex:1;min-width:140px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;padding:10px 12px;font:inherit}
+button{font:inherit;cursor:pointer;border:0;border-radius:10px;padding:9px 14px;background:var(--g);color:#fff}
+button.alt{background:var(--bg);color:var(--ink);border:1px solid var(--line)}
+.tabs{display:flex;gap:6px;margin:14px 0}.tabs button{flex:1}.tabs button.on{background:var(--gold);color:#222}
+.stats{display:flex;gap:8px;margin:10px 0}.stats div{flex:1;background:var(--card);border-radius:12px;padding:8px;text-align:center;font-size:13px;color:var(--mut)}.stats b{display:block;font-size:20px;color:var(--g)}
+ul.t{list-style:none;margin:0;padding-left:16px;border-left:2px dashed var(--line)}ul.t.root{border:0;padding:0}
+li{margin:8px 0}
+.n{display:flex;align-items:center;gap:8px;background:var(--card);border-radius:12px;padding:8px 10px;border-left:5px solid var(--boy);box-shadow:0 1px 4px #0001}
+.n.f{border-left-color:var(--girl)}.n.hit{outline:3px solid var(--gold)}
+.tg{width:26px;height:26px;padding:0;border-radius:50%;flex:none}
+.nm{flex:1;cursor:pointer;min-width:0}.nm b{display:block}.nm small{color:var(--mut)}
+.badge{font-size:12px;background:var(--bg);border-radius:20px;padding:2px 8px;color:var(--mut);white-space:nowrap}
+.hide{display:none}
+dialog{border:0;border-radius:16px;max-width:460px;width:92%;background:var(--card);color:var(--ink);padding:18px}
+dialog::backdrop{background:#0008}
+dialog h2{margin:0 0 8px}.row{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:6px 0}.row span:first-child{color:var(--mut)}
+textarea,select,input.i{width:100%;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;padding:8px;font:inherit;margin-top:6px}
+.chip{display:inline-block;margin:3px 3px 0 0;padding:3px 10px;border-radius:20px;background:var(--bg);border:1px solid var(--line);cursor:pointer;font-size:13px}
+.pend{background:var(--card);border-radius:12px;padding:10px 12px;margin:8px 0;border-left:5px solid var(--gold)}
+.note{font-size:12px;color:var(--mut);margin-top:10px}
+
+.gate{text-align:center;padding:40px 16px;background:var(--card);border-radius:14px;margin-top:-10px}.top{display:flex;justify-content:flex-end;gap:8px;align-items:center;font-size:13px;margin:0 0 8px;color:var(--mut)}.sm{padding:5px 10px;font-size:13px}.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}.gal figure{margin:0;background:var(--card);border-radius:12px;overflow:hidden}.gal img{width:100%;height:130px;object-fit:cover;display:block}.gal figcaption{padding:6px 8px;font-size:13px}.tabs{flex-wrap:wrap}.tabs button{padding:8px 4px;font-size:14px;min-width:0}.dsel{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;padding:10px;font:inherit}
+.av{width:110px;height:110px;border-radius:50%;object-fit:cover;display:block;margin:6px auto;border:3px solid var(--gold)}
+:root{--bg:#eef3f7;--card:#fff;--ink:#0f1c2e;--mut:#64748b;--g:#0d9488;--g2:#0e7490;--gold:#f59e0b;--boy:#2563eb;--girl:#db2777;--line:#d5dee8}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1220;--card:#121c2e;--ink:#e6edf7;--mut:#8fa3bd;--g:#2dd4bf;--g2:#22d3ee;--line:#243349}}
+body{background:radial-gradient(1200px 500px at 50% -10%,color-mix(in srgb,var(--g) 18%,transparent),transparent),var(--bg);background-attachment:fixed}
+header{background:linear-gradient(135deg,#0f766e,#0e7490 55%,#1d4ed8);border:0;padding:28px 16px 74px;position:relative;overflow:hidden}
+header::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.18) 1px,transparent 1px);background-size:18px 18px;pointer-events:none}
+header h1{position:relative;z-index:1;font-size:27px;letter-spacing:.3px;text-shadow:0 2px 12px #0005}header p{position:relative;z-index:1}
+.bar,.stats div,.pend,.n,.card{border:1px solid var(--line);border-radius:16px;box-shadow:0 8px 22px -12px rgba(15,28,46,.35)}
+.bar{backdrop-filter:blur(8px)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stats div{padding:12px 6px;font-size:12px}
+.stats b{font-size:26px;background:linear-gradient(90deg,var(--g),var(--g2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.tabs{display:flex;flex-wrap:nowrap;gap:8px;overflow-x:auto;position:sticky;top:0;z-index:5;padding:8px 2px;scrollbar-width:none;background:linear-gradient(var(--bg) 75%,transparent)}.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:none;border-radius:999px;padding:8px 16px;background:var(--card);color:var(--ink);border:1px solid var(--line)}
+.tabs button.on{background:linear-gradient(135deg,var(--g),var(--g2));color:#fff;border-color:transparent;box-shadow:0 8px 18px -8px var(--g)}
+button{background:linear-gradient(135deg,var(--g),var(--g2));transition:transform .12s,opacity .12s}button:active{transform:scale(.95)}
+button.alt{background:var(--card);color:var(--ink)}
+ul.t{border-left:2px solid var(--line)}ul.t>li{position:relative}ul.t>li::before{content:"";position:absolute;left:-16px;top:25px;width:14px;border-top:2px solid var(--line)}
+li{animation:fi .35s both}@keyframes fi{from{opacity:0;transform:translateY(8px)}}
+.n{padding:9px 10px;transition:transform .12s}.n:active{transform:scale(.99)}
+.av2{font-size:22px;line-height:1}#toast{position:fixed;left:50%;top:calc(12px + env(safe-area-inset-top,0px));transform:translate(-50%,-160%);z-index:100;width:min(420px,92%);background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:14px;padding:10px 14px;box-shadow:0 12px 30px #0006;transition:transform .3s}#toast.on{transform:translate(-50%,0)}#toast b{display:block}#off{position:fixed;left:0;right:0;bottom:0;z-index:90;background:#b45309;color:#fff;text-align:center;font-size:13px;padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px))}.av2 img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}.av2{overflow:hidden;cursor:pointer}.av{cursor:zoom-in}#pvd{max-width:520px;text-align:center}#pvd img{width:100%;max-height:70vh;object-fit:contain;border-radius:14px;display:block}.av2{width:38px;height:38px;flex:none;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;background:linear-gradient(135deg,var(--boy),#60a5fa);box-shadow:0 4px 10px -4px var(--boy)}.n.f .av2{background:linear-gradient(135deg,var(--girl),#f472b6);box-shadow:0 4px 10px -4px var(--girl)}
+.tg{background:var(--bg);color:var(--g);border:1px solid var(--line)}
+dialog{border:1px solid var(--line);border-radius:22px;box-shadow:0 24px 70px rgba(0,0,0,.45);animation:pop .2s}@keyframes pop{from{transform:scale(.94);opacity:0}}dialog::backdrop{backdrop-filter:blur(5px)}
+.card{background:var(--card);padding:12px;margin:10px 0}.rs{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.opt{position:relative;display:flex;justify-content:space-between;padding:9px 12px;margin-top:8px;border:1px solid var(--line);border-radius:12px;overflow:hidden;cursor:pointer}
+.opt i{position:absolute;inset:0 auto 0 0;background:color-mix(in srgb,var(--g) 28%,transparent)}.opt span,.opt em{position:relative;font-style:normal}.opt.me{border-color:var(--g)}
+h3{margin:16px 0 4px;color:var(--g)}
+#chat{position:fixed;inset:0;z-index:60;background:var(--bg);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px)}#chat.hide{display:none}
+.chh{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--card);border-bottom:1px solid var(--line)}
+#ms{flex:1;overflow-y:auto;padding:10px 12px;display:flex;flex-direction:column}
+.b{max-width:80%;padding:8px 12px;border-radius:18px;margin:3px 0;white-space:pre-wrap;word-break:break-word}
+.b.me{align-self:flex-end;background:linear-gradient(135deg,var(--g),var(--g2));color:#fff;border-bottom-right-radius:4px}
+.b.ot{align-self:flex-start;background:var(--card);border:1px solid var(--line);border-bottom-left-radius:4px}
+.bn{display:block;font-size:11px;opacity:.7}.bt{display:block;font-size:10px;opacity:.6;text-align:right}
+.cin{display:flex;gap:8px;padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px));background:var(--card);border-top:1px solid var(--line)}
+.cin textarea{flex:1;margin:0;border-radius:20px;max-height:110px}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--g);flex:none}.unr{font-weight:700;color:var(--ink)}
+.ch{display:flex;gap:10px;align-items:center;cursor:pointer}.ch .mid{flex:1;min-width:0}.ch small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+main{position:relative;z-index:2}.top button{box-shadow:0 4px 12px -6px rgba(0,0,0,.5)}
+#pvd{max-width:900px;width:96%;padding:14px}#pvd img{max-height:78vh}.gal img{cursor:zoom-in}
+.cin{padding-bottom:calc(66px + env(safe-area-inset-bottom,0px))}
+main{margin-bottom:100px}
+.aclist{border:1px solid var(--line);border-radius:12px;background:var(--card);max-height:240px;overflow:auto;margin-top:4px;box-shadow:0 10px 24px -12px rgba(0,0,0,.5)}
+.aclist div{padding:10px 12px;cursor:pointer;border-bottom:1px solid var(--line)}.aclist div:last-child{border-bottom:0}.aclist div:active{background:var(--bg)}.aclist small{color:var(--mut);display:block}
+
+.pinb{display:flex;gap:8px;align-items:center;padding:6px 12px;background:var(--card);border-bottom:1px solid var(--line);font-size:13px}.pinb.hide{display:none}
+#cs{padding:6px 12px;background:var(--card);border-bottom:1px solid var(--line)}#cs input{margin:0}
+.b{cursor:pointer}.b img{max-width:100%;max-height:300px;border-radius:12px;display:block;margin:4px 0;cursor:zoom-in}.b.flash{outline:3px solid var(--gold)}
+.rq{border-left:3px solid rgba(255,255,255,.75);padding:3px 8px;margin-bottom:4px;font-size:12px;background:rgba(0,0,0,.14);border-radius:6px}.b.ot .rq{border-left-color:var(--g)}
+.rxs{display:flex;gap:4px;flex-wrap:wrap;margin-top:4px}.rxs span{font-size:12px;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:0 7px}.rxs span.me{border-color:var(--g)}
+button.alt.on{border-color:var(--g);background:color-mix(in srgb,var(--g) 25%,transparent)}
+</style></head><body>
+<header><h1>🌳 খান পরিবারের বংশবৃক্ষ</h1><p>শুধু পরিবারের সদস্যদের জন্য</p></header>
+<main><div class="top"><button id="bl" class="alt sm hide">🔔 <span id="bc"></span></button><button id="ins" class="alt sm hide">📲 ইনস্টল</button><button id="lg" class="alt sm">English</button><button id="out" class="alt sm hide">লগআউট</button></div><div id="gate" class="gate"></div>
+<div id="app" class="hide"><div id="nb" class="pend hide"></div><div class="bar"><input id="q" placeholder="নাম খুঁজুন…"><button class="alt" id="ex">সব খুলুন</button><button class="alt" id="co">সব বন্ধ</button></div>
+<div class="tabs"><button id="t1" class="on">বংশবৃক্ষ</button><button id="t9">📜 খান বংশের ইতিহাস</button><button id="t8">💬 চ্যাট <span id="cu"></span></button><button id="t3">গ্যালারি</button><button id="t4">ডিরেক্টরি</button><button id="t5">সম্পর্ক</button><button id="t6">কমিউনিটি</button><button id="t7">স্মরণ</button><button id="t2" class="hide">অ্যাডমিন <span id="pc"></span></button></div>
+<div id="v1"><div id="bd"></div><div class="stats"><div><b id="s1">0</b>মোট সদস্য</div><div><b id="s2">0</b>ছেলে</div><div><b id="s3">0</b>মেয়ে</div><div><b id="s4">0</b>প্রজন্ম</div><div><b id="s5">0</b>জীবিত</div><div><b id="s6">0</b>এ বছর জন্ম</div></div><ul class="t root" id="tree"></ul></div>
+<div id="v2" class="hide"><div id="adm"></div></div>
+<div id="v3" class="hide"><div id="gadm"></div><div id="gal" class="gal"></div></div>
+<div id="v4" class="hide"><div class="bar"><input id="dq" placeholder="নাম, পেশা বা ঠিকানা…"><select id="dg" class="dsel"><option value="">সব রক্তের গ্রুপ</option><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>AB+</option><option>AB-</option><option>O+</option><option>O-</option></select></div><div id="dlist"></div></div>
+<div id="v5" class="hide"><div class="pend"><b>দুজনের সম্পর্ক জানুন</b><input class="i" id="ra" list="pl" placeholder="প্রথম ব্যক্তি"><input class="i" id="rb" list="pl" placeholder="দ্বিতীয় ব্যক্তি"><button id="rg" style="margin-top:8px;width:100%">সম্পর্ক দেখুন</button><datalist id="pl"></datalist></div><div id="rr"></div></div>
+<div id="v9" class="hide"><div id="hs"></div></div><div id="v8" class="hide"><div id="cl"></div></div><div id="v6" class="hide"><div id="cm"></div></div><div id="v7" class="hide"><div id="mem"></div></div></div></main>
+<div id="toast"></div><div id="off" class="hide">📴 আপনি অফলাইনে আছেন — আগের ডাটা দেখা যাচ্ছে</div><div id="chat" class="hide"></div><dialog id="pvd"><div id="pvc"></div><div style="display:flex;gap:8px;margin-top:12px"><a id="pvdl" style="flex:1;text-decoration:none"><button style="width:100%">⬇️ ডাউনলোড</button></a><button class="alt" style="flex:1" onclick="pvd.close()">বন্ধ করুন</button></div></dialog><dialog id="dlg"><div id="dc"></div><button class="alt" onclick="dlg.close()" style="margin-top:12px;width:100%">বন্ধ করুন</button></dialog>
+<script type="module">
+const P=(n,g,b,d,s,k)=>({n,g,b:b||'',d:d||'',s:s||'',k:k||[],notes:[]});
+const M=(n,b,d,s,k)=>P(n,'m',b,d,s,k),F=(n,b,d,s,k)=>P(n,'f',b,d,s,k);
+const root=M('মোঃ গোলেবক্স খান','','','',[
+M('মোঃ সলেমান খান','','','',[
+M('নূর মোহাম্মদ খান','','','খাদিজা খাতুন • সকিনা খাতুন',[
+ M('মোঃ খান জাহান খান','','','আলেয়া',[M('মোঃ জিহাদ খান','','','আইরিন',[M('নাফিজ খান'),F('নাজিফা খান')]),M('মোঃ জাহিদ খান','','','মুক্তা',[F('মারিয়া খান'),F('মাসুমা খান')]),M('মোঃ রাহিদ খান','','','পপি',[M('সাফিদ খান')]),M('মোঃ শাহিদ খান','','','আবেদা',[M('ওয়ালিদ খান'),M('ওয়াজিদ খান')]),F('সনিয়া','','','কাবিল')]),
+ M('মোঃ রেজাউল করিম খান','০১/০৫/১৯৪৯','','হানো',[M('মোঃ সাজ্জাদ খান','০৪/০৪/১৯৭৫','','হোসনেয়ারা',[M('হাম্মাদ খান')]),M('মোঃ আজাদ খান','','','ডিনা',[M('সামিত খান'),F('এশা খান'),F('রশ্মি খান')]),F('রাবেয়া খান রানু','২৬/০৭/১৯৭৯','','সাঈদ')]),
+ M('মোঃ সুজাউদ্দিন খান','','','ফরিদা খান',[M('আল ফরিদ তনু','২৭/০২/?'),F('সামিনা আক্তার দীপা','','','হাবিব'),F('শামিমা আক্তার রিপা','১৪/০২/?','','নাদিম'),F('সাহিনা আক্তার রুম্পা','১০/০১/?','','রনি')]),
+ M('মোঃ মুরশিদ খান','','','আম্বিয়া',[M('মোঃ জাফর খান'),F('মিতু','','','হাসিব'),F('মিতা'),F('সুমা')]),
+ M('মোঃ মির্জা খান','২৯/০৭/১৯৬২','','মমতাজ',[M('মোঃ মিলন খান','১৩/০৭/১৯৮৮','','মৌসুমী',[F('মাহা খান'),M('মহাদি খান')]),F('সাবিয়া আক্তার মিলা','৩১/০৮/১৯৯১','','কামরুল'),F('মিথিলা','০৫/০১/২০০২')]),
+ M('মোঃ সরীফ খান','','','পারুল',[F('সোহানা','১২/০১/১৯৯৪'),F('শিলা'),F('তুল খানি')]),
+ M('মোঃ মনির খান','১২/১০/১৯৬৯','','বিউটি বেগম',[M('মেহেদী হাসান অন্তর','২৮/০২/১৯৯৪','','আরিফা',[F('আমাতুল্লাহ মাহদিয়া','২০/১০/২০২৫')]),M('নিরব খান','২৮/০৬/২০০১')]),
+ M('মোঃ শাহজাহান খান','','','রেশমী',[M('মোঃ সাদ খান'),M('মোঃ আরশ খান'),F('তাবাচ্ছুম বুশরা')]),
+ M('মোঃ নাজমুল খান','১২/১২/১৯৮৫','','শারমিন',[M('মোঃ ইয়াছিন খান','১৭/১২/২০১১'),F('নূরাইয়া','০৫/১০/২০২৩')]),
+ M('মোঃ রাজু খান','০৪/০৮/১৯৮৮','','লোপা',[F('মাইশা','০৯/১০/২০১৫'),F('আরিশা','২২/০৫/২০২৩')]),
+ M('মোঃ নাইচ খান','১৯/০১/১৯৮৯','','লিয়া',[M('মোঃ ফাইয়াজ খান','১৪/০২/২০২৫'),F('হুমাইরা','১২/০১/২০২৩')]),
+ F('সিরিন','','','সিরাজ'),F('লিলি','','','এলাহী'),F('পলি','','','সেলিম সরদার')]),
+M('মোঃ ফিরোজ খান','','০৫/১২/২০২০','হামিদা বেগম',[
+ M('মোঃ বুলবুল খান','০৭/০৮/১৯৭৮','','খালেদা',[M('মারুফ খান শাওন','০৩/১২/১৯৯৪','','সাদিয়া'),F('চৈতি খান','১৯/০৩/২০০৫')]),
+ F('আফরু','','','মোঃ কুদ্দুস'),F('পারুল','','','মোঃ আইয়ুব'),F('ফেদোসি','','','মোঃ মিন্টু'),F('জোসনা','','','ইনছান'),F('দোলে','','','জাবেদ'),F('আন্না','','','কবির')]),
+M('মোঃ সিরাজ খান','','','রুবি বেগম • রজিনা বেগম',[
+ M('মোঃ আশরাফ খান','০৯/১১/১৯৬৪','','মোছাঃ ঝরনা বেগম',[M('আল-আমিন খান','২৮/১০/১৯৯৮','','নাইমা ইসলাম নূরী',[M('আনাস খান'),F('আনাইয়া খান')]),F('সুমা খানম','৩০/১০/১৯৮৮','','মাহমুদ হাসান'),F('নাদিয়া খান পিঙ্কি','০২/০৩/১৯৯৬','','দুলু সরদার')]),
+ M('মোঃ আওলাদ খান','','?/?/২০০৬','লাইসনা খানম',[M('সুজন খান','০১/০৬/১৯৯৮'),M('সজল খান','','','',[M('আরাত খান'),F('আফিয়া জান্নাত')])]),
+ M('মোঃ আক্তার খান','','০৫/০৫/২০২৬','জোছনা খানম'),
+ M('মোঃ মাসুদ খান','','','',[M('জিতু খান','','','',[M('আবির খান'),M('জায়মান খান')])]),
+ M('মোঃ আবগান খান','২০/১১/১৯৭১','','',[M('রাজন খান','০৫/১০/২০০০'),F('সমাপ্তি','০৫/১০/২০০৬')]),
+ M('মোঃ মুকুল খান','','','',[M('ফাহাদ খান'),F('খাদীজা খান')]),
+ M('মোঃ পিকুল খান','','','',[M('আব্দুর রহমান খান'),M('জুনায়েদ খান'),F('সাফিয়া খান')]),
+ M('মোঃ টিটু খান','','','মার্জিনা • সার্জিনা',[M('রসুল খান'),M('হুসাইন খান')]),
+ M('মোঃ মিটু খান','','','',[F('সুরাইয়া')]),
+ M('মোঃ সেলিম খান','','','',[M('আব্দুল রহিম খান')]),F('নারগিস')]),
+F('নূরজাহান'),F('পরিজান')]),
+M('মোঃ সুলতান খান','','','',[F('ফুলি'),F('জোহরা'),F('সকিনা','','','অলিঅর রহমান'),F('হামীদা')]),
+M('মোঃ জারমান খান','','','',[M('মোঃ দৌলাৎ খান','','১১/০১/২০১৬')]),
+F('মতিজান বিবি')]);
+
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import {getAuth,GoogleAuthProvider,signInWithPopup,signOut,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import {getFirestore,collection,query,orderBy,limit,where,doc,getDoc,setDoc,addDoc,updateDoc,deleteDoc,onSnapshot,writeBatch,serverTimestamp,arrayUnion,deleteField,initializeFirestore,persistentLocalCache,persistentMultipleTabManager} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+const app=initializeApp({apiKey:"AIzaSyA0P3NXnHzLR4rDxu6FFXn0d-47JaL0idc",authDomain:"khan-poribar.firebaseapp.com",projectId:"khan-poribar",storageBucket:"khan-poribar.firebasestorage.app",messagingSenderId:"378186531699",appId:"1:378186531699:web:9167dd70c2c6be8d693b06"});
+let db;try{db=initializeFirestore(app,{localCache:persistentLocalCache({tabManager:persistentMultipleTabManager()})})}catch(e){db=getFirestore(app)}
+const auth=getAuth(app),OWNER='shironamhinantor@gmail.com';
+const $=id=>document.getElementById(id),dlg=$('dlg');
+const bn=n=>String(n).replace(/\d/g,d=>'০১২৩৪৫৬৭৮৯'[d]),esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let me=null,isAdm=false,people=[],map={},roots=[],sug=[],usr=[],unsub=[],avs={};
+const pvd=$('pvd');
+async function notify(type,extra){try{if(!me)return;const t=await me.getIdToken();await fetch('/.netlify/functions/notify',{method:'POST',headers:{'content-type':'application/json',authorization:'Bearer '+t},body:JSON.stringify({type,...extra}),keepalive:true})}catch(e){console.log('notify',e)}}
+function toast(t,b){const e=$('toast');e.innerHTML='<b></b><span></span>';e.firstChild.textContent=t;e.lastChild.textContent=b||'';e.classList.add('on');clearTimeout(toast.h);toast.h=setTimeout(()=>e.classList.remove('on'),5000)}
+const GO={tree:1,adm:2,gal:3,chat:8,cm:6,mem:7};
+function goTo(g,c){if(!g||!GO[g]||(g=='adm'&&!isAdm))return;tab(GO[g]);if(g=='chat'&&c){const t=setInterval(()=>{if(chs[c]){clearInterval(t);openChat(c)}},400);setTimeout(()=>clearInterval(t),8000)}}
+const offR=()=>$('off').classList.toggle('hide',navigator.onLine);addEventListener('online',offR);addEventListener('offline',offR);offR();
+const avInner=p=>avs[p.id]?`<img src="${avs[p.id]}" alt="">`:(p.g=='f'?'👩':'👦');
+function viewPic(p){const src=avs[p.id];if(!src)return;$('pvc').innerHTML=`<h3 style="margin:0 0 10px">${esc(nmx(p))}</h3><img src="${src}" alt="">`;const a=$('pvdl');a.href=src;a.download=(nmx(p)||'photo').replace(/[\\/:*?"<>|]/g,'')+'.jpg';if(!pvd.open)pvd.showModal()}
+function applyAv(){document.querySelectorAll('.av2[data-pid]').forEach(e=>{const p=map[e.dataset.pid];if(p)e.innerHTML=avInner(p)})}
+const gate=(k)=>{$('app').classList.toggle('hide',!!k);$('gate').classList.toggle('hide',!k);$('out').classList.toggle('hide',!me);
+ if(k)$('gate').innerHTML=k=='login'?'<h2>পরিবারের সদস্যদের জন্য</h2><p>চালিয়ে যেতে Google দিয়ে সাইন ইন করুন।</p><button id="login">Google দিয়ে সাইন ইন</button>':'<h2>⏳ অনুমোদনের অপেক্ষায়</h2><p>আপনার অনুরোধ অ্যাডমিনের কাছে গেছে। অনুমোদন হলে পেজটা রিফ্রেশ করুন।</p>';
+ if($('login'))$('login').onclick=()=>signInWithPopup(auth,new GoogleAuthProvider()).catch(e=>alert(L('লগইন হয়নি: ')+e.code))};
+$('out').onclick=()=>signOut(auth);
+onAuthStateChanged(auth,async u=>{unsub.forEach(f=>f());unsub=[];me=u;if(!u){gate('login');return}
+ const ref=doc(db,'users',u.uid);let s=await getDoc(ref);
+ if(!s.exists()){await setDoc(ref,{email:u.email,name:u.displayName||'',status:'pending',admin:false,at:serverTimestamp()});s=await getDoc(ref);notify('pending')}
+ if(u.email===OWNER&&(s.data().status!='approved'||!s.data().admin)){await updateDoc(ref,{status:'approved',admin:true});s=await getDoc(ref)}
+ if(s.data().status!='approved'){gate('wait');waitExtra(ref);return}
+ isAdm=!!s.data().admin;gate(null);$('t2').classList.toggle('hide',!isAdm);
+ unsub.push(onSnapshot(collection(db,'avatars'),sn=>{avs={};sn.docs.forEach(d=>{avs[d.id]=d.data().data});applyAv()},()=>{}));
+ unsub.push(onSnapshot(collection(db,'people'),sn=>{people=sn.docs.map(d=>({id:d.id,...d.data()}));build()}));
+ if(isAdm){unsub.push(onSnapshot(collection(db,'suggestions'),sn=>{sug=sn.docs.map(d=>({id:d.id,...d.data()})).filter(x=>x.status=='pending');adm()}));
+  unsub.push(onSnapshot(collection(db,'users'),sn=>{usr=sn.docs.map(d=>({id:d.id,...d.data()}));adm()}));unsub.push(onSnapshot(collection(db,'avatarReq'),sn=>{areq=sn.docs.map(d=>({id:d.id,...d.data()})).filter(x=>x.status=='pending');adm()}))}});
+function waitExtra(ref){unsub.push(onSnapshot(ref,s=>{if(s.exists()&&s.data().status=='approved')location.reload()}));
+ const g=$('gate');if('Notification' in window&&Notification.permission=='default'){const b=document.createElement('button');b.textContent='🔔 অনুমোদনের খবর ফোনে পেতে নোটিফিকেশন চালু করুন';b.style.marginTop='12px';b.onclick=()=>Notification.requestPermission().then(p=>{if(p=='granted'){regPush();b.remove()}});g.appendChild(b)}
+ else regPush()}
+const cnt=p=>p.k.reduce((a,c)=>a+1+cnt(c),0);
+function build(){map={};roots=[];people.forEach(p=>map[p.id]={...p,k:[],notes:p.notes||[]});
+ Object.values(map).forEach(p=>{p.par=map[p.parent]||null;(p.par?p.par.k:roots).push(p)});Object.values(map).forEach(p=>p.k.sort((a,b)=>(a.o||0)-(b.o||0)));
+  Object.values(map).forEach(p=>{const ia=p.k.findIndex(x=>x.n=='মোঃ আবগান খান'),im=p.k.findIndex(x=>x.n=='মোঃ মাসুদ খান');if(ia>=0&&im>=0&&ia<im){[p.k[ia],p.k[im]]=[p.k[im],p.k[ia]];if(isAdm&&!build.fx){build.fx=1;const b=writeBatch(db);p.k.forEach((x,i)=>{if(x.o!==i)b.update(doc(db,'people',x.id),{o:i})});b.commit().catch(()=>{})}}});
+ const t=$('tree');t.innerHTML='';roots.forEach(r=>t.appendChild(el(r)));
+ $('s1').textContent=bn(people.length);$('s2').textContent=bn(people.filter(p=>p.g=='m').length);$('s3').textContent=bn(people.filter(p=>p.g=='f').length);bday();dirR();relList();nInit();nRefresh();stats2();
+ if(!people.length)t.innerHTML='<p class="note">এখনও কোনো তথ্য নেই।'+(isAdm?' অ্যাডমিন প্যানেল থেকে প্রাথমিক তথ্য ইম্পোর্ট করুন।':'')+'</p>'}
+function el(p){const li=document.createElement('li'),has=p.k.length,sp=p.g=='m'?'স্ত্রী':'স্বামী';
+ li.innerHTML=`<div class="n ${p.g=='f'?'f':''}" data-id="${p.id}">${has?'<button class="tg">−</button>':'<span class="tg"></span>'}<span class="av2" data-pid="${p.id}" data-ne="${esc(ini2(p))}">${avInner(p)}</span><div class="nm"><b data-ne="${esc(p.ne||'')}">${esc(p.n)}</b><small>${p.d?'মৃত্যু '+esc(p.d):p.b?'জন্ম '+esc(p.b):''}${p.s?((p.d||p.b)?'<br>':'')+sp+': '+esc(p.s):''}</small></div>${has?'<span class="badge">'+bn(cnt(p))+' জন</span>':''}</div>`;
+ if(has){const u=document.createElement('ul');u.className='t';p.k.forEach(c=>u.appendChild(el(c)));li.appendChild(u);
+  li.querySelector('.tg').onclick=e=>{e.stopPropagation();const h=u.classList.toggle('hide');e.target.textContent=h?'+':'−'}}
+ li.querySelector('.nm').onclick=()=>show(p);
+ li.querySelector('.av2').onclick=e=>{e.stopPropagation();avs[p.id]?viewPic(p):show(p)};return li}
+const setAll=o=>{document.querySelectorAll('#tree ul.t').forEach(u=>u.classList.toggle('hide',!o));document.querySelectorAll('.tg').forEach(b=>{if(b.textContent)b.textContent=o?'−':'+'})};
+$('ex').onclick=()=>setAll(true);$('co').onclick=()=>setAll(false);
+$('q').oninput=e=>{const v=e.target.value.trim();document.querySelectorAll('.n').forEach(n=>n.classList.remove('hit'));if(!v)return;setAll(false);
+ const hits=people.filter(p=>p.n.includes(v)||nmx(p).toLowerCase().includes(v.toLowerCase()));hits.forEach(p=>{const n=document.querySelector(`.n[data-id="${p.id}"]`);if(!n)return;n.classList.add('hit');let u=n.parentElement.parentElement;while(u&&u.id!='tree'){if(u.tagName=='UL'){u.classList.remove('hide');const b=u.parentElement.querySelector('.tg');if(b)b.textContent='−'}u=u.parentElement}});
+ if(hits[0]){const n=document.querySelector(`.n[data-id="${hits[0].id}"]`);if(n)n.scrollIntoView({block:'center'})}};
+const desc=(q,s=new Set())=>{s.add(q.id);q.k.forEach(c=>desc(c,s));return s};
+function show(p){const ex=desc(p),r=(a,b)=>b?`<div class="row"><span>${a}</span><span>${esc(b)}</span></div>`:'';
+ $('dc').innerHTML=`<h2>${p.g=='m'?'👨':'👩'} <span data-ne="${esc(p.ne||'')}">${esc(p.n)}</span></h2><img id="av" class="av hide">${r('জন্ম',p.b)}${r('মৃত্যু',p.d)}${r(p.g=='m'?'স্ত্রী':'স্বামী',p.s)}${r(p.par?.g=='f'?'মাতা':'পিতা',p.par?.n)}${r('রক্তের গ্রুপ',p.bg)}${r('পেশা',p.job)}${r('ঠিকানা',p.addr)}${p.ph?`<div class="row"><span>ফোন</span><span><a href="tel:${esc(p.ph)}">${esc(p.ph)}</a></span></div>`:''}${r('সন্তান',p.k.length?bn(p.k.length)+' জন':'')}
+ ${p.k.length?'<div style="margin-top:8px">'+p.k.map(c=>`<span class="chip" data-id="${c.id}" data-ne="${esc(c.ne||'')}">${esc(c.n)}</span>`).join('')+'</div>':''}${p.notes.map(n=>`<div class="note">✔ ${esc(n)}</div>`).join('')}
+ <details style="margin-top:12px"><summary>✏️ তথ্য দিন / ভুল সংশোধন</summary><select id="fs"><option>জন্মতারিখ</option><option>মৃত্যুতারিখ</option><option>স্ত্রী/স্বামীর নাম</option><option>রক্তের গ্রুপ</option><option>পেশা</option><option>ঠিকানা</option><option>ফোন নম্বর</option><option>অন্য তথ্য</option></select><textarea id="fv" rows="2" placeholder="সঠিক তথ্য লিখুন"></textarea><button id="fb" style="margin-top:8px;width:100%">জমা দিন</button></details>
+ <details style="margin-top:10px"><summary>📷 ছবি পাঠান</summary><input type="file" id="af" accept="image/*" style="margin-top:6px"><button id="ab" style="margin-top:8px;width:100%">জমা দিন</button></details>
+ ${isAdm?`<details style="margin-top:10px"><summary>🛠 অ্যাডমিন সম্পাদনা</summary><input class="i" id="en" value="${esc(p.n)}"><input class="i" id="ene" placeholder="English name" value="${esc(p.ne)}"><input class="i" id="eb" placeholder="জন্ম" value="${esc(p.b)}"><input class="i" id="ed" placeholder="মৃত্যু" value="${esc(p.d)}"><input class="i" id="es" placeholder="স্ত্রী/স্বামী" value="${esc(p.s)}"><select id="ebg"><option value="">রক্তের গ্রুপ</option>${BG.map(x=>`<option ${p.bg==x?'selected':''}>${x}</option>`).join('')}</select><input class="i" id="ej" placeholder="পেশা" value="${esc(p.job)}"><input class="i" id="ea" placeholder="ঠিকানা" value="${esc(p.addr)}"><input class="i" id="eph" placeholder="ফোন নম্বর" value="${esc(p.ph)}"><select id="eg"><option value="m" ${p.g=='m'?'selected':''}>ছেলে</option><option value="f" ${p.g=='f'?'selected':''}>মেয়ে</option></select>${p.par?`<div class="note">${p.par.g=='f'?'মাতা':'পিতা'} (বদলাতে চাইলে বেছে নিন)</div><select id="epar">${Object.values(map).filter(x=>!ex.has(x.id)).sort((a,b)=>a.n.localeCompare(b.n,'bn')).map(x=>`<option value="${x.id}" ${x.id==p.parent?'selected':''}>${esc(x.n)}${x.par?' — '+esc(x.par.n):''}</option>`).join('')}</select>`:''}<div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap"><button id="sv">সংরক্ষণ</button><button class="alt" id="ac">+ সন্তান</button><button class="alt" id="dl">মুছুন</button></div></details>`:''}`;
+ $('dc').querySelectorAll('.chip').forEach(c=>c.onclick=()=>show(map[c.dataset.id]));
+ $('fb').onclick=async()=>{const v=$('fv').value.trim();if(!v)return;await addDoc(collection(db,'suggestions'),{pid:p.id,pn:p.n,f:$('fs').value,v,w:me.displayName||me.email,uid:me.uid,status:'pending',at:serverTimestamp()});notify('sug',{kind:'suggestion'});$('dc').innerHTML='<h2>ধন্যবাদ! 🙏</h2><p>আপনার তথ্য অ্যাডমিনের যাচাইয়ের জন্য জমা হয়েছে।</p>'};
+ if(avs[p.id]&&$('av')){$('av').src=avs[p.id];$('av').classList.remove('hide');$('av').onclick=()=>viewPic(p)}
+ else getDoc(doc(db,'avatars',p.id)).then(d=>{if(d.exists()&&$('av')){avs[p.id]=d.data().data;$('av').src=avs[p.id];$('av').classList.remove('hide');$('av').onclick=()=>viewPic(p)}}).catch(()=>{});
+ $('ab').onclick=async()=>{try{await ab_()}catch(e){console.log(e);alert('ছবি আপলোড হয়নি: '+(e.code||e.message||e)+(String(e.code||'').includes('permission')?'\n(Firestore rules Publish করা আছে কিনা দেখুন)':''))}};const ab_=async()=>{const f=$('af').files[0];if(!f)return alert(L('ছবি বেছে নিন'));const data=await shrink(f,480);
+  if(isAdm)await setDoc(doc(db,'avatars',p.id),{data,by:me.email});else{await addDoc(collection(db,'avatarReq'),{pid:p.id,pn:p.n,data,w:me.displayName||me.email,uid:me.uid,status:'pending',at:serverTimestamp()});notify('sug',{kind:'avatar'})}
+  $('dc').innerHTML=`<h2>ধন্যবাদ! 🙏</h2><p>${isAdm?'ছবি যোগ হয়েছে।':'আপনার তথ্য অ্যাডমিনের যাচাইয়ের জন্য জমা হয়েছে।'}</p>`};
+ if(isAdm){const ref=doc(db,'people',p.id);
+  $('sv').onclick=async()=>{await updateDoc(ref,{n:$('en').value.trim()||p.n,ne:$('ene').value.trim(),b:$('eb').value.trim(),d:$('ed').value.trim(),s:$('es').value.trim(),g:$('eg').value,bg:$('ebg').value,job:$('ej').value.trim(),addr:$('ea').value.trim(),ph:$('eph').value.trim(),...(($('epar')&&$('epar').value!=p.parent)?{parent:$('epar').value,o:(map[$('epar').value]?.k.length||0)}:{})});dlg.close()};
+  $('ac').onclick=async()=>{await addDoc(collection(db,'people'),{n:'নতুন সদস্য',g:'m',b:'',d:'',s:'',parent:p.id,o:p.k.length,notes:[]});dlg.close()};
+  $('dl').onclick=async()=>{if(p.k.length)return alert(L('আগে সন্তানদের মুছুন বা সরান।'));if(confirm(L('সত্যিই মুছবেন?'))){await deleteDoc(ref);dlg.close()}}}
+ if(!dlg.open)dlg.showModal()}
+function planFix(ps){const up={},del=[],add=[],log=[];
+ const kids=id=>ps.filter(x=>x.parent==id),by=(n,par)=>ps.find(x=>x.n==n&&x.parent==par),set=(id,f)=>up[id]={...(up[id]||{}),...f};
+ const R=ps.find(x=>x.n=='মোঃ গোলেবক্স খান');if(!R){log.push('মোঃ গোলেবক্স খান পাওয়া যায়নি');return{up:[],del,add,log}}
+ const sol=by('মোঃ সলেমান খান',R.id);
+ if(sol)['নূর মোহাম্মদ খান','মোঃ ফিরোজ খান','মোঃ সিরাজ খান','নূরজাহান','পরিজান'].forEach((n,i)=>{const x=by(n,R.id);if(x){set(x.id,{parent:sol.id,o:i});log.push('• '+n+' → মোঃ সলেমান খানের সন্তান হবে')}});
+ const sul=by('মোঃ সুলতান খান',R.id);
+ if(sul){const z=by('জোহরা',R.id);if(z){set(z.id,{parent:sul.id});log.push('• জোহরা → মোঃ সুলতান খানের মেয়ে হবে')}
+  ['ফুলি','জোহরা','সকিনা','হামীদা'].forEach((n,i)=>{const x=(n=='জোহরা'&&z)||by(n,sul.id);if(x&&x.id)set(x.id,{o:i})})}
+ ps.filter(x=>x.n=='নতুন সদস্য'&&x.parent==R.id&&!kids(x.id).length&&!x.b&&!x.d&&!x.s).forEach(x=>{del.push(x.id);log.push('• ফাঁকা "নতুন সদস্য" মুছে যাবে')});
+ [['মোঃ সিরাজ খান','নারগিস','f'],['মোঃ পিকুল খান','জুনায়েদ খান','m'],['জিতু খান','জায়মান খান','m'],['মোঃ জাহিদ খান','মাসুমা খান','f'],['সজল খান','আফিয়া জান্নাত','f']].forEach(([pn,cn,g])=>{
+  const P=ps.filter(x=>x.n==pn);if(P.length!=1){log.push('• '+pn+' খুঁজে পাওয়া যায়নি, '+cn+' যোগ হবে না');return}
+  if(kids(P[0].id).some(c=>c.n==cn))return;
+  add.push({n:cn,g,b:'',d:'',s:'',parent:P[0].id,o:kids(P[0].id).length,notes:[]});log.push('• '+cn+' যোগ হবে ('+pn+'-এর '+(g=='m'?'ছেলে':'মেয়ে')+')')});
+ const sir=ps.find(x=>x.n=='মোঃ সিরাজ খান');
+ if(sir){const ks=kids(sir.id).sort((a,b)=>(a.o||0)-(b.o||0)),ia=ks.findIndex(x=>x.n=='মোঃ আবগান খান'),im=ks.findIndex(x=>x.n=='মোঃ মাসুদ খান');
+  if(ia>=0&&im>=0&&ia<im){[ks[ia],ks[im]]=[ks[im],ks[ia]];ks.forEach((x,i)=>{if(x.o!==i)set(x.id,{o:i})});log.push('• মোঃ মাসুদ খান আগে, মোঃ আবগান খান তার পরে বসবে')}}
+ return{up:Object.entries(up),del,add,log}}
+const FM={'জন্মতারিখ':'b','মৃত্যুতারিখ':'d','স্ত্রী/স্বামীর নাম':'s','রক্তের গ্রুপ':'bg','পেশা':'job','ঠিকানা':'addr','ফোন নম্বর':'ph'};
+function adm(){const pu=usr.filter(u=>u.status=='pending');$('pc').textContent=(sug.length+pu.length+areq.length)?'('+bn(sug.length+pu.length+areq.length)+')':'';
+ $('adm').innerHTML=`<h3>নতুন সদস্যের অনুরোধ</h3>${pu.map(u=>`<div class="pend"><b>${esc(u.name)}</b> ${esc(u.email)}<div style="margin-top:8px;display:flex;gap:8px"><button data-ua="${u.id}">✔ অনুমোদন</button><button class="alt" data-ur="${u.id}">✖ বাতিল</button></div></div>`).join('')||'<p class="note">কেউ নেই।</p>'}
+ <h3>অনুমোদিত সদস্য</h3>${usr.filter(u=>u.status=='approved'&&u.email!=OWNER).map(u=>`<div class="pend">${esc(u.name)} ${esc(u.email)} ${u.admin?'(অ্যাডমিন)':''}<br><button class="alt sm" data-ut="${u.id}" data-av="${u.admin?0:1}">${u.admin?'অ্যাডমিন সরান':'অ্যাডমিন করুন'}</button></div>`).join('')||'<p class="note">কেউ নেই।</p>'}<h3>ছবির অনুরোধ</h3>${areq.map(a=>`<div class="pend"><img class="av" src="${a.data}"><b>${esc(a.pn)}</b> <small>${esc(a.w)}</small><div style="margin-top:8px;display:flex;gap:8px"><button data-pa="${a.id}">✔ অনুমোদন</button><button class="alt" data-pr="${a.id}">✖ বাতিল</button></div></div>`).join('')||'<p class="note">কোনো ছবির অনুরোধ নেই।</p>'}<h3>তথ্যের সাজেশন</h3>${sug.map(s=>`<div class="pend"><b>${esc(s.pn)}</b> — ${esc(s.f)}<br>${esc(s.v)}<br><small>পাঠিয়েছেন: ${esc(s.w)}</small><div style="margin-top:8px;display:flex;gap:8px"><button data-sa="${s.id}">✔ অনুমোদন</button><button class="alt" data-sr="${s.id}">✖ বাতিল</button></div></div>`).join('')||'<p class="note">কোনো সাজেশন নেই।</p>'}
+ ${people.length?'':'<h3>প্রাথমিক তথ্য</h3><button id="imp">পিপিটির তথ্য ডাটাবেজে ইম্পোর্ট করুন</button>'}<h3>ব্যাকআপ</h3><button id="bk">ডাটা ডাউনলোড (JSON)</button><h3>কাঠামো ঠিক করা</h3><p class="note">আগের তথ্য, ছবি কিছু মুছবে না। শুধু কে কার সন্তান সেটা PPT অনুযায়ী ঠিক করবে এবং না থাকা সদস্য যোগ করবে। চালানোর আগে কী কী হবে দেখাবে।</p><button id="fx">PPT অনুযায়ী কাঠামো ঠিক করুন</button>`;
+ $('bk').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(people,null,1)],{type:'application/json'}));a.download='khan-backup-'+new Date().toISOString().slice(0,10)+'.json';a.click()};
+ $('fx').onclick=async()=>{const o=planFix(people);
+  if(!o.up.length&&!o.del.length&&!o.add.length)return alert('কিছু ঠিক করার নেই। কাঠামো PPT অনুযায়ী আছে।');
+  if(!confirm(o.log.join('\n')+'\n\nচালিয়ে যাবেন?'))return;
+  const b=writeBatch(db);o.up.forEach(([id,f])=>b.update(doc(db,'people',id),f));o.del.forEach(id=>b.delete(doc(db,'people',id)));o.add.forEach(r=>b.set(doc(collection(db,'people')),r));
+  await b.commit();alert('ঠিক হয়ে গেছে।')};
+ $('adm').querySelectorAll('button[data-pa]').forEach(b=>b.onclick=async()=>{const a=areq.find(x=>x.id==b.dataset.pa);await setDoc(doc(db,'avatars',a.pid),{data:a.data,by:a.w});await deleteDoc(doc(db,'avatarReq',a.id))});
+ $('adm').querySelectorAll('button[data-pr]').forEach(b=>b.onclick=()=>deleteDoc(doc(db,'avatarReq',b.dataset.pr)));
+ $('adm').querySelectorAll('button[data-ut]').forEach(b=>b.onclick=()=>updateDoc(doc(db,'users',b.dataset.ut),{admin:b.dataset.av=='1'}));
+ $('adm').querySelectorAll('button[data-ua]').forEach(b=>b.onclick=async()=>{await updateDoc(doc(db,'users',b.dataset.ua),{status:'approved'});notify('approved',{uid:b.dataset.ua})});
+ $('adm').querySelectorAll('button[data-ur]').forEach(b=>b.onclick=()=>deleteDoc(doc(db,'users',b.dataset.ur)));
+ $('adm').querySelectorAll('button[data-sr]').forEach(b=>b.onclick=()=>updateDoc(doc(db,'suggestions',b.dataset.sr),{status:'rejected'}));
+ $('adm').querySelectorAll('button[data-sa]').forEach(b=>b.onclick=async()=>{const s=sug.find(x=>x.id==b.dataset.sa),p=map[s.pid];if(p){const k=FM[s.f];await updateDoc(doc(db,'people',s.pid),k?{[k]:s.v}:{notes:[...p.notes,s.f+': '+s.v]})}await updateDoc(doc(db,'suggestions',s.id),{status:'approved'})});
+ if($('imp'))$('imp').onclick=async()=>{const list=[];(function w(p,par,o){const id='p'+list.length;list.push({id,n:p.n,g:p.g,b:p.b,d:p.d,s:p.s,parent:par,o,notes:[]});p.k.forEach((c,i)=>w(c,id,i))})(root,'',0);
+  const b=writeBatch(db);list.forEach(({id,...r})=>b.set(doc(db,'people',id),r));await b.commit();alert(L('ইম্পোর্ট শেষ!'))}}
+const tab=a=>{[1,2,3,4,5,6,7,8,9].forEach(i=>{$('v'+i).classList.toggle('hide',i!=a);$('t'+i).classList.toggle('on',i==a)});if(a==3)loadGal();if(a==6)cmR();if(a==8)chL();if(a==9)hsR();if(a==7)memR()};
+[1,2,3,4,5,6,7,8,9].forEach(i=>$('t'+i).onclick=()=>tab(i));
+
+const BG=['A+','A-','B+','B-','AB+','AB-','O+','O-'];
+function bday(){const n=new Date(),m=n.getMonth()+1,d=n.getDate(),A=t=>t.replace(/[০-৯]/g,c=>'০১২৩৪৫৬৭৮৯'.indexOf(c));
+ const L=people.filter(p=>/^[০-৯]{2}\/[০-৯]{2}\//.test(p.b||'')&&!p.d).map(p=>{const [dd,mm]=A(p.b).split('/');return{p,dd:+dd,mm:+mm}}).filter(x=>x.mm==m).sort((a,b)=>a.dd-b.dd);
+ $('bd').innerHTML=L.length?`<div class="pend"><b>🎂 এ মাসের জন্মদিন</b><br>${L.map(x=>`${x.dd==d?'🎉 ':''}${esc(x.p.n)} — ${bn(x.dd)}/${bn(x.mm)}`).join('<br>')}</div>`:''}
+function dirR(){const q=$('dq').value.trim(),g=$('dg').value;
+ const L=people.filter(p=>(p.bg||p.job||p.addr||p.ph)&&(!g||p.bg==g)&&(!q||[p.n,nmx(p),p.job,p.addr,p.ph].some(x=>(x||'').toLowerCase().includes(q.toLowerCase()))));
+ $('dlist').innerHTML=L.length?L.map(p=>`<div class="pend" data-id="${p.id}" style="cursor:pointer"><b data-ne="${esc(p.ne||'')}">${esc(p.n)}</b> ${p.bg?`<span class="badge">🩸 ${esc(p.bg)}</span>`:''}<br><small>${esc(p.job||'')}${p.job&&p.addr?' · ':''}${esc(p.addr||'')}${p.ph?'<br><a href="tel:'+esc(p.ph)+'">📞 '+esc(p.ph)+'</a>':''}</small></div>`).join(''):'<p class="note">এখনও কারও তথ্য যোগ হয়নি।</p>';
+ $('dlist').querySelectorAll('.pend').forEach(e=>e.onclick=()=>show(map[e.dataset.id]))}
+$('dq').oninput=dirR;$('dg').onchange=dirR;
+const pl_=p=>L(p.par&&p.par.g=='f'?'মাতা':'পিতা'),lab=p=>`${nmx(p)} — ${pl_(p)}: ${p.par?nmx(p.par):'—'}`,byLab=v=>Object.values(map).find(p=>lab(p)==v);
+function relList(){$('pl').innerHTML=Object.values(map).map(p=>`<option value="${esc(lab(p))}">`).join('')}
+const ch=p=>{const c=[];while(p){c.push(p);p=p.par}return c};
+function rel(A,B){const ca=ch(A),cb=ch(B);let a=-1,b=-1;for(let i=0;i<ca.length;i++){const j=cb.indexOf(ca[i]);if(j>=0){a=i;b=j;break}}
+ if(a<0)return null;const m=B.g=='m',fem=x=>x.some(y=>y.g=='f'),mid=fem(ca.slice(1,a))||fem(cb.slice(1,b));let t;
+ if(a==b){if(a==1)t=m?'ভাই':'বোন';else if(a==2){const pa=ca[1],pb=cb[1];t=(pa.g=='f'?(pb.g=='m'?'মামাতো':'খালাতো'):(pb.g=='m'?'চাচাতো':'ফুফাতো'))+' '+(m?'ভাই':'বোন')}else t=mid?'দূর সম্পর্কের '+(m?'ভাই':'বোন'):'চাচাতো '+(m?'ভাই':'বোন')+' (দূর সম্পর্কের)'}
+ else if(b>a){const d=b-a,s=m?'ছেলে':'মেয়ে',nn=m?'নাতি':'নাতনি',sb=cb[b-1].g=='f'?'বোনের':'ভাইয়ের';t=a==0?(d==1?s:d==2?nn:'নাতির '+s+' (বংশধর)'):a==1?(d==1?sb+' '+s:d==2?sb+' '+nn:sb+' বংশধর'):'দূর সম্পর্কের বংশধর'}
+ else{const d=a-b;
+  if(b==0){const pa=ca[1],fm=B.g=='f';t=d==1?(fm?'মা':'বাবা'):d==2?(pa.g=='f'?(fm?'নানি':'নানা'):(fm?'দাদি':'দাদা')):(d==3&&!mid)?(fm?'পরদাদি':'পরদাদা'):'ঊর্ধ্বতন পূর্বপুরুষ'}
+  else if(b==1){const pa=ca[1];t=d==1?(m?(pa.g=='f'?'মামা':'চাচা'):(pa.g=='f'?'খালা':'ফুফু')):(d==2&&!mid)?(m?'চাচাদাদা':'ফুফুদাদি'):'দূর সম্পর্কের পূর্বপুরুষ'}
+  else t='দূর সম্পর্কের চাচা/ফুফু স্থানীয়'}
+ return{t,l:ca[a]}}
+function acInit(inp){inp.removeAttribute('list');inp.autocomplete='off';const box=document.createElement('div');box.className='aclist hide';inp.after(box);
+ inp.oninput=()=>{inp._id=null;const v=inp.value.trim().toLowerCase();if(!v){box.classList.add('hide');return}
+  const hits=Object.values(map).filter(p=>(p.n+' '+nmx(p)).toLowerCase().includes(v)).slice(0,10);
+  box.innerHTML=hits.map(p=>`<div data-id="${p.id}">${esc(nmx(p))}<small>${pl_(p)}: ${p.par?esc(nmx(p.par)):'—'}</small></div>`).join('');box.classList.toggle('hide',!hits.length);
+  box.querySelectorAll('div').forEach(d=>d.onclick=()=>{const p=map[d.dataset.id];inp._id=p.id;inp.value=lab(p);box.classList.add('hide')})};
+ inp.onfocus=()=>{if(inp.value&&!inp._id)inp.oninput()};document.addEventListener('click',e=>{if(e.target!==inp&&!box.contains(e.target))box.classList.add('hide')})}
+const pickP=i=>{const v=i.value.trim();if(i._id&&map[i._id])return map[i._id];const b=byLab(v);if(b)return b;const m=Object.values(map).filter(p=>p.n==v||nmx(p)==v);return m.length==1?m[0]:null};
+acInit($('ra'));acInit($('rb'));
+$('rg').onclick=()=>{const A=pickP($('ra')),B=pickP($('rb'));let h;
+ if(!A||!B)h='<p class="note">তালিকা থেকে দুজনকেই বেছে নিন।</p>';else if(A===B)h='<p class="note">দুজন একই ব্যক্তি।</p>';
+ else{const r=rel(A,B);h=r?`<div class="pend"><b data-ne="${esc(B.ne||'')}">${esc(B.n)}</b> হলেন <b data-ne="${esc(A.ne||'')}">${esc(A.n)}</b>-এর <b data-t="1">${r.t}</b><br><small><span>সর্বশেষ সাধারণ পূর্বপুরুষ:</span> <span data-ne="${esc(r.l.ne||'')}">${esc(r.l.n)}</span></small></div><p class="note">এটা বংশবৃক্ষে থাকা রক্তের সম্পর্ক। শ্বশুরবাড়ির বা বংশের বাইরের আত্মীয় এখানে আসে না।</p>`:'<p class="note">সম্পর্ক পাওয়া যায়নি।</p>'}
+ $('rr').innerHTML=h};
+let gU=null,photos=[];
+function loadGal(){if(gU)return;gU=onSnapshot(collection(db,'photos'),sn=>{photos=sn.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>(b.at?.seconds||0)-(a.at?.seconds||0));galR()});unsub.push(()=>{gU&&gU();gU=null})}
+function galR(){if(!$('gu'))$('gadm').innerHTML=isAdm?'<div class="pend"><input type="file" id="gf" accept="image/*"><input class="i" id="gt" placeholder="ছবির শিরোনাম (যেমন: ঈদ মিলন)"><button id="gu" style="margin-top:8px">ছবি যোগ করুন</button></div>':'';
+ $('gal').innerHTML=photos.map((x,i)=>`<figure><img src="${x.data}" data-gi="${i}" loading="lazy"><figcaption>${esc(x.title)}${isAdm?` <button class="alt sm" data-gd="${x.id}">মুছুন</button>`:''}</figcaption></figure>`).join('')||'<p class="note">এখনও কোনো ছবি নেই।</p>';
+ $('gal').querySelectorAll('img[data-gi]').forEach(m=>m.onclick=()=>viewPhoto(photos[+m.dataset.gi]));
+  $('gal').querySelectorAll('button[data-gd]').forEach(b=>b.onclick=()=>confirm(L('ছবি মুছবেন?'))&&deleteDoc(doc(db,'photos',b.dataset.gd)));
+ if($('gu'))$('gu').onclick=async()=>{const f=$('gf').files[0];if(!f)return alert(L('ছবি বেছে নিন'));const ti=$('gt').value.trim(),data=await fit(f,2400,.93,950000);await addDoc(collection(db,'photos'),{title:ti,data,at:serverTimestamp()});$('gf').value='';$('gt').value='';notify('photo',{title:ti})}}
+function viewPhoto(x){$('pvc').innerHTML=`<h3 style="margin:0 0 10px">${esc(x.title||'')}</h3><img src="${x.data}" alt="">`;const a=$('pvdl');a.href=x.data;a.download=((x.title||'').replace(/[\\/:*?"<>|]/g,'')||'khan-photo')+'.jpg';if(!pvd.open)pvd.showModal()}
+
+let areq=[];const fit=(f,m,q,lim)=>new Promise((res,rej)=>{const im=new Image();im.onload=()=>{let mx=m,qq=q,out='';for(let i=0;i<10;i++){const k=Math.min(1,mx/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);const x=c.getContext('2d');x.imageSmoothingQuality='high';x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.drawImage(im,0,0,c.width,c.height);out=c.toDataURL('image/jpeg',qq);if(out.length<lim)break;if(qq>.82)qq-=.04;else mx=Math.round(mx*.88)}res(out)};im.onerror=rej;im.src=URL.createObjectURL(f)});
+const shrink=(f)=>fit(f,1600,.93,900000);
+let lang='bn';try{lang=localStorage.getItem('khanLang')||'bn'}catch(e){}
+const PD={"🌳 খান পরিবারের বংশবৃক্ষ": "🌳 Khan Family Tree", "শুধু পরিবারের সদস্যদের জন্য": "For family members only", "লগআউট": "Log out", "পরিবারের সদস্যদের জন্য": "For family members", "চালিয়ে যেতে Google দিয়ে সাইন ইন করুন।": "Sign in with Google to continue.", "Google দিয়ে সাইন ইন": "Sign in with Google", "⏳ অনুমোদনের অপেক্ষায়": "⏳ Waiting for approval", "আপনার অনুরোধ অ্যাডমিনের কাছে গেছে। অনুমোদন হলে পেজটা রিফ্রেশ করুন।": "Your request was sent to the admin. Refresh the page once approved.", "নাম খুঁজুন…": "Search name…", "সব খুলুন": "Expand all", "সব বন্ধ": "Collapse all", "বংশবৃক্ষ": "Family Tree", "গ্যালারি": "Gallery", "ডিরেক্টরি": "Directory", "সম্পর্ক": "Relations", "অ্যাডমিন": "Admin", "মোট সদস্য": "Total members", "ছেলে": "Male", "মেয়ে": "Female", "🎂 এ মাসের জন্মদিন": "🎂 Birthdays this month", "এখনও কোনো তথ্য নেই।": "No data yet.", "এখনও কোনো তথ্য নেই। অ্যাডমিন প্যানেল থেকে প্রাথমিক তথ্য ইম্পোর্ট করুন।": "No data yet. Import the initial data from the Admin tab.", "জন্ম": "Born", "মৃত্যু": "Died", "স্ত্রী": "Wife", "স্বামী": "Husband", "স্ত্রী/স্বামী": "Spouse", "পিতা": "Father", "মাতা": "Mother", "সন্তান": "Children", "ফোন": "Phone", "ফোন নম্বর": "Phone number", "📷 ছবি পাঠান": "📷 Send a photo", "ছবির অনুরোধ": "Photo requests", "কোনো ছবির অনুরোধ নেই।": "No photo requests.", "ছবি যোগ হয়েছে।": "Photo added.", "অনুমোদনের অপেক্ষায়": "awaiting approval", "আগামী ৭ দিনে কোনো জন্মদিন নেই।": "No birthdays in the next 7 days.", "নোটিশ বোর্ড": "Notice board", "📜 খান বংশের ইতিহাস": "📜 Khan Family History", "এখানে খান বংশের ইতিহাস লিখুন…": "Write the Khan family history here…", "এখনও কোনো ইতিহাস লেখা হয়নি। নিচের বাটনে চেপে লিখুন।": "No history has been written yet. Tap the button below to write it.", "বাতিল": "Cancel", "ইতিহাসে খুঁজুন…": "Search history…", "সদস্যদের জীবনী": "Member biographies", "জীবনী / ইতিহাস": "Biography / history", "জীবনী / ইতিহাস লিখুন…": "Write biography / history…", "জীবনী/ইতিহাস": "Biography/history", "📜 ইতিহাস": "📜 History", "📜 স্থান ও পূর্বপুরুষের ইতিহাস": "📜 History of our place and ancestors", "নতুন অধ্যায় লিখুন": "Write a new chapter", "শিরোনাম (যেমন: আমাদের গ্রাম, গোলেবক্স খান)": "Title (e.g. Our village, Golebox Khan)", "এখানে ইতিহাস লিখুন…": "Write the history here…", "এখনও কোনো ইতিহাস লেখা হয়নি।": "No history has been written yet.", "এখনও কোনো ইতিহাস লেখা হয়নি। উপরের ঘরে লিখুন।": "No history has been written yet. Write it in the box above.", "সম্পাদনা": "Edit", "💬 চ্যাট": "💬 Chat", "নতুন চ্যাট": "New chat", "ব্যক্তিগত": "Personal", "গ্রুপ": "Group", "গ্রুপের নাম": "Group name", "গ্রুপ বানান": "Create group", "বার্তা লিখুন…": "Type a message…", "পাঠান": "Send", "এখনও কোনো বার্তা নেই।": "No messages yet.", "এখনও কোনো বার্তা নেই। প্রথম বার্তাটা আপনি পাঠান!": "No messages yet. Send the first one!", "আপনি:": "You:", "খান পরিবার": "Khan Family", "অন্য কেউ এখনও যুক্ত হয়নি।": "No one else has joined yet.", "কমিউনিটি": "Community", "স্মরণ": "Memorial", "প্রজন্ম": "Generations", "জীবিত": "Living", "এ বছর জন্ম": "Born this year", "আসছি": "Coming", "আসছি না": "Not coming", "জন ভোট দিয়েছেন": "people voted", "📣 নোটিশ বোর্ড": "📣 Notice board", "🗳 ভোট": "🗳 Polls", "কোনো ভোট নেই।": "No polls.", "📣 নতুন নোটিশ / অনুষ্ঠান": "📣 New notice / event", "আসছি/আসছি না (RSVP) চালু করুন": "Enable RSVP (coming / not coming)", "🗳 নতুন ভোট": "🗳 New poll", "প্রশ্ন": "Question", "অপশনগুলো, প্রতি লাইনে একটা": "Options, one per line", "ভোট শুরু করুন": "Start poll", "মৃত্যুবার্ষিকী": "Death anniversary", "🕊 মরহুম সদস্যদের স্মরণে": "🕊 In memory of departed members", "এখনও কেউ যুক্ত নেই।": "No one added yet.", "কোনো নোটিশ নেই।": "No notices.", "নতুন নোটিশ লিখুন…": "Write a new notice…", "নোটিশ দিন": "Post notice", "জন্মদিন": "Birthday", "আজ": "today", "🔔 নোটিফিকেশন চালু করুন": "🔔 Enable notifications", "📲 ইনস্টল": "📲 Install", "iPhone-এ: Safari-র শেয়ার বাটন থেকে \"Add to Home Screen\" দিয়ে আগে হোম স্ক্রিনে যোগ করুন।": "On iPhone: first add this site to your Home Screen from Safari's Share button (Add to Home Screen).", "রক্তের গ্রুপ": "Blood group", "পেশা": "Occupation", "ঠিকানা": "Address", "✏️ তথ্য দিন / ভুল সংশোধন": "✏️ Suggest an edit", "অন্য তথ্য": "Other info", "সঠিক তথ্য লিখুন": "Write the correct information", "জমা দিন": "Submit", "🛠 অ্যাডমিন সম্পাদনা": "🛠 Admin edit", "সংরক্ষণ": "Save", "+ সন্তান": "+ Child", "মুছুন": "Delete", "বন্ধ করুন": "Close", "ধন্যবাদ! 🙏": "Thank you! 🙏", "আপনার তথ্য অ্যাডমিনের যাচাইয়ের জন্য জমা হয়েছে।": "Your information was submitted for admin review.", "নতুন সদস্যের অনুরোধ": "New member requests", "কেউ নেই।": "None.", "✔ অনুমোদন": "✔ Approve", "✖ বাতিল": "✖ Reject", "অনুমোদিত সদস্য": "Approved members", "(অ্যাডমিন)": "(admin)", "অ্যাডমিন সরান": "Remove admin", "অ্যাডমিন করুন": "Make admin", "তথ্যের সাজেশন": "Suggestions", "কোনো সাজেশন নেই।": "No suggestions.", "প্রাথমিক তথ্য": "Initial data", "পিপিটির তথ্য ডাটাবেজে ইম্পোর্ট করুন": "Import PPT data into the database", "ব্যাকআপ": "Backup", "ডাটা ডাউনলোড (JSON)": "Download data (JSON)", "ছবির শিরোনাম (যেমন: ঈদ মিলন)": "Photo title (e.g. Eid gathering)", "ছবি যোগ করুন": "Add photo", "এখনও কোনো ছবি নেই।": "No photos yet.", "নাম, পেশা বা ঠিকানা…": "Name, occupation or address…", "সব রক্তের গ্রুপ": "All blood groups", "এখনও কারও তথ্য যোগ হয়নি।": "No details added yet.", "দুজনের সম্পর্ক জানুন": "Find the relationship between two people", "প্রথম ব্যক্তি": "First person", "দ্বিতীয় ব্যক্তি": "Second person", "সম্পর্ক দেখুন": "Show relationship", "হলেন": "is", "-এর": "'s", "সর্বশেষ সাধারণ পূর্বপুরুষ:": "Latest common ancestor:", "এটা বংশবৃক্ষে থাকা রক্তের সম্পর্ক। শ্বশুরবাড়ির বা বংশের বাইরের আত্মীয় এখানে আসে না।": "This shows blood relationships within the family tree only. In-laws and relatives outside the tree are not included.", "তালিকা থেকে দুজনকেই বেছে নিন।": "Please pick both people from the list.", "দুজন একই ব্যক্তি।": "Both are the same person.", "সম্পর্ক পাওয়া যায়নি।": "No relationship found.", "লগইন হয়নি: ": "Login failed: ", "আগে সন্তানদের মুছুন বা সরান।": "Remove the children first.", "সত্যিই মুছবেন?": "Really delete?", "ছবি বেছে নিন": "Choose a photo", "ছবি মুছবেন?": "Delete this photo?", "ইম্পোর্ট শেষ!": "Import finished!", "কাঠামো ঠিক করা": "Fix structure", "PPT অনুযায়ী কাঠামো ঠিক করুন": "Fix structure per PPT", "চ্যাট, জন্মদিন, নোটিশ ও অনুমোদনের খবর সরাসরি ফোনে পাবেন।": "Get chat, birthday, notice and approval alerts directly on your phone.", "চালু করুন": "Turn on", "📲 অ্যাপ হিসেবে ইনস্টল করুন": "📲 Install as an app", "iPhone-এ নোটিফিকেশন পেতে Safari-র শেয়ার বাটন চেপে \"Add to Home Screen\" দিন, তারপর হোম স্ক্রিন থেকে অ্যাপটি খুলুন।": "On iPhone, tap Safari's Share button, choose \"Add to Home Screen\", then open the app from your home screen to get notifications.", "নোটিফিকেশন সেটিং": "Notification settings", "💬 চ্যাট বার্তা": "💬 Chat messages", "🎂 জন্মদিন ও মৃত্যুবার্ষিকী": "🎂 Birthdays & death anniversaries", "📣 নোটিশ, ভোট ও নতুন ছবি": "📣 Notices, polls & new photos", "📴 আপনি অফলাইনে আছেন — আগের ডাটা দেখা যাচ্ছে": "📴 You are offline — showing saved data", "🔔 অনুমোদনের খবর ফোনে পেতে নোটিফিকেশন চালু করুন": "🔔 Turn on notifications to get the approval alert", "⬇️ ডাউনলোড": "⬇️ Download", "নিকনেম": "Nickname", "গ্রুপের ছবি": "Group photo", "ছবি সরান": "Remove photo", "নিকনেম বদলান": "Change nickname", "রিপ্লাই": "Reply", "কপি": "Copy", "পিন করুন": "Pin", "মুছুন": "Delete", "আগের বার্তা দেখুন": "Load older messages", "বার্তাটি মুছবেন?": "Delete this message?"},W={"মোঃ": "Md.", "খান": "Khan", "জন": "people", "জন্ম": "Born", "মৃত্যু": "Died", "স্ত্রী": "Wife", "স্বামী": "Husband", "পিতা": "Father", "স্বামীর": "husband's", "নাম": "name", "জন্মতারিখ": "Date of birth", "মৃত্যুতারিখ": "Date of death", "নতুন": "New", "সদস্য": "member", "পাঠিয়েছেন": "Sent by", "মোহাম্মদ": "Mohammad", "নূর": "Nur", "গোলেবক্স": "Golebox", "সলেমান": "Solaiman", "বেগম": "Begum", "খাতুন": "Khatun", "বিবি": "Bibi", "রহমান": "Rahman", "সিরাজ": "Siraj", "ফিরোজ": "Firoz", "পেশা": "Occupation", "ঠিকানা": "Address", "রক্তের": "Blood", "গ্রুপ": "group", "ফোন": "Phone", "নম্বর": "number", "অন্তর": "Antor", "দিন": "days", "পরে": "later", "আক্তার": "Akter", "মোছাঃ": "Mst."},Q={"ভাই": "brother", "মামাতো ভাই": "maternal cousin (brother, mother's brother's side)", "মামাতো বোন": "maternal cousin (sister, mother's brother's side)", "খালাতো ভাই": "maternal cousin (brother, mother's sister's side)", "খালাতো বোন": "maternal cousin (sister, mother's sister's side)", "ফুফাতো ভাই": "cousin (brother, father's sister's side)", "ফুফাতো বোন": "cousin (sister, father's sister's side)", "বোনের ছেলে": "sister's son", "বোনের মেয়ে": "sister's daughter", "বোনের নাতি": "sister's grandson", "বোনের নাতনি": "sister's granddaughter", "বোনের বংশধর": "sister's descendant", "দূর সম্পর্কের ভাই": "distant relative (brother)", "দূর সম্পর্কের বোন": "distant relative (sister)", "নানা": "maternal grandfather", "নানি": "maternal grandmother", "মামা": "maternal uncle", "খালা": "maternal aunt", "বোন": "sister", "চাচাতো ভাই": "paternal cousin (brother)", "চাচাতো বোন": "paternal cousin (sister)", "চাচাতো ভাই (দূর সম্পর্কের)": "distant paternal cousin (brother)", "চাচাতো বোন (দূর সম্পর্কের)": "distant paternal cousin (sister)", "ছেলে": "son", "মেয়ে": "daughter", "নাতি": "grandson", "নাতনি": "granddaughter", "নাতির ছেলে (বংশধর)": "great-grandson", "নাতির মেয়ে (বংশধর)": "great-granddaughter", "ভাইয়ের ছেলে": "brother's son", "ভাইয়ের মেয়ে": "brother's daughter", "ভাইয়ের নাতি": "brother's grandson", "ভাইয়ের নাতনি": "brother's granddaughter", "ভাইয়ের বংশধর": "brother's descendant", "দূর সম্পর্কের বংশধর": "distant descendant", "বাবা": "father", "মা": "mother", "দাদি": "grandmother", "পরদাদি": "great-grandmother", "দাদা": "grandfather", "পরদাদা": "great-grandfather", "ঊর্ধ্বতন পূর্বপুরুষ": "ancestor", "চাচা": "paternal uncle", "ফুফু": "paternal aunt", "চাচাদাদা": "grandfather's brother", "ফুফুদাদি": "grandfather's sister", "দূর সম্পর্কের পূর্বপুরুষ": "distant elder relative", "দূর সম্পর্কের চাচা/ফুফু স্থানীয়": "distant paternal uncle/aunt figure"};
+const CM={'ক':'k','খ':'kh','গ':'g','ঘ':'gh','ঙ':'ng','চ':'ch','ছ':'ch','জ':'j','ঝ':'jh','ঞ':'n','ট':'t','ঠ':'th','ড':'d','ঢ':'dh','ণ':'n','ত':'t','থ':'th','দ':'d','ধ':'dh','ন':'n','প':'p','ফ':'f','ব':'b','ভ':'bh','ম':'m','য':'j','র':'r','ল':'l','শ':'sh','ষ':'sh','স':'s','হ':'h','ৎ':'t','ড়':'r','ঢ়':'rh','য়':'y'},NK={'ড':'r','ঢ':'rh','য':'y'},
+VS={'া':'a','ি':'i','ী':'i','ু':'u','ূ':'u','ৃ':'ri','ে':'e','ৈ':'oi','ো':'o','ৌ':'ou'},IV={'অ':'o','আ':'a','ই':'i','ঈ':'i','উ':'u','ঊ':'u','ঋ':'ri','এ':'e','ঐ':'oi','ও':'o','ঔ':'ou','ং':'ng','ঃ':'','ঁ':''},DG={'০':'0','১':'1','২':'2','৩':'3','৪':'4','৫':'5','৬':'6','৭':'7','৮':'8','৯':'9'};
+function tl(w){if(W[w])return W[w];let o='',pr=false;const c=[...w];
+ for(let i=0;i<c.length;i++){const x=c[i];
+  if(DG[x]!==undefined){o+=DG[x];continue}
+  if(IV[x]!==undefined){o+=IV[x];pr=x!='ং'&&x!='ঃ'&&x!='ঁ'?true:pr;continue}
+  if(CM[x]!==undefined){o+=(c[i+1]=='়'&&NK[x])?NK[x]:CM[x];if(c[i+1]=='়')i++;const n=c[i+1];
+   if(VS[n]!==undefined){o+=VS[n];i++;pr=true}
+   else if(n=='্'){i++;pr=false}
+   else if(i<c.length-1&&!(pr&&CM[c[i+1]]!==undefined&&VS[c[i+2]]!==undefined)&&!IV[n]&&n!='়')o+=(pr=false,'a');
+   else pr=false;continue}
+  o+=x}
+ return o?o[0].toUpperCase()+o.slice(1):o}
+const nmx=p=>lang=='en'?(p.ne||trText(p.n)):p.n,L=t=>lang=='en'?(PD[t]??t):t;
+function trText(t,pe){if(pe&&pe.dataset){if(pe.dataset.ne)return pe.dataset.ne;if(pe.dataset.t)return Q[t.trim()]||t}
+ const m=t.match(/^(\s*)([\s\S]*?)(\s*)$/);if(PD[m[2]]!==undefined)return m[1]+PD[m[2]]+m[3];
+ return t.replace(/[\u0980-\u09FF]+/g,tl)}
+const orig=new WeakMap();
+function trNode(n){if(n.nodeType==3){if(n.parentElement&&n.parentElement.id=='lg')return;if(!orig.has(n)){if(!/[\u0980-\u09FF]/.test(n.nodeValue))return;orig.set(n,n.nodeValue)}
+  const v=lang=='en'?trText(orig.get(n),n.parentElement):orig.get(n);if(n.nodeValue!==v)n.nodeValue=v}
+ else if(n.nodeType==1&&n.tagName!='SCRIPT'&&n.tagName!='STYLE'){if(n.hasAttribute('placeholder')){if(!n._ph)n._ph=n.getAttribute('placeholder');n.setAttribute('placeholder',lang=='en'?trText(n._ph):n._ph)}n.childNodes.forEach(trNode)}}
+new MutationObserver(ms=>{if(lang!='en')return;ms.forEach(m=>m.addedNodes.forEach(trNode))}).observe(document.body,{childList:true,subtree:true});
+function setLang(l){lang=l;try{localStorage.setItem('khanLang',l)}catch(e){}document.documentElement.lang=l;trNode(document.body);document.title=l=='en'?'Khan Family Tree':'খান পরিবারের বংশবৃক্ষ';$('lg').textContent=l=='en'?'বাংলা':'English';if(people.length)relList()}
+$('lg').onclick=()=>setLang(lang=='en'?'bn':'en');
+setLang(lang);
+/* Firebase Console → Project settings → Cloud Messaging → Web Push certificates → Key pair এখানে বসান (SETUP.md দেখুন) */
+const VAPID='';
+let ntc=[],dpr=null,lastP=null;
+if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();dpr=e;$('ins').classList.remove('hide')});
+$('ins').onclick=()=>{if(dpr){dpr.prompt();dpr=null;$('ins').classList.add('hide')}};
+const A2=t=>t.replace(/[০-৯]/g,c=>'০১২৩৪৫৬৭৮৯'.indexOf(c));
+function bdays(n){const t=new Date(),t0=new Date(t.getFullYear(),t.getMonth(),t.getDate()),o=[];
+ people.forEach(p=>{if(p.d||!/^[০-৯]{2}\/[০-৯]{2}\//.test(p.b||''))return;const[dd,mm]=A2(p.b).split('/').map(Number);
+  let x=new Date(t.getFullYear(),mm-1,dd);if(x<t0)x=new Date(t.getFullYear()+1,mm-1,dd);const df=Math.round((x-t0)/864e5);if(df<=n)o.push({p,df})});
+ return o.sort((a,b)=>a.df-b.df)}
+const pendN=()=>isAdm?sug.length+usr.filter(u=>u.status=='pending').length+areq.length:0;
+function ping(t,b,tag){try{if(Notification.permission=='granted')navigator.serviceWorker.ready.then(r=>r.showNotification(t,{body:b,icon:'icon-192.png',badge:'icon-192.png',tag}))}catch(e){}}
+function nRefresh(){const b=bdays(0).length+dann(0).length,n=pendN();$('bl').classList.remove('hide');$('bc').textContent=(b+n)?bn(b+n):'';
+ if(lastP!==null&&n>lastP)ping('অ্যাডমিন অনুমোদন দরকার',bn(n)+' টি অনুরোধ অপেক্ষায়','pending');lastP=n}
+async function regPush(){if(!VAPID||!('serviceWorker' in navigator)||!('Notification' in window)||Notification.permission!='granted')return;try{const {getMessaging,getToken}=await import('https://www.gstatic.com/firebasejs/10.14.1/firebase-messaging.js');
+ const reg=await navigator.serviceWorker.ready,t=await getToken(getMessaging(app),{vapidKey:VAPID,serviceWorkerRegistration:reg});
+ if(t)await setDoc(doc(db,'tokens',me.uid),{ts:arrayUnion(t),email:me.email,at:serverTimestamp()},{merge:true})}catch(e){console.log(e)}}
+let prefs={};
+function nbR(){const b=$('nb'),ios=/iphone|ipad|ipod/i.test(navigator.userAgent),st=matchMedia('(display-mode: standalone)').matches||navigator.standalone,can='Notification' in window&&'serviceWorker' in navigator;let m='';
+ if(ios&&!st)m='ios';else if(can&&Notification.permission=='default')m='ask';
+ b.classList.toggle('hide',!m);
+ if(m=='ios')b.innerHTML='<b>📲 অ্যাপ হিসেবে ইনস্টল করুন</b><br><small class="note">iPhone-এ নোটিফিকেশন পেতে Safari-র শেয়ার বাটন চেপে "Add to Home Screen" দিন, তারপর হোম স্ক্রিন থেকে অ্যাপটি খুলুন।</small>';
+ if(m=='ask'){b.innerHTML='<b>🔔 নোটিফিকেশন চালু করুন</b><br><small class="note">চ্যাট, জন্মদিন, নোটিশ ও অনুমোদনের খবর সরাসরি ফোনে পাবেন।</small><button id="nbb" style="margin-top:8px;width:100%">চালু করুন</button>';$('nbb').onclick=()=>Notification.requestPermission().then(p=>{if(p=='granted')regPush();nbR()})}}
+if('serviceWorker' in navigator)navigator.serviceWorker.addEventListener('message',e=>{const m=e.data||{};if(m.type=='push')toast(m.title,m.body);if(m.type=='go')goTo(m.go,m.chat)});
+function nInit(){if(nInit.d)return;nInit.d=1;
+ nbR();getDoc(doc(db,'tokens',me.uid)).then(d=>{if(d.exists())prefs=d.data().prefs||{}}).catch(()=>{});
+ {const sp=new URLSearchParams(location.search);if(sp.get('go')){goTo(sp.get('go'),sp.get('chat'));history.replaceState(null,'',location.pathname)}}unsub.push(()=>{nInit.d=0;lastP=null});
+ unsub.push(onSnapshot(collection(db,'notices'),sn=>{ntc=sn.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>(b.at?.seconds||0)-(a.at?.seconds||0));cmR()}));unsub.push(onSnapshot(collection(db,'polls'),sn=>{polls=sn.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>(b.at?.seconds||0)-(a.at?.seconds||0));cmR()}));
+ const k='khanBd'+new Date().toDateString();let ok=0;try{ok=localStorage.getItem(k)}catch(e){}
+ const tb=bdays(0),td=dann(0);if((tb.length||td.length)&&!ok){if(tb.length)ping('🎂 আজ জন্মদিন',tb.map(x=>x.p.n).join('، '),'bd-today');if(td.length)ping('🕊 আজ মৃত্যুবার্ষিকী',td.map(x=>x.p.n).join('، '),'dann-today');try{localStorage.setItem(k,1)}catch(e){}}
+ if('Notification' in window&&Notification.permission=='granted')regPush();chInit()}
+const _adm=adm;adm=()=>{_adm();nRefresh()};
+$('bl').onclick=()=>{const bd=bdays(7),n=pendN(),row=h=>`<div class="pend">${h}</div>`;let h='<h2>🔔</h2>';
+ if(n)h+=row(`⏳ <b>${bn(n)}</b> <span>অনুমোদনের অপেক্ষায়</span> <button class="alt sm" id="go2">অ্যাডমিন</button>`);
+ h+=bd.length?bd.map(x=>row(`🎂 <b data-ne="${esc(x.p.ne||'')}">${esc(x.p.n)}</b> — <span>জন্মদিন</span> <span>${x.df?bn(x.df)+' দিন পরে':'আজ'}</span>`)).join(''):'<p class="note">আগামী ৭ দিনে কোনো জন্মদিন নেই।</p>';
+ h+=dann(7).map(x=>row(`🕊 <b data-ne="${esc(x.p.ne||'')}">${esc(x.p.n)}</b> — <span>মৃত্যুবার্ষিকী</span> <span>${x.df?bn(x.df)+' দিন পরে':'আজ'}</span>`)).join('');
+ h+='<h3>নোটিশ বোর্ড</h3>'+(ntc.slice(0,6).map(x=>row(`<span style="white-space:pre-wrap" data-ne="${esc(x.text)}">${esc(x.text)}</span>${isAdm?` <button class="alt sm" data-nd="${x.id}">মুছুন</button>`:''}`)).join('')||'<p class="note">কোনো নোটিশ নেই।</p>');
+ if(isAdm)h+='<textarea id="nt" rows="2" placeholder="নতুন নোটিশ লিখুন…"></textarea><button id="na" style="margin-top:6px">নোটিশ দিন</button>';
+ if('Notification' in window&&Notification.permission!='granted')h+='<button id="np" style="margin-top:10px;width:100%">🔔 নোটিফিকেশন চালু করুন</button>';
+ h+='<h3>নোটিফিকেশন সেটিং</h3>'+[['chat','💬 চ্যাট বার্তা'],['bd','🎂 জন্মদিন ও মৃত্যুবার্ষিকী'],['notice','📣 নোটিশ, ভোট ও নতুন ছবি']].map(([k,l])=>`<label style="display:block;margin:6px 0"><input type="checkbox" data-pf="${k}" ${prefs[k]===false?'':'checked'}> <span>${l}</span></label>`).join('');
+ h+='<p class="note">iPhone-এ: Safari-র শেয়ার বাটন থেকে "Add to Home Screen" দিয়ে আগে হোম স্ক্রিনে যোগ করুন।</p>';
+ $('dc').innerHTML=h;
+ $('dc').querySelectorAll('input[data-pf]').forEach(x=>x.onchange=()=>{prefs[x.dataset.pf]=x.checked;setDoc(doc(db,'tokens',me.uid),{prefs},{merge:true}).catch(()=>{})});
+ if($('go2'))$('go2').onclick=()=>{dlg.close();tab(2)};
+ if($('na'))$('na').onclick=async()=>{const t=$('nt').value.trim();if(t){await addDoc(collection(db,'notices'),{text:t,ev:false,rsvp:{},at:serverTimestamp()});notify('notice',{text:t,ev:false});dlg.close()}};
+ if($('np'))$('np').onclick=()=>Notification.requestPermission().then(()=>{regPush();dlg.close()});
+ $('dc').querySelectorAll('button[data-nd]').forEach(b=>b.onclick=async()=>{await deleteDoc(doc(db,'notices',b.dataset.nd));dlg.close()});
+ if(!dlg.open)dlg.showModal()};
+let polls=[];
+const ini=n=>[...n.replace(/^(মোঃ|মোছাঃ)\s*/,'')][0]||'?',ini2=p=>(p.ne||tl(p.n.replace(/^(মোঃ|মোছাঃ)\s*/,'').split(' ')[0]))[0]||'?';
+function dann(n){const t=new Date(),t0=new Date(t.getFullYear(),t.getMonth(),t.getDate()),o=[];
+ people.forEach(p=>{if(!/^[০-৯]{2}\/[০-৯]{2}\//.test(p.d||''))return;const[dd,mm]=A2(p.d).split('/').map(Number);
+  let x=new Date(t.getFullYear(),mm-1,dd);if(x<t0)x=new Date(t.getFullYear()+1,mm-1,dd);const df=Math.round((x-t0)/864e5);if(df<=n)o.push({p,df})});
+ return o.sort((a,b)=>a.df-b.df)}
+function stats2(){const dep=p=>1+Math.max(0,...p.k.map(dep)),y=new Date().getFullYear();
+ $('s4').textContent=bn(roots.length?Math.max(...roots.map(dep)):0);$('s5').textContent=bn(people.filter(p=>!p.d).length);$('s6').textContent=bn(people.filter(p=>A2(p.b||'').endsWith('/'+y)).length)}
+function memR(){const rows=people.filter(p=>p.d);
+ $('mem').innerHTML='<div class="card" style="text-align:center">🕊 <b>মরহুম সদস্যদের স্মরণে</b></div>'+(rows.map(p=>`<div class="card" data-id="${p.id}" style="cursor:pointer"><b data-ne="${esc(p.ne||'')}">${esc(p.n)}</b><br><small class="note"><span>মৃত্যু</span> ${esc(p.d)}${p.b?' · <span>জন্ম</span> '+esc(p.b):''}</small></div>`).join('')||'<p class="note">এখনও কেউ যুক্ত নেই।</p>');
+ $('mem').querySelectorAll('.card[data-id]').forEach(e=>e.onclick=()=>show(map[e.dataset.id]))}
+function cmR(){if(!me)return;const uid=me.uid,nm=me.displayName||me.email;let h='';
+ if(isAdm)h+='<div class="card"><b>📣 নতুন নোটিশ / অনুষ্ঠান</b><textarea id="cn" rows="2" placeholder="নতুন নোটিশ লিখুন…"></textarea><label class="note"><input type="checkbox" id="ce"> <span>আসছি/আসছি না (RSVP) চালু করুন</span></label><br><button id="cb" style="margin-top:6px">নোটিশ দিন</button></div><div class="card"><b>🗳 নতুন ভোট</b><input class="i" id="pq" placeholder="প্রশ্ন"><textarea id="po" rows="3" placeholder="অপশনগুলো, প্রতি লাইনে একটা"></textarea><button id="pb" style="margin-top:6px">ভোট শুরু করুন</button></div>';
+ h+='<h3>📣 নোটিশ বোর্ড</h3>'+(ntc.map(x=>{const r=x.rsvp||{},ys=Object.values(r).filter(v=>v.s=='y'),no=Object.values(r).filter(v=>v.s=='n'),my=r[uid]?.s;
+  return `<div class="card"><span style="white-space:pre-wrap" data-ne="${esc(x.text)}">${esc(x.text)}</span>${x.ev?`<div class="rs"><button class="${my=='y'?'':'alt'}" data-rs="${x.id}" data-v="y">✅ <span>আসছি</span> (${bn(ys.length)})</button><button class="${my=='n'?'':'alt'}" data-rs="${x.id}" data-v="n">❌ <span>আসছি না</span> (${bn(no.length)})</button></div>${isAdm&&ys.length?`<small class="note">${ys.map(v=>esc(v.n)).join(', ')}</small>`:''}`:''}${isAdm?`<br><button class="alt sm" data-nd="${x.id}">মুছুন</button>`:''}</div>`}).join('')||'<p class="note">কোনো নোটিশ নেই।</p>');
+ h+='<h3>🗳 ভোট</h3>'+(polls.map(x=>{const v=x.votes||{},tot=Object.keys(v).length,my=v[uid];
+  return `<div class="card"><b data-ne="${esc(x.q)}">${esc(x.q)}</b>${x.o.map((o,i)=>{const c=Object.values(v).filter(z=>z==i).length,pc=tot?Math.round(c*100/tot):0;return `<div class="opt ${my===i?'me':''}" data-pv="${x.id}" data-i="${i}"><i style="width:${pc}%"></i><span data-ne="${esc(o)}">${esc(o)}</span><em>${bn(c)}</em></div>`}).join('')}<small class="note">${bn(tot)} <span>জন ভোট দিয়েছেন</span></small>${isAdm?` <button class="alt sm" data-pd="${x.id}">মুছুন</button>`:''}</div>`}).join('')||'<p class="note">কোনো ভোট নেই।</p>');
+ $('cm').innerHTML=h;const q=s=>$('cm').querySelectorAll(s);
+ if($('cb'))$('cb').onclick=async()=>{const t=$('cn').value.trim();if(t){const ev=$('ce').checked;await addDoc(collection(db,'notices'),{text:t,ev,rsvp:{},at:serverTimestamp()});notify('notice',{text:t,ev})}};
+ if($('pb'))$('pb').onclick=async()=>{const o=$('po').value.split('\n').map(x=>x.trim()).filter(Boolean),t=$('pq').value.trim();if(t&&o.length>1){await addDoc(collection(db,'polls'),{q:t,o,votes:{},at:serverTimestamp()});notify('poll',{q:t})}};
+ q('button[data-rs]').forEach(b=>b.onclick=()=>updateDoc(doc(db,'notices',b.dataset.rs),{['rsvp.'+uid]:{s:b.dataset.v,n:nm}}));
+ q('[data-pv]').forEach(b=>b.onclick=()=>updateDoc(doc(db,'polls',b.dataset.pv),{['votes.'+uid]:+b.dataset.i}));
+ q('button[data-nd]').forEach(b=>b.onclick=()=>deleteDoc(doc(db,'notices',b.dataset.nd)));
+ q('button[data-pd]').forEach(b=>b.onclick=()=>deleteDoc(doc(db,'polls',b.dataset.pd)))}
+let chs={},dU=[],mU=null,curChat=null,rpTo=null;
+const dn=x=>(x&&(x.nick||x.name))||'?',nmU=id=>dn(dU.find(x=>x.id==id)),myN=()=>{const x=dU.find(y=>y.id==me.uid);return x&&(x.nick||x.name)?dn(x):(me.displayName||me.email)},rd=id=>{try{return+(localStorage.getItem('khanR'+id)||0)}catch(e){return 0}};
+const tm=s=>s?new Date(s*1000).toLocaleTimeString('bn-BD',{hour:'2-digit',minute:'2-digit'}):'';
+const cT=c=>c.type=='dm'?nmU((c.members||[]).find(m=>m!=me.uid)):c.name;
+function chInit(){
+ setDoc(doc(db,'members',me.uid),{name:me.displayName||me.email.split('@')[0]},{merge:true}).catch(()=>{});
+ if(isAdm)getDoc(doc(db,'chats','family')).then(d=>{if(!d.exists())setDoc(doc(db,'chats','family'),{type:'group',name:'খান পরিবার',all:true,members:[],at:serverTimestamp()})}).catch(()=>{});
+ unsub.push(onSnapshot(collection(db,'members'),sn=>{dU=sn.docs.map(d=>({id:d.id,...d.data()}));chL()}));
+ const put=sn=>{sn.docs.forEach(d=>chs[d.id]={id:d.id,...d.data()});chL()};
+ unsub.push(onSnapshot(query(collection(db,'chats'),where('all','==',true)),put));
+ unsub.push(onSnapshot(query(collection(db,'chats'),where('members','array-contains',me.uid)),put));
+ unsub.push(onSnapshot(collection(db,'history'),sn=>{const m=sn.docs.find(d=>d.id=='main');hist=m?m.data():null;hsR()}));
+ unsub.push(()=>{mU&&mU();mU=null;$('chat').classList.add('hide');chs={}})}
+function chL(){if(!me)return;const L=Object.values(chs).sort((a,b)=>(b.at?.seconds||0)-(a.at?.seconds||0));let un=0;
+ $('cl').innerHTML='<div style="display:flex;gap:8px;margin-bottom:8px"><button id="nc" style="flex:1">✏️ <span>নতুন চ্যাট</span></button><button id="nk" class="alt">🏷 <span>নিকনেম</span></button></div>'+L.map(c=>{const u=c.last&&c.last.u!=me.uid&&(c.at?.seconds||0)>rd(c.id);if(u)un++;const t=cT(c)||'?';
+  return `<div class="card ch" data-c="${c.id}"><span class="av2">${c.type=='dm'?esc(ini(t)):c.photo?`<img src="${c.photo}" alt="">`:'👥'}</span><div class="mid"><b ${c.all?'':`data-ne="${esc(t)}"`}>${esc(t)}</b><small class="note ${u?'unr':''}">${c.last?`<span>${c.last.u==me.uid?'আপনি:':esc(c.last.n)+':'}</span> <span data-ne="${esc(c.last.t)}">${esc(c.last.t)}</span>`:'<span>এখনও কোনো বার্তা নেই।</span>'}</small></div><small class="note" style="flex:none">${tm(c.at?.seconds)}</small>${u?'<i class="dot"></i>':''}</div>`}).join('');
+ $('cu').textContent=un?bn(un):'';try{un?(navigator.setAppBadge&&navigator.setAppBadge(un)):(navigator.clearAppBadge&&navigator.clearAppBadge())}catch(e){}$('nc').onclick=newChat;$('nk').onclick=()=>nickDlg();if(curChat){pinR(curChat);hdrAv(curChat)}$('cl').querySelectorAll('.ch').forEach(e=>e.onclick=()=>openChat(e.dataset.c))}
+function hdrAv(id){const a=$('ca'),c=chs[id];if(a&&c&&c.type!='dm')a.innerHTML=c.photo?`<img src="${c.photo}" alt="">`:'👥'}
+function gpDlg(id){const c=chs[id];if(!c)return;$('dc').innerHTML=`<h2>🖼 <span>গ্রুপের ছবি</span></h2>${c.photo?`<img class="av" src="${c.photo}" style="cursor:default" alt="">`:''}<input type="file" id="gpf" accept="image/*" style="margin-top:8px"><button id="gps" style="margin-top:8px;width:100%">সংরক্ষণ</button>${c.photo?'<button class="alt" id="gpr" style="margin-top:8px;width:100%"><span>ছবি সরান</span></button>':''}`;
+ $('gps').onclick=async()=>{const f=$('gpf').files[0];if(!f)return alert(L('ছবি বেছে নিন'));try{const d=await fit(f,512,.9,150000);await updateDoc(doc(db,'chats',id),{photo:d});dlg.close()}catch(e){denied('গ্রুপের ছবি')}};
+ if($('gpr'))$('gpr').onclick=async()=>{try{await updateDoc(doc(db,'chats',id),{photo:deleteField()});dlg.close()}catch(e){denied('গ্রুপের ছবি')}};
+ if(!dlg.open)dlg.showModal()}
+const denied=w=>toast('অনুমতি নেই',(typeof w=='string'?w+' — ':'')+'Firestore rules আপডেট করতে হবে');
+function pinR(id){const e=$('pn');if(!e)return;const c=chs[id],p=c&&c.pin;if(!p){e.classList.add('hide');e.innerHTML='';return}e.classList.remove('hide');
+ e.innerHTML=`<span>📌</span><div style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"><b>${esc(p.n)}:</b> ${esc(p.t)}</div>${isAdm?'<button class="alt sm" id="up">✕</button>':''}`;
+ e.querySelector('div').onclick=()=>goMsg(p.id);if($('up'))$('up').onclick=ev=>{ev.stopPropagation();updateDoc(doc(db,'chats',id),{pin:deleteField()}).catch(()=>denied('পিন সরানো'))}}
+function goMsg(mid){const e=mid&&document.querySelector(`.b[data-mid="${mid}"]`);if(!e)return toast('বার্তাটা লোড করা নেই','"আগের বার্তা দেখুন" চাপুন');e.scrollIntoView({block:'center'});e.classList.add('flash');setTimeout(()=>e.classList.remove('flash'),1600)}
+function openChat(id){const c=chs[id];if(!c)return;curChat=id;rpTo=null;let lim=60,first=true,ML=[],qs='';const t=cT(c)||'?',o=$('chat');o.classList.remove('hide');
+ o.innerHTML=`<div class="chh"><button class="alt sm" id="cb2">←</button><span class="av2" id="ca">${c.type=='dm'?esc(ini(t)):c.photo?`<img src="${c.photo}" alt="">`:'👥'}</span><b ${c.all?'':`data-ne="${esc(t)}"`}>${esc(t)}</b><span style="flex:1"></span>${isAdm&&c.type!='dm'?'<button class="alt sm" id="gp">🖼</button>':''}<button class="alt sm" id="sb">🔍</button></div><div id="cs" class="hide"><input class="i" id="sq" placeholder="বার্তায় খুঁজুন…"></div><div id="pn" class="pinb hide"></div><div id="ms"></div><div id="rb" class="pinb hide"></div><div class="cin"><input type="file" id="mf" accept="image/*" class="hide"><button class="alt" id="mi">📷</button><textarea class="i" id="mt" rows="1" placeholder="বার্তা লিখুন…"></textarea><button id="sd">পাঠান</button></div>`;
+ const sN=m=>{const x=dU.find(y=>y.id==m.u);return x?dn(x):(m.n||'?')};
+ const rbR=()=>{const e=$('rb');if(!rpTo){e.classList.add('hide');e.innerHTML='';return}e.classList.remove('hide');e.innerHTML=`<span>↩️</span><div style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"><b>${esc(rpTo.n)}:</b> ${esc(rpTo.t)}</div><button class="alt sm" id="rx">✕</button>`;$('rx').onclick=()=>{rpTo=null;rbR()}};
+ const bub=m=>{const mine=m.u==me.uid,g={};Object.entries(m.rx||{}).forEach(([u,e])=>{(g[e]=g[e]||[]).push(u)});
+  return `<div class="b ${mine?'me':'ot'}" data-mid="${m.id}">${!mine&&c.type!='dm'?`<small class="bn">${esc(sN(m))}</small>`:''}${m.rp?`<div class="rq" data-go="${esc(m.rp.id||'')}"><b>${esc(m.rp.n)}</b><br>${esc(m.rp.t)}</div>`:''}${m.img?`<img src="${m.img}" data-im="${m.id}" alt="">`:''}${m.t?`<span data-ne="${esc(m.t)}">${esc(m.t)}</span>`:''}${Object.keys(g).length?`<div class="rxs">${Object.entries(g).map(([e,us])=>`<span class="${us.includes(me.uid)?'me':''}">${e} ${bn(us.length)}</span>`).join('')}</div>`:''}<small class="bt">${tm(m.at?.seconds)}</small></div>`};
+ const menu=m=>{if(!m)return;const mine=m.u==me.uid,my=(m.rx||{})[me.uid],ref=doc(db,'chats',id,'messages',m.id),pv=(m.t||'📷 ছবি').slice(0,80);
+  $('dc').innerHTML=`<div style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap">${['👍','❤️','🤲','😂','😮','😢'].map(e=>`<button class="alt ${my==e?'on':''}" data-rx="${e}" style="font-size:22px;padding:6px 10px">${e}</button>`).join('')}</div><div style="display:grid;gap:8px;margin-top:12px"><button class="alt" id="ma1">↩️ <span>রিপ্লাই</span></button>${m.t?'<button class="alt" id="ma2">📋 <span>কপি</span></button>':''}${isAdm?'<button class="alt" id="ma3">📌 <span>পিন করুন</span></button>':''}${mine||isAdm?'<button class="alt" id="ma6">🏷 <span>নিকনেম বদলান</span></button><button class="alt" id="ma4">🗑 <span>মুছুন</span></button>':''}<button class="alt" id="ma5">বন্ধ করুন</button></div>`;
+  $('dc').querySelectorAll('[data-rx]').forEach(b=>b.onclick=()=>{const e=b.dataset.rx;updateDoc(ref,{['rx.'+me.uid]:my==e?deleteField():e}).catch(()=>denied('রিঅ্যাকশন'));dlg.close()});
+  $('ma1').onclick=()=>{rpTo={id:m.id,n:sN(m),t:pv};rbR();dlg.close();$('mt').focus()};
+  if($('ma2'))$('ma2').onclick=()=>{try{navigator.clipboard.writeText(m.t).then(()=>toast('কপি হয়েছে'))}catch(e){}dlg.close()};
+  if($('ma3'))$('ma3').onclick=()=>{updateDoc(doc(db,'chats',id),{pin:{id:m.id,t:pv,n:sN(m)}}).catch(()=>denied('পিন করা'));dlg.close()};
+  if($('ma4'))$('ma4').onclick=()=>{dlg.close();if(confirm(L('বার্তাটি মুছবেন?')))deleteDoc(ref).catch(()=>denied('মেসেজ মোছা'))};
+  if($('ma6'))$('ma6').onclick=()=>nickDlg(m.u);
+  $('ma5').onclick=()=>dlg.close();if(!dlg.open)dlg.showModal()};
+ const mr=()=>{const box=$('ms');if(!box)return;const v=qs.trim().toLowerCase(),near=first||box.scrollHeight-box.scrollTop-box.clientHeight<140,A=v?ML.filter(m=>(m.t||'').toLowerCase().includes(v)||sN(m).toLowerCase().includes(v)):ML;
+  box.innerHTML=(ML.length>=lim?'<button class="alt sm" id="mo" style="align-self:center;margin:6px">⬆️ <span>আগের বার্তা দেখুন</span></button>':'')+(A.map(bub).join('')||(v?'<p class="note" style="text-align:center">কিছু পাওয়া যায়নি।</p>':'<p class="note" style="text-align:center">এখনও কোনো বার্তা নেই। প্রথম বার্তাটা আপনি পাঠান!</p>'));
+  if($('mo'))$('mo').onclick=()=>{lim+=60;first=false;sub()};
+  box.querySelectorAll('.b').forEach(e=>e.onclick=ev=>{const q=ev.target.closest('.rq');if(q)return goMsg(q.dataset.go);if(ev.target.dataset.im){const m=ML.find(x=>x.id==ev.target.dataset.im);return viewPhoto({title:'',data:m.img})}menu(ML.find(x=>x.id==e.dataset.mid))});
+  if(near&&!v)box.scrollTop=box.scrollHeight;first=false};
+ const sub=()=>{mU&&mU();mU=onSnapshot(query(collection(db,'chats',id,'messages'),orderBy('at','desc'),limit(lim)),sn=>{ML=sn.docs.map(d=>({id:d.id,...d.data()})).reverse();mr();try{localStorage.setItem('khanR'+id,Math.floor(Date.now()/1000))}catch(e){}})};
+ $('cb2').onclick=()=>{mU&&mU();mU=null;curChat=null;rpTo=null;o.classList.add('hide');chL()};
+ if($('gp'))$('gp').onclick=()=>gpDlg(id);
+ $('sb').onclick=()=>{const h=$('cs').classList.toggle('hide');qs='';$('sq').value='';mr();if(!h)$('sq').focus()};$('sq').oninput=e=>{qs=e.target.value;mr()};
+ const send=async img=>{const t=$('mt').value.trim();if(!t&&!img)return;$('mt').value='';const n=myN(),msg={t,u:me.uid,n,at:serverTimestamp()};if(img)msg.img=img;if(rpTo)msg.rp=rpTo;rpTo=null;rbR();
+  try{await addDoc(collection(db,'chats',id,'messages'),msg);const pv=(t||'📷 ছবি').slice(0,60);await updateDoc(doc(db,'chats',id),{last:{t:pv,n,u:me.uid},at:serverTimestamp()});notify('chat',{chat:id,text:pv,name:n})}catch(e){console.log(e);denied('মেসেজ/ছবি পাঠানো')}};
+ $('sd').onclick=()=>send();$('mi').onclick=()=>$('mf').click();
+ $('mf').onchange=async()=>{const f=$('mf').files[0];if(!f)return;toast('ছবি পাঠানো হচ্ছে…');try{await send(await fit(f,1280,.82,300000))}catch(e){denied('ছবি পাঠানো')}$('mf').value=''};
+ sub();pinR(id)}
+function nickDlg(tu){tu=tu||me.uid;const x=dU.find(y=>y.id==tu)||{},own=tu==me.uid;
+ $('dc').innerHTML=`<h2>🏷 ${own?'<span>নিকনেম</span>':esc(x.name||'?')}</h2><p class="note">${own?'চ্যাটে সবাই আপনার জিমেইলের নামের বদলে এই নাম দেখবে। খালি রাখলে জিমেইলের নাম দেখাবে।':'চ্যাটে সবাই এঁর জিমেইলের নামের বদলে এই নাম দেখবে। খালি রাখলে জিমেইলের নাম দেখাবে।'}</p><input class="i" id="nk2" maxlength="30" placeholder="${esc(x.name||'')}" value="${esc(x.nick||'')}"><button id="nks" style="margin-top:8px;width:100%">সংরক্ষণ</button>${isAdm&&own?`<details style="margin-top:12px"><summary>🛠 অন্যের নিকনেম (অ্যাডমিন)</summary><select id="nku">${dU.filter(u=>u.id!=me.uid).map(u=>`<option value="${u.id}">${esc(u.name||'?')}${u.nick?' — '+esc(u.nick):''}</option>`).join('')}</select><input class="i" id="nkv" maxlength="30" placeholder="নিকনেম"><button id="nka" style="margin-top:8px;width:100%">সংরক্ষণ</button></details>`:''}`;
+ const save=async(uid,v)=>{try{await setDoc(doc(db,'members',uid),{nick:v?v:deleteField()},{merge:true});dlg.close()}catch(e){denied('নিকনেম সেভ')}};
+ $('nks').onclick=()=>save(tu,$('nk2').value.trim());if($('nka'))$('nka').onclick=()=>$('nku').value&&save($('nku').value,$('nkv').value.trim());
+ if(!dlg.open)dlg.showModal()}
+function newChat(){const ot=dU.filter(x=>x.id!=me.uid);
+ $('dc').innerHTML=`<h2>✏️ <span>নতুন চ্যাট</span></h2><b>👤 <span>ব্যক্তিগত</span></b>${ot.map(x=>`<div class="card" data-dm="${x.id}" style="cursor:pointer;margin:6px 0">${esc(dn(x))}</div>`).join('')||'<p class="note">অন্য কেউ এখনও যুক্ত হয়নি।</p>'}<hr><b>👥 <span>গ্রুপ</span></b><input class="i" id="gn" placeholder="গ্রুপের নাম">${ot.map(x=>`<label style="display:block;margin-top:6px"><input type="checkbox" value="${x.id}"> ${esc(dn(x))}</label>`).join('')}<button id="gm" style="margin-top:8px;width:100%">গ্রুপ বানান</button>`;
+ $('dc').querySelectorAll('[data-dm]').forEach(e=>e.onclick=async()=>{const u=e.dataset.dm,id=[me.uid,u].sort().join('_'),d=await getDoc(doc(db,'chats',id));
+  if(!d.exists())await setDoc(doc(db,'chats',id),{type:'dm',members:[me.uid,u],at:serverTimestamp()});chs[id]=chs[id]||{id,type:'dm',members:[me.uid,u]};dlg.close();openChat(id)});
+ $('gm').onclick=async()=>{const nm=$('gn').value.trim(),sel=[...$('dc').querySelectorAll('input[type=checkbox]:checked')].map(x=>x.value);if(!nm||!sel.length)return;
+  const members=[me.uid,...sel],r=await addDoc(collection(db,'chats'),{type:'group',name:nm,members,by:me.uid,at:serverTimestamp()});chs[r.id]={id:r.id,type:'group',name:nm,members};dlg.close();openChat(r.id)};
+ if(!dlg.open)dlg.showModal()}
+let hist=null,hEd=false;
+function hsR(){if(!me)return;const t=(hist&&hist.b)||'';let h='<h3>📜 খান বংশের ইতিহাস</h3>';
+ if(hEd)h+=`<div class="card"><textarea id="hb" rows="14" placeholder="এখানে খান বংশের ইতিহাস লিখুন…">${esc(t)}</textarea><div style="display:flex;gap:8px;margin-top:8px"><button id="hs2">সংরক্ষণ</button><button class="alt" id="hc">বাতিল</button></div></div>`;
+ else h+=`<div class="card">${t?`<div style="white-space:pre-wrap;line-height:1.9" data-ne="${esc(t)}">${esc(t)}</div>`:'<p class="note">এখনও কোনো ইতিহাস লেখা হয়নি।'+(isAdm?' নিচের বাটনে চেপে লিখুন।':'')+'</p>'}${isAdm?'<button class="alt sm" id="he" style="margin-top:10px">✏️ <span>সম্পাদনা</span></button>':''}</div>`;
+ $('hs').innerHTML=h;
+ if($('he'))$('he').onclick=()=>{hEd=true;hsR()};
+ if($('hc'))$('hc').onclick=()=>{hEd=false;hsR()};
+ if($('hs2'))$('hs2').onclick=async()=>{const b=$('hb').value.trim();hEd=false;await setDoc(doc(db,'history','main'),{b,at:serverTimestamp()})}}
+
+</script></body></html>
