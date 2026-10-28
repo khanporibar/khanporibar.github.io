@@ -270,7 +270,7 @@ header h1,header p{color:#fff!important;-webkit-text-fill-color:#fff!important;b
 html:not([lang="en"]) .penb{display:none!important}
 </style></head><body>
 <header><h1>🌳 খান পরিবারের বংশবৃক্ষ</h1><p>শুধু পরিবারের সদস্যদের জন্য</p></header>
-<main><div class="top"><button id="bl" class="alt sm hide">🔔 <span id="bc"></span></button><button id="ins" class="dig"><svg class="ic" viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg><span>ইনস্টল</span></button><button id="lg" class="alt sm">English</button><button id="out" class="alt sm hide">লগআউট</button></div><div id="gate" class="gate"></div>
+<main><div class="top"><button id="bl" class="alt sm hide">🔔 <span id="bc"></span></button><button id="ins" class="dig hide"><svg class="ic" viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg><span>ইনস্টল</span></button><button id="lg" class="alt sm">English</button><button id="out" class="alt sm hide">লগআউট</button></div><div id="gate" class="gate"></div>
 <div id="app" class="hide"><div id="nb" class="pend hide"></div><div class="bar"><input id="q" placeholder="নাম খুঁজুন…"><button class="alt" id="ex">সব খুলুন</button><button class="alt" id="co">সব বন্ধ</button></div>
 <div class="tabs"><button id="t1" class="on">বংশবৃক্ষ</button><button id="t9">📜 খান বংশের ইতিহাস</button><button id="t8">💬 চ্যাট <span id="cu"></span></button><button id="t3">গ্যালারি</button><button id="t4">ডিরেক্টরি</button><button id="t5">সম্পর্ক</button><button id="t6">কমিউনিটি</button><button id="t7">স্মরণ</button><button id="t2" class="hide">অ্যাডমিন <span id="pc"></span></button></div>
 <div id="v1"><div id="bd"></div><div class="stats"><div><b id="s1">0</b>মোট সদস্য</div><div><b id="s2">0</b>ছেলে</div><div><b id="s3">0</b>মেয়ে</div><div><b id="s4">0</b>প্রজন্ম</div><div><b id="s5">0</b>জীবিত</div><div><b id="s6">0</b>এ বছর জন্ম</div></div><ul class="t root" id="tree"></ul></div>
@@ -493,7 +493,11 @@ setLang(lang);
 const VAPID='';
 let ntc=[],dpr=null,lastP=null;
 if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
-addEventListener('beforeinstallprompt',e=>{e.preventDefault();dpr=e});addEventListener('appinstalled',()=>$('ins').classList.add('hide'));if(matchMedia('(display-mode: standalone)').matches||navigator.standalone)$('ins').classList.add('hide');
+const fl=v=>{try{if(v===undefined)return localStorage.getItem('khanInst');v?localStorage.setItem('khanInst','1'):localStorage.removeItem('khanInst')}catch(e){}},stand=matchMedia('(display-mode: standalone)').matches||navigator.standalone;
+if(stand)fl(1);
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();dpr=e;fl(0);$('ins').classList.remove('hide')});
+addEventListener('appinstalled',()=>{fl(1);dpr=null;$('ins').classList.add('hide')});
+if(!stand&&!fl()&&/iphone|ipad|ipod/i.test(navigator.userAgent))$('ins').classList.remove('hide');
 $('ins').onclick=()=>{if(dpr){dpr.prompt();dpr=null}else toast('ইনস্টল করতে','ব্রাউজারের মেনু থেকে "Install app" বা "Add to Home Screen" বেছে নিন।')};
 const A2=t=>t.replace(/[০-৯]/g,c=>'০১২৩৪৫৬৭৮৯'.indexOf(c));
 function bdays(n){const t=new Date(),t0=new Date(t.getFullYear(),t.getMonth(),t.getDate()),o=[];
