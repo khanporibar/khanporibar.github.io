@@ -1,9 +1,9 @@
-<!DOCTYPE html><html lang="bn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>খান পরিবারের বংশবৃক্ষ</title><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#070b1a"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="খান পরিবার"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!DOCTYPE html><html lang="bn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>খান পরিবারের বংশবৃক্ষ</title><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#070b1a"><meta name="color-scheme" content="dark"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="খান পরিবার"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&display=swap" rel="stylesheet"><style>
 :root{--bg:#f6f3ea;--card:#fff;--ink:#1d2b22;--mut:#6b7a70;--g:#1f6b45;--g2:#2e8b5a;--gold:#c9a227;--boy:#2f6fb5;--girl:#d4568a;--line:#d9d3c0;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121a15;--card:#1c2822;--ink:#eaf1ec;--mut:#98a89d;--g:#3aa56f;--g2:#4cbd83;--line:#33443a;color-scheme:dark}}
 :root[data-theme="dark"]{--bg:#121a15;--card:#1c2822;--ink:#eaf1ec;--mut:#98a89d;--g:#3aa56f;--g2:#4cbd83;--line:#33443a;color-scheme:dark}
-*{box-sizing:border-box}html,body{margin:0}
+*{box-sizing:border-box}html,body{margin:0;background-color:#070b1a}html{color-scheme:dark}
 body{background:var(--bg);color:var(--ink);font-family:"Noto Sans Bengali",system-ui,sans-serif;line-height:1.5}
 header{background:linear-gradient(135deg,var(--g),var(--g2));color:#fff;padding:22px 16px 56px;text-align:center;border-bottom:4px solid var(--gold)}
 header h1{margin:0;font-size:26px}header p{margin:4px 0 0;opacity:.9;font-size:14px}
@@ -236,6 +236,7 @@ header{background:none!important;border:0!important;box-shadow:none!important;ma
 
 .ic{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-4px}
 .dig{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:12px;font-size:14px;color:#fff;background:linear-gradient(135deg,var(--g),var(--g2));border:1px solid rgba(255,255,255,.35);box-shadow:0 0 18px -2px rgb(var(--g2r) / .7);animation:dgl 2.2s ease-in-out infinite}
+.dig.hide{display:none!important}
 .dig .ic{width:17px;height:17px;animation:dbn 1.6s ease-in-out infinite}
 @keyframes dgl{50%{box-shadow:0 0 26px 2px rgb(var(--gr) / .8)}}@keyframes dbn{50%{transform:translateY(2px)}}
 .cic{display:inline-grid;place-items:center;width:42px;height:42px;padding:0;border-radius:50%;flex:none}
@@ -360,7 +361,7 @@ function build(){map={};roots=[];people.forEach(p=>map[p.id]={...p,k:[],notes:p.
  $('s1').textContent=bn(people.length);$('s2').textContent=bn(people.filter(p=>p.g=='m').length);$('s3').textContent=bn(people.filter(p=>p.g=='f').length);bday();dirR();relList();nInit();nRefresh();stats2();
  if(!people.length)t.innerHTML='<p class="note">এখনও কোনো তথ্য নেই।'+(isOwn?' অ্যাডমিন প্যানেল থেকে প্রাথমিক তথ্য ইম্পোর্ট করুন।':'')+'</p>'}
 function el(p){const li=document.createElement('li'),has=p.k.length,sp=p.g=='m'?'স্ত্রী':'স্বামী';
- li.innerHTML=`<div class="n ${p.g=='f'?'f':''}" data-id="${p.id}">${has?'<button class="tg">−</button>':'<span class="tg"></span>'}<span class="av2" data-pid="${p.id}" data-ne="${esc(ini2(p))}">${avInner(p)}</span><div class="nm"><b data-ne="${esc(p.ne||'')}">${esc(p.n)}</b><small>${p.d?'মৃত্যু '+esc(p.d):p.b?'জন্ম '+esc(p.b):''}${p.s?((p.d||p.b)?'<br>':'')+sp+': '+esc(p.s):''}</small></div>${has?'<span class="badge">'+bn(cnt(p))+' জন</span>':''}</div>`;
+ li.innerHTML=`<div class="n ${p.g=='f'?'f':''}" data-id="${p.id}">${has?'<button class="tg">−</button>':'<span class="tg"></span>'}<span class="av2" data-pid="${p.id}" data-ne="${esc(ini2(p))}">${avInner(p)}</span><div class="nm"><b data-ne="${esc(p.ne||'')}">${esc(p.n)}</b><small>${p.d?'মৃত্যু '+esc(p.d):p.b?'জন্ম '+esc(p.b):''}${p.s?((p.d||p.b)?'<br>':'')+sp+': '+esc(p.s):''}</small></div>${has?'<span class="badge">সন্তান '+bn(p.k.length)+' জন</span>':''}</div>`;
  if(has){const u=document.createElement('ul');u.className='t';p.k.forEach(c=>u.appendChild(el(c)));li.appendChild(u);
   li.querySelector('.tg').onclick=e=>{e.stopPropagation();const h=u.classList.toggle('hide');e.target.textContent=h?'+':'−'}}
  li.querySelector('.nm').onclick=()=>show(p);
@@ -372,7 +373,7 @@ $('q').oninput=e=>{const v=e.target.value.trim();document.querySelectorAll('.n')
  if(hits[0]){const n=document.querySelector(`.n[data-id="${hits[0].id}"]`);if(n)n.scrollIntoView({block:'center'})}};
 const desc=(q,s=new Set())=>{s.add(q.id);q.k.forEach(c=>desc(c,s));return s};
 function show(p){const ex=desc(p),r=(a,b)=>b?`<div class="row"><span>${a}</span><span>${esc(b)}</span></div>`:'';
- $('dc').innerHTML=`<h2>${p.g=='m'?'👨':'👩'} <span data-ne="${esc(p.ne||'')}">${esc(p.n)}</span></h2><img id="av" class="av hide">${r('জন্ম',p.b)}${r('মৃত্যু',p.d)}${r(p.g=='m'?'স্ত্রী':'স্বামী',p.s)}${p.par?`<div class="row"><span>${p.par.g=='f'?'মাতা':'পিতা'}</span><span><span id="pnm" data-ne="${esc(p.par.ne||'')}">${esc(p.par.n)}</span>${isOwn?' <button class="alt sm penb" id="pne" aria-label="Edit English name">✏️</button>':''}</span></div>`:''}${r('রক্তের গ্রুপ',p.bg)}${r('পেশা',p.job)}${r('ঠিকানা',p.addr)}${p.ph?`<div class="row"><span>ফোন</span><span><a href="tel:${esc(p.ph)}">${esc(p.ph)}</a></span></div>`:''}${r('সন্তান',p.k.length?bn(p.k.length)+' জন':'')}
+ $('dc').innerHTML=`<h2>${p.g=='m'?'👨':'👩'} <span data-ne="${esc(p.ne||'')}">${esc(p.n)}</span></h2><img id="av" class="av hide">${r('জন্ম',p.b)}${r('মৃত্যু',p.d)}${r(p.g=='m'?'স্ত্রী':'স্বামী',p.s)}${p.par?`<div class="row"><span>${p.par.g=='f'?'মাতা':'পিতা'}</span><span><span id="pnm" data-ne="${esc(p.par.ne||'')}">${esc(p.par.n)}</span>${isOwn?' <button class="alt sm penb" id="pne" aria-label="Edit English name">✏️</button>':''}</span></div>`:''}${p.par&&p.par.s?`<div class="row"><span>${p.par.g=='f'?'পিতা':'মাতা'}</span><span>${esc(p.par.s)}</span></div>`:''}${r('রক্তের গ্রুপ',p.bg)}${r('পেশা',p.job)}${r('ঠিকানা',p.addr)}${p.ph?`<div class="row"><span>ফোন</span><span><a href="tel:${esc(p.ph)}">${esc(p.ph)}</a></span></div>`:''}${r('সন্তান',p.k.length?bn(p.k.length)+' জন':'')}
  ${p.k.length?'<div style="margin-top:8px">'+p.k.map(c=>`<span class="chip" data-id="${c.id}" data-ne="${esc(c.ne||'')}">${esc(c.n)}</span>`).join('')+'</div>':''}${p.notes.map(n=>`<div class="note">✔ ${esc(n)}</div>`).join('')}
  <details style="margin-top:12px"><summary>✏️ তথ্য দিন / ভুল সংশোধন</summary><select id="fs"><option>জন্মতারিখ</option><option>মৃত্যুতারিখ</option><option>স্ত্রী/স্বামীর নাম</option><option>রক্তের গ্রুপ</option><option>পেশা</option><option>ঠিকানা</option><option>ফোন নম্বর</option><option>অন্য তথ্য</option></select><textarea id="fv" rows="2" placeholder="সঠিক তথ্য লিখুন"></textarea><button id="fb" style="margin-top:8px;width:100%">জমা দিন</button></details>
  <details style="margin-top:10px"><summary>📷 ছবি পাঠান</summary><input type="file" id="af" accept="image/*" style="margin-top:6px"><button id="ab" style="margin-top:8px;width:100%">জমা দিন</button></details>
@@ -494,11 +495,15 @@ const VAPID='';
 let ntc=[],dpr=null,lastP=null;
 if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
 const fl=v=>{try{if(v===undefined)return localStorage.getItem('khanInst');v?localStorage.setItem('khanInst','1'):localStorage.removeItem('khanInst')}catch(e){}},stand=matchMedia('(display-mode: standalone)').matches||navigator.standalone;
-if(stand)fl(1);
-addEventListener('beforeinstallprompt',e=>{e.preventDefault();dpr=e;fl(0);$('ins').classList.remove('hide')});
-addEventListener('appinstalled',()=>{fl(1);dpr=null;$('ins').classList.add('hide')});
-if(!stand&&!fl()&&/iphone|ipad|ipod/i.test(navigator.userAgent))$('ins').classList.remove('hide');
-$('ins').onclick=()=>{if(dpr){dpr.prompt();dpr=null}else toast('ইনস্টল করতে','ব্রাউজারের মেনু থেকে "Install app" বা "Add to Home Screen" বেছে নিন।')};
+const isStand=()=>stand||matchMedia('(display-mode: standalone)').matches||matchMedia('(display-mode: minimal-ui)').matches||matchMedia('(display-mode: fullscreen)').matches||(document.referrer||'').startsWith('android-app://');
+if(isStand())fl(1);
+const insH=()=>{$('ins').classList.add('hide')},insS=()=>{if(!isStand()&&!fl())$('ins').classList.remove('hide')};
+insH();
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();dpr=e;insS()});
+addEventListener('appinstalled',()=>{fl(1);dpr=null;insH()});
+try{navigator.getInstalledRelatedApps&&navigator.getInstalledRelatedApps().then(a=>{if(a&&a.length){fl(1);insH()}}).catch(()=>{})}catch(e){}
+if(/iphone|ipad|ipod/i.test(navigator.userAgent))insS();
+$('ins').onclick=()=>{if(dpr){const d=dpr;dpr=null;d.prompt();d.userChoice&&d.userChoice.then(r=>{if(r.outcome=='accepted'){fl(1);insH()}})}else toast('ইনস্টল করতে','ব্রাউজারের মেনু থেকে \"Install app\" বা \"Add to Home Screen\" বেছে নিন।')};
 const A2=t=>t.replace(/[০-৯]/g,c=>'০১২৩৪৫৬৭৮৯'.indexOf(c));
 function bdays(n){const t=new Date(),t0=new Date(t.getFullYear(),t.getMonth(),t.getDate()),o=[];
  people.forEach(p=>{if(p.d||!/^[০-৯]{2}\/[০-৯]{2}\//.test(p.b||''))return;const[dd,mm]=A2(p.b).split('/').map(Number);
