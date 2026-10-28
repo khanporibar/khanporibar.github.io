@@ -499,9 +499,10 @@ const isStand=()=>stand||matchMedia('(display-mode: standalone)').matches||match
 if(isStand())fl(1);
 const insH=()=>{$('ins').classList.add('hide')},insS=()=>{if(!isStand()&&!fl())$('ins').classList.remove('hide')};
 insH();
-addEventListener('beforeinstallprompt',e=>{e.preventDefault();dpr=e;insS()});
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();dpr=e;if(!isStand()){fl(0);insS()}});
 addEventListener('appinstalled',()=>{fl(1);dpr=null;insH()});
-try{navigator.getInstalledRelatedApps&&navigator.getInstalledRelatedApps().then(a=>{if(a&&a.length){fl(1);insH()}}).catch(()=>{})}catch(e){}
+setTimeout(()=>{if(!dpr)insS()},2500);
+try{navigator.getInstalledRelatedApps&&navigator.getInstalledRelatedApps().then(a=>{if(a&&a.length&&!dpr){insH()}}).catch(()=>{})}catch(e){}
 if(/iphone|ipad|ipod/i.test(navigator.userAgent))insS();
 $('ins').onclick=()=>{if(dpr){const d=dpr;dpr=null;d.prompt();d.userChoice&&d.userChoice.then(r=>{if(r.outcome=='accepted'){fl(1);insH()}})}else toast('ইনস্টল করতে','ব্রাউজারের মেনু থেকে \"Install app\" বা \"Add to Home Screen\" বেছে নিন।')};
 const A2=t=>t.replace(/[০-৯]/g,c=>'০১২৩৪৫৬৭৮৯'.indexOf(c));
