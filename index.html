@@ -269,7 +269,7 @@ header h1,header p{color:#fff!important;-webkit-text-fill-color:#fff!important;b
 .av2{border:2px solid var(--boy)!important;background:#fff!important}.n.f .av2{border-color:var(--girl)!important}
 #chat,dialog,#gate,#out,.off,.dig{display:none!important}}
 html:not([lang="en"]) .penb{display:none!important}
-</style><style>.nm b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.nm .badge{display:inline-block;margin-top:5px}.nm small{display:block}</style></head><body>
+</style><style>.nm b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.n>.badge{font-size:10.5px;padding:1px 7px;flex:none}</style></head><body>
 <header><h1>🌳 খান পরিবারের বংশবৃক্ষ</h1><p>শুধু পরিবারের সদস্যদের জন্য</p></header>
 <main><div class="top"><button id="bl" class="alt sm hide">🔔 <span id="bc"></span></button><button id="ins" class="dig hide"><svg class="ic" viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg><span>ইনস্টল</span></button><button id="lg" class="alt sm">English</button><button id="out" class="alt sm hide">লগআউট</button></div><div id="gate" class="gate"></div>
 <div id="app" class="hide"><div id="nb" class="pend hide"></div><div class="bar"><input id="q" placeholder="নাম খুঁজুন…"><button class="alt" id="ex">সব খুলুন</button><button class="alt" id="co">সব বন্ধ</button></div>
@@ -361,7 +361,7 @@ function build(){map={};roots=[];people.forEach(p=>map[p.id]={...p,k:[],notes:p.
  $('s1').textContent=bn(people.length);$('s2').textContent=bn(people.filter(p=>p.g=='m').length);$('s3').textContent=bn(people.filter(p=>p.g=='f').length);bday();dirR();relList();nInit();nRefresh();stats2();
  if(!people.length)t.innerHTML='<p class="note">এখনও কোনো তথ্য নেই।'+(isOwn?' অ্যাডমিন প্যানেল থেকে প্রাথমিক তথ্য ইম্পোর্ট করুন।':'')+'</p>'}
 function el(p){const li=document.createElement('li'),has=p.k.length,sp=p.g=='m'?'স্ত্রী':'স্বামী';
- li.innerHTML=`<div class="n ${p.g=='f'?'f':''}" data-id="${p.id}">${has?'<button class="tg">−</button>':'<span class="tg"></span>'}<span class="av2" data-pid="${p.id}" data-ne="${esc(ini2(p))}">${avInner(p)}</span><div class="nm"><b data-ne="${esc(p.ne||'')}">${esc(p.n)}</b><small>${p.d?'মৃত্যু '+esc(p.d):p.b?'জন্ম '+esc(p.b):''}${p.s?((p.d||p.b)?'<br>':'')+sp+': '+esc(p.s):''}</small>${has?'<span class="badge">সন্তান '+bn(p.k.length)+' জন</span>':''}</div></div>`;
+ li.innerHTML=`<div class="n ${p.g=='f'?'f':''}" data-id="${p.id}">${has?'<button class="tg">−</button>':'<span class="tg"></span>'}<span class="av2" data-pid="${p.id}" data-ne="${esc(ini2(p))}">${avInner(p)}</span><div class="nm"><b data-ne="${esc(p.ne||'')}">${esc(p.n)}</b><small>${p.d?'মৃত্যু '+esc(p.d):p.b?'জন্ম '+esc(p.b):''}${p.s?((p.d||p.b)?'<br>':'')+sp+': '+esc(p.s):''}</small></div>${has?'<span class="badge" data-ne="Kids '+p.k.length+'">সন্তান '+bn(p.k.length)+' জন</span>':''}</div>`;
  if(has){const u=document.createElement('ul');u.className='t';p.k.forEach(c=>u.appendChild(el(c)));li.appendChild(u);
   li.querySelector('.tg').onclick=e=>{e.stopPropagation();const h=u.classList.toggle('hide');e.target.textContent=h?'+':'−'}}
  li.querySelector('.nm').onclick=()=>show(p);
