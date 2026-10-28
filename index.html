@@ -163,6 +163,30 @@ dialog[open]{animation:dpop .45s cubic-bezier(.2,1.4,.35,1)}
 .rip{position:absolute;border-radius:50%;background:rgba(255,255,255,.55);transform:scale(0);animation:rip .6s ease-out forwards;pointer-events:none}
 @keyframes rip{to{transform:scale(4);opacity:0}}
 #toast{transition:transform .5s cubic-bezier(.2,1.5,.4,1)}
+/* ===== Smooth (GPU) + chat fixes ===== */
+html{-webkit-tap-highlight-color:transparent}
+body::before{inset:-44px;background-position:0 0;will-change:transform;animation:gm 14s linear infinite}
+@keyframes gm{to{transform:translate(44px,44px)}}
+body::after{will-change:transform}
+header{overflow:hidden}
+header::before{inset:auto;left:50%;top:50%;width:260%;aspect-ratio:1;padding:0;-webkit-mask:none;mask:none;translate:-50% -50%;background:conic-gradient(transparent 0 55%,#22d3ee,#6d7cff,#a855f7,transparent 95%);opacity:1;z-index:-2;will-change:rotate;animation:rot 6s linear infinite}
+@keyframes rot{to{rotate:360deg}}
+header::after{display:block;content:"";position:absolute;inset:2px;border-radius:28px;z-index:-1;background:linear-gradient(145deg,#161d4a,#0d2c4a 60%,#211a50);pointer-events:none}
+.bar,.stats div,.pend,.n,.card,.gate{backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.n{content-visibility:auto;contain-intrinsic-size:auto 62px}
+li{animation:spring .6s cubic-bezier(.2,1.2,.3,1) both}
+.scr body::before,.scr body::after,.scr header::before,.scr header h1,.scr .av2,.scr .badge,.scr .tabs button.on{animation-play-state:paused}
+#ms{overscroll-behavior:contain;-webkit-overflow-scrolling:touch;scroll-behavior:auto}
+.b{contain:layout style}
+#chat{inset:0 0 auto 0;height:var(--vvh,100dvh)}
+.cin{padding-bottom:calc(8px + env(safe-area-inset-bottom,0px))}
+#fab{position:fixed;right:16px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:40;width:58px;height:58px;border-radius:50%;padding:0;display:grid;place-items:center;background:linear-gradient(135deg,#6d7cff,#22d3ee);box-shadow:0 10px 28px -6px rgba(34,211,238,.7);transition:transform .25s cubic-bezier(.2,1.6,.4,1)}
+#fab:active{transform:scale(.88)}#fab svg{width:28px;height:28px;fill:#04101f}
+#fab.un{animation:fp 2s ease-in-out infinite}@keyframes fp{50%{transform:scale(1.1)}}
+#fab i{position:absolute;top:-4px;right:-4px;min-width:22px;height:22px;border-radius:11px;background:#ef4444;color:#fff;font:700 12px/22px system-ui;text-align:center;padding:0 5px;font-style:normal}
+#fab i:empty{display:none}
+body:has(#app.hide) #fab{display:none}
+#njb{position:absolute;left:50%;bottom:calc(86px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:5;padding:8px 16px;border-radius:999px;box-shadow:0 8px 22px -6px rgba(34,211,238,.7)}
 </style></head><body>
 <header><h1>🌳 খান পরিবারের বংশবৃক্ষ</h1><p>শুধু পরিবারের সদস্যদের জন্য</p></header>
 <main><div class="top"><button id="bl" class="alt sm hide">🔔 <span id="bc"></span></button><button id="ins" class="alt sm hide">📲 ইনস্টল</button><button id="lg" class="alt sm">English</button><button id="out" class="alt sm hide">লগআউট</button></div><div id="gate" class="gate"></div>
@@ -511,10 +535,16 @@ function openChat(id){const c=chs[id];if(!c)return;curChat=id;rpTo=null;let lim=
   if($('ma6'))$('ma6').onclick=()=>nickDlg(m.u);
   $('ma5').onclick=()=>dlg.close();if(!dlg.open)dlg.showModal()};
  const mr=()=>{const box=$('ms');if(!box)return;const v=qs.trim().toLowerCase(),near=first||box.scrollHeight-box.scrollTop-box.clientHeight<140,A=v?ML.filter(m=>(m.t||'').toLowerCase().includes(v)||sN(m).toLowerCase().includes(v)):ML;
-  box.innerHTML=(ML.length>=lim?'<button class="alt sm" id="mo" style="align-self:center;margin:6px">⬆️ <span>আগের বার্তা দেখুন</span></button>':'')+(A.map(bub).join('')||(v?'<p class="note" style="text-align:center">কিছু পাওয়া যায়নি।</p>':'<p class="note" style="text-align:center">এখনও কোনো বার্তা নেই। প্রথম বার্তাটা আপনি পাঠান!</p>'));
+  const H=(ML.length>=lim?'<button class="alt sm" id="mo" style="align-self:center;margin:6px">⬆️ <span>আগের বার্তা দেখুন</span></button>':'')+(A.map(bub).join('')||(v?'<p class="note" style="text-align:center">কিছু পাওয়া যায়নি।</p>':'<p class="note" style="text-align:center">এখনও কোনো বার্তা নেই। প্রথম বার্তাটা আপনি পাঠান!</p>'));if(box._h===H)return;const pst=box.scrollTop;box.innerHTML=H;box._h=H;
   if($('mo'))$('mo').onclick=()=>{lim+=60;first=false;sub()};
   box.querySelectorAll('.b').forEach(e=>e.onclick=ev=>{const q=ev.target.closest('.rq');if(q)return goMsg(q.dataset.go);if(ev.target.dataset.im){const m=ML.find(x=>x.id==ev.target.dataset.im);return viewPhoto({title:'',data:m.img})}menu(ML.find(x=>x.id==e.dataset.mid))});
-  if(near&&!v)box.scrollTop=box.scrollHeight;first=false};
+  const lm=ML[ML.length-1],mineLast=lm&&lm.u==me.uid,grew=ML.length>(box._n||0);box._n=ML.length;
+  const nj=on=>{let j=$('njb');if(!on){j&&j.remove();return}if(j)return;j=document.createElement('button');j.id='njb';j.textContent='⬇️ নতুন বার্তা';j.onclick=()=>{box.scrollTop=box.scrollHeight;j.remove()};o.appendChild(j)};
+  const go=()=>{box.scrollTop=box.scrollHeight};
+  if((near||mineLast)&&!v){go();requestAnimationFrame(go);box.querySelectorAll('img').forEach(i=>{if(!i.complete)i.addEventListener('load',go,{once:true})});nj(false)}
+  else{box.scrollTop=pst;if(!v&&grew&&!first)nj(true)}
+  box.onscroll=()=>{if(box.scrollHeight-box.scrollTop-box.clientHeight<60)nj(false)};
+  first=false};
  const sub=()=>{mU&&mU();mU=onSnapshot(query(collection(db,'chats',id,'messages'),orderBy('at','desc'),limit(lim)),sn=>{ML=sn.docs.map(d=>({id:d.id,...d.data()})).reverse();mr();try{localStorage.setItem('khanR'+id,Math.floor(Date.now()/1000))}catch(e){}})};
  $('cb2').onclick=()=>{mU&&mU();mU=null;curChat=null;rpTo=null;o.classList.add('hide');chL()};
  if($('gp'))$('gp').onclick=()=>gpDlg(id);
@@ -545,4 +575,7 @@ function hsR(){if(!me)return;const t=(hist&&hist.b)||'';let h='<h3>📜 খা�
  if($('hc'))$('hc').onclick=()=>{hEd=false;hsR()};
  if($('hs2'))$('hs2').onclick=async()=>{const b=$('hb').value.trim();hEd=false;await setDoc(doc(db,'history','main'),{b,at:serverTimestamp()})}}
 
-</script><script>document.addEventListener('pointerdown',e=>{const b=e.target.closest('button');if(!b||b.matches('.tg'))return;const r=b.getBoundingClientRect(),d=Math.max(r.width,r.height),s=document.createElement('span');s.className='rip';s.style.cssText=`width:${d}px;height:${d}px;left:${e.clientX-r.left-d/2}px;top:${e.clientY-r.top-d/2}px`;b.appendChild(s);setTimeout(()=>s.remove(),650)});</script></body></html>
+</script><script>document.addEventListener('pointerdown',e=>{const b=e.target.closest('button');if(!b||b.matches('.tg'))return;const r=b.getBoundingClientRect(),d=Math.max(r.width,r.height),s=document.createElement('span');s.className='rip';s.style.cssText=`width:${d}px;height:${d}px;left:${e.clientX-r.left-d/2}px;top:${e.clientY-r.top-d/2}px`;b.appendChild(s);setTimeout(()=>s.remove(),650)});</script><script>(function(){let t,h=document.documentElement;addEventListener('scroll',()=>{h.classList.add('scr');clearTimeout(t);t=setTimeout(()=>h.classList.remove('scr'),160)},{passive:true,capture:true})})();(function(){const r=document.documentElement,vv=window.visualViewport,sv=()=>r.style.setProperty('--vvh',(vv?vv.height:innerHeight)+'px');sv();vv&&vv.addEventListener('resize',sv);addEventListener('resize',sv);
+const f=document.createElement('button');f.id='fab';f.setAttribute('aria-label','Chat');f.innerHTML='<svg viewBox="0 0 24 24"><path d="M4 3h16a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H9l-5 4v-4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg><i></i>';document.body.appendChild(f);
+f.onclick=()=>{const t=document.getElementById('t8');t&&t.click();scrollTo({top:0,behavior:'smooth'})};
+const cu=document.getElementById('cu'),u=()=>{const n=(cu.textContent||'').trim();f.querySelector('i').textContent=n;f.classList.toggle('un',!!n)};cu&&(new MutationObserver(u).observe(cu,{childList:true,characterData:true,subtree:true}),u())})();</script></body></html>
