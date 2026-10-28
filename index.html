@@ -269,7 +269,7 @@ header h1,header p{color:#fff!important;-webkit-text-fill-color:#fff!important;b
 .av2{border:2px solid var(--boy)!important;background:#fff!important}.n.f .av2{border-color:var(--girl)!important}
 #chat,dialog,#gate,#out,.off,.dig{display:none!important}}
 html:not([lang="en"]) .penb{display:none!important}
-</style><style>.nm b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.n>.badge{font-size:10.5px;padding:1px 7px;flex:none}</style></head><body>
+</style><style>.n{position:relative}.nm b{white-space:nowrap}.n>.badge{position:absolute;right:12px;bottom:11px;font-size:10px;line-height:1.6;padding:0 7px;margin:0}.n:has(>.badge) .nm{min-height:52px}.n:has(>.badge) .nm small{display:block;padding-right:84px}</style></head><body>
 <header><h1>🌳 খান পরিবারের বংশবৃক্ষ</h1><p>শুধু পরিবারের সদস্যদের জন্য</p></header>
 <main><div class="top"><button id="bl" class="alt sm hide">🔔 <span id="bc"></span></button><button id="ins" class="dig hide"><svg class="ic" viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg><span>ইনস্টল</span></button><button id="lg" class="alt sm">English</button><button id="out" class="alt sm hide">লগআউট</button></div><div id="gate" class="gate"></div>
 <div id="app" class="hide"><div id="nb" class="pend hide"></div><div class="bar"><input id="q" placeholder="নাম খুঁজুন…"><button class="alt" id="ex">সব খুলুন</button><button class="alt" id="co">সব বন্ধ</button></div>
@@ -678,4 +678,4 @@ const top=document.querySelector('.top');if(top){const b=document.createElement(
  document.body.appendChild(pop);
  const mark=()=>pop.querySelectorAll('button').forEach((x,j)=>x.style.borderColor=j==k?'#fff':'transparent');
  b.onclick=e=>{e.stopPropagation();if(pop.style.display=='flex'){pop.style.display='none';return}mark();const r=b.getBoundingClientRect();pop.style.display='flex';pop.style.top=(r.bottom+8)+'px';pop.style.left=Math.max(8,Math.min(r.left,innerWidth-pop.offsetWidth-8))+'px'};
- document.addEventListener('click',e=>{if(!pop.contains(e.target))pop.style.display='none'})}})();</script><script>(function(){const t=document.getElementById('tree');if(!t)return;let q=0;const fit=()=>{q=0;t.querySelectorAll('.nm b').forEach(b=>{if(!b.offsetParent)return;b.style.fontSize='';let f=parseFloat(getComputedStyle(b).fontSize);while(b.scrollWidth>b.clientWidth+1&&f>9){f-=.5;b.style.fontSize=f+'px'}})},sch=()=>{if(!q)q=requestAnimationFrame(fit)};new MutationObserver(sch).observe(t,{childList:true,subtree:true,characterData:true});t.addEventListener('click',()=>setTimeout(sch,60));addEventListener('resize',sch);addEventListener('load',sch);document.fonts&&document.fonts.ready.then(sch);setTimeout(sch,500)})();</script></body></html>
+ document.addEventListener('click',e=>{if(!pop.contains(e.target))pop.style.display='none'})}})();</script></body></html>
