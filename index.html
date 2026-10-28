@@ -130,6 +130,39 @@ dialog::backdrop{background:rgba(3,6,18,.65)}
 h3{color:#a5b4fc}
 #chat{background:#070b1a}
 @media(prefers-reduced-motion:reduce){*{animation:none!important}}
+/* ===== Extra animations v2 ===== */
+@property --a{syntax:'<angle>';inherits:false;initial-value:0deg}
+header{isolation:isolate}
+header::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:2px;z-index:-1;background:conic-gradient(from var(--a),transparent 0 55%,#22d3ee,#6d7cff,#a855f7,transparent 95%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:spin 5s linear infinite}
+@keyframes spin{to{--a:360deg}}
+header h1{animation:shine 6s linear infinite,float 4s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-4px)}}
+.bar,.stats div{transition:transform .3s cubic-bezier(.2,.9,.3,1.4),box-shadow .3s}
+.stats div:hover,.bar:focus-within{transform:translateY(-4px) scale(1.02);box-shadow:0 18px 40px -14px rgba(109,124,255,.7)}
+.stats div:nth-child(2){animation-delay:.3s}.stats div:nth-child(3){animation-delay:.4s}
+.stats b{animation:pop .7s .5s cubic-bezier(.2,1.6,.4,1) both}
+@keyframes pop{from{transform:scale(.3);opacity:0}}
+li{animation:spring .65s cubic-bezier(.2,1.2,.3,1) both}
+@keyframes spring{0%{opacity:0;transform:translateX(-26px) scale(.94)}100%{opacity:1;transform:none}}
+@supports(animation-timeline:view()){li{animation:reveal linear both;animation-timeline:view();animation-range:entry 0% entry 55%}@keyframes reveal{from{opacity:0;transform:translateY(34px) scale(.93)}to{opacity:1;transform:none}}}
+.n::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.14) 50%,transparent 65%);transform:translateX(-120%);pointer-events:none}
+.n{position:relative;overflow:hidden}
+.n:hover::after{transform:translateX(120%);transition:transform .8s}
+.av2{animation:bob 3.5s ease-in-out infinite}
+li:nth-child(even)>.n .av2{animation-delay:-1.7s}
+@keyframes bob{50%{transform:translateY(-3px) scale(1.05)}}
+.av2:active{transform:scale(.9);animation:none}
+.tg{transition:transform .35s cubic-bezier(.2,1.6,.4,1),background .2s}.tg:hover{transform:rotate(180deg) scale(1.15);background:var(--g2);color:#04101f}
+.badge{animation:badge 2.8s ease-in-out infinite}
+@keyframes badge{50%{box-shadow:0 0 14px rgba(34,211,238,.45)}}
+.tabs button{transition:transform .25s cubic-bezier(.2,1.6,.4,1),background .3s,box-shadow .3s}.tabs button:hover{transform:translateY(-2px)}.tabs button:active{transform:scale(.92)}
+#app>*:not(.hide),.card,.gal figure,.pend{animation:rise .55s cubic-bezier(.2,.9,.3,1) both}
+.gal figure{transition:transform .3s cubic-bezier(.2,1.4,.4,1)}.gal figure:hover{transform:translateY(-6px) rotate(-1deg) scale(1.03)}
+dialog[open]{animation:dpop .45s cubic-bezier(.2,1.4,.35,1)}
+@keyframes dpop{from{opacity:0;transform:translateY(40px) scale(.88)}}
+.rip{position:absolute;border-radius:50%;background:rgba(255,255,255,.55);transform:scale(0);animation:rip .6s ease-out forwards;pointer-events:none}
+@keyframes rip{to{transform:scale(4);opacity:0}}
+#toast{transition:transform .5s cubic-bezier(.2,1.5,.4,1)}
 </style></head><body>
 <header><h1>🌳 খান পরিবারের বংশবৃক্ষ</h1><p>শুধু পরিবারের সদস্যদের জন্য</p></header>
 <main><div class="top"><button id="bl" class="alt sm hide">🔔 <span id="bc"></span></button><button id="ins" class="alt sm hide">📲 ইনস্টল</button><button id="lg" class="alt sm">English</button><button id="out" class="alt sm hide">লগআউট</button></div><div id="gate" class="gate"></div>
@@ -512,4 +545,4 @@ function hsR(){if(!me)return;const t=(hist&&hist.b)||'';let h='<h3>📜 খা�
  if($('hc'))$('hc').onclick=()=>{hEd=false;hsR()};
  if($('hs2'))$('hs2').onclick=async()=>{const b=$('hb').value.trim();hEd=false;await setDoc(doc(db,'history','main'),{b,at:serverTimestamp()})}}
 
-</script></body></html>
+</script><script>document.addEventListener('pointerdown',e=>{const b=e.target.closest('button');if(!b||b.matches('.tg'))return;const r=b.getBoundingClientRect(),d=Math.max(r.width,r.height),s=document.createElement('span');s.className='rip';s.style.cssText=`width:${d}px;height:${d}px;left:${e.clientX-r.left-d/2}px;top:${e.clientY-r.top-d/2}px`;b.appendChild(s);setTimeout(()=>s.remove(),650)});</script></body></html>
