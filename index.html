@@ -420,6 +420,17 @@ ul.t li.offs::after{animation:none}
 /* ডায়ালগ খোলা থাকলে নিচের পেজের অ্যানিমেশন পজ (ব্লার ব্যাকড্রপে ল্যাগ কমে) */
 html.dlg-open body>*:not(dialog),html.dlg-open body>*:not(dialog) *,html.dlg-open body>*:not(dialog) *::before,html.dlg-open body>*:not(dialog) *::after,html.dlg-open body::before,html.dlg-open body::after,html.dlg-open:root::before{animation-play-state:paused!important}
 .bellic{width:21px;height:21px;vertical-align:-5px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+/* জন্মদিন বক্স: অ্যাপের থিম রঙের সাথে মিল */
+.bdc{background:linear-gradient(180deg,rgba(255,255,255,.11) 0%,rgba(255,255,255,.035) 55%,rgba(255,255,255,.055) 100%),rgb(var(--gr) / .07);border:1px solid rgba(255,255,255,.14);border-top-color:rgba(255,255,255,.32);border-left-color:rgba(255,255,255,.22);box-shadow:inset 0 1px 1px rgba(255,255,255,.38),inset 0 -1px 1px rgba(255,255,255,.07),0 10px 26px -12px rgba(0,0,0,.7)}
+.bdc::before{background:linear-gradient(90deg,var(--g),var(--g2),var(--g));opacity:.85}
+.bdi{background:linear-gradient(135deg,var(--g),var(--g2));box-shadow:0 3px 10px -4px rgb(var(--g2r) / .8),inset 0 1px 0 rgba(255,255,255,.4)}
+.bdr{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)}
+.bdr:hover{background:rgba(255,255,255,.1);border-color:rgb(var(--g2r) / .55)}
+.bdd{background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.05));border-color:rgba(255,255,255,.16)}
+.bdr.td{background:linear-gradient(135deg,rgb(var(--gr) / .32),rgb(var(--g2r) / .26));border-color:rgb(var(--g2r) / .6);box-shadow:0 6px 18px -10px rgb(var(--g2r) / .8)}
+.bdr.td::after{box-shadow:0 0 18px rgb(var(--g2r) / .6)}
+.bdr.td .bdm em,.bdr.td .bdd{background:linear-gradient(135deg,var(--g),var(--g2));color:#fff}
+[data-theme="light"] .bdc{background:rgba(255,255,255,.72);border-color:rgba(20,32,58,.1)}
 /* চ্যাটের তারিখ ও নোটিশের মেয়াদ */
 .bdt2{display:block;font-size:9.5px;opacity:.75;line-height:1.25;margin-top:1px;white-space:nowrap}
 .exl{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:8px 0 0}.exl select{flex:1;min-width:140px;max-width:220px;padding:8px 10px;border-radius:12px;background:rgba(255,255,255,.08);border:1px solid var(--line);color:var(--ink)}.exl select option{color:#111}
