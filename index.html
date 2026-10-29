@@ -291,10 +291,12 @@ html.chatopen body::before,html.chatopen body::after,html.chatopen main,html.cha
 html.lite *,html.lite *::before,html.lite *::after{animation:none!important;transition:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;will-change:auto!important}
 html.lite body::before,html.lite body::after,html.lite header::before,html.lite .cf,html.lite .rip{display:none!important}
 #lt.on{border-color:var(--g2)}
-.n,.stats div,.pend,.card{background:linear-gradient(145deg,rgba(255,255,255,.14) 0%,rgba(255,255,255,.04) 42%,rgba(255,255,255,.06) 70%,rgba(255,255,255,.1) 100%);border-color:rgba(255,255,255,.2);box-shadow:inset 0 1px 0 rgba(255,255,255,.28),inset 0 -1px 0 rgba(255,255,255,.05),inset 0 0 22px -12px rgba(255,255,255,.35),0 10px 28px -14px rgba(0,0,0,.75)}
-.stats div{backdrop-filter:blur(10px)!important;-webkit-backdrop-filter:blur(10px)!important}
-
-#lt svg{margin:0}
+.n,.stats div,.pend,.card{border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.11) 0%,rgba(255,255,255,.035) 55%,rgba(255,255,255,.055) 100%),rgb(var(--gr) / .07);border:1px solid rgba(255,255,255,.14);border-top-color:rgba(255,255,255,.32);border-left-color:rgba(255,255,255,.22);box-shadow:inset 0 1px 1px rgba(255,255,255,.38),inset 0 -1px 1px rgba(255,255,255,.07),0 10px 26px -12px rgba(0,0,0,.7)}
+.stats div{backdrop-filter:blur(14px) saturate(160%)!important;-webkit-backdrop-filter:blur(14px) saturate(160%)!important}
+:root[data-theme="dark"]::before{background:radial-gradient(900px 520px at 12% -5%,rgb(var(--gr) / .6),transparent 62%),radial-gradient(800px 520px at 100% 18%,rgb(var(--g2r) / .4),transparent 62%),radial-gradient(760px 520px at 0% 100%,rgb(var(--gdr) / .42),transparent 62%),radial-gradient(600px 400px at 85% 95%,rgb(var(--gr) / .3),transparent 65%),#070b1a;animation:bgb 7s ease-in-out infinite}
+@keyframes bgb{50%{opacity:.72}}
+body::after{width:380px;height:380px;background:radial-gradient(circle,rgb(var(--g2r) / .5),rgb(var(--gr) / .22) 45%,transparent 70%)}
+html.chatopen::before{animation-play-state:paused}
 </style></head><body>
 <header><h1>🌳 খান পরিবারের বংশবৃক্ষ</h1><p>শুধু পরিবারের সদস্যদের জন্য</p></header>
 <main><div class="top"><button id="bl" class="alt sm hide">🔔 <span id="bc"></span></button><button id="ins" class="dig hide"><svg class="ic" viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg><span>ইনস্টল</span></button><button id="lg" class="alt sm">English</button><button id="out" class="alt sm hide">লগআউট</button></div><div id="gate" class="gate"></div>
