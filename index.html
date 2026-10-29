@@ -297,6 +297,26 @@ html.lite body::before,html.lite body::after,html.lite header::before,html.lite 
 @keyframes bgb{50%{opacity:.72}}
 body::after{width:380px;height:380px;background:radial-gradient(circle,rgb(var(--g2r) / .5),rgb(var(--gr) / .22) 45%,transparent 70%)}
 html.chatopen::before{animation-play-state:paused}
+</style><style>
+/* chain lines: parent -> children */
+#tree>li>ul,#tree>li>ul>li{--c:#a78bfa}
+#tree>li>ul>li>ul,#tree>li>ul>li>ul>li{--c:#60a5fa}
+#tree>li>ul>li>ul>li>ul,#tree>li>ul>li>ul>li>ul>li{--c:#22d3ee}
+#tree>li>ul>li>ul>li>ul>li>ul,#tree>li>ul>li>ul>li>ul>li>ul>li{--c:#34d399}
+#tree>li>ul>li>ul>li>ul>li>ul>li>ul,#tree>li>ul>li>ul>li>ul>li>ul>li>ul>li{--c:#fbbf24}
+#tree>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul,#tree>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li{--c:#f472b6}
+#tree>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul,#tree>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li{--c:#a78bfa}
+#tree>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul,#tree>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li{--c:#60a5fa}
+#tree>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul,#tree>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li{--c:#22d3ee}
+#tree>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul,#tree>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li{--c:#34d399}
+#tree>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul,#tree>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li{--c:#fbbf24}
+#tree>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul,#tree>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li>ul>li{--c:#f472b6}
+ul.t:not(.root){position:relative;border-left:0!important;padding-left:0;margin-left:20px}
+ul.t:not(.root)::before{content:"";position:absolute;left:-14px;top:-8px;height:8px;border-left:3px solid var(--c,#60a5fa);width:0;pointer-events:none}
+ul.t:not(.root)>li{margin:0 0 0 -14px;padding:8px 0 0 14px}
+ul.t:not(.root)>li:not(:last-child){background:linear-gradient(var(--c,#60a5fa),var(--c,#60a5fa)) 0 0/3px 100% no-repeat}
+ul.t:not(.root)>li::before{content:"";position:absolute;left:0;top:0;width:14px;height:40px;box-sizing:border-box;border:0;border-left:3px solid var(--c,#60a5fa);border-bottom:3px solid var(--c,#60a5fa);border-bottom-left-radius:14px;pointer-events:none}
+ul.t:not(.root)>li::after{content:"";position:absolute;left:9px;top:33px;width:10px;height:10px;border-radius:50%;background:var(--c,#60a5fa);box-shadow:0 0 0 2px rgba(7,11,26,.9),0 0 10px 1px var(--c,#60a5fa);pointer-events:none;z-index:2}
 </style></head><body>
 <header><h1>🌳 খান পরিবারের বংশবৃক্ষ</h1><p>শুধু পরিবারের সদস্যদের জন্য</p></header>
 <main><div class="top"><button id="bl" class="alt sm hide">🔔 <span id="bc"></span></button><button id="ins" class="dig hide"><svg class="ic" viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg><span>ইনস্টল</span></button><button id="lg" class="alt sm">English</button><button id="out" class="alt sm hide">লগআউট</button></div><div id="gate" class="gate"></div>
