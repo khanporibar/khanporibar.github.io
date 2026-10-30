@@ -625,7 +625,7 @@ html.lite #ex *{animation:none!important}
 #chat .chh{padding-top:12px}
 #chbk{display:none;position:fixed;inset:0;z-index:69;background:rgba(3,6,18,.65);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
 html.chatopen #chbk{display:block}
-#cld{padding:14px}#cld .card{margin-bottom:8px}
+#cld .card,#cld .cldh{animation:none!important}#cld.nopop,#cld.nopop::backdrop{animation:none!important}#cld{padding:14px}#cld .card{margin-bottom:8px}
 #cld .cldh{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}#cld .cldh h2{margin:0}
 #cld #cls{max-height:min(68dvh,520px);overflow-y:auto;overscroll-behavior:contain}
 </style>
@@ -1195,12 +1195,12 @@ function hsR(){if(!me)return;const t=(hist&&hist.b)||'';let h='<h3>📜 খা�
 const f=document.createElement('button');f.id='fab';f.setAttribute('aria-label','Chat');f.innerHTML='<svg viewBox="0 0 24 24"><path d="M4 3h16a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H9l-5 4v-4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><circle class="d" cx="8" cy="10.5" r="1.4"/><circle class="d" cx="12" cy="10.5" r="1.4"/><circle class="d" cx="16" cy="10.5" r="1.4"/></svg><i></i>';document.body.appendChild(f);
 const cl=document.getElementById('cl'),ch=document.getElementById('chat'),bk=document.getElementById('chbk');let cld=null,fromList=false,skip=false,home=null;
 const mkL=()=>{if(cld)return cld;cld=document.createElement('dialog');cld.id='cld';cld.innerHTML='<div class="cldh"><h2>\u{1F4AC} \u099A\u09CD\u09AF\u09BE\u099F</h2><button class="alt sm cic" id="cldx" aria-label="Close">\u2715</button></div><div id="cls"></div>';document.body.appendChild(cld);
-cld.addEventListener('click',e=>{if(e.target===cld||e.target.closest('#cldx'))return cld.close();if(e.target.closest('.ch')){fromList=true;setTimeout(()=>cld.close(),0)}});
-cld.addEventListener('close',()=>{if(home&&cl){home.p.insertBefore(cl,home.n);home=null}});return cld};
-const openL=()=>{const d=mkL();if(d.open||!cl)return;home={p:cl.parentNode,n:cl.nextSibling};d.querySelector('#cls').appendChild(cl);d.showModal()};
+cld.addEventListener('click',e=>{if(e.target===cld||e.target.closest('#cldx'))return cld.close();if(e.target.closest('.ch')){fromList=true;cld.close()}});
+cld.addEventListener('close',()=>{cld.classList.remove('nopop');if(home&&cl){home.p.insertBefore(cl,home.n);home=null}});return cld};
+const openL=q=>{const d=mkL();if(d.open||!cl)return;q&&d.classList.add('nopop');home={p:cl.parentNode,n:cl.nextSibling};d.querySelector('#cls').appendChild(cl);d.showModal()};
 const closeAll=()=>{skip=true;const b=document.getElementById('cb2');b&&b.click()};
 bk.onclick=closeAll;addEventListener('keydown',e=>{if(e.key==='Escape'&&!ch.classList.contains('hide')&&!document.querySelector('dialog[open]'))closeAll()});
-new MutationObserver(()=>{if(ch.classList.contains('hide')){const r=fromList&&!skip;fromList=false;skip=false;if(r)setTimeout(openL,60)}}).observe(ch,{attributes:true,attributeFilter:['class']});
+new MutationObserver(()=>{if(ch.classList.contains('hide')){const r=fromList&&!skip;fromList=false;skip=false;if(r)openL(true)}}).observe(ch,{attributes:true,attributeFilter:['class']});
 f.onclick=()=>{const app=document.getElementById('app');if(app&&!app.classList.contains('hide')&&cl){if(!ch.classList.contains('hide'))return;openL()}else{const t=document.getElementById('t8');t&&t.click();scrollTo({top:0,behavior:'smooth'})}};
 const cu=document.getElementById('cu'),u=()=>{const n=(cu.textContent||'').trim();f.querySelector('i').textContent=n;f.classList.toggle('un',!!n)};cu&&(new MutationObserver(u).observe(cu,{childList:true,characterData:true,subtree:true}),u())})();</script><script>(function(){const R=document.documentElement,m=document.querySelector('meta[name=theme-color]'),
 C=[['#5b6cff','#00b0ff','#a855f7'],['#ff5f7e','#ff9a4a','#ff7a59'],['#00d68f','#00b8d4','#10b981'],['#a855f7','#f06bd6','#c084fc']],
