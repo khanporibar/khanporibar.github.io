@@ -290,8 +290,10 @@ body::after{filter:none!important}
 #chat .b{box-shadow:none}
 .rbs{display:none!important}
 html.chatopen body::before,html.chatopen body::after,html.chatopen main,html.chatopen main *,html.chatopen main *::before,html.chatopen main *::after,html.chatopen #fab,html.chatopen #fab::before,html.chatopen #fab::after{animation-play-state:paused!important}
-html.lite *,html.lite *::before,html.lite *::after{animation:none!important;transition:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;will-change:auto!important}
-html.lite body::before,html.lite body::after,html.lite header::before,html.lite .cf,html.lite .rip{display:none!important}
+html.lite *:not(.bd-confetti),html.lite *:not(.bd-confetti)::before,html.lite *:not(.bd-confetti)::after{animation:none!important;transition:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;will-change:auto!important}
+html.lite body::before,html.lite body::after,html.lite header::before,html.lite .rip{display:none!important}
+/* Keep birthday confetti visible even in Lite Mode; this is a short, lightweight celebration. */
+html.lite .bd-confetti{display:block!important;z-index:9999!important}
 #lt.on{border-color:var(--g2)}
 .n,.stats div,.pend,.card{border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.11) 0%,rgba(255,255,255,.035) 55%,rgba(255,255,255,.055) 100%),rgb(var(--gr) / .07);border:1px solid rgba(255,255,255,.14);border-top-color:rgba(255,255,255,.32);border-left-color:rgba(255,255,255,.22);box-shadow:inset 0 1px 1px rgba(255,255,255,.38),inset 0 -1px 1px rgba(255,255,255,.07),0 10px 26px -12px rgba(0,0,0,.7)}
 .stats div{backdrop-filter:blur(14px) saturate(160%)!important;-webkit-backdrop-filter:blur(14px) saturate(160%)!important}
@@ -1002,7 +1004,7 @@ function birthdayFx(L){if(!L.length||!$('app'))return;const k='khanBd'+new Date(
  const names=L.map(x=>x.p.n).join('، '),d=document.createElement('div');d.id='bdb';d.innerHTML=`<button class="alt sm x">✕</button><b>🎂 আজ ${esc(names)} এর জন্মদিন!</b><span>শুভ জন্মদিন 🎉</span><br><button class="alt sm" id="bdg">💬 পরিবারের চ্যাটে শুভেচ্ছা পাঠান</button>`;
  $('app').prepend(d);d.querySelector('.x').onclick=()=>d.remove();
  $('bdg').onclick=async()=>{const t='🎂 '+names+' কে জন্মদিনের শুভেচ্ছা! 🎉',n=me.displayName||me.email;try{await addDoc(collection(db,'chats','family','messages'),{t,u:me.uid,n,at:serverTimestamp()});await updateDoc(doc(db,'chats','family'),{last:{t,n,u:me.uid},at:serverTimestamp()});$('bdg').textContent='✅ পাঠানো হয়েছে';$('bdg').disabled=true}catch(e){toast('শুভেচ্ছা পাঠানো যায়নি')}};
- if(!matchMedia('(prefers-reduced-motion:reduce)').matches){const c=['#f59e0b','#ec4899','#22d3ee','#a855f7','#22c55e'];for(let i=0;i<42;i++){const e=document.createElement('i');e.className='cf';e.style.cssText=`left:${Math.random()*100}vw;background:${c[i%5]};--dx:${(Math.random()-.5)*160}px;animation-duration:${2.6+Math.random()*2.4}s;animation-delay:${Math.random()*.9}s;border-radius:${i%3?'2px':'50%'}`;document.body.appendChild(e);setTimeout(()=>e.remove(),6500)}}}
+ if(!matchMedia('(prefers-reduced-motion:reduce)').matches){const c=['#f59e0b','#ec4899','#22d3ee','#a855f7','#22c55e'];for(let i=0;i<42;i++){const e=document.createElement('i');e.className='cf bd-confetti';e.style.cssText=`left:${Math.random()*100}vw;background:${c[i%5]};--dx:${(Math.random()-.5)*160}px;animation-duration:${2.6+Math.random()*2.4}s;animation-delay:${Math.random()*.9}s;border-radius:${i%3?'2px':'50%'}`;document.body.appendChild(e);setTimeout(()=>e.remove(),6500)}}}
 function nRefresh(){birthdayFx(bdays(0));const b=bdays(0).length+dann(0).length,n=pendN();$('bl').classList.remove('hide');$('bc').textContent=(b+n)?bn(b+n):'';
  if(lastP!==null&&n>lastP)ping('অ্যাডমিন অনুমোদন দরকার',bn(n)+' টি অনুরোধ অপেক্ষায়','pending');lastP=n}
 async function regPush(){if(!VAPID||!('serviceWorker' in navigator)||!('Notification' in window)||Notification.permission!='granted')return;try{const {getMessaging,getToken}=await import('https://www.gstatic.com/firebasejs/10.14.1/firebase-messaging.js');
