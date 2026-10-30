@@ -803,7 +803,7 @@ unsub.push(onSnapshot(collection(db,'avatars'),sn=>{const nv={};sn.docs.forEach(
  if(isAdm){unsub.push(onSnapshot(collection(db,'suggestions'),sn=>{sug=sn.docs.map(d=>({id:d.id,...d.data()})).filter(x=>x.status=='pending');adm()}));
   unsub.push(onSnapshot(collection(db,'users'),sn=>{usr=sn.docs.map(d=>({id:d.id,...d.data()}));adm()}));unsub.push(onSnapshot(collection(db,'avatarReq'),sn=>{areq=sn.docs.map(d=>({id:d.id,...d.data()})).filter(x=>x.status=='pending');adm()}))}});
 function waitExtra(ref){unsub.push(onSnapshot(ref,s=>{if(s.exists()&&s.data().status=='approved')location.reload()}));
- const g=$('gate');if('Notification' in window&&Notification.permission=='default'){const b=document.createElement('button');b.textContent='🔔 অনুমোদনের খবর ফোনে পেতে নোটিফিকেশন চালু করুন';b.style.marginTop='12px';b.onclick=()=>Notification.requestPermission().then(p=>{if(p=='granted'){if(!VAPID||!PUSH_ENDPOINT)toast('নোটিফিকেশন সেটআপ বাকি','Firebase VAPID public key এবং Firebase Cloud Function endpoint সেট করতে হবে।');else regPush();b.remove()}});g.appendChild(b)}
+ const g=$('gate');if('Notification' in window&&Notification.permission=='default'){const b=document.createElement('button');b.textContent='🔔 অনুমোদনের খবর ফোনে পেতে নোটিফিকেশন চালু করুন';b.style.marginTop='12px';b.onclick=()=>Notification.requestPermission().then(p=>{if(p=='granted'){if(VAPID&&PUSH_ENDPOINT)regPush();b.remove()}});g.appendChild(b)}
  else regPush()}
 const cnt=p=>p.k.reduce((a,c)=>a+1+cnt(c),0);
 function build(){map={};roots=[];people.forEach(p=>map[p.id]={...p,k:[],notes:p.notes||[]});
@@ -1015,10 +1015,10 @@ async function regPush(){if(!VAPID||!('serviceWorker' in navigator)||!('Notifica
  if(t)await setDoc(doc(db,'tokens',me.uid),{ts:arrayUnion(t),email:me.email,at:serverTimestamp()},{merge:true})}catch(e){console.log(e)}}
 let prefs={};
 function nbR(){const b=$('nb'),ios=/iphone|ipad|ipod/i.test(navigator.userAgent),st=matchMedia('(display-mode: standalone)').matches||navigator.standalone,can='Notification' in window&&'serviceWorker' in navigator;let m='';
- if(ios&&!st)m='ios';else if(can&&Notification.permission=='default')m='ask';else if(can&&Notification.permission=='granted'&&(!VAPID||!PUSH_ENDPOINT))m='config';
+ if(ios&&!st)m='ios';else if(can&&Notification.permission=='default')m='ask';
  b.classList.toggle('hide',!m);
- if(m=='config')b.innerHTML='<b>⚙️ নোটিফিকেশন সেটআপ বাকি</b><br><small class="note">GitHub Pages-এ অ্যাপ চলবে। ফোনে push পাঠাতে Firebase Web Push VAPID public key এবং Firebase Cloud Function-এর HTTPS endpoint সেট করতে হবে।</small>';if(m=='ios')b.innerHTML='<b>অ্যাপ হিসেবে ইনস্টল করুন</b><br><small class="note">iPhone-এ নোটিফিকেশন পেতে Safari-র শেয়ার বাটন চেপে "Add to Home Screen" দিন, তারপর হোম স্ক্রিন থেকে অ্যাপটি খুলুন।</small>';
- if(m=='ask'){b.innerHTML='<b>🔔 নোটিফিকেশন চালু করুন</b><br><small class="note">চ্যাট, জন্মদিন, নোটিশ ও অনুমোদনের খবর সরাসরি ফোনে পাবেন।</small><button id="nbb" style="margin-top:8px;width:100%">চালু করুন</button>';$('nbb').onclick=()=>Notification.requestPermission().then(p=>{if(p=='granted'){if(!VAPID||!PUSH_ENDPOINT)toast('নোটিফিকেশন সেটআপ বাকি','Firebase VAPID public key এবং Firebase Cloud Function endpoint সেট করতে হবে।');else regPush()}nbR()})}}
+if(m=='ios')b.innerHTML='<b>অ্যাপ হিসেবে ইনস্টল করুন</b><br><small class="note">iPhone-এ নোটিফিকেশন পেতে Safari-র শেয়ার বাটন চেপে "Add to Home Screen" দিন, তারপর হোম স্ক্রিন থেকে অ্যাপটি খুলুন।</small>';
+ if(m=='ask'){b.innerHTML='<b>🔔 নোটিফিকেশন চালু করুন</b><br><small class="note">চ্যাট, জন্মদিন, নোটিশ ও অনুমোদনের খবর সরাসরি ফোনে পাবেন।</small><button id="nbb" style="margin-top:8px;width:100%">চালু করুন</button>';$('nbb').onclick=()=>Notification.requestPermission().then(p=>{if(p=='granted'){if(VAPID&&PUSH_ENDPOINT)regPush()}nbR()})}}
 if('serviceWorker' in navigator)navigator.serviceWorker.addEventListener('message',e=>{const m=e.data||{};if(m.type=='push')toast(m.title,m.body);if(m.type=='go')goTo(m.go,m.chat)});
 function nInit(){if(nInit.d)return;nInit.d=1;
  nbR();getDoc(doc(db,'tokens',me.uid)).then(d=>{if(d.exists())prefs=d.data().prefs||{}}).catch(()=>{});
