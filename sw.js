@@ -1,14 +1,14 @@
 'use strict';
 
 const CACHE_PREFIX = 'khan-family-';
-const CACHE_NAME = CACHE_PREFIX + 'v45';
+const CACHE_NAME = CACHE_PREFIX + 'v48';
 
 const SCOPE = new URL(self.registration.scope);
 const ROOT_URL = SCOPE.href;                         // e.g. https://site/
 const INDEX_URL = new URL('index.html', SCOPE).href; // e.g. https://site/index.html
 const OPTIONAL = ['manifest.webmanifest'];           // cached if available, never blocks install
 
-const NAV_TIMEOUT = 3500; // ms to wait for the network before falling back to the cached app shell
+const NAV_TIMEOUT = 1200; // ms to wait for the network before falling back to the cached app shell
 const STATIC_DESTINATIONS = new Set(['script', 'style', 'image', 'font', 'worker', 'manifest']);
 const APPROVED_EXTERNAL = new Set(['www.gstatic.com', 'fonts.googleapis.com', 'fonts.gstatic.com']);
 
