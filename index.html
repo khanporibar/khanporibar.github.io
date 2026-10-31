@@ -670,6 +670,24 @@ li.rv{animation:rvl .55s cubic-bezier(.2,.9,.3,1) var(--rd,0s) both;animation-ti
 @keyframes rvl{from{opacity:0;transform:translateY(34px) scale(.93)}to{opacity:1;transform:none}}
 @media print{li.rvp,li.rv{opacity:1!important;transform:none!important;animation:none!important}}
 </style>
+
+<style id="weather-system">
+#weatherBtn{background:linear-gradient(135deg,#087fce,#536dfe)!important;color:#fff!important;border:1px solid rgba(255,255,255,.35)!important;box-shadow:0 8px 22px rgba(20,130,230,.28);font-weight:800}
+#weatherBtn.on{background:linear-gradient(135deg,#087fce,#536dfe)!important;color:#fff!important}
+.weather-dialog{width:min( min(94vw,680px), 680px);max-width:680px;max-height:88vh;overflow:auto;padding:0;color:#f7fbff;background:linear-gradient(155deg,#092b62,#07517d 55%,#102d56);border:1px solid rgba(155,211,255,.45);border-radius:24px;box-shadow:0 25px 90px rgba(0,0,0,.55)}
+.weather-dialog::backdrop{background:rgba(2,8,24,.72);backdrop-filter:blur(7px)}
+.weather-head{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;background:linear-gradient(120deg,rgba(8,28,78,.96),rgba(10,83,139,.8));border-bottom:1px solid rgba(255,255,255,.16)}
+.weather-kicker{font-size:11px;letter-spacing:1.8px;color:#9de3ff;font-weight:800}.weather-head h2{margin:3px 0;font-size:24px;color:#fff}.weather-muted{color:#c6ddf5;font-size:13px}.weather-close{border:0;border-radius:50%;width:40px;height:40px;font-size:28px;line-height:1;background:rgba(255,255,255,.13);color:white}
+.weather-main{padding:20px;background:radial-gradient(ellipse at 85% 5%,rgba(86,180,255,.32),transparent 42%)}.weather-current{display:flex;align-items:center;justify-content:space-between;gap:12px}.weather-temp{font-size:clamp(52px,12vw,76px);font-weight:800;line-height:1;letter-spacing:-3px}.weather-desc{font-size:19px;font-weight:700;margin-top:6px}.weather-feel{font-size:14px;color:#c8e3fb;margin-top:8px}.weather-emoji{font-size:76px;filter:drop-shadow(0 8px 14px rgba(0,0,0,.2))}
+.weather-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:18px}.weather-stat{border:1px solid rgba(179,220,255,.24);background:rgba(255,255,255,.09);border-radius:15px;padding:12px;min-width:0}.weather-stat span{display:block;font-size:12px;color:#c8e4fb}.weather-stat b{display:block;font-size:19px;margin-top:4px;overflow-wrap:anywhere}.weather-section{padding:15px 18px;border-top:1px solid rgba(255,255,255,.13)}.weather-section h3{font-size:14px;margin:0 0 11px;color:#d9efff}.weather-hours{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px}.weather-hour{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.12);border-radius:13px;text-align:center;padding:10px 4px}.weather-hour small{display:block;color:#c7def4;font-size:11px}.weather-hour strong{display:block;font-size:17px;margin-top:5px}.weather-hour i{display:block;font-style:normal;font-size:23px;margin:5px 0}.weather-sun{display:flex;justify-content:space-between;gap:12px;color:#e1f1ff;font-size:14px}.weather-foot{text-align:center;color:#a9c8e6;font-size:11px;padding:12px;background:rgba(0,0,0,.12)}.weather-loading,.weather-error{padding:28px;text-align:center;color:#d5eaff}.weather-error button{margin-top:12px}
+header#hdr[data-weather="cloudy"] .cl,header#hdr[data-weather="rain"] .cl,header#hdr[data-weather="storm"] .cl,header#hdr[data-weather="fog"] .cl{opacity:1!important}
+header#hdr[data-weather="sunny"] .cl{opacity:.18!important}
+header#hdr[data-weather="cloudy"] .scene::after,header#hdr[data-weather="rain"] .scene::after,header#hdr[data-weather="storm"] .scene::after,header#hdr[data-weather="fog"] .scene::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(30,50,80,.12),rgba(5,20,45,.25));z-index:4}
+header#hdr[data-weather="rain"] .scene::after{background:linear-gradient(180deg,rgba(20,40,75,.24),rgba(5,18,42,.4))}
+header#hdr[data-weather="storm"] .scene::after{background:linear-gradient(180deg,rgba(8,18,45,.4),rgba(2,8,24,.5))}
+header#hdr[data-weather="fog"] .scene::after{background:rgba(205,220,230,.25);backdrop-filter:blur(1px)}
+@media(max-width:480px){.weather-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.weather-dialog{width:94vw}.weather-main{padding:16px}.weather-section{padding:13px}.weather-hour{padding:8px 2px}.weather-hour i{font-size:20px}}
+</style>
 </head><body>
 <header id="hdr" data-tod="dusk"><div class="scene"><svg class="hsc" viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="ska" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--s1)"/><stop offset=".6" style="stop-color:var(--s2)"/><stop offset="1" style="stop-color:var(--s3)"/></linearGradient>
 <linearGradient id="gda" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--gr1)"/><stop offset="1" style="stop-color:var(--gr2)"/></linearGradient>
@@ -734,14 +752,14 @@ li.rv{animation:rvl .55s cubic-bezier(.2,.9,.3,1) var(--rd,0s) both;animation-ti
 </svg><i class="scrim"></i><span id="ex-ssn" data-k="season"></span></div><div class="htop"><div class="hl"><h1 class="ttl"><span data-ne="Khan">খান পরিবারের</span><span class="ac" data-ne="Family Tree">বংশবৃক্ষ</span></h1></div></div></header>
 <main><div class="top"><button id="bl" class="alt sm hide" aria-label="Notifications"><svg class="bellic" viewBox="0 0 24 24"><path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2-3v-3a7 7 0 0 1 4-6"/><path d="M9 17v1a3 3 0 0 0 6 0v-1"/><path d="M8.5 12h2l1-2.5l1.5 5l1-2.5h1.5" style="stroke-width:1.3"/></svg> <span id="bc"></span></button><button id="qrb" class="alt qrb" aria-label="QR"><svg class="ic" viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><path d="M14 14h3v3M20 14v.01M14 20h3M20 17v3"/></svg></button><button id="ins" class="dig hide"><svg class="ic" viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg><span>ইনস্টল</span></button><button id="lg" class="alt sm">English</button><button id="out" class="alt sm hide">লগআউট</button></div><div id="gate" class="gate"></div>
 <div id="app" class="hide"><div id="nb" class="pend hide"></div><div class="bar"><input id="q" placeholder="নাম খুঁজুন…"><button class="alt" id="exb">সব খুলুন</button><button class="alt" id="co">সব বন্ধ</button></div><div id="tk" class="tk hide" role="button" aria-label="Notices"><span class="tki"><svg viewBox="0 0 24 24" class="tks"><path d="M3 10v4a1 1 0 001 1h2l4.500 3.500a.8.8 0 001.300-.6V6.100a.8.8 0 00-1.300-.6L6 9H4a1 1 0 00-1 1z"/><path class="w1" d="M15.500 9.500a3.500 3.500 0 010 5"/><path class="w2" d="M18 7a7 7 0 010 10"/></svg><i class="tkd"></i></span><div class="tkv"><div class="tkt" id="tkt"></div></div></div>
-<div class="tabs"><button id="t1" class="on">বংশবৃক্ষ</button><button id="t9">📜 খান বংশের ইতিহাস</button><button id="t8">💬 চ্যাট <span id="cu"></span></button><button id="t3">গ্যালারি</button><button id="t4">ডিরেক্টরি</button><button id="t5">সম্পর্ক</button><button id="t6">কমিউনিটি</button><button id="t7">স্মরণ</button><button id="t2" class="hide">অ্যাডমিন <span id="pc"></span></button></div>
+<div class="tabs"><button id="t1" class="on">বংশবৃক্ষ</button><button id="t9">📜 খান বংশের ইতিহাস</button><button id="t8">💬 চ্যাট <span id="cu"></span></button><button id="t3">গ্যালারি</button><button id="t4">ডিরেক্টরি</button><button id="t5">সম্পর্ক</button><button id="t6">কমিউনিটি</button><button id="t7">স্মরণ</button><button id="t2" class="hide">অ্যাডমিন <span id="pc"></span></button><button id="weatherBtn" type="button" aria-haspopup="dialog">⛅ Weather</button></div>
 <div id="v1"><div id="bd"></div><div class="stats"><div><b id="s1">0</b>মোট সদস্য</div><div><b id="s2">0</b>ছেলে</div><div><b id="s3">0</b>মেয়ে</div><div><b id="s4">0</b>প্রজন্ম</div><div><b id="s5">0</b>জীবিত</div><div><b id="s6">0</b>এ বছর জন্ম</div></div><ul class="t root" id="tree"></ul><div id="pdfq" class="pdfq"></div><footer class="appcr"><div class="appcr-b"><span>Designed &amp; Developed by Mehedi Hasan Antor</span><small>Version 2.1.0</small></div></footer></div>
 <div id="v2" class="hide"><div id="adm"></div></div>
 <div id="v3" class="hide"><div id="gadm"></div><div id="gal" class="gal"></div></div>
 <div id="v4" class="hide"><div class="bar"><input id="dq" placeholder="নাম, পেশা বা ঠিকানা…"><select id="dg" class="dsel"><option value="">সব রক্তের গ্রুপ</option><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>AB+</option><option>AB-</option><option>O+</option><option>O-</option></select></div><div id="dlist"></div></div>
 <div id="v5" class="hide"><div class="pend"><b>দুজনের সম্পর্ক জানুন</b><input class="i" id="ra" list="pl" placeholder="প্রথম ব্যক্তি"><input class="i" id="rb" list="pl" placeholder="দ্বিতীয় ব্যক্তি"><button id="rg" style="margin-top:8px;width:100%">সম্পর্ক দেখুন</button><datalist id="pl"></datalist></div><div id="rr"></div></div>
 <div id="v9" class="hide"><div id="hs"></div></div><div id="v8" class="hide"><div id="cl"></div></div><div id="v6" class="hide"><div id="cm"></div></div><div id="v7" class="hide"><div id="mem"></div></div></div></main>
-<div id="toast"></div><div id="off" class="hide">📴 আপনি অফলাইনে আছেন — আগের ডাটা দেখা যাচ্ছে</div><div id="chbk"></div><div id="chat" class="hide"></div><dialog id="qd"></dialog><dialog id="pvd"><div id="pvc"></div><div style="display:flex;gap:8px;margin-top:12px"><a id="pvdl" style="flex:1;text-decoration:none"><button style="width:100%">⬇️ ডাউনলোড</button></a><button class="alt" style="flex:1" onclick="pvd.close()">বন্ধ করুন</button></div></dialog><dialog id="dlg"><div id="dc"></div><button class="alt" onclick="dlg.close()" style="margin-top:12px;width:100%">বন্ধ করুন</button></dialog>
+<div id="toast"></div><div id="off" class="hide">📴 আপনি অফলাইনে আছেন — আগের ডাটা দেখা যাচ্ছে</div><div id="chbk"></div><div id="chat" class="hide"></div><dialog id="weatherDialog" class="weather-dialog" aria-labelledby="weatherTitle"><div class="weather-head"><div><div class="weather-kicker">⛅ LIVE WEATHER</div><h2 id="weatherTitle">আবহাওয়া</h2><div id="weatherPlace" class="weather-muted">আপনার এলাকার আবহাওয়া</div></div><button type="button" class="weather-close" id="weatherClose" aria-label="Close">×</button></div><div id="weatherContent"><div class="weather-loading">আবহাওয়ার তথ্য লোড হচ্ছে…</div></div><div class="weather-foot" id="weatherUpdated">Open-Meteo থেকে আবহাওয়ার তথ্য</div></dialog><dialog id="qd"></dialog><dialog id="pvd"><div id="pvc"></div><div style="display:flex;gap:8px;margin-top:12px"><a id="pvdl" style="flex:1;text-decoration:none"><button style="width:100%">⬇️ ডাউনলোড</button></a><button class="alt" style="flex:1" onclick="pvd.close()">বন্ধ করুন</button></div></dialog><dialog id="dlg"><div id="dc"></div><button class="alt" onclick="dlg.close()" style="margin-top:12px;width:100%">বন্ধ করুন</button></dialog>
 <script type="module">
 const P=(n,g,b,d,s,k)=>({n,g,b:b||'',d:d||'',s:s||'',k:k||[],notes:[]});
 const M=(n,b,d,s,k)=>P(n,'m',b,d,s,k),F=(n,b,d,s,k)=>P(n,'f',b,d,s,k);
@@ -1341,12 +1359,21 @@ const go=()=>{return;try{if(DeviceOrientationEvent.requestPermission)DeviceOrien
 H.addEventListener('pointerdown',()=>go(),{once:true});
 
 const RN=[51,53,55,56,57,61,63,65,66,67,80,81,82,95,96,99],FG=[45,48];
+/* রামধনু সর্বোচ্চ BOW_MIN মিনিট থাকবে (বৃষ্টি থামার পর প্রথম দেখানো থেকে গোনা) */
+const BOW_MIN=30,BOW_MS=BOW_MIN*60000;let bowT=0,bowTm=0;
+const bowOk=cond=>{
+ if(!cond){bowT=0;clearTimeout(bowTm);try{localStorage.removeItem('hxbow')}catch(e){}return false}
+ if(!bowT){try{bowT=+localStorage.getItem('hxbow')||0}catch(e){}
+  if(!bowT){bowT=Date.now();try{localStorage.setItem('hxbow',bowT)}catch(e){}}}
+ const left=BOW_MS-(Date.now()-bowT);clearTimeout(bowTm);
+ if(left<=0)return false;
+ bowTm=setTimeout(()=>on('ex-rb',false),left);return true};
 const sky=(rain,bow,fog)=>{on('ex-rain',f('rain',rain));on('ex-rb',f('rain',bow));on('ex-fog',f('fog',fog))};
 function weather(){
  let got=false;sky(false,false,false);
  const load=(la,lo)=>(seas(+la,+lo),fetch('https://api.open-meteo.com/v1/forecast?latitude='+la+'&longitude='+lo+'&current=weather_code,precipitation,is_day&hourly=precipitation&past_hours=3&forecast_hours=1&timezone=auto').then(r=>r.json()).then(j=>{
   const c=j.current,h=(j.hourly&&j.hourly.precipitation)||[],now=RN.includes(c.weather_code)||c.precipitation>0,past=h.slice(0,3).reduce((a,b)=>a+(b||0),0);
-  got=true;sky(now,!now&&c.is_day===1&&past>.2,FG.includes(c.weather_code))}));
+  got=true;sky(now,bowOk(!now&&c.is_day===1&&past>.2),FG.includes(c.weather_code))}));
  const ip=()=>fetch('https://ipwho.is/').then(r=>r.json()).then(j=>j.success!==false&&load(j.latitude,j.longitude));
  const saved=()=>{try{const s=JSON.parse(localStorage.getItem('hxloc'));return s&&Date.now()-s.t<10800000?s:null}catch(e){return null}};
  const again=()=>{const s=saved();s&&load(s.la,s.lo).catch(()=>{})};
@@ -1373,4 +1400,34 @@ new MutationObserver(()=>{if(!q)q=requestAnimationFrame(scan)}).observe(t,{child
 t.addEventListener('animationend',e=>{const li=e.target;if(li.tagName==='LI'&&e.animationName==='rvl'){li.classList.remove('rv');li.style.removeProperty('--rd')}});
 if(t.children.length)scan();
 }catch(e){document.querySelectorAll('li.rvp').forEach(x=>x.classList.remove('rvp'))}})();</script>
+
+<script id="weather-dashboard-script">
+(()=>{
+ const btn=document.getElementById('weatherBtn'),dlg=document.getElementById('weatherDialog'),close=document.getElementById('weatherClose'),content=document.getElementById('weatherContent'),place=document.getElementById('weatherPlace'),updated=document.getElementById('weatherUpdated'),hdr=document.getElementById('hdr');
+ if(!btn||!dlg)return;
+ let coords=null,last=null,loading=false;
+ const $=id=>document.getElementById(id);
+ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const codeInfo=c=>{if(c===0)return ['পরিষ্কার আকাশ','☀️','sunny'];if([1,2].includes(c))return ['আংশিক মেঘলা','🌤️','cloudy'];if(c===3)return ['মেঘলা','☁️','cloudy'];if([45,48].includes(c))return ['কুয়াশাচ্ছন্ন','🌫️','fog'];if([51,53,55,56,57].includes(c))return ['গুঁড়ি গুঁড়ি বৃষ্টি','🌦️','rain'];if([61,63,65,66,67,80,81,82].includes(c))return ['বৃষ্টি হচ্ছে','🌧️','rain'];if([95,96,99].includes(c))return ['বজ্রঝড়','⛈️','storm'];return ['আবহাওয়ার অবস্থা','🌤️','cloudy']};
+ const n=(v,d=0)=>Number.isFinite(Number(v))?Number(v).toFixed(d):'—';
+ const metric=(label,value)=>`<div class="weather-stat"><span>${label}</span><b>${value}</b></div>`;
+ function render(j){last=j;const c=j.current,d=codeInfo(c.weather_code),h=j.hourly||{},daily=j.daily||{};hdr.dataset.weather=d[2];
+  const hourly=[];const now=new Date();for(let i=0;i<(h.time||[]).length&&hourly.length<5;i++){const t=new Date(h.time[i]);if(t>=new Date(now.getTime()-30*60000)){const inf=codeInfo((h.weather_code||[])[i]);hourly.push(`<div class="weather-hour"><small>${t.toLocaleTimeString('bn-BD',{hour:'numeric',hour12:true})}</small><i>${inf[1]}</i><strong>${n((h.temperature_2m||[])[i],0)}°</strong><small>বৃষ্টি ${n((h.precipitation_probability||[])[i],0)}%</small></div>`)} }
+  const sunrise=daily.sunrise?.[0]?new Date(daily.sunrise[0]).toLocaleTimeString('bn-BD',{hour:'numeric',minute:'2-digit'}):'—';const sunset=daily.sunset?.[0]?new Date(daily.sunset[0]).toLocaleTimeString('bn-BD',{hour:'numeric',minute:'2-digit'}):'—';
+  content.innerHTML=`<div class="weather-main"><div class="weather-current"><div><div class="weather-temp">${n(c.temperature_2m,0)}°C</div><div class="weather-desc">${d[0]}</div><div class="weather-feel">অনুভূত হচ্ছে ${n(c.apparent_temperature,0)}°C</div></div><div class="weather-emoji">${d[1]}</div></div><div class="weather-grid">${metric('আর্দ্রতা',n(c.relative_humidity_2m,0)+'%')}${metric('বাতাসের গতি',n(c.wind_speed_10m,0)+' km/h')}${metric('বৃষ্টির সম্ভাবনা',n(h.precipitation_probability?.[0],0)+'%')}${metric('UV Index',n(c.uv_index,1))}${metric('দৃশ্যমানতা',Number.isFinite(c.visibility)?(c.visibility/1000).toFixed(1)+' km':'—')}${metric('বায়ুচাপ',n(c.pressure_msl,0)+' hPa')}${metric('মেঘের পরিমাণ',n(c.cloud_cover,0)+'%')}${metric('বৃষ্টিপাত',n(c.precipitation,1)+' mm')}${metric('বাতাসের দিক',n(c.wind_direction_10m,0)+'°')}</div></div><div class="weather-section"><h3>☀️ সূর্যোদয় ও সূর্যাস্ত</h3><div class="weather-sun"><span>🌅 সূর্যোদয়</span><b>${sunrise}</b></div><div class="weather-sun" style="margin-top:9px"><span>🌇 সূর্যাস্ত</span><b>${sunset}</b></div></div><div class="weather-section"><h3>🕒 আগামী কয়েক ঘণ্টা</h3><div class="weather-hours">${hourly.join('')||'<div class="weather-muted">পূর্বাভাস পাওয়া যায়নি</div>'}</div></div>`;
+  updated.textContent='সর্বশেষ হালনাগাদ: '+new Date().toLocaleTimeString('bn-BD',{hour:'numeric',minute:'2-digit'})+' · Open-Meteo';
+ }
+ async function fetchWeather(){if(loading)return;loading=true;content.innerHTML='<div class="weather-loading">লাইভ আবহাওয়ার তথ্য আনা হচ্ছে…</div>';
+  try{if(!coords){const saved=(()=>{try{return JSON.parse(localStorage.getItem('hxloc')||'null')}catch(e){return null}})();if(saved&&saved.la&&saved.lo)coords={la:saved.la,lo:saved.lo};else {try{coords=await new Promise((resolve,reject)=>{if(!navigator.geolocation)return reject(Error('location'));navigator.geolocation.getCurrentPosition(p=>resolve({la:p.coords.latitude,lo:p.coords.longitude}),reject,{enableHighAccuracy:false,timeout:9000,maximumAge:3600000})})}catch(locErr){const ip=await fetch('https://ipwho.is/').then(r=>r.json());if(ip.success===false||!Number.isFinite(ip.latitude)||!Number.isFinite(ip.longitude))throw locErr;coords={la:ip.latitude,lo:ip.longitude}}}}
+   const u=`https://api.open-meteo.com/v1/forecast?latitude=${coords.la}&longitude=${coords.lo}&current=temperature_2m,apparent_temperature,relative_humidity_2m,weather_code,precipitation,cloud_cover,pressure_msl,wind_speed_10m,wind_direction_10m,visibility,uv_index,is_day&hourly=temperature_2m,precipitation_probability,weather_code&daily=sunrise,sunset&forecast_days=1&timezone=auto`;
+   const r=await fetch(u);if(!r.ok)throw Error('network');const j=await r.json();render(j);place.textContent='আপনার বর্তমান অবস্থান · স্থানীয় সময়';
+  }catch(e){content.innerHTML='<div class="weather-error">আবহাওয়ার তথ্য আনা যায়নি। ইন্টারনেট ও লোকেশন অনুমতি পরীক্ষা করে আবার চেষ্টা করুন।<br><button type="button" id="weatherRetry">আবার চেষ্টা করুন</button></div>';const retry=document.getElementById('weatherRetry');if(retry)retry.onclick=()=>{coords=null;fetchWeather()};}
+  finally{loading=false}}
+ btn.addEventListener('click',()=>{if(typeof dlg.showModal==='function')dlg.showModal();else dlg.setAttribute('open','');fetchWeather()});close.addEventListener('click',()=>dlg.close());dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
+ // Refresh the live data while the panel remains open, without changing existing animation toggles.
+ setInterval(()=>{if(dlg.open)fetchWeather()},15*60*1000);
+ // Load conditions in the background so the header scene follows real weather even before opening the panel.
+ fetchWeather();
+})();
+</script>
 </body></html>
