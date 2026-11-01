@@ -1,14 +1,19 @@
 'use strict';
 
 const CACHE_PREFIX = 'khan-family-';
-const CACHE_NAME = CACHE_PREFIX + 'v59';
+const CACHE_NAME = CACHE_PREFIX + 'v60';
 
 const SCOPE = new URL(self.registration.scope);
 const ROOT_URL = SCOPE.href;                         // e.g. https://site/
 const INDEX_URL = new URL('index.html', SCOPE).href; // e.g. https://site/index.html
 const OPTIONAL = ['manifest.webmanifest'];           // cached if available, never blocks install
 
-const NAV_TIMEOUT = 1200; // ms to wait for the network before falling back to the cached app shell
+// Versioned, never-changing files (Firebase SDK 10.14.1, font binaries): once cached they are never downloaded again.
+const FIREBASE_BASE = 'https://www.gstatic.com/firebasejs/10.14.1/';
+const PRECACHE_EXTERNAL = ['firebase-app.js', 'firebase-auth.js', 'firebase-firestore.js'].map(f => FIREBASE_BASE + f);
+function isImmutable(url) {
+  return url.hostname === 'fonts.gstatic.com' || (url.hostname === 'www.gstatic.com' && url.pathname.startsWith('/firebasejs/'));
+}
 const STATIC_DESTINATIONS = new Set(['script', 'style', 'image', 'font', 'worker', 'manifest']);
 const APPROVED_EXTERNAL = new Set(['www.gstatic.com', 'fonts.googleapis.com', 'fonts.gstatic.com']);
 
@@ -63,6 +68,15 @@ self.addEventListener('install', event => {
       } catch (_) { /* ignore */ }
     }));
 
+    // Firebase SDK: best effort, so the very next launch (even offline) needs no download.
+    await Promise.all(PRECACHE_EXTERNAL.map(async href => {
+      try {
+        if (await cache.match(href)) return;
+        const res = await fetch(href, { mode: 'cors' });
+        if (res.ok) await cache.put(href, res);
+      } catch (_) { /* ignore */ }
+    }));
+
     await self.skipWaiting();
   })());
 });
@@ -81,31 +95,71 @@ self.addEventListener('activate', event => {
 
 /* ---------- fetch strategies ---------- */
 
-// Page navigations: network first, but never make the user stare at a blank screen on slow/lie-fi networks.
+// Page navigations: cache first. The app shell opens instantly from the cache; a fresh copy is fetched in the
+// background (conditional request, so it is tiny when nothing changed) and used from the next launch.
+function shellSig(res) {
+  return (res.headers.get('etag') || '') + '|' + (res.headers.get('last-modified') || '') + '|' + (res.headers.get('content-length') || '');
+}
+
+async function notifyUpdate() {
+  const list = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
+  list.forEach(c => { try { c.postMessage({ type: 'upd' }); } catch (_) { /* ignore */ } });
+}
+
+async function refreshShell(cache, cached) {
+  try {
+    const response = await fetch(ROOT_URL, { cache: 'no-cache' });
+    if (!response.ok || response.type !== 'basic') return;
+    let changed = true;
+    if (cached) {
+      const a = shellSig(cached), b = shellSig(response);
+      if (a !== '||' || b !== '||') changed = a !== b;
+      else changed = (await cached.clone().blob()).size !== (await response.clone().blob()).size;
+    }
+    if (!changed) return;
+    await putShell(cache, response);
+    if (cached) await notifyUpdate();
+  } catch (_) { /* offline: keep the cached shell */ }
+}
+
 async function handleNavigate(event) {
   const request = event.request;
   const cache = await caches.open(CACHE_NAME);
   const cached = await matchShell(cache);
   const url = new URL(request.url);
 
-  const network = (async () => {
-    const response = await fetch(request);
-    if (response.ok && response.type === 'basic' && isShellPath(url)) {
-      // Don't make the page wait for the cache write: it streams from the network while a clone is stored.
-      event.waitUntil(putShell(cache, response).catch(() => {}));
-    }
-    return response;
-  })();
-  event.waitUntil(network.catch(() => {})); // keep the worker alive so the cache refresh can finish
-
-  if (!cached) {
-    try { return await network; } catch (_) { return offlineResponse(); }
+  if (cached && isShellPath(url)) {
+    event.waitUntil(refreshShell(cache, cached)); // must be registered before we answer
+    return cached;
   }
 
-  const timeout = new Promise(resolve => setTimeout(() => resolve(null), NAV_TIMEOUT));
-  const first = await Promise.race([network.catch(() => null), timeout]);
-  if (first && (first.ok || first.type === 'opaqueredirect')) return first;
-  return cached; // offline, timed out, or server error
+  // First ever launch (nothing cached yet) or a non-shell path: go to the network.
+  try {
+    const response = await fetch(request);
+    if (response.ok && response.type === 'basic' && isShellPath(url)) {
+      event.waitUntil(putShell(cache, response.clone()).catch(() => {}));
+    }
+    return response;
+  } catch (_) {
+    return cached || offlineResponse();
+  }
+}
+
+// Immutable files: cache first, no background re-download.
+async function cacheFirst(event) {
+  const request = event.request;
+  const cache = await caches.open(CACHE_NAME);
+  const cached = await cache.match(request);
+  if (cached) return cached;
+  try {
+    const response = await fetch(request);
+    if (response && (response.ok || response.type === 'opaque')) {
+      event.waitUntil(cache.put(request, response.clone()).catch(() => {}));
+    }
+    return response;
+  } catch (_) {
+    return new Response('', { status: 504, statusText: 'Offline' });
+  }
 }
 
 // Static files: answer from cache instantly, refresh in the background.
@@ -138,6 +192,11 @@ self.addEventListener('fetch', event => {
 
   if (request.mode === 'navigate') {
     event.respondWith(handleNavigate(event));
+    return;
+  }
+
+  if (isImmutable(url)) {
+    event.respondWith(cacheFirst(event));
     return;
   }
 
