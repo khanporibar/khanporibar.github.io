@@ -1406,8 +1406,10 @@ function seas(la,lo){const md=(N.getMonth()+1)*100+N.getDate(),bdc=la>=20.5&&la<
 {const _e=f('eid',hm===9||(hm===10&&hd<=3)||(hm===12&&hd>=9&&hd<=13));on('ex-eid',_e);on('ex-eid2',_e)}
 {const _n=f('boishakh',mo===4&&dy>=12&&dy<=16);on('ex-bn',_n);on('ex-bn2',_n)}
 on('ex-fl',f('flag',mo===12&&dy>=14&&dy<=17));
-const R=$('ex-rain');for(let i=0;i<30;i++)mk('line',{x1:i*13.5,y1:-6,x2:i*13.5-3,y2:5,stroke:'#dff0ff','stroke-width':1,opacity:.7,style:'animation:x-rn '+(.7+Math.random()*.5)+'s '+Math.random()+'s linear infinite'},R);
-for(let i=0;i<7;i++)mk('ellipse',{cx:15+Math.random()*370,cy:200+Math.random()*30,rx:8,ry:2.2,fill:'none',stroke:'#fff',style:'transform-box:fill-box;transform-origin:center;animation:x-rp 1.2s '+Math.random()+'s infinite'},R);
+const R=$('ex-rain'),RL=[],RP=[];for(let i=0;i<30;i++)RL.push(mk('line',{x1:i*13.5,y1:-6,x2:i*13.5-3,y2:5,stroke:'#dff0ff','stroke-width':1,opacity:.7,style:'animation:x-rn '+(.7+Math.random()*.5)+'s '+Math.random()+'s linear infinite'},R));
+for(let i=0;i<7;i++)RP.push(mk('ellipse',{cx:15+Math.random()*370,cy:200+Math.random()*30,rx:8,ry:2.2,fill:'none',stroke:'#fff',style:'transform-box:fill-box;transform-origin:center;animation:x-rp 1.2s '+Math.random()+'s infinite'},R));
+/* বৃষ্টির পরিমাণ (mm) অনুযায়ী ফোঁটা: গুঁড়িগুঁড়ি = অল্প ফোঁটা, ৪mm+ বা বজ্রঝড় = পুরো ঝমঝম (আগের মতো ৩০টি) */
+window.hxRainLevel=(mm,code)=>{mm=+mm||0;let n=mm<.3?5:mm<1?10:mm<2.5?16:mm<4?23:30;if(code>=51&&code<=57)n=Math.min(n,8);if(code>=95)n=30;RL.forEach((e,i)=>{e.style.display=((i*11)%30)<n?'':'none'});const rp=Math.ceil(n/30*7);RP.forEach((e,i)=>{e.style.display=i<rp?'':'none'})};
 const L=$('ex-lv');for(let i=0;i<14;i++){const sh=i%2,x=10+Math.random()*180,g=mk('g',{style:'animation:x-lf '+(6+Math.random()*4)+'s '+Math.random()*6+'s linear infinite;transform-box:fill-box;transform-origin:center'},L);
 if(sh){for(let p=0;p<5;p++){const a=p*1.2566;mk('ellipse',{cx:(x+Math.cos(a)*2).toFixed(1),cy:(110+Math.sin(a)*2).toFixed(1),rx:1.6,ry:1.6,fill:'#fff'},g)}mk('circle',{cx:x,cy:110,r:1,fill:'#fb923c'},g)}else mk('ellipse',{cx:x,cy:108,rx:3.6,ry:2,fill:'#e08a2c'},g)}
 const B=$('ex-bn'),fc=['#e53935','#fdd835','#1e88e5','#e91e63','#43a047','#fb8c00'];
@@ -1457,7 +1459,7 @@ function weather(){
  let got=false;sky(false,false,false);
  const load=(la,lo,ap)=>(window.hxApprox=!!ap,window.hxLoc={la:+la,lo:+lo},window.hxMoonUpdate&&window.hxMoonUpdate(),seas(+la,+lo),fetch('https://api.open-meteo.com/v1/forecast?latitude='+la+'&longitude='+lo+'&current=weather_code,precipitation,is_day,cloud_cover&hourly=precipitation&past_hours=3&forecast_hours=1&timezone=auto').then(r=>r.json()).then(j=>{
   const c=j.current,h=(j.hourly&&j.hourly.precipitation)||[],now=(c.precipitation||0)>=(window.hxApprox?.5:.1),past=h.slice(0,3).reduce((a,b)=>a+(b||0),0);
-  got=true;window.hxSky={rain:now,storm:now&&c.weather_code>=95,fog:FG.includes(c.weather_code),cover:c.cloud_cover};window.hxSkyUpdate&&window.hxSkyUpdate();sky(now,bowOk(!now&&c.is_day===1&&past>.2),FG.includes(c.weather_code))}));
+  got=true;window.hxRainLevel&&window.hxRainLevel(c.precipitation,c.weather_code);window.hxSky={rain:now,storm:now&&c.weather_code>=95,fog:FG.includes(c.weather_code),cover:c.cloud_cover};window.hxSkyUpdate&&window.hxSkyUpdate();sky(now,bowOk(!now&&c.is_day===1&&past>.2),FG.includes(c.weather_code))}));
  const ip=()=>fetch('https://ipwho.is/').then(r=>r.json()).then(j=>j.success!==false&&load(j.latitude,j.longitude,true));
  const saved=()=>{try{const s=JSON.parse(localStorage.getItem('hxloc'));return s&&Date.now()-s.t<10800000?s:null}catch(e){return null}};
  const again=()=>{const s=saved();s&&load(s.la,s.lo).catch(()=>{})};
@@ -1636,7 +1638,7 @@ function update(){
 const SK=document.getElementById('hxSky'),SUN=H.querySelector('.sun'),FL=document.getElementById('hxFlash');
 let sf=true;
 document.head.appendChild(Object.assign(document.createElement('style'),{textContent:'@keyframes hxd{from{translate:-6px 0}to{translate:7px 0}}'}));
-if(SK)SK.innerHTML='<g style="animation:hxd 13s ease-in-out infinite alternate;fill:var(--hxc,#fff)"><g transform="translate(34 -13) scale(.8)" opacity=".85"><ellipse cx="0" cy="8" rx="62" ry="12"/><circle cx="-30" cy="-2" r="18"/><circle cx="-4" cy="-13" r="25"/><circle cx="26" cy="-5" r="20"/></g><ellipse cx="0" cy="8" rx="62" ry="12"/><circle cx="-34" cy="-2" r="18"/><circle cx="-8" cy="-12" r="26"/><circle cx="24" cy="-6" r="22"/><circle cx="46" cy="2" r="14"/><circle cx="-54" cy="6" r="11"/><ellipse cx="0" cy="14" rx="58" ry="7" fill="#000" opacity=".18"/></g>';
+if(SK)SK.innerHTML='<g style="animation:hxd 13s ease-in-out infinite alternate;fill:var(--hxc,#fff)"><use href="#hcl1" transform="scale(1.1)"/></g>';
 if(SUN)SUN.style.transition='transform 2.4s cubic-bezier(.3,.7,.3,1),opacity 3s';
 function skyState(){
  const k=window.hxSky,w=H.dataset.weather;let rain=false,cover=0;storm=false;fog=false;
@@ -1652,9 +1654,10 @@ function place(){
  if(t!=='night'){y=30+(parseFloat(getComputedStyle(H).getPropertyValue('--sdy'))||0)}
  else if(window.hxMoon&&window.hxMoon.on){x=window.hxMoon.x;y=window.hxMoon.y}
  else show=false;
+ if(t==='night'&&(rainNow||storm))show=false;
  const heavy=amt>.8,col=t==='night'?(storm?'#121a30':rainNow?'#1b2342':'#27315a'):t==='day'?(storm?'#4f586b':rainNow?'#8692a7':fog?'#cfd8e2':heavy?'#a3adbd':'#fdfefe'):(storm?'#4a4a62':rainNow?'#7a7890':'#f1d2c4');
  SK.style.setProperty('--hxc',col);
- const off=(1-amt)*58,sc=heavy?1.3:1;
+ const off=(1-amt)*40,sc=1;
  SK.style.transition=sf?'none':'transform 4s ease,opacity 3s';
  SK.style.transform='translate('+(x+off).toFixed(1)+'px,'+y.toFixed(1)+'px) scale('+sc+')';
  SK.style.opacity=show?Math.min(1,amt*1.05+.05).toFixed(2):0;
