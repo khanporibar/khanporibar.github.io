@@ -1,7 +1,7 @@
 'use strict';
 
 const CACHE_PREFIX = 'khan-family-';
-const CACHE_NAME = CACHE_PREFIX + 'v55';
+const CACHE_NAME = CACHE_PREFIX + 'v56';
 
 const SCOPE = new URL(self.registration.scope);
 const ROOT_URL = SCOPE.href;                         // e.g. https://site/
@@ -51,7 +51,7 @@ self.addEventListener('install', event => {
 
     // The app shell is mandatory: if it can't be fetched, the install fails and the previous
     // service worker (with its working cache) keeps running.
-    const shell = await fetch(ROOT_URL, { cache: 'reload' });
+    const shell = await fetch(ROOT_URL, { cache: 'no-cache' });
     if (!shell.ok) throw new Error('App shell fetch failed: ' + shell.status);
     await putShell(cache, shell);
 

@@ -765,8 +765,9 @@ header#hdr[data-weather="cloudy"] .scene::after,header#hdr[data-weather="rain"] 
 header#hdr[data-weather="rain"] .scene::after{background:linear-gradient(180deg,rgba(20,40,75,.24),rgba(5,18,42,.4))}
 header#hdr[data-weather="storm"] .scene::after{background:linear-gradient(180deg,rgba(8,18,45,.4),rgba(2,8,24,.5))}
 header#hdr[data-weather="fog"] .scene::after{background:rgba(205,220,230,.25);backdrop-filter:blur(1px)}
+header#hdr[data-drz] .scene::after{background:linear-gradient(180deg,rgba(30,50,80,.05),rgba(5,20,45,.1))!important}header#hdr[data-drz]:not([data-tod="night"]) .cl{opacity:.5!important}header#hdr[data-drz]:not([data-tod="night"]) .cl[data-ns]{opacity:0!important}header#hdr[data-drz] .sun{opacity:1!important}
 </style>
-</head><body>
+</head><body><script>window.hxIdle=function(f,t){var r=function(){var g=function(){try{f()}catch(e){console.error(e)}};window.requestIdleCallback?requestIdleCallback(g,{timeout:t||1500}):setTimeout(g,300)};document.readyState==="complete"?r():addEventListener("load",r,{once:true})}</script>
 <header id="hdr" data-tod="dusk"><div class="scene"><svg class="hsc" viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="ska" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--s1)"/><stop offset=".6" style="stop-color:var(--s2)"/><stop offset="1" style="stop-color:var(--s3)"/></linearGradient>
 <linearGradient id="gda" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--gr1)"/><stop offset="1" style="stop-color:var(--gr2)"/></linearGradient>
 <radialGradient id="gla"><stop offset="0" style="stop-color:var(--sunc);stop-opacity:.9"/><stop offset=".35" style="stop-color:var(--sunc);stop-opacity:.35"/><stop offset="1" style="stop-color:var(--sunc);stop-opacity:0"/></radialGradient>
@@ -775,7 +776,7 @@ header#hdr[data-weather="fog"] .scene::after{background:rgba(205,220,230,.25);ba
 <rect width="400" height="170" fill="url(#ska)"/><ellipse cx="195" cy="150" rx="190" ry="36" fill="url(#hza)" style="opacity:var(--hzO)"/>
 <g style="opacity:var(--starO)"><circle cx="324" cy="36" r="1.2" fill="#fff" class="tw" style="animation-delay:-2.4s"/><circle cx="384" cy="71" r="0.6" fill="#fff" class="tw" style="animation-delay:-2.5s"/><circle cx="133" cy="10" r="0.9" fill="#fff" class="tw" style="animation-delay:-0.3s"/><circle cx="246" cy="35" r="1.5" fill="#fff" class="tw" style="animation-delay:-1.6s"/><circle cx="299" cy="35" r="0.6" fill="#fff" class="tw" style="animation-delay:-2.2s"/><circle cx="214" cy="39" r="0.9" fill="#fff" class="tw" style="animation-delay:-2.7s"/><circle cx="205" cy="24" r="0.6" fill="#fff" class="tw" style="animation-delay:-0.4s"/><circle cx="322" cy="60" r="0.9" fill="#fff" class="tw" style="animation-delay:-0.4s"/><circle cx="8" cy="30" r="0.9" fill="#fff" class="tw" style="animation-delay:-2.9s"/><circle cx="90" cy="25" r="1.2" fill="#fff" class="tw" style="animation-delay:-0.9s"/><circle cx="107" cy="73" r="0.9" fill="#fff" class="tw" style="animation-delay:-0.5s"/><circle cx="359" cy="29" r="1.5" fill="#fff" class="tw" style="animation-delay:-0.9s"/><circle cx="190" cy="57" r="0.9" fill="#fff" class="tw" style="animation-delay:-2.8s"/><circle cx="141" cy="12" r="1.2" fill="#fff" class="tw" style="animation-delay:-0.9s"/><circle cx="314" cy="79" r="0.6" fill="#fff" class="tw" style="animation-delay:-1.8s"/><circle cx="368" cy="47" r="0.6" fill="#fff" class="tw" style="animation-delay:-0.9s"/><circle cx="162" cy="65" r="1.2" fill="#fff" class="tw" style="animation-delay:-0.6s"/><circle cx="247" cy="26" r="0.6" fill="#fff" class="tw" style="animation-delay:-0.8s"/><circle cx="17" cy="49" r="1.5" fill="#fff" class="tw" style="animation-delay:-0.1s"/><circle cx="220" cy="50" r="1.5" fill="#fff" class="tw" style="animation-delay:-1.7s"/><circle cx="10" cy="61" r="0.6" fill="#fff" class="tw" style="animation-delay:-2.1s"/><circle cx="325" cy="29" r="0.6" fill="#fff" class="tw" style="animation-delay:-2.3s"/><circle cx="242" cy="48" r="1.2" fill="#fff" class="tw" style="animation-delay:-2.7s"/><circle cx="134" cy="63" r="0.6" fill="#fff" class="tw" style="animation-delay:-1.8s"/><circle cx="194" cy="41" r="0.6" fill="#fff" class="tw" style="animation-delay:-1.3s"/><circle cx="52" cy="30" r="1.2" fill="#fff" class="tw" style="animation-delay:-1.5s"/><circle cx="191" cy="22" r="1.2" fill="#fff" class="tw" style="animation-delay:-0.8s"/><circle cx="365" cy="73" r="0.6" fill="#fff" class="tw" style="animation-delay:-0.9s"/><circle cx="168" cy="43" r="0.9" fill="#fff" class="tw" style="animation-delay:-2.4s"/><circle cx="326" cy="23" r="1.2" fill="#fff" class="tw" style="animation-delay:-3.0s"/><circle cx="88" cy="10" r="0.6" fill="#fff" class="tw" style="animation-delay:-3.0s"/><circle cx="279" cy="55" r="0.6" fill="#fff" class="tw" style="animation-delay:-0.7s"/><circle cx="310" cy="48" r="1.2" fill="#fff" class="tw" style="animation-delay:-1.4s"/><circle cx="221" cy="22" r="0.6" fill="#fff" class="tw" style="animation-delay:-2.9s"/><circle cx="332" cy="8" r="1.5" fill="#fff" class="tw" style="animation-delay:-1.0s"/><circle cx="112" cy="20" r="0.9" fill="#fff" class="tw" style="animation-delay:-1.9s"/><circle cx="217" cy="17" r="0.9" fill="#fff" class="tw" style="animation-delay:-1.3s"/><circle cx="82" cy="11" r="1.5" fill="#fff" class="tw" style="animation-delay:-0.9s"/><circle cx="238" cy="83" r="0.9" fill="#fff" class="tw" style="animation-delay:-2.9s"/><circle cx="238" cy="66" r="1.2" fill="#fff" class="tw" style="animation-delay:-1.4s"/><circle cx="155" cy="64" r="1.5" fill="#fff" class="tw" style="animation-delay:-2.7s"/><circle cx="63" cy="52" r="0.9" fill="#fff" class="tw" style="animation-delay:-1.9s"/><circle cx="261" cy="47" r="0.9" fill="#fff" class="tw" style="animation-delay:-0.3s"/><circle cx="145" cy="69" r="1.2" fill="#fff" class="tw" style="animation-delay:-0.2s"/></g>
 <g class="sun"><circle cx="62" cy="30" r="52" fill="url(#gla)"/><circle cx="62" cy="30" r="14" style="fill:var(--sunc)"/></g>
-<g class="moonr" id="hxMoon" style="opacity:0"></g><g id="hxSky" style="opacity:0;pointer-events:none"></g><rect id="hxFlash" width="400" height="260" fill="#e4ecff" style="opacity:0;pointer-events:none"/><g class="cl" style="opacity:var(--cO);fill:var(--cc);animation-duration:52s;animation-delay:-25s;animation-direction:alternate-reverse"><use href="#hcl2" transform="translate(258 112) scale(1.15)"/></g><g class="cl" style="opacity:var(--cO);fill:var(--cc);animation-duration:38s;animation-delay:-5s"><use href="#hcl1" transform="translate(372 90) scale(1.0)"/></g><g class="cl" style="opacity:var(--cO);fill:var(--cc);animation-duration:56s;animation-delay:-18s;animation-direction:alternate-reverse"><use href="#hcl2" transform="translate(128 27) scale(0.9)"/></g><g class="cl" style="opacity:var(--cO);fill:var(--cc);animation-duration:60s;animation-delay:-32s"><use href="#hcl2" transform="translate(300 130) scale(0.8)"/></g>
+<g class="moonr" id="hxMoon" style="opacity:0"></g><g id="hxSky" style="opacity:0;pointer-events:none"></g><rect id="hxFlash" width="400" height="260" fill="#e4ecff" style="opacity:0;pointer-events:none"/><g class="cl" style="opacity:var(--cO);fill:var(--cc);animation-duration:52s;animation-delay:-25s;animation-direction:alternate-reverse"><use href="#hcl2" transform="translate(258 112) scale(1.15)"/></g><g class="cl" style="opacity:var(--cO);fill:var(--cc);animation-duration:38s;animation-delay:-5s"><use href="#hcl1" transform="translate(372 90) scale(1.0)"/></g><g class="cl" data-ns="1" style="opacity:var(--cO);fill:var(--cc);animation-duration:56s;animation-delay:-18s;animation-direction:alternate-reverse"><use href="#hcl2" transform="translate(128 27) scale(0.9)"/></g><g class="cl" style="opacity:var(--cO);fill:var(--cc);animation-duration:60s;animation-delay:-32s"><use href="#hcl2" transform="translate(300 130) scale(0.8)"/></g>
 <g data-k="rainbow" id="ex-rb" class="ex ex-d" fill="none" stroke-width="3.2" style="opacity:.55"><path pathLength="1" d="M200 150A100 80 0 0 1 400 150" stroke="#e53935"/><path pathLength="1" d="M204 150A96 76 0 0 1 396 150" stroke="#fb8c00"/><path pathLength="1" d="M208 150A92 72 0 0 1 392 150" stroke="#fdd835"/><path pathLength="1" d="M212 150A88 68 0 0 1 388 150" stroke="#43a047"/><path pathLength="1" d="M216 150A84 64 0 0 1 384 150" stroke="#1e88e5"/></g>
 <path class="pm1" d="M0 150V124Q50 108 100 124Q170 100 240 122Q320 104 400 124V150Z" style="fill:var(--m1)"/>
 <path class="pm2" d="M0 156V136Q80 124 160 138Q260 122 400 138V156Z" style="fill:var(--m2)"/>
@@ -881,7 +882,7 @@ import {getFirestore,collection,query,orderBy,limit,where,doc,getDoc,setDoc,addD
 const app=initializeApp({apiKey:"AIzaSyA0P3NXnHzLR4rDxu6FFXn0d-47JaL0idc",authDomain:"khan-poribar.firebaseapp.com",projectId:"khan-poribar",storageBucket:"khan-poribar.firebasestorage.app",messagingSenderId:"378186531699",appId:"1:378186531699:web:9167dd70c2c6be8d693b06"});
 let db;try{db=initializeFirestore(app,{localCache:persistentLocalCache({tabManager:persistentMultipleTabManager()})})}catch(e){db=getFirestore(app)}
 const auth=getAuth(app),OWNER='shironamhinantor@gmail.com';
-const $=id=>document.getElementById(id),dlg=$('dlg');
+const $=id=>document.getElementById(id),dlg=$('dlg'),idle=window.hxIdle||((f)=>setTimeout(f,300));
 const ICO={ok:'<svg class="bi" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',x:'<svg class="bi" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>',edit:'<svg class="bi" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg>',cam:'<svg class="bi" viewBox="0 0 24 24"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 011 1v9a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13" r="3.5"/></svg>',tool:'<svg class="bi" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg>',crown:'<svg class="bi" viewBox="0 0 24 24"><path d="M3 8l4.5 4L12 5l4.5 7L21 8l-2 11H5z"/></svg>',print:'<svg class="bi" viewBox="0 0 24 24"><path d="M7 9V3h10v6"/><path d="M7 17H5a1 1 0 01-1-1v-5a2 2 0 012-2h12a2 2 0 012 2v5a1 1 0 01-1 1h-2"/><rect x="7" y="14" width="10" height="7"/></svg>'},TL=(b,e)=>`<span data-ne="${e}">${b}</span>`;
 const bn=n=>String(n).replace(/\d/g,d=>'০১২৩৪৫৬৭৮৯'[d]),esc=t=>String(t??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const imgOk=v=>typeof v=='string'&&/^data:image\/(png|jpe?g|gif|webp);base64,[A-Za-z0-9+\/=]+$/.test(v)?v:'',safeUrl=u=>/^https?:\/\//i.test(u||'')?String(u):'';
@@ -896,7 +897,7 @@ const offR=()=>$('off').classList.toggle('hide',navigator.onLine);addEventListen
 const avUrl={};const avSrc=id=>{const d=avs[id];if(!d)return'';const c=avUrl[id];if(c&&c.d===d)return c.u;try{const m=/^data:([^;,]*);base64,([\s\S]*)$/.exec(d);if(!m)return'';const b=atob(m[2]),a=new Uint8Array(b.length);for(let i=0;i<b.length;i++)a[i]=b.charCodeAt(i);const u=URL.createObjectURL(new Blob([a],{type:m[1]||'image/jpeg'}));if(c)URL.revokeObjectURL(c.u);avUrl[id]={d,u};return u}catch(e){return''}};
 const avInner=p=>avs[p.id]?`<img src="${avSrc(p.id)}" alt="" decoding="async" loading="lazy">`:(p.g=='f'?'👩':'👦');
 function viewPic(p){const src=avs[p.id];if(!src||!imgOk(src))return;$('pvc').innerHTML=`<h3 style="margin:0 0 10px">${esc(nmx(p))}</h3><img decoding="async" src="${src}" alt="">`;const a=$('pvdl');a.href=src;a.download=(nmx(p)||'photo').replace(/[\\/:*?"<>|]/g,'')+'.jpg';if(!pvd.open)pvd.showModal()}
-function applyAv(ids){document.querySelectorAll('.av2[data-pid]').forEach(e=>{if(ids&&!ids.has(e.dataset.pid))return;const p=map[e.dataset.pid];if(p)e.innerHTML=avInner(p)})}
+function applyAv(ids){const els=[...document.querySelectorAll('.av2[data-pid]')].filter(e=>!ids||ids.has(e.dataset.pid));let i=0;const step=()=>{const end=Math.min(i+8,els.length);for(;i<end;i++){const e=els[i],p=map[e.dataset.pid];if(p)e.innerHTML=avInner(p)}if(i<els.length)requestAnimationFrame(step)};step()}
 const gate=(k)=>{$('app').classList.toggle('hide',!!k);$('gate').classList.toggle('hide',!k);$('out').classList.toggle('hide',!me);
  if(k)$('gate').innerHTML=k=='login'?'<h2>পরিবারের সদস্যদের জন্য</h2><p>চালিয়ে যেতে Google দিয়ে সাইন ইন করুন।</p><button id="login">Google দিয়ে সাইন ইন</button>':'<h2>⏳ অনুমোদনের অপেক্ষায়</h2><p>আপনার অনুরোধ অ্যাডমিনের কাছে গেছে। অনুমোদন হলে পেজটা রিফ্রেশ করুন।</p>';
  if($('login'))$('login').onclick=()=>signInWithPopup(auth,new GoogleAuthProvider()).catch(e=>alert(L('লগইন হয়নি: ')+e.code))};
@@ -909,7 +910,7 @@ onAuthStateChanged(auth,async u=>{unsub.forEach(f=>f());unsub=[];me=u;if(!u){peo
  isAdm=!!s.data().admin;isOwn=u.email===OWNER;gate(null);try{if(isAdm&&!isOwn){if(!localStorage.getItem('khanAdm')){localStorage.setItem('khanAdm','1');setTimeout(()=>toast('🎉 আপনাকে অ্যাডমিন করা হয়েছে','আপনি ইতিহাস লিখতে এবং অনুরোধ যাচাই করতে পারবেন।'),1500)}}else if(!isAdm)localStorage.removeItem('khanAdm')}catch(e){}$('t2').classList.toggle('hide',!isAdm);
  unsub.push(onSnapshot(collection(db,'people'),sn=>{const arr=sn.docs.map(d=>({id:d.id,...d.data()})),sig=JSON.stringify(arr);if(sig===window._psig&&people.length)return;window._psig=sig;people=arr;clearTimeout(window._bt);window._bt=setTimeout(build,60)}));
  unsub.push(onSnapshot(doc(db,'history','hdr'),s=>{const o=s.exists()?(s.data().off||[]):[];window.__hdrOff=o;dispatchEvent(new CustomEvent('hcfg',{detail:{off:o}}))},()=>{}));
-unsub.push(onSnapshot(collection(db,'avatars'),sn=>{const nv={};sn.docs.forEach(d=>{nv[d.id]=d.data().data});const ch=new Set(Object.keys({...avs,...nv}).filter(k=>avs[k]!==nv[k]));avs=nv;if(ch.size)applyAv(ch)},()=>{}));
+{const uid0=u.uid;idle(()=>{if(!me||me.uid!==uid0)return;unsub.push(onSnapshot(collection(db,'avatars'),sn=>{const nv={};sn.docs.forEach(d=>{nv[d.id]=d.data().data});const ch=new Set(Object.keys({...avs,...nv}).filter(k=>avs[k]!==nv[k]));avs=nv;if(ch.size)applyAv(ch)},()=>{}))},1200)}
  
  if(isAdm){unsub.push(onSnapshot(collection(db,'suggestions'),sn=>{sug=sn.docs.map(d=>({id:d.id,...d.data()})).filter(x=>x.status=='pending');adm()}));
   unsub.push(onSnapshot(collection(db,'users'),sn=>{usr=sn.docs.map(d=>({id:d.id,...d.data()}));adm()}));unsub.push(onSnapshot(collection(db,'avatarReq'),sn=>{areq=sn.docs.map(d=>({id:d.id,...d.data()})).filter(x=>x.status=='pending');adm()}))}});
@@ -921,7 +922,7 @@ function build(){map={};roots=[];people.forEach(p=>map[p.id]={...p,k:[],notes:p.
  Object.values(map).forEach(p=>{p.par=map[p.parent]||null;(p.par?p.par.k:roots).push(p)});Object.values(map).forEach(p=>p.k.sort((a,b)=>(a.o||0)-(b.o||0)));
   Object.values(map).forEach(p=>{const ia=p.k.findIndex(x=>x.n=='মোঃ আবগান খান'),im=p.k.findIndex(x=>x.n=='মোঃ মাসুদ খান');if(ia>=0&&im>=0&&ia<im){[p.k[ia],p.k[im]]=[p.k[im],p.k[ia]];if(isOwn&&!build.fx){build.fx=1;const b=writeBatch(db);p.k.forEach((x,i)=>{if(x.o!==i)b.update(doc(db,'people',x.id),{o:i})});b.commit().catch(()=>{})}}});
  const t=$('tree'),colp=new Set([...t.querySelectorAll('li')].filter(li=>li.lastElementChild&&li.lastElementChild.matches('ul.t.hide')).map(li=>li.firstElementChild&&li.firstElementChild.dataset?li.firstElementChild.dataset.id:'')),sy=window.scrollY;t.innerHTML='';const fr=document.createDocumentFragment();roots.forEach(r=>fr.appendChild(el(r)));t.appendChild(fr);if(colp.size)t.querySelectorAll('li').forEach(li=>{const n=li.firstElementChild;if(n&&n.dataset&&colp.has(n.dataset.id)){const u=li.lastElementChild;if(u&&u.matches('ul.t')){u.classList.add('hide');const b=n.querySelector('.tg');if(b)b.textContent='+'}}});if(sy)window.scrollTo(0,sy);
- $('s1').textContent=bn(people.length);$('s2').textContent=bn(people.filter(p=>p.g=='m').length);$('s3').textContent=bn(people.filter(p=>p.g=='f').length);bday();dirR();relList();nInit();nRefresh();stats2();
+ $('s1').textContent=bn(people.length);$('s2').textContent=bn(people.filter(p=>p.g=='m').length);$('s3').textContent=bn(people.filter(p=>p.g=='f').length);bday();dirR();relList();if(!nInit.d&&!nInit.q){nInit.q=1;idle(()=>{nInit.q=0;if(me)nInit()},1500)}nRefresh();stats2();
  if(!people.length)t.innerHTML='<p class="note">এখনও কোনো তথ্য নেই।'+(isOwn?' অ্যাডমিন প্যানেল থেকে প্রাথমিক তথ্য ইম্পোর্ট করুন।':'')+'</p>'}
 function el(p){const li=document.createElement('li'),has=p.k.length,sp=p.g=='m'?'স্ত্রী':'স্বামী';
  li.innerHTML=`<div class="n ${p.g=='f'?'f':''}" data-id="${p.id}">${has?'<button class="tg">−</button>':'<span class="tg"></span>'}<span class="av2" data-pid="${p.id}" data-ne="${esc(ini2(p))}">${avInner(p)}</span><div class="nm"><b data-ne="${esc(p.ne||'')}">${esc(p.n)}</b><small>${p.d?'মৃত্যু '+esc(p.d):p.b?'জন্ম '+esc(p.b):''}${p.s?((p.d||p.b)?'<br>':'')+sp+': <span data-ne="'+esc(p.se||'')+'">'+esc(p.s)+'</span>':''}</small></div>${has?'<span class="badge" data-ne="Kids '+p.k.length+'">সন্তান '+bn(p.k.length)+' জন</span>':''}</div>`;
@@ -1101,7 +1102,7 @@ const expTxt=x=>x.exp?new Date(x.exp).toLocaleString('bn-BD',{day:'numeric',mont
 setInterval(()=>{if(me&&ntcApply()){cmR();tkR()}},30000);
 if('serviceWorker' in navigator){const hadCtl=!!navigator.serviceWorker.controller;let told=false;
  navigator.serviceWorker.addEventListener('controllerchange',()=>{if(hadCtl&&!told){told=true;try{toast('নতুন সংস্করণ এসেছে','সর্বশেষ পরিবর্তন পেতে পেজটি একবার রিফ্রেশ করুন।')}catch(e){}}});
- navigator.serviceWorker.register('sw.js').then(reg=>{const chk=()=>{try{reg.update().catch(()=>{})}catch(e){}};document.addEventListener('visibilitychange',()=>{if(!document.hidden)chk()});setInterval(chk,3600000)}).catch(()=>{})}
+ new Promise(r=>idle(r,4000)).then(()=>navigator.serviceWorker.register('sw.js')).then(reg=>{const chk=()=>{try{reg.update().catch(()=>{})}catch(e){}};document.addEventListener('visibilitychange',()=>{if(!document.hidden)chk()});setInterval(chk,3600000)}).catch(()=>{})}
 const fl=v=>{try{if(v===undefined)return localStorage.getItem('khanInst');v?localStorage.setItem('khanInst','1'):localStorage.removeItem('khanInst')}catch(e){}},stand=matchMedia('(display-mode: standalone)').matches||navigator.standalone;
 const isStand=()=>stand||matchMedia('(display-mode: standalone)').matches||matchMedia('(display-mode: minimal-ui)').matches||matchMedia('(display-mode: fullscreen)').matches||(document.referrer||'').startsWith('android-app://');
 if(isStand())fl(1);
@@ -1459,7 +1460,7 @@ function weather(){
  let got=false;sky(false,false,false);
  const load=(la,lo,ap)=>(window.hxApprox=!!ap,window.hxLoc={la:+la,lo:+lo},window.hxMoonUpdate&&window.hxMoonUpdate(),seas(+la,+lo),fetch('https://api.open-meteo.com/v1/forecast?latitude='+la+'&longitude='+lo+'&current=weather_code,precipitation,is_day,cloud_cover&hourly=precipitation&past_hours=3&forecast_hours=1&cell_selection=nearest&timezone=auto').then(r=>r.json()).then(j=>{
   const c=j.current,h=(j.hourly&&j.hourly.precipitation)||[],now=!window.hxApprox&&(c.precipitation||0)>=.1,past=h.slice(0,3).reduce((a,b)=>a+(b||0),0);
-  got=true;window.hxRainLevel&&window.hxRainLevel(c.precipitation,c.weather_code);window.hxSky={rain:now,storm:now&&c.weather_code>=95,fog:FG.includes(c.weather_code),cover:c.cloud_cover};window.hxSkyUpdate&&window.hxSkyUpdate();sky(now,bowOk(!now&&c.is_day===1&&past>.2),FG.includes(c.weather_code))}));
+  got=true;window.hxRainLevel&&window.hxRainLevel(c.precipitation,c.weather_code);window.hxSky={rain:now,storm:now&&c.weather_code>=95,fog:FG.includes(c.weather_code),cover:c.cloud_cover,drizzle:c.weather_code>=51&&c.weather_code<=57};window.hxSkyUpdate&&window.hxSkyUpdate();sky(now,bowOk(!now&&c.is_day===1&&past>.2),FG.includes(c.weather_code))}));
  const ip=()=>fetch('https://ipwho.is/').then(r=>r.json()).then(j=>j.success!==false&&load(j.latitude,j.longitude,true));
  const saved=()=>{try{const s=JSON.parse(localStorage.getItem('hxloc'));return s&&Date.now()-s.t<10800000?s:null}catch(e){return null}};
  const again=()=>{const s=saved();s&&load(s.la,s.lo).catch(()=>{})};
@@ -1470,7 +1471,7 @@ function weather(){
  setInterval(again,900000);
  document.addEventListener('visibilitychange',()=>{if(!document.hidden)again()})}
 if(Intl.DateTimeFormat().resolvedOptions().timeZone==='Asia/Dhaka')seas(23.8,90.4);
-applyOff();weather();
+applyOff();(window.hxIdle||setTimeout)(weather,2500);
 })();</script>
 <script>(function(){try{
 const t=document.getElementById('tree');if(!t||!('IntersectionObserver' in window))return;
@@ -1538,7 +1539,7 @@ if(t.children.length)scan();
  const bar=(p,col)=>{const v=Number.isFinite(+p)&&p!==null&&p!==''?clamp(+p,0,100):0;return '<div class="wbar" style="--p:'+v.toFixed(0)+'%'+(col?';--c:'+col:'')+'"><i></i></div>'};
  const card=(ic,label,val,unit,extra)=>'<div class="weather-stat"><span>'+svg(IC[ic])+label+'</span><b>'+val+(unit?'<em>'+unit+'</em>':'')+'</b>'+(extra||'')+'</div>';
  const WDN=['উত্তর','উত্তর-পূর্ব','পূর্ব','দক্ষিণ-পূর্ব','দক্ষিণ','দক্ষিণ-পশ্চিম','পশ্চিম','উত্তর-পশ্চিম'];
- function render(j){last=j;const c=j.current,d=((x,pp)=>(x[2]==='rain'||x[2]==='storm')&&!(pp>=.1)?['মেঘলা আকাশ','☁️','cloudy']:x)(codeInfo(c.weather_code),c.precipitation),h=j.hourly||{},daily=j.daily||{};hdr.dataset.weather=d[2];
+ function render(j){last=j;const c=j.current,d=((x,pp)=>(x[2]==='rain'||x[2]==='storm')&&!(pp>=.1)?['মেঘলা আকাশ','☁️','cloudy']:x)(codeInfo(c.weather_code),c.precipitation),h=j.hourly||{},daily=j.daily||{};hdr.dataset.weather=d[2];try{const dz=c.weather_code>=51&&c.weather_code<=57;if(window.hxSky)window.hxSky.drizzle=dz;hdr.toggleAttribute("data-drz",dz);window.hxSkyUpdate&&window.hxSkyUpdate()}catch(e){}
   /* সময় সবসময় ওই লোকেশনের নিজস্ব টাইমজোনে: API-র সময়কে utc_offset দিয়ে আসল UTC করা হয়, দেখানো হয় লোকেশনের টাইমজোনে */
   const off=(j.utc_offset_seconds||0)*1000,tz=j.timezone,U=x=>Date.parse(x+'Z')-off,tf=(ms,o)=>{try{return new Date(ms).toLocaleTimeString('bn-BD',Object.assign({},o,{timeZone:tz}))}catch(e){return new Date(ms).toLocaleTimeString('bn-BD',o)}};
   let ci=0;{const nt=Date.now();(h.time||[]).forEach((x,i)=>{if(U(x)<=nt)ci=i})}
@@ -1637,7 +1638,7 @@ function update(){
 }
 
 const SK=document.getElementById('hxSky'),SUN=H.querySelector('.sun'),FL=document.getElementById('hxFlash');
-let sf=true;
+let sf=true,drz=false;
 document.head.appendChild(Object.assign(document.createElement('style'),{textContent:'@keyframes hxd{from{translate:-6px 0}to{translate:7px 0}}'}));
 if(SK)SK.innerHTML='<g style="animation:hxd 13s ease-in-out infinite alternate;fill:var(--hxc,#fff)"><use href="#hcl1" transform="scale(1.1)"/></g>';
 if(SUN)SUN.style.transition='transform 2.4s cubic-bezier(.3,.7,.3,1),opacity 3s';
@@ -1645,7 +1646,8 @@ function skyState(){
  const k=window.hxSky,w=H.dataset.weather;let rain=false,cover=0;storm=false;fog=false;
  if(k){rain=!!k.rain;storm=!!k.storm;fog=!!k.fog;cover=+k.cover||0}
  else if(w){rain=w==='rain'||w==='storm';storm=w==='storm';fog=w==='fog';cover=w==='sunny'?5:w==='cloudy'?60:100}
- amt=storm?1:rain?.92:fog?.75:Math.max(0,Math.min(1,(cover-25)/55))*.88;
+ drz=k?!!k.drizzle:H.hasAttribute('data-drz');drz=drz&&!storm;H.toggleAttribute('data-drz',drz);
+ amt=storm?1:drz?.55:rain?.92:fog?.75:Math.max(0,Math.min(1,(cover-25)/55))*.88;
  return rain;
 }
 let rainNow=false;
@@ -1658,11 +1660,11 @@ function place(){
  if(t==='night'&&(rainNow||storm))show=false;
  const heavy=amt>.8,col=t==='night'?(storm?'#121a30':rainNow?'#1b2342':'#27315a'):t==='day'?(storm?'#4f586b':rainNow?'#8692a7':fog?'#cfd8e2':heavy?'#a3adbd':'#fdfefe'):(storm?'#4a4a62':rainNow?'#7a7890':'#f1d2c4');
  SK.style.setProperty('--hxc',col);
- const off=(1-amt)*40,sc=1;
+ const off=drz?110:(1-amt)*40,sc=1;
  SK.style.transition=sf?'none':'transform 4s ease,opacity 3s';
  SK.style.transform='translate('+(x+off).toFixed(1)+'px,'+y.toFixed(1)+'px) scale('+sc+')';
  SK.style.opacity=show?Math.min(1,amt*1.05+.05).toFixed(2):0;
- if(SUN)SUN.style.opacity=(1-amt*.85).toFixed(2);
+ if(SUN)SUN.style.opacity=drz?'1':(1-amt*.85).toFixed(2);
  if(t==='night')H.style.setProperty('--starO',(1-amt*.85).toFixed(2));else H.style.removeProperty('--starO');
  if(sf){void SK.getBoundingClientRect();sf=false}
 }
