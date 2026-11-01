@@ -133,7 +133,7 @@ h3{color:#a5b4fc}
 /* ===== Extra animations v2 ===== */
 @property --a{syntax:'<angle>';inherits:false;initial-value:0deg}
 header{isolation:isolate}
-header::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:2px;z-index:-1;background:conic-gradient(from var(--fa),transparent 0 55%,var(--g2),var(--g),var(--gold),transparent 95%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:spin 5s linear infinite}
+header::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:2px;z-index:-1;background:conic-gradient(from var(--a),transparent 0 55%,var(--g2),var(--g),var(--gold),transparent 95%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:spin 5s linear infinite}
 @keyframes spin{to{--a:360deg}}
 header h1{animation:shine 6s linear infinite,float 4s ease-in-out infinite}
 @keyframes float{50%{transform:translateY(-4px)}}
@@ -767,7 +767,35 @@ header#hdr[data-weather="storm"] .scene::after{background:linear-gradient(180deg
 header#hdr[data-weather="fog"] .scene::after{background:rgba(205,220,230,.25);backdrop-filter:blur(1px)}
 header#hdr[data-drz] .scene::after{background:linear-gradient(180deg,rgba(30,50,80,.05),rgba(5,20,45,.1))!important}header#hdr[data-drz]:not([data-tod="night"]) .cl{opacity:.5!important}header#hdr[data-drz]:not([data-tod="night"]) .cl[data-ns]{opacity:0!important}header#hdr[data-drz] .sun{opacity:1!important}
 @keyframes kr1{0%{opacity:0;transform:scale(.3)}40.38%{opacity:0;transform:scale(.3)}40.4%{opacity:.85;transform:scale(.4)}41.9%{opacity:0;transform:scale(1.8)}41.08%{opacity:0;transform:scale(.3)}41.1%{opacity:.85;transform:scale(.4)}42.6%{opacity:0;transform:scale(1.8)}43.28%{opacity:0;transform:scale(.3)}43.3%{opacity:.85;transform:scale(.4)}44.8%{opacity:0;transform:scale(1.8)}43.98%{opacity:0;transform:scale(.3)}44%{opacity:.85;transform:scale(.4)}45.5%{opacity:0;transform:scale(1.8)}100%{opacity:0;transform:scale(.3)}}@keyframes kr2{0%{opacity:0;transform:scale(.3)}42.08%{opacity:0;transform:scale(.3)}42.1%{opacity:.85;transform:scale(.4)}43.6%{opacity:0;transform:scale(1.8)}42.78%{opacity:0;transform:scale(.3)}42.8%{opacity:.85;transform:scale(.4)}44.3%{opacity:0;transform:scale(1.8)}44.78%{opacity:0;transform:scale(.3)}44.8%{opacity:.85;transform:scale(.4)}46.3%{opacity:0;transform:scale(1.8)}45.48%{opacity:0;transform:scale(.3)}45.5%{opacity:.85;transform:scale(.4)}47%{opacity:0;transform:scale(1.8)}100%{opacity:0;transform:scale(.3)}}.kr{opacity:0;fill:none;stroke:#fff;stroke-width:.7;transform-box:fill-box;transform-origin:center}.kr1{animation-name:kr1}.kr2{animation-name:kr2}@keyframes hxs{0%{transform:translate(calc(var(--fa)*-1),0) scaleX(1)}47%{transform:translate(var(--fa),-.8px) scaleX(1)}50%{transform:translate(var(--fa),-.8px) scaleX(-1)}97%{transform:translate(calc(var(--fa)*-1),.6px) scaleX(-1)}100%{transform:translate(calc(var(--fa)*-1),0) scaleX(1)}}@keyframes hxw{0%,100%{transform:rotate(-16deg)}50%{transform:rotate(16deg)}}.hxf{transform-box:fill-box;transform-origin:center}.hxt{transform-box:fill-box;transform-origin:100% 50%}html.lite #hdr .hxf,html.lite #hdr .hxt{animation:none!important}@media(prefers-reduced-motion:reduce){#hdr .hxf,#hdr .hxt{animation:none!important}}</style>
-</head><body><script>window.hxIdle=function(f,t){var r=function(){var g=function(){try{f()}catch(e){console.error(e)}};window.requestIdleCallback?requestIdleCallback(g,{timeout:t||1500}):setTimeout(g,300)};document.readyState==="complete"?r():addEventListener("load",r,{once:true})}</script>
+<style id="hx-cal-css">
+.cal-dialog .cal-body{padding:14px 14px 8px;font-size:14px;color:#e8f3ff}
+.cal-dialog .cal-card{display:flex;gap:12px;align-items:center;padding:14px;border-radius:18px;background:linear-gradient(135deg,rgba(34,211,238,.13),rgba(99,102,241,.17));border:1px solid rgba(140,200,255,.2)}
+.cal-dialog .cal-dn{flex:none;min-width:58px;text-align:center;line-height:1}.cal-dialog .cal-dn b{display:block;font-size:44px;font-weight:800;color:#fff}.cal-dialog .cal-dn span{display:block;margin-top:4px;font-size:12px;color:#9ee7ff;font-weight:700}
+.cal-dialog .cal-info{flex:1;min-width:0;display:grid;gap:4px;font-size:13.5px;color:#cfe6ff;line-height:1.4}.cal-dialog .cal-info b{color:#fff}.cal-dialog .cal-info .en{font-size:11.5px;color:#9fc3e6}.cal-dialog .cal-info .bn b{color:#7fe3ff}.cal-dialog .cal-info .hj b{color:#ffd27a}
+.cal-dialog .cal-moon{flex:none;width:68px;text-align:center;font-size:10.5px;color:#b7d3ee;line-height:1.3}.cal-dialog .cal-moon svg{width:52px;height:52px;display:block;margin:0 auto 3px}
+.cal-dialog .cal-chips{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:10px}.cal-dialog .cal-chip{padding:9px 4px;border-radius:13px;background:rgba(255,255,255,.06);border:1px solid rgba(140,200,255,.14);text-align:center}.cal-dialog .cal-chip small{display:block;font-size:11px;color:#9fc3e6}.cal-dialog .cal-chip b{font-size:14.5px;color:#fff}.cal-dialog .cal-chip.hl{background:rgba(255,210,122,.12);border-color:rgba(255,210,122,.42)}.cal-dialog .cal-chip.hl b{color:#ffd27a}
+.cal-dialog .cal-evs{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}.cal-dialog .cal-ev{padding:4px 10px;border-radius:99px;background:rgba(255,122,176,.16);border:1px solid rgba(255,122,176,.4);font-size:12px;color:#ffd0e3}.cal-dialog .cal-ev.e{background:rgba(255,210,122,.16);border-color:rgba(255,210,122,.5);color:#ffe3a6}
+.cal-dialog .cal-hil{margin-top:10px;padding:10px 12px;border-radius:13px;background:rgba(120,140,255,.13);border:1px solid rgba(150,170,255,.3);font-size:13px;line-height:1.5}.cal-dialog .cal-hil small{display:block;margin-top:3px;color:#9fc3e6;font-size:11px}
+.cal-dialog .cal-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:16px 0 8px}.cal-dialog .cal-mt{text-align:center;line-height:1.25}.cal-dialog .cal-mt b{font-size:18px;color:#fff}.cal-dialog .cal-mt small{display:block;font-size:11px;color:#9fc3e6}.cal-dialog .cal-mt .s2{color:#ffd27a;opacity:.9}
+.cal-dialog .cal-nb{min-width:38px;height:38px;padding:0 10px;display:inline-grid;place-items:center;border-radius:11px;font:inherit;font-size:18px;line-height:1;color:#e8f3ff;background:rgba(255,255,255,.07);border:1px solid var(--wl);box-shadow:none;cursor:pointer}.cal-dialog .cal-nb.wide{font-size:13px;width:100%}
+.cal-dialog .cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}.cal-dialog .cal-wd{text-align:center;font-size:12px;font-weight:700;color:#9ee7ff;padding:4px 0}.cal-dialog .cal-wd.fr{color:#ffb4a2}
+.cal-dialog .cal-d{position:relative;aspect-ratio:1/1.1;min-width:0;padding:0;border-radius:11px;background:rgba(255,255,255,.045);border:1px solid transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#e8f3ff;font:inherit;box-shadow:none;cursor:pointer}
+.cal-dialog .cal-d b{font-size:16px;line-height:1;font-weight:700}.cal-dialog .cal-d span{display:flex;gap:5px;font-size:9.5px;line-height:1}.cal-dialog .cal-d i{font-style:normal;color:#7fe3ff}.cal-dialog .cal-d u{text-decoration:none;color:#ffd27a}
+.cal-dialog .cal-d em{position:absolute;top:2px;left:3px;font-size:9px;font-style:normal;line-height:1}
+.cal-dialog .cal-d.out{opacity:.3}.cal-dialog .cal-d.fri b{color:#ffb4a2}.cal-dialog .cal-d.rmz{background:rgba(52,245,168,.13)}
+.cal-dialog .cal-d.ev::after,.cal-dialog .cal-d.eid::after{content:"";position:absolute;top:5px;right:5px;width:6px;height:6px;border-radius:50%;background:#ff7ab0}.cal-dialog .cal-d.eid::after{background:#ffd27a;box-shadow:0 0 6px #ffd27a}
+.cal-dialog .cal-d.sel{border-color:#9ee7ff}.cal-dialog .cal-d.today{background:linear-gradient(135deg,#0ea5c9,#5b5fe0);box-shadow:0 0 14px -3px rgba(34,211,238,.8)}.cal-dialog .cal-d.today b,.cal-dialog .cal-d.today i,.cal-dialog .cal-d.today u{color:#fff}
+.cal-dialog .cal-leg{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:10px;font-size:11px;color:#9fc3e6}.cal-dialog .cal-leg i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px}.cal-dialog .cal-leg .la{background:#fff}.cal-dialog .cal-leg .lb{background:#7fe3ff}.cal-dialog .cal-leg .lc{background:#ffd27a}.cal-dialog .cal-leg .lr{background:rgba(52,245,168,.6)}
+.cal-dialog .cal-act{margin-top:10px}
+.cal-dialog .cal-sec{margin-top:14px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid rgba(140,200,255,.16);overflow:hidden}.cal-dialog .cal-sec summary{cursor:pointer;padding:13px 14px;font-weight:700;color:#fff;display:flex;justify-content:space-between;gap:8px;align-items:center;list-style:none}.cal-dialog .cal-sec summary::-webkit-details-marker{display:none}.cal-dialog .cal-sec summary em{font-style:normal;font-size:12px;color:#34f5a8;font-weight:700;white-space:nowrap}
+.cal-dialog .cal-rn{padding:0 14px 8px;font-size:13px;color:#cfe6ff}.cal-dialog .cal-rn b{color:#ffd27a}
+.cal-dialog .cal-tw{max-height:300px;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;position:relative;border-top:1px solid rgba(140,200,255,.12)}.cal-dialog .cal-tw table{width:100%;border-collapse:collapse;font-size:12.5px}.cal-dialog .cal-tw th{position:sticky;top:0;background:#0a2a52;color:#9ee7ff;padding:8px 6px;text-align:center;font-size:12px}.cal-dialog .cal-tw td{padding:8px 6px;text-align:center;border-top:1px solid rgba(140,200,255,.08);color:#e8f3ff}.cal-dialog .cal-tw tr.tdy td{background:rgba(255,210,122,.16);color:#ffe3a6;font-weight:700}
+.cal-dialog .cal-sec2{margin-top:14px}.cal-dialog .cal-sec2 h3{margin:0 0 8px;font-size:14px;color:#9ee7ff}.cal-dialog .cal-up{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 12px;margin-bottom:6px;border-radius:13px;background:rgba(255,255,255,.05);border:1px solid rgba(140,200,255,.12)}.cal-dialog .cal-up b{display:block;font-size:13.5px;color:#fff}.cal-dialog .cal-up span{font-size:11.5px;color:#9fc3e6}.cal-dialog .cal-up em{font-style:normal;font-size:12px;color:#ffd27a;white-space:nowrap;font-weight:700}
+.cal-dialog .cal-adj{margin-top:14px;padding:12px 14px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid rgba(140,200,255,.16);display:grid;grid-template-columns:1fr auto;gap:8px 10px;align-items:center}.cal-dialog .cal-adj .t b{display:block;font-size:14px;color:#fff}.cal-dialog .cal-adj .t small{font-size:11.5px;color:#9fc3e6}.cal-dialog .cal-adj .c{display:flex;align-items:center;gap:8px}.cal-dialog .cal-adj .c span{min-width:54px;text-align:center;font-weight:700;color:#ffd27a}.cal-dialog .cal-adj .s{grid-column:1/-1;font-size:11.5px;color:#9fc3e6;line-height:1.5}
+.cal-dialog .cal-lnk{background:none;border:0;box-shadow:none;padding:0;font:inherit;font-size:11.5px;color:#7fe3ff;text-decoration:underline;cursor:pointer}
+.cal-dialog .cal-note{margin:12px 2px 6px;font-size:11.5px;line-height:1.6;color:#9fc3e6}
+@media(max-width:400px){.cal-dialog .cal-dn b{font-size:38px}.cal-dialog .cal-info{font-size:12.5px}.cal-dialog .cal-moon{width:58px}.cal-dialog .cal-d b{font-size:15px}.cal-dialog .cal-d span{font-size:9px;gap:3px}}
+</style></head><body><script>window.hxIdle=function(f,t){var r=function(){var g=function(){try{f()}catch(e){console.error(e)}};window.requestIdleCallback?requestIdleCallback(g,{timeout:t||1500}):setTimeout(g,300)};document.readyState==="complete"?r():addEventListener("load",r,{once:true})}</script>
 <header id="hdr" data-tod="dusk"><div class="scene"><svg class="hsc" viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="ska" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--s1)"/><stop offset=".6" style="stop-color:var(--s2)"/><stop offset="1" style="stop-color:var(--s3)"/></linearGradient>
 <linearGradient id="gda" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--gr1)"/><stop offset="1" style="stop-color:var(--gr2)"/></linearGradient>
 <radialGradient id="gla"><stop offset="0" style="stop-color:var(--sunc);stop-opacity:.9"/><stop offset=".35" style="stop-color:var(--sunc);stop-opacity:.35"/><stop offset="1" style="stop-color:var(--sunc);stop-opacity:0"/></radialGradient>
@@ -829,7 +857,7 @@ header#hdr[data-drz] .scene::after{background:linear-gradient(180deg,rgba(30,50,
 <g data-k="bud" id="ex-bud" class="ex"></g><g data-k="rain" id="ex-rain" class="ex"></g><g data-k="leaf" id="ex-lv" class="ex"></g><g id="ex-burst"></g>
 </g>
 </svg><i class="scrim"></i><span id="ex-ssn" data-k="season"></span></div><div class="htop"><div class="hl"><h1 class="ttl"><span data-ne="Khan">খান পরিবারের</span><span class="ac" data-ne="Family Tree">বংশবৃক্ষ</span></h1></div></div></header>
-<main><div class="top"><button id="weatherBtn" type="button" class="alt qrb" aria-haspopup="dialog" aria-label="আবহাওয়া" title="আবহাওয়া"><svg class="ic" viewBox="0 0 24 24"><g class="wr"><path d="M12 2v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="M20 12h2"/><path d="m19.07 4.93-1.41 1.41"/></g><path d="M15.947 12.65a4 4 0 0 0-5.925-4.128"/><path d="M13 22H7a5 5 0 1 1 4.9-6H13a3 3 0 0 1 0 6Z"/></svg></button><button id="bl" class="alt sm hide" aria-label="Notifications"><svg class="bellic" viewBox="0 0 24 24"><path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2-3v-3a7 7 0 0 1 4-6"/><path d="M9 17v1a3 3 0 0 0 6 0v-1"/><path d="M8.5 12h2l1-2.5l1.5 5l1-2.5h1.5" style="stroke-width:1.3"/></svg> <span id="bc"></span></button><button id="qrb" class="alt qrb" aria-label="QR"><svg class="ic" viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><path d="M14 14h3v3M20 14v.01M14 20h3M20 17v3"/></svg></button><button id="ins" class="dig hide"><svg class="ic" viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg><span>ইনস্টল</span></button><button id="lg" class="alt sm">English</button><button id="out" class="alt sm hide">লগআউট</button></div><div id="gate" class="gate"></div>
+<main><div class="top"><button id="calBtn" type="button" class="alt qrb" aria-haspopup="dialog" aria-label="ক্যালেন্ডার" title="ক্যালেন্ডার"><svg class="ic" viewBox="0 0 24 24"><rect x="3.500" y="5" width="17" height="15.500" rx="2.500"/><path d="M8 3v4M16 3v4M3.500 10h17"/><path d="M8.500 14.500h.01M12 14.500h.01M15.500 14.500h.01M8.500 17.500h.01M12 17.500h.01"/></svg></button><button id="weatherBtn" type="button" class="alt qrb" aria-haspopup="dialog" aria-label="আবহাওয়া" title="আবহাওয়া"><svg class="ic" viewBox="0 0 24 24"><g class="wr"><path d="M12 2v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="M20 12h2"/><path d="m19.07 4.93-1.41 1.41"/></g><path d="M15.947 12.65a4 4 0 0 0-5.925-4.128"/><path d="M13 22H7a5 5 0 1 1 4.9-6H13a3 3 0 0 1 0 6Z"/></svg></button><button id="bl" class="alt sm hide" aria-label="Notifications"><svg class="bellic" viewBox="0 0 24 24"><path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2-3v-3a7 7 0 0 1 4-6"/><path d="M9 17v1a3 3 0 0 0 6 0v-1"/><path d="M8.5 12h2l1-2.5l1.5 5l1-2.5h1.5" style="stroke-width:1.3"/></svg> <span id="bc"></span></button><button id="qrb" class="alt qrb" aria-label="QR"><svg class="ic" viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><path d="M14 14h3v3M20 14v.01M14 20h3M20 17v3"/></svg></button><button id="ins" class="dig hide"><svg class="ic" viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg><span>ইনস্টল</span></button><button id="lg" class="alt sm">English</button><button id="out" class="alt sm hide">লগআউট</button></div><div id="gate" class="gate"></div>
 <div id="app" class="hide"><div id="nb" class="pend hide"></div><div class="bar"><input id="q" placeholder="নাম খুঁজুন…"><button class="alt" id="exb">সব খুলুন</button><button class="alt" id="co">সব বন্ধ</button></div><div id="tk" class="tk hide" role="button" aria-label="Notices"><span class="tki"><svg viewBox="0 0 24 24" class="tks"><path d="M3 10v4a1 1 0 001 1h2l4.500 3.500a.8.8 0 001.300-.6V6.100a.8.8 0 00-1.300-.6L6 9H4a1 1 0 00-1 1z"/><path class="w1" d="M15.500 9.500a3.500 3.500 0 010 5"/><path class="w2" d="M18 7a7 7 0 010 10"/></svg><i class="tkd"></i></span><div class="tkv"><div class="tkt" id="tkt"></div></div></div>
 <div class="tabs"><button id="t1" class="on">বংশবৃক্ষ</button><button id="t9">📜 খান বংশের ইতিহাস</button><button id="t8">💬 চ্যাট <span id="cu"></span></button><button id="t3">গ্যালারি</button><button id="t4">ডিরেক্টরি</button><button id="t5">সম্পর্ক</button><button id="t6">কমিউনিটি</button><button id="t7">স্মরণ</button><button id="t2" class="hide">অ্যাডমিন <span id="pc"></span></button></div>
 <div id="v1"><div id="bd"></div><div class="stats"><div><b id="s1">0</b>মোট সদস্য</div><div><b id="s2">0</b>ছেলে</div><div><b id="s3">0</b>মেয়ে</div><div><b id="s4">0</b>প্রজন্ম</div><div><b id="s5">0</b>জীবিত</div><div><b id="s6">0</b>এ বছর জন্ম</div></div><ul class="t root" id="tree"></ul><div id="pdfq" class="pdfq"></div><footer class="appcr"><div class="appcr-b"><span>Designed &amp; Developed by Mehedi Hasan Antor</span><small id="appver">Version 2.1.0</small></div></footer></div>
@@ -838,7 +866,148 @@ header#hdr[data-drz] .scene::after{background:linear-gradient(180deg,rgba(30,50,
 <div id="v4" class="hide"><div class="bar"><input id="dq" placeholder="নাম, পেশা বা ঠিকানা…"><select id="dg" class="dsel"><option value="">সব রক্তের গ্রুপ</option><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>AB+</option><option>AB-</option><option>O+</option><option>O-</option></select></div><div id="dlist"></div></div>
 <div id="v5" class="hide"><div class="pend"><b>দুজনের সম্পর্ক জানুন</b><input class="i" id="ra" list="pl" placeholder="প্রথম ব্যক্তি"><input class="i" id="rb" list="pl" placeholder="দ্বিতীয় ব্যক্তি"><button id="rg" style="margin-top:8px;width:100%">সম্পর্ক দেখুন</button><datalist id="pl"></datalist></div><div id="rr"></div></div>
 <div id="v9" class="hide"><div id="hs"></div></div><div id="v8" class="hide"><div id="cl"></div></div><div id="v6" class="hide"><div id="cm"></div></div><div id="v7" class="hide"><div id="mem"></div></div></div></main>
-<div id="toast"></div><div id="off" class="hide">📴 আপনি অফলাইনে আছেন — আগের ডাটা দেখা যাচ্ছে</div><div id="chbk"></div><div id="chat" class="hide"></div><dialog id="weatherDialog" class="weather-dialog" aria-labelledby="weatherTitle"><div class="weather-head"><div><div class="weather-kicker"><i></i>লাইভ আবহাওয়া</div><h2 id="weatherTitle">আবহাওয়া</h2><div id="weatherPlace" class="weather-muted">আপনার এলাকার আবহাওয়া</div></div><button type="button" class="weather-close" id="weatherClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div id="weatherContent"><div class="weather-loading"><div class="wspin"></div>আবহাওয়ার তথ্য লোড হচ্ছে…</div></div><div class="weather-foot" id="weatherUpdated">Open-Meteo থেকে আবহাওয়ার তথ্য</div></dialog><dialog id="qd"></dialog><dialog id="pvd"><div id="pvc"></div><div style="display:flex;gap:8px;margin-top:12px"><a id="pvdl" style="flex:1;text-decoration:none"><button style="width:100%">⬇️ ডাউনলোড</button></a><button class="alt" style="flex:1" onclick="pvd.close()">বন্ধ করুন</button></div></dialog><dialog id="dlg"><div id="dc"></div><button class="alt" onclick="dlg.close()" style="margin-top:12px;width:100%">বন্ধ করুন</button></dialog>
+<div id="toast"></div><div id="off" class="hide">📴 আপনি অফলাইনে আছেন — আগের ডাটা দেখা যাচ্ছে</div><div id="chbk"></div><div id="chat" class="hide"></div><dialog id="weatherDialog" class="weather-dialog" aria-labelledby="weatherTitle"><div class="weather-head"><div><div class="weather-kicker"><i></i>লাইভ আবহাওয়া</div><h2 id="weatherTitle">আবহাওয়া</h2><div id="weatherPlace" class="weather-muted">আপনার এলাকার আবহাওয়া</div></div><button type="button" class="weather-close" id="weatherClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div id="weatherContent"><div class="weather-loading"><div class="wspin"></div>আবহাওয়ার তথ্য লোড হচ্ছে…</div></div><div class="weather-foot" id="weatherUpdated">Open-Meteo থেকে আবহাওয়ার তথ্য</div></dialog><dialog id="calDialog" class="weather-dialog cal-dialog" aria-labelledby="calTitle"><div class="weather-head"><div><div class="weather-kicker"><i></i>বাংলা · ইংরেজি · হিজরি</div><h2 id="calTitle">ক্যালেন্ডার</h2><div id="calPlace" class="weather-muted"></div></div><button type="button" class="weather-close" id="calClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="cal-body" id="calBody"></div><div class="weather-foot">তিন ক্যালেন্ডার, চাঁদ ও সেহরি-ইফতারের সময় গাণিতিক হিসাবে নির্ণীত</div></dialog><dialog id="qd"></dialog><dialog id="pvd"><div id="pvc"></div><div style="display:flex;gap:8px;margin-top:12px"><a id="pvdl" style="flex:1;text-decoration:none"><button style="width:100%">⬇️ ডাউনলোড</button></a><button class="alt" style="flex:1" onclick="pvd.close()">বন্ধ করুন</button></div></dialog><dialog id="dlg"><div id="dc"></div><button class="alt" onclick="dlg.close()" style="margin-top:12px;width:100%">বন্ধ করুন</button></dialog>
+<script id="hx-calendar">(function(){
+const $=id=>document.getElementById(id);
+const BD=s=>String(s).replace(/\d/g,c=>'০১২৩৪৫৬৭৮৯'[+c]);
+const GM=['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
+const GME=['January','February','March','April','May','June','July','August','September','October','November','December'];
+const WD=['রবিবার','সোমবার','মঙ্গলবার','বুধবার','বৃহস্পতিবার','শুক্রবার','শনিবার'];
+const WDS=['রবি','সোম','মঙ্গল','বুধ','বৃহ','শুক্র','শনি'];
+const BM=['বৈশাখ','জ্যৈষ্ঠ','আষাঢ়','শ্রাবণ','ভাদ্র','আশ্বিন','কার্তিক','অগ্রহায়ণ','পৌষ','মাঘ','ফাল্গুন','চৈত্র'];
+const BSN=['গ্রীষ্ম','গ্রীষ্ম','বর্ষা','বর্ষা','শরৎ','শরৎ','হেমন্ত','হেমন্ত','শীত','শীত','বসন্ত','বসন্ত'];
+const BS=[[4,14],[5,15],[6,15],[7,16],[8,16],[9,16],[10,16],[11,15],[12,15],[1,14],[2,13],[3,15]];
+const HM=['মুহাররম','সফর','রবিউল আউয়াল','রবিউস সানি','জমাদিউল আউয়াল','জমাদিউস সানি','রজব','শা’বান','রমজান','শাওয়াল','জিলকদ','জিলহজ'];
+const HEV={'1-10':'আশুরা','3-12':'ঈদে মিলাদুন্নবী','7-26':'শবে মিরাজ (দিবাগত রাত)','8-14':'শবে বরাত (দিবাগত রাত)','9-1':'রমজানের প্রথম রোজা','9-26':'শবে কদর (দিবাগত রাত)','10-1':'ঈদুল ফিতর','12-9':'আরাফাহ দিবস','12-10':'ঈদুল আজহা'};
+const NEV={'2-21':'শহীদ ও আন্তর্জাতিক মাতৃভাষা দিবস','3-26':'স্বাধীনতা দিবস','4-14':'পহেলা বৈশাখ (বাংলা নববর্ষ)','5-1':'মে দিবস','12-16':'বিজয় দিবস'};
+const at=(y,m,d)=>new Date(y,m,d,12);
+const addD=(d,n)=>at(d.getFullYear(),d.getMonth(),d.getDate()+n);
+const same=(a,b)=>a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate();
+
+/* ---------- অবস্থান ---------- */
+function loc(){const t=window.hxLoc;if(t&&isFinite(t.la)&&isFinite(t.lo))return{la:+t.la,lo:+t.lo,ap:!!window.hxApprox};
+ try{const s=JSON.parse(localStorage.getItem('hxloc'));if(s&&isFinite(+s.la)&&isFinite(+s.lo))return{la:+s.la,lo:+s.lo,ap:false}}catch(e){}
+ return{la:23.8,lo:90.4,ap:true,def:true}}
+const inBD=()=>{try{return Intl.DateTimeFormat().resolvedOptions().timeZone==='Asia/Dhaka'}catch(e){return false}};
+
+/* ---------- হিজরি (উম্মুল কুরা ভিত্তি + বাংলাদেশ সমন্বয়) ---------- */
+const HF=(()=>{for(const c of['islamic-umalqura','islamic-civil']){try{const f=new Intl.DateTimeFormat('en-u-ca-'+c+'-nu-latn',{year:'numeric',month:'numeric',day:'numeric'});if(!isNaN(parseInt(f.formatToParts(new Date()).find(x=>x.type==='month').value,10)))return f}catch(e){}}return null})();
+const stored=()=>{if(Number.isFinite(window.__hAdj))return window.__hAdj;if(window.__hAdj===null)return null;try{const v=localStorage.getItem('hxhadjS');return v===null||v===''?null:parseInt(v,10)}catch(e){return null}};
+const bdAdj=()=>{const s=stored();return Number.isFinite(s)?s:-1};const getAdj=()=>inBD()?bdAdj():0;
+const HC=new Map();
+function hijri(d,adj){d=d||new Date();if(adj==null)adj=getAdj();const g=at(d.getFullYear(),d.getMonth(),d.getDate()+adj),k=g.getTime();let r=HC.get(k);if(r)return r;
+ r={y:0,m:0,d:0};if(HF){try{const p=HF.formatToParts(g),v=t=>parseInt((p.find(x=>x.type===t)||{}).value,10);r={y:v('year'),m:v('month'),d:v('day')}}catch(e){}}
+ HC.set(k,r);return r}
+
+/* ---------- বাংলা (বাংলাদেশের সংশোধিত পঞ্জিকা) ---------- */
+function bangla(d){const t=Date.UTC(d.getFullYear(),d.getMonth(),d.getDate());let best=null;
+ for(const Y of[d.getFullYear()-1,d.getFullYear()])for(let i=0;i<12;i++){const s=Date.UTC(i>=9?Y+1:Y,BS[i][0]-1,BS[i][1]);if(s<=t&&(!best||s>best.s))best={s,i,Y}}
+ return{y:best.Y-593,m:best.i,d:Math.round((t-best.s)/864e5)+1}}
+
+/* ---------- সূর্যের সময় (ফজর ১৮°, সূর্যোদয়/সূর্যাস্ত −০.৮৩৩°) ---------- */
+function sunT(date,la,lo,alt,rising){const r=Math.PI/180,
+ J=Date.UTC(date.getFullYear(),date.getMonth(),date.getDate(),12)/864e5+2440587.5,T=(J-2451545)/36525,
+ L0=(280.46646+T*(36000.76983+T*0.0003032))%360,M=357.52911+T*(35999.05029-0.0001537*T),
+ e=0.016708634-T*(0.000042037+0.0000001267*T),
+ C=Math.sin(M*r)*(1.914602-T*(0.004817+0.000014*T))+Math.sin(2*M*r)*(0.019993-0.000101*T)+Math.sin(3*M*r)*0.000289,
+ om=125.04-1934.136*T,lam=L0+C-0.00569-0.00478*Math.sin(om*r),
+ eps=23+(26+(21.448-T*(46.815+T*(0.00059-T*0.001813)))/60)/60+0.00256*Math.cos(om*r),
+ dec=Math.asin(Math.sin(eps*r)*Math.sin(lam*r))/r,y=Math.pow(Math.tan(eps*r/2),2),
+ eot=4*(y*Math.sin(2*L0*r)-2*e*Math.sin(M*r)+4*e*y*Math.sin(M*r)*Math.cos(2*L0*r)-.5*y*y*Math.sin(4*L0*r)-1.25*e*e*Math.sin(2*M*r))/r,
+ ch=(Math.sin(alt*r)-Math.sin(la*r)*Math.sin(dec*r))/(Math.cos(la*r)*Math.cos(dec*r));
+ if(!(ch>=-1&&ch<=1))return null;
+ const H=Math.acos(ch)/r,noon=720-4*lo-eot,mins=rising?noon-4*H:noon+4*H;
+ return new Date(Date.UTC(date.getFullYear(),date.getMonth(),date.getDate())+mins*6e4)}
+function fmt(t){if(!t)return'—';const h=t.getHours(),m=t.getMinutes(),p=h<3?'রাত':h<6?'ভোর':h<12?'সকাল':h<15?'দুপুর':h<17?'বিকাল':h<19?'সন্ধ্যা':'রাত';
+ return p+' '+BD(h%12||12)+':'+BD(String(m).padStart(2,'0'))}
+
+window.HXCAL={hijri,bangla,sunT,fmt,getAdj,loc,HM,BM,bd:BD};
+
+/* ---------- চাঁদ ---------- */
+const MC=()=>typeof window.hxMoonCalc==='function'?window.hxMoonCalc:null;
+function moon(d){const f=MC();if(!f)return null;const L=loc();try{return f(d,L.la,L.lo)}catch(e){return null}}
+function phaseName(a){return a<1.85?'অমাবস্যা (নতুন চাঁদ)':a<7.38?'বর্ধিষ্ণু চাঁদ (হিলাল)':a<9.23?'শুক্লপক্ষের অর্ধচাঁদ':a<14.77?'বর্ধিষ্ণু গীবাস':a<16.61?'পূর্ণিমা':a<22.15?'ক্ষীয়মাণ গীবাস':a<24?'কৃষ্ণপক্ষের অর্ধচাঁদ':a<27.7?'ক্ষীয়মাণ চাঁদ':'অমাবস্যা (নতুন চাঁদ)'}
+function moonSvg(k,age){const R=14,a=Math.max(R*Math.abs(2*k-1),.01),p='M0 -14A14 14 0 0 1 0 14A'+a.toFixed(2)+' 14 0 0 '+(k>.5?1:0)+' 0 -14Z';
+ return'<svg viewBox="-17 -17 34 34"><circle r="15" fill="#6f82c8" opacity=".12"/><circle r="14" fill="#9db2e6" opacity=".2"/><g'+(age>14.765?' transform="scale(-1 1)"':'')+'><path d="'+p+'" fill="#fff6d5"/></g></svg>'}
+function mark(d){const a=moon(d),p=moon(addD(d,-1));if(!a||!p)return'';if(a.age<p.age)return'🌑';if(p.age<14.765&&a.age>=14.765)return'🌕';return''}
+
+/* ---------- দিবস ---------- */
+function evOf(d){const h=hijri(d),o=[],k=h.m+'-'+h.d;if(HEV[k])o.push({t:HEV[k],e:k==='10-1'||k==='12-10'});const n=NEV[(d.getMonth()+1)+'-'+d.getDate()];if(n)o.push({t:n,e:false});return o}
+function ramadan(from){let d=ymd(from),h=hijri(d);
+ if(h.m===9)d=addD(d,-(h.d-1));else{let i=0;while(i<420){const x=hijri(d);if(x.m===9&&x.d===1)break;d=addD(d,1);i++}if(i>=420)return null}
+ const days=[];let x=d;while(hijri(x).m===9&&days.length<31){days.push(x);x=addD(x,1)}return days.length?days:null}
+function upcoming(today){const want=['9-1','9-26','10-1','12-9','12-10','1-10','3-12','7-26','8-14'],got={};
+ for(let i=0;i<=400;i++){const d=addD(today,i),h=hijri(d),k=h.m+'-'+h.d;if(want.includes(k)&&!got[k])got[k]={d,t:HEV[k],n:i}}
+ return Object.values(got).sort((a,b)=>a.n-b.n).slice(0,6)}
+const ymd=d=>at(d.getFullYear(),d.getMonth(),d.getDate());
+const dstr=d=>BD(d.getDate())+' '+GM[d.getMonth()]+' '+BD(d.getFullYear());
+
+function hilal(d,h){if(h.d<29)return'';const f=MC();if(!f)return'';const L=loc(),ss=sunT(d,L.la,L.lo,-.833,false);if(!ss)return'';let c;try{c=f(ss,L.la,L.lo)}catch(e){return''}
+ let msg;
+ if(c.age>15)msg='আজ সূর্যাস্তের সময় নতুন চাঁদের জন্ম (অমাবস্যা) হয়নি, তাই আজ চাঁদ দেখা সম্ভব নয়। অমাবস্যা হবে প্রায় '+BD(Math.round((29.530589-c.age)*24))+' ঘণ্টা পরে।';
+ else{const hr=c.age*24;msg='সূর্যাস্তের সময় চাঁদের বয়স প্রায় '+BD(Math.round(hr))+' ঘণ্টা, আকাশে উচ্চতা প্রায় '+BD(Math.round(c.alt))+'° — '+(c.alt<2||hr<15?'দেখা যাওয়ার সম্ভাবনা খুব কম।':'আকাশ পরিষ্কার থাকলে দেখা যাওয়ার সম্ভাবনা আছে।')}
+ return'<div class="cal-hil">🌙 <b>আজকের চাঁদ দেখার হিসাব</b><br>'+msg+'<small>আনুমানিক গণনা। চূড়ান্ত সিদ্ধান্ত চাঁদ দেখা কমিটির ঘোষণা অনুযায়ী।</small></div>'}
+
+function rmzTable(days,today){const L=loc();
+ return'<table><thead><tr><th>রোজা</th><th>তারিখ</th><th>সেহরি শেষ</th><th>ইফতার</th></tr></thead><tbody>'+days.map((x,i)=>'<tr'+(same(x,today)?' class="tdy" id="cal-tdy"':'')+'><td>'+BD(i+1)+'</td><td>'+BD(x.getDate())+' '+GM[x.getMonth()]+' · '+WDS[x.getDay()]+'</td><td>'+fmt(sunT(x,L.la,L.lo,-18,true))+'</td><td>'+fmt(sunT(x,L.la,L.lo,-.833,false))+'</td></tr>').join('')+'</tbody></table>'}
+
+/* ---------- ডায়ালগ ---------- */
+const dlg=$('calDialog'),btn=$('calBtn'),body=$('calBody');if(!dlg||!btn||!body)return;
+let view=null,sel=null;
+function render(){
+ const today=ymd(new Date());if(!sel)sel=today;if(!view)view=at(today.getFullYear(),today.getMonth(),1);
+ const L=loc(),h=hijri(sel),b=bangla(sel),m=moon(same(sel,today)?new Date():sel),adj=getAdj(),auto=stored()===null;
+ $('calPlace').textContent=(L.def?'ঢাকা অঞ্চলের হিসাব (অবস্থান পাওয়া যায়নি)':L.ap?'আনুমানিক অবস্থান অনুযায়ী সময়':'আপনার অবস্থান অনুযায়ী সময়');if(!L.def&&window.hxPlaceName)window.hxPlaceName(L.la,L.lo).then(nm=>{if(nm&&dlg.open)$('calPlace').textContent=nm+' · স্থানীয় সময়'+(L.ap?' (আনুমানিক)':'')}).catch(()=>{});
+ const inR=h.m===9,fj=sunT(sel,L.la,L.lo,-18,true),sr=sunT(sel,L.la,L.lo,-.833,true),ss=sunT(sel,L.la,L.lo,-.833,false);
+ const evs=evOf(sel);
+ let h1='<div class="cal-card"><div class="cal-dn"><b>'+BD(sel.getDate())+'</b><span>'+WDS[sel.getDay()]+'</span></div><div class="cal-info"><div><b>'+WD[sel.getDay()]+', '+BD(sel.getDate())+' '+GM[sel.getMonth()]+' '+BD(sel.getFullYear())+'</b></div><div class="en">'+GME[sel.getMonth()]+' '+sel.getDate()+', '+sel.getFullYear()+'</div><div class="bn">বাংলা: <b>'+BD(b.d)+' '+BM[b.m]+' '+BD(b.y)+'</b> · '+BSN[b.m]+'</div><div class="hj">হিজরি: <b>'+(h.m?BD(h.d)+' '+HM[h.m-1]+' '+BD(h.y):'—')+'</b></div></div>'
+ +'<div class="cal-moon">'+(m?moonSvg(m.k,m.age)+phaseName(m.age)+'<br>'+BD(Math.round(m.k*100))+'% আলো':'')+'</div></div>'
+ +'<div class="cal-chips"><div class="cal-chip'+(inR?' hl':'')+'"><small>'+(inR?'সেহরি শেষ':'ফজর শুরু')+'</small><b>'+fmt(fj)+'</b></div><div class="cal-chip"><small>সূর্যোদয়</small><b>'+fmt(sr)+'</b></div><div class="cal-chip'+(inR?' hl':'')+'"><small>'+(inR?'ইফতার':'মাগরিব')+'</small><b>'+fmt(ss)+'</b></div></div>';
+ if(inR)h1+='<div class="cal-evs"><span class="cal-ev e">🌙 রমজানের '+BD(h.d)+' তারিখ — রোজা '+BD(h.d)+'</span></div>';
+ if(evs.length)h1+='<div class="cal-evs">'+evs.map(e=>'<span class="cal-ev'+(e.e?' e':'')+'">'+e.t+'</span>').join('')+'</div>';
+ h1+=hilal(sel,h);
+
+ const first=at(view.getFullYear(),view.getMonth(),1),last=at(view.getFullYear(),view.getMonth()+1,0);
+ const b1=bangla(first),b2=bangla(last),h1d=hijri(first),h2d=hijri(last);
+ const bn=(b1.m===b2.m?BM[b1.m]:BM[b1.m]+'–'+BM[b2.m])+' '+BD(b2.y);
+ const hj=h1d.m?((h1d.m===h2d.m?HM[h1d.m-1]:HM[h1d.m-1]+'–'+HM[h2d.m-1])+' '+BD(h2d.y)):'';
+ let g='<div class="cal-nav"><button type="button" class="cal-nb" data-act="prev" aria-label="আগের মাস">‹</button><div class="cal-mt"><b>'+GM[view.getMonth()]+' '+BD(view.getFullYear())+'</b><small>'+GME[view.getMonth()]+' '+view.getFullYear()+'</small><small class="s2">'+bn+' · '+hj+'</small></div><button type="button" class="cal-nb" data-act="next" aria-label="পরের মাস">›</button></div>';
+ g+='<div class="cal-grid">'+WDS.map((w,i)=>'<div class="cal-wd'+(i===5?' fr':'')+'">'+w+'</div>').join('');
+ const sd=first.getDay();
+ for(let i=0;i<42;i++){const d=addD(first,i-sd),out=d.getMonth()!==view.getMonth();if(i>=35&&out&&d.getDate()<8&&i%7===0)break;
+  const bb=bangla(d),hh=hijri(d),ev=evOf(d),cl=['cal-d'];if(out)cl.push('out');if(d.getDay()===5)cl.push('fri');if(same(d,today))cl.push('today');if(same(d,sel))cl.push('sel');if(hh.m===9)cl.push('rmz');if(ev.length)cl.push(ev.some(e=>e.e)?'eid':'ev');
+  g+='<button type="button" class="'+cl.join(' ')+'" data-t="'+d.getTime()+'"><em>'+mark(d)+'</em><b>'+d.getDate()+'</b><span><i>'+BD(bb.d)+'</i><u>'+(hh.m?BD(hh.d):'')+'</u></span></button>'}
+ g+='</div><div class="cal-leg"><span><i class="la"></i>ইংরেজি</span><span><i class="lb"></i>বাংলা</span><span><i class="lc"></i>হিজরি</span><span>🌑 অমাবস্যা</span><span>🌕 পূর্ণিমা</span><span><i class="lr"></i>রমজান</span></div>';
+ g+='<div class="cal-act"><button type="button" class="cal-nb wide" data-act="today">আজকের তারিখে যান</button></div>';
+
+ const days=ramadan(today),inRT=hijri(today).m===9;let r='';
+ if(days){const st=days[0],n=Math.round((st-today)/864e5);
+  r='<details class="cal-sec"'+(inRT?' open':'')+'><summary>🌙 রমজানের সেহরি ও ইফতারের সূচি<em>'+(inRT?'চলছে':'আর '+BD(n)+' দিন')+'</em></summary><div class="cal-rn">'+(inRT?'আজ রমজানের '+BD(hijri(today).d)+' তারিখ।':'প্রথম রোজা আনুমানিক <b>'+dstr(st)+'</b> ('+WD[st.getDay()]+')।')+' মোট '+BD(days.length)+' দিনের সূচি:</div><div class="cal-tw">'+rmzTable(days,today)+'</div></details>'}
+ const up=upcoming(today);
+ const u=up.length?'<div class="cal-sec2"><h3>আগামী ইসলামি দিবস</h3>'+up.map(x=>'<div class="cal-up"><div><b>'+x.t+'</b><span>'+dstr(x.d)+' · '+WD[x.d.getDay()]+'</span></div><em>'+(x.n===0?'আজ':'আর '+BD(x.n)+' দিন')+'</em></div>').join('')+'</div>':'';
+ const nA=Math.abs(bdAdj()),lab=(bdAdj()>0?'+':bdAdj()<0?'−':'')+BD(nA)+' দিন';
+ const a=!window.__isAdm?'':'<div class="cal-adj"><div class="t"><b>বাংলাদেশের হিজরি তারিখ সমন্বয় (শুধু অ্যাডমিন)</b><small>চাঁদ দেখা কমিটির ঘোষণা অনুযায়ী। বদলালে বাংলাদেশে থাকা সবার ক্যালেন্ডার, ফানুস ও সেহরি-ইফতার বদলে যাবে; অন্য দেশের সদস্যদের তারিখ বদলায় না</small></div><div class="c"><button type="button" class="cal-nb" data-act="adjm" aria-label="এক দিন কমান">−</button><span>'+lab+'</span><button type="button" class="cal-nb" data-act="adjp" aria-label="এক দিন বাড়ান">+</button></div><div class="s">'+(auto?'স্বয়ংক্রিয়: বাংলাদেশে সাধারণত সৌদির (উম্মুল কুরা) চেয়ে ১ দিন পরে চাঁদ দেখা যায়':'অ্যাডমিন ঠিক করেছেন')+(auto?'':' <button type="button" class="cal-lnk" data-act="adja">স্বয়ংক্রিয় করুন</button>')+'</div></div>';
+ const nt='<p class="cal-note">হিজরি তারিখ গাণিতিক ক্যালেন্ডার (উম্মুল কুরা) থেকে নেওয়া। বাংলাদেশে ঈদ-রমজানের তারিখ চাঁদ দেখা কমিটি ঘোষণা করে, তাই ১ দিন এদিক-ওদিক হতে পারে; চাঁদ দেখার ঘোষণা আসার পর অ্যাডমিন তারিখ মিলিয়ে দিলে ক্যালেন্ডার, ফানুস ও সেহরি-ইফতার সবার জন্য একসাথে ঠিক হয়ে যায়। সেহরি শেষ = ফজর (সূর্য দিগন্তের ১৮° নিচে), ইফতার = সূর্যাস্ত; স্থানীয় মসজিদের সূচির সাথে ১–৩ মিনিট তফাত হতে পারে। বাংলাদেশের বাইরে থাকলে হিজরি তারিখ সৌদির (উম্মুল কুরা) হিসাবে দেখায়, আপনার দেশের ঘোষণার সাথে ১ দিন তফাত হতে পারে। সময়গুলো আপনার বর্তমান অবস্থান ও ফোনের টাইমজোন অনুযায়ী। বাংলা তারিখ বাংলাদেশের সংশোধিত পঞ্জিকা অনুযায়ী।</p>';
+ body.innerHTML=h1+g+r+u+a+nt;
+ const tr=$('cal-tdy'),tw=tr&&tr.closest('.cal-tw');if(tw&&inRT)tw.scrollTop=Math.max(0,tr.offsetTop-70);
+}
+function open(){sel=null;view=null;if(typeof dlg.showModal==='function')dlg.showModal();else dlg.setAttribute('open','');render();const f=MC();if(!f)setTimeout(render,1500)}
+btn.addEventListener('click',open);
+$('calClose').addEventListener('click',()=>dlg.close());
+dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
+body.addEventListener('click',e=>{
+ const d=e.target.closest('.cal-d');if(d){sel=new Date(+d.dataset.t);const x=sel;if(x.getMonth()!==view.getMonth())view=at(x.getFullYear(),x.getMonth(),1);render();return}
+ const a=e.target.closest('[data-act]');if(!a)return;const k=a.dataset.act;
+ if(k==='prev')view=at(view.getFullYear(),view.getMonth()-1,1);
+ else if(k==='next')view=at(view.getFullYear(),view.getMonth()+1,1);
+ else if(k==='today'){sel=null;view=null}
+ else if(k==='adjm'||k==='adjp'||k==='adja'){
+  if(!window.__isAdm||!window.__setHAdj)return;const prev=window.__hAdj,n=k==='adja'?null:Math.max(-3,Math.min(3,bdAdj()+(k==='adjp'?1:-1))),sv=v=>{window.__hAdj=v;try{v==null?localStorage.removeItem('hxhadjS'):localStorage.setItem('hxhadjS',String(v))}catch(x){}window.dispatchEvent(new Event('hxcal'))};
+  sv(n);window.__setHAdj(n).then(ok=>{if(!ok)sv(prev===undefined?null:prev)});return}
+ render()});
+window.addEventListener('hxcal',()=>{if(dlg.open)render()});window.addEventListener('hxadm',()=>{if(dlg.open)render()});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&dlg.open)render()});
+})();</script>
 <script type="module">
 const P=(n,g,b,d,s,k)=>({n,g,b:b||'',d:d||'',s:s||'',k:k||[],notes:[]});
 const M=(n,b,d,s,k)=>P(n,'m',b,d,s,k),F=(n,b,d,s,k)=>P(n,'f',b,d,s,k);
@@ -886,7 +1055,7 @@ const $=id=>document.getElementById(id),dlg=$('dlg'),idle=window.hxIdle||((f)=>s
 const ICO={ok:'<svg class="bi" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',x:'<svg class="bi" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>',edit:'<svg class="bi" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg>',cam:'<svg class="bi" viewBox="0 0 24 24"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 011 1v9a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13" r="3.5"/></svg>',tool:'<svg class="bi" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg>',crown:'<svg class="bi" viewBox="0 0 24 24"><path d="M3 8l4.5 4L12 5l4.5 7L21 8l-2 11H5z"/></svg>',print:'<svg class="bi" viewBox="0 0 24 24"><path d="M7 9V3h10v6"/><path d="M7 17H5a1 1 0 01-1-1v-5a2 2 0 012-2h12a2 2 0 012 2v5a1 1 0 01-1 1h-2"/><rect x="7" y="14" width="10" height="7"/></svg>'},TL=(b,e)=>`<span data-ne="${e}">${b}</span>`;
 const bn=n=>String(n).replace(/\d/g,d=>'০১২৩৪৫৬৭৮৯'[d]),esc=t=>String(t??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const imgOk=v=>typeof v=='string'&&/^data:image\/(png|jpe?g|gif|webp);base64,[A-Za-z0-9+\/=]+$/.test(v)?v:'',safeUrl=u=>/^https?:\/\//i.test(u||'')?String(u):'';
-let me=null,isAdm=false,isOwn=false,people=[],map={},roots=[],sug=[],usr=[],unsub=[],avs={};
+let me=null,isAdm=false,isOwn=false,people=[],map={},roots=[],sug=[],usr=[],unsub=[],avs={}; window.__setHAdj=async n=>{if(!isAdm)return false;try{await setDoc(doc(db,'history','hdr'),{hadj:n===null?deleteField():n,at:serverTimestamp()},{merge:true});return true}catch(e){alert('সেভ হয়নি। Firestore নিয়মে history/hdr লেখার অনুমতি দিন।');return false}};
 const pvd=$('pvd');
 const PUSH_ENDPOINT=String(window.KHAN_PUSH_ENDPOINT||'').trim();
 async function notify(type,extra){try{if(!me||!PUSH_ENDPOINT)return;const t=await me.getIdToken(),r=await fetch(PUSH_ENDPOINT,{method:'POST',headers:{'content-type':'application/json',authorization:'Bearer '+t},body:JSON.stringify({type,...extra}),keepalive:true});if(!r.ok)console.warn('Push notification endpoint failed:',r.status)}catch(e){console.log('notify',e)}}
@@ -902,15 +1071,15 @@ const gate=(k)=>{$('app').classList.toggle('hide',!!k);$('gate').classList.toggl
  if(k)$('gate').innerHTML=k=='login'?'<h2>পরিবারের সদস্যদের জন্য</h2><p>চালিয়ে যেতে Google দিয়ে সাইন ইন করুন।</p><button id="login">Google দিয়ে সাইন ইন</button>':'<h2>⏳ অনুমোদনের অপেক্ষায়</h2><p>আপনার অনুরোধ অ্যাডমিনের কাছে গেছে। অনুমোদন হলে পেজটা রিফ্রেশ করুন।</p>';
  if($('login'))$('login').onclick=()=>signInWithPopup(auth,new GoogleAuthProvider()).catch(e=>alert(L('লগইন হয়নি: ')+e.code))};
 $('out').onclick=()=>signOut(auth);
-onAuthStateChanged(auth,async u=>{unsub.forEach(f=>f());unsub=[];me=u;if(!u){people=[];map={};roots=[];sug=[];usr=[];areq=[];avs={};ntc=[];ntcAll=[];polls=[];chs={};dU=[];hist=null;curChat=null;isAdm=false;isOwn=false;window._psig='';try{$('tree').innerHTML='';$('chat').classList.add('hide');$('t2').classList.add('hide');tab(1)}catch(e){}gate('login');return}
+onAuthStateChanged(auth,async u=>{unsub.forEach(f=>f());unsub=[];me=u;if(!u){people=[];map={};roots=[];sug=[];usr=[];areq=[];avs={};ntc=[];ntcAll=[];polls=[];chs={};dU=[];hist=null;curChat=null;isAdm=false;isOwn=false;window.__isAdm=false;dispatchEvent(new Event('hxadm'));window._psig='';try{$('tree').innerHTML='';$('chat').classList.add('hide');$('t2').classList.add('hide');tab(1)}catch(e){}gate('login');return}
  const ref=doc(db,'users',u.uid);let s=await getDoc(ref);
  if(!s.exists()){await setDoc(ref,{email:u.email,name:u.displayName||'',status:'pending',admin:false,at:serverTimestamp()});s=await getDoc(ref);notify('pending')}
  if(u.email===OWNER&&(s.data().status!='approved'||!s.data().admin)){await updateDoc(ref,{status:'approved',admin:true});s=await getDoc(ref)}
  if(s.data().status!='approved'){gate('wait');waitExtra(ref);return}
- isAdm=!!s.data().admin;isOwn=u.email===OWNER;gate(null);try{if(isAdm&&!isOwn){if(!localStorage.getItem('khanAdm')){localStorage.setItem('khanAdm','1');setTimeout(()=>toast('🎉 আপনাকে অ্যাডমিন করা হয়েছে','আপনি ইতিহাস লিখতে এবং অনুরোধ যাচাই করতে পারবেন।'),1500)}}else if(!isAdm)localStorage.removeItem('khanAdm')}catch(e){}$('t2').classList.toggle('hide',!isAdm);
+ isAdm=!!s.data().admin;isOwn=u.email===OWNER;window.__isAdm=isAdm;dispatchEvent(new Event('hxadm'));gate(null);try{if(isAdm&&!isOwn){if(!localStorage.getItem('khanAdm')){localStorage.setItem('khanAdm','1');setTimeout(()=>toast('🎉 আপনাকে অ্যাডমিন করা হয়েছে','আপনি ইতিহাস লিখতে এবং অনুরোধ যাচাই করতে পারবেন।'),1500)}}else if(!isAdm)localStorage.removeItem('khanAdm')}catch(e){}$('t2').classList.toggle('hide',!isAdm);
  unsub.push(onSnapshot(collection(db,'people'),sn=>{const arr=sn.docs.map(d=>({id:d.id,...d.data()})),sig=JSON.stringify(arr);if(sig===window._psig&&people.length)return;window._psig=sig;people=arr;clearTimeout(window._bt);window._bt=setTimeout(build,60)}));
  unsub.push(onSnapshot(doc(db,'history','ver'),s=>{const v=s.exists()?String(s.data().v||'').trim():'';window.__appVer=v||'2.1.0';const e=$('appver');if(e)e.textContent='Version '+window.__appVer},()=>{}));
- unsub.push(onSnapshot(doc(db,'history','hdr'),s=>{const o=s.exists()?(s.data().off||[]):[];window.__hdrOff=o;dispatchEvent(new CustomEvent('hcfg',{detail:{off:o}}))},()=>{}));
+ unsub.push(onSnapshot(doc(db,'history','hdr'),s=>{const dd=s.exists()?s.data():{},o=dd.off||[],hv=dd.hadj!=null&&Number.isFinite(+dd.hadj)?Math.max(-3,Math.min(3,Math.round(+dd.hadj))):null;window.__hdrOff=o;dispatchEvent(new CustomEvent('hcfg',{detail:{off:o}}));window.__hAdj=hv;try{hv===null?localStorage.removeItem('hxhadjS'):localStorage.setItem('hxhadjS',String(hv))}catch(x){}dispatchEvent(new Event('hxcal'))},()=>{}));
 {const uid0=u.uid;idle(()=>{if(!me||me.uid!==uid0)return;unsub.push(onSnapshot(collection(db,'avatars'),sn=>{const nv={};sn.docs.forEach(d=>{nv[d.id]=d.data().data});const ch=new Set(Object.keys({...avs,...nv}).filter(k=>avs[k]!==nv[k]));avs=nv;if(ch.size)applyAv(ch)},()=>{}))},1200)}
  
  if(isAdm){unsub.push(onSnapshot(collection(db,'suggestions'),sn=>{sug=sn.docs.map(d=>({id:d.id,...d.data()})).filter(x=>x.status=='pending');adm()}));
@@ -979,7 +1148,7 @@ function hdrAdm(){const a=$('adm');if(!a||$('hdrcfg'))return;const ks=window.HX_
 let h='<div id="hdrcfg" style="margin-top:18px"><h3>হেডারের এলিমেন্ট (চালু/বন্ধ)</h3><div style="display:flex;gap:6px;margin:6px 0"><button class="alt sm" data-hall="1">সব চালু</button><button class="alt sm" data-hall="0">সব বন্ধ</button></div>';
 ks.forEach(k=>{if(k[2])h+=`<h4 style="margin:12px 0 4px;font-size:13px;opacity:.8">${k[2]}</h4>`;h+=`<label style="display:flex;align-items:center;gap:8px;padding:5px 0"><input type="checkbox" data-hk="${k[0]}" ${off.has(k[0])?'':'checked'}> ${k[1]}</label>`});
 a.insertAdjacentHTML('beforeend',h+'</div>');
-const save=()=>{const o=[...a.querySelectorAll('#hdrcfg [data-hk]')].filter(i=>!i.checked).map(i=>i.dataset.hk);window.__hdrOff=o;dispatchEvent(new CustomEvent('hcfg',{detail:{off:o}}));setDoc(doc(db,'history','hdr'),{off:o,at:serverTimestamp()}).catch(()=>alert('সেভ হয়নি। Firestore নিয়মে history/hdr লেখার অনুমতি দিন।'))};
+const save=()=>{const o=[...a.querySelectorAll('#hdrcfg [data-hk]')].filter(i=>!i.checked).map(i=>i.dataset.hk);window.__hdrOff=o;dispatchEvent(new CustomEvent('hcfg',{detail:{off:o}}));setDoc(doc(db,'history','hdr'),{off:o,at:serverTimestamp()},{merge:true}).catch(()=>alert('সেভ হয়নি। Firestore নিয়মে history/hdr লেখার অনুমতি দিন।'))};
 a.querySelectorAll('#hdrcfg [data-hk]').forEach(i=>i.onchange=save);
 a.querySelectorAll('#hdrcfg [data-hall]').forEach(b=>b.onclick=()=>{a.querySelectorAll('#hdrcfg [data-hk]').forEach(i=>i.checked=b.dataset.hall==='1');save()})}
 function adm(){setTimeout(hdrAdm,0);const pu=usr.filter(u=>u.status=='pending');$('pc').textContent=(sug.length+pu.length+areq.length)?'('+bn(sug.length+pu.length+areq.length)+')':'';
@@ -1406,7 +1575,7 @@ function seas(la,lo){const md=(N.getMonth()+1)*100+N.getDate(),bdc=la>=20.5&&la<
  else{let m=N.getMonth()+1;if(la<0)m=(m+5)%12+1;s=m===12||m<=2?['শীত','Winter']:m<=5?['বসন্ত','Spring']:m<=8?['গ্রীষ্ম','Summer']:['শরৎ','Autumn'];leaf=s[0]==='শরৎ'||s[0]==='শীত'}
  on('ex-ks',f('kash',kash));on('ex-lv',f('leaf',leaf));on('ex-kh',f('khejur',s[0]==='শীত'));on('ex-ms',f('mist',s[0]==='শীত'));on('ex-fr',f('frog',s[0]==='বর্ষা'));on('ex-pl',f('palash',s[0]==='বসন্ত'));const l=$('ex-ssn');l.textContent='ঋতু: '+s[0];l.dataset.ne='Season: '+s[1]}
 
-{const _e=f('eid',hm===9||(hm===10&&hd<=3)||(hm===12&&hd>=9&&hd<=13));on('ex-eid',_e);on('ex-eid2',_e)}
+const eidSync=()=>{const h=window.HXCAL?HXCAL.hijri(new Date()):{m:hm,d:hd},M=h.m||hm,D=h.m?h.d:hd,_e=f('eid',M===9||(M===10&&D<=3)||(M===12&&D>=9&&D<=13));on('ex-eid',_e);on('ex-eid2',_e)};eidSync();addEventListener('hxcal',eidSync);setInterval(eidSync,60000)
 {const _n=f('boishakh',mo===4&&dy>=12&&dy<=16);on('ex-bn',_n);on('ex-bn2',_n)}
 on('ex-fl',f('flag',mo===12&&dy>=14&&dy<=17));
 const R=$('ex-rain'),RL=[],RP=[];for(let i=0;i<30;i++)RL.push(mk('line',{x1:i*13.5,y1:-6,x2:i*13.5-3,y2:5,stroke:'#dff0ff','stroke-width':1,opacity:.7,style:'animation:x-rn '+(.7+Math.random()*.5)+'s '+Math.random()+'s linear infinite'},R));
@@ -1507,6 +1676,7 @@ if(t.children.length)scan();
    if(!r.ok)return '';const j=await r.json();const nm=nameFrom(j&&j.address);
    if(nm){try{localStorage.setItem('hxplace',JSON.stringify({k,n:nm}))}catch(e){}}return nm}
   catch(e){return ''}finally{clearTimeout(tm)}}
+ window.hxPlaceName=placeName;
  const n=(v,d=0)=>v!==null&&v!==undefined&&v!==''&&Number.isFinite(Number(v))?Number(v).toFixed(d):'—';
  const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
  const svg=(p,c)=>'<svg'+(c?' class="'+c+'"':'')+' viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+p+'</svg>';
