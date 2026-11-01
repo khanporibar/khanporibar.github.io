@@ -1580,7 +1580,7 @@ const t=document.getElementById('tree');if(t&&'IntersectionObserver' in window){
 if(h&&'IntersectionObserver' in window)new IntersectionObserver(e=>r.classList.toggle('hdr-off',!e[0].isIntersecting)).observe(h);
 document.addEventListener('visibilitychange',()=>r.classList.toggle('tab-off',document.hidden));let held=[];const ds=()=>{const open=!!document.querySelector('dialog[open]');if(open&&!held.length){requestAnimationFrame(()=>setTimeout(()=>{if(!document.querySelector('dialog[open]'))return;try{held=document.getAnimations().filter(a=>a.playState=='running'&&!(a.effect&&a.effect.target&&a.effect.target.closest&&a.effect.target.closest('dialog')));held.forEach(a=>a.pause())}catch(e){held=[]}},60))}else if(!open&&held.length){held.forEach(a=>{try{a.play()}catch(e){}});held=[]}};document.querySelectorAll('dialog').forEach(d=>new MutationObserver(ds).observe(d,{attributes:true,attributeFilter:['open']}))})();</script>
 <script>(function(){const H=document.getElementById('hdr');if(!H)return;const f=new URLSearchParams(location.search).get('tod'),tod=m=>m>=315&&m<450?'dawn':m>=450&&m<975?'day':m>=975&&m<1070?'dusk':'night';
-function tick(){const n=new Date(),t=f||tod(n.getHours()*60+n.getMinutes());if(H.dataset.tod!==t)H.dataset.tod=t}tick();setInterval(tick,60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)tick()})})();</script><script>(function(){
+function tick(){const n=new Date(),t=f||(window.hxTod?window.hxTod():tod(n.getHours()*60+n.getMinutes()));if(H.dataset.tod!==t)H.dataset.tod=t}tick();setInterval(tick,60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)tick()})})();</script><script>(function(){
 const H=document.getElementById('hdr'),S=H&&H.querySelector('.hsc'),NS='http://www.w3.org/2000/svg';if(!S)return;
 const $=i=>document.getElementById(i),mk=(t,a,p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);(p||S).appendChild(e);return e};
 const KEYS=[['rain','বৃষ্টি ও ঘাসে ঢেউ','আকাশ ও আবহাওয়া'],['rainbow','রামধনু'],['meteor','উল্কা (রাতে)'],['fog','কুয়াশা'],['mist','শীতের হালকা কুয়াশা'],['flock','ভোরের পাখির ঝাঁক'],['dusk','সন্ধ্যার আলো'],['bat','বাদুড় (রাতে)'],['kash','কাশফুল (শরৎ)'],['leaf','পাতা ঝরা ও শিউলি'],['bird','ডালে দুটি পাখি (দানা ও পানি খায়)','প্রাণী'],['squirrel','কাঠবিড়ালি ও গাছের বাসা'],['owl','প্যাঁচা (রাতে)'],['bee','মৌমাছি'],['snail','শামুক'],['frog','ব্যাঙ ও শাপলা (বর্ষা)'],['bud','নতুন সদস্যের কুঁড়ি','পারিবারিক'],['bday','জন্মদিনের কেক-পার্টি'],['name','ছোট সদস্যের নামফলক'],['eid','ঈদ-রমজানের ফানুস ও আলোর মালা','উৎসব'],['boishakh','পহেলা বৈশাখের ঝালর'],['flag','বিজয় দিবসের পতাকা'],['tapleaf','গাছে চাপ: পাতা ঝরা ও পাখি','ছোঁয়ায় সাড়া'],['tapsun','সূর্য/চাঁদে চাপ: সময় বদল'],['tapbfly','প্রজাপতিতে চাপ'],['tapwin','ঘরের জানালায় চাপ: আলো জ্বলা-নেভা'],['tappond','পুকুরে চাপ: ঢেউ ও মাছ'],['tilt','হেলালে গভীরতা'],['pond','পুকুর ও পদ্ম','পরিবেশ'],['fish','পুকুরে রঙিন মাছ'],['boat','নৌকা'],['swing','দোলনা'],['khejur','খেজুর রসের হাঁড়ি (শীত)'],['palash','পলাশ ফুল (বসন্ত)'],['season','ঋতুর নাম (নিচে)']];window.HX_KEYS=KEYS;
@@ -1629,7 +1629,7 @@ addEventListener('hx',e=>{const P=e.detail||[],y=N.getFullYear();
 try{new IntersectionObserver(es=>H.classList.toggle('hpause',!es[0].isIntersecting)).observe(H)}catch(e){}
 const pt=S.createSVGPoint(),tods=['dawn','day','dusk','night'];
 S.addEventListener('pointerdown',e=>{pt.x=e.clientX;pt.y=e.clientY;const m=S.getScreenCTM();if(!m)return;const p=pt.matrixTransform(m.inverse());
- if(K('tapsun')&&(Math.hypot(p.x-62,p.y-30)<26||(window.hxMoon&&window.hxMoon.on&&Math.hypot(p.x-window.hxMoon.x,p.y-window.hxMoon.y)<26))){const i=tods.indexOf(H.dataset.tod);H.dataset.tod=tods[(i+1)%4];return}
+ if(K('tapsun')&&(Math.hypot(p.x-(window.hxSun&&window.hxSun.on?window.hxSun.x:62),p.y-(window.hxSun&&window.hxSun.on?window.hxSun.y:30))<26||(window.hxMoon&&window.hxMoon.on&&Math.hypot(p.x-window.hxMoon.x,p.y-window.hxMoon.y)<26))){const i=tods.indexOf(H.dataset.tod);H.dataset.tod=tods[(i+1)%4];return}
  if(K('tapbfly'))for(const b of S.querySelectorAll('.bfl')){const r=b.getBoundingClientRect();if(Math.hypot(e.clientX-(r.left+r.width/2),e.clientY-(r.top+r.height/2))<28){b.style.transition='transform 1.2s,opacity 1.2s';b.style.transform='translate(80px,-90px)';b.style.opacity='0';setTimeout(()=>{b.style.transform='';b.style.opacity=''},3500);return}}
  if(K('tapleaf')&&((p.x-80)/115)**2+((p.y-110)/50)**2<1){const bu=$('ex-burst');for(let i=0;i<9;i++){const l=mk('ellipse',{cx:20+Math.random()*150,cy:90+Math.random()*50,rx:3.6,ry:2,fill:Math.random()<.3?'#fff':'#e08a2c',style:'animation:x-lf 2s '+Math.random()*.4+'s linear forwards;transform-box:fill-box;transform-origin:center'},bu);setTimeout(()=>l.remove(),2800)}
   {[['ex-bird','x-bq'],['ex-bird2','x-bq2']].forEach(([id,an])=>{const bi=$(id);if(bi)bi.style.animation=an+' 1.2s forwards'});clearTimeout(window.__hxT);window.__hxT=setTimeout(()=>{[$('ex-bird'),$('ex-bird2')].forEach(b=>b&&(b.style.animation=''))},4000)}}});
@@ -1801,9 +1801,11 @@ function calc(d,la,lo){
  const da=(su.ra-mo.ra)*RD,chi=Math.atan2(cs(su.dec)*Math.sin(da),sn(su.dec)*cs(mo.dec)-cs(su.dec)*sn(mo.dec)*Math.cos(da))/RD;
  const q=Math.atan2(sn(hm.h),Math.tan(la*RD)*cs(mo.dec)-sn(mo.dec)*cs(hm.h))/RD;
  const zen=(chi-q)*RD;
- return{k,age,alt:hm.alt,az:hm.az,sunAlt:hs.alt,rot:Math.atan2(-Math.cos(zen),-Math.sin(zen))/RD};
+ return{k,age,alt:hm.alt,az:hm.az,sunAlt:hs.alt,sunAz:hs.az,rot:Math.atan2(-Math.cos(zen),-Math.sin(zen))/RD};
 }
-const realTod=m=>m>=315&&m<450?'dawn':m>=450&&m<975?'day':m>=975&&m<1070?'dusk':'night';
+function sunTod(c){const a=c.sunAlt;return a>=6?'day':a>=-6?(c.sunAz<180?'dawn':'dusk'):'night'}
+const realTod=()=>{const w=where();return sunTod(calc(new Date(),w.la,w.lo))};
+window.hxTod=realTod;
 function where(){
  const t=window.hxLoc;if(t&&isFinite(t.la)&&isFinite(t.lo))return t;
  try{const s=JSON.parse(localStorage.getItem('hxloc'));if(s&&isFinite(+s.la)&&isFinite(+s.lo))return{la:+s.la,lo:+s.lo}}catch(e){}
@@ -1811,15 +1813,28 @@ function where(){
  return tz==='Asia/Dhaka'?{la:23.8,lo:90.4}:{la:23.5,lo:-new Date().getTimezoneOffset()/4};
 }
 const R=14;
+function skyXY(alt,az){const x=Math.max(8,Math.min(214,20+(az-70)/220*190)),yh=x<=40?68:x>=185?108:68+(x-40)/145*40,s=Math.sin(Math.max(0,Math.min(alt,90))*RD);return{x,y:alt>=0?24+(yh-24)*(1-Math.pow(s,.8)):yh-alt*2.2}}
+let firstSun=true;
+function placeSun(c,t,preview){
+ const S=H.querySelector('.sun');if(!S)return;
+ let a=c.sunAlt,z=c.sunAz;
+ if(preview){if(t==='day'){a=55;z=180}else if(t==='dawn'){a=3;z=100}else if(t==='dusk'){a=3;z=255}else a=-30}
+ const on=a>-9&&t!=='night',p=skyXY(a,z);
+ window.hxSun={x:p.x,y:p.y,on};
+ S.style.transition=firstSun?'none':'transform 2.4s cubic-bezier(.3,.7,.3,1),opacity 3s';
+ S.style.transform='translate('+(p.x-62).toFixed(1)+'px,'+(p.y-30+(on?0:120)).toFixed(1)+'px)';
+ if(firstSun){void S.getBoundingClientRect();firstSun=false}
+}
 function shape(k){const a=Math.max(R*Math.abs(2*k-1),.01);return'M0 '+-R+'A'+R+' '+R+' 0 0 1 0 '+R+'A'+a.toFixed(2)+' '+R+' 0 0 '+(k>.5?1:0)+' 0 '+-R+'Z'}
 let first=true,amt=0,storm=false,fog=false;
 function update(){
  const n=new Date(),w=where(),c=calc(n,w.la,w.lo),t=H.dataset.tod||realTod(n.getHours()*60+n.getMinutes());
  const preview=t!==realTod(n.getHours()*60+n.getMinutes());
- const x=62,y=30;let up=c.alt>-0.5;
- if(preview&&!up&&t!=='day')up=true;
- const visible=c.k>=.015&&up&&t!=='day'&&t!=='dusk';
- const my=y+(t==='dawn'?70:0);
+ let up=c.alt>-0.5,mAlt=c.alt,mAz=c.az;
+ if(preview&&!up&&t!=='day'){up=true;mAlt=40;mAz=150}
+ const mp=skyXY(mAlt,mAz),x=mp.x,my=mp.y,y=my;
+ placeSun(c,t,preview);
+ const visible=c.k>=.015&&up;
  window.hxMoon={x,y:my,on:visible,k:c.k,age:c.age};
  if(!visible){G.style.transition=first?'none':'transform 2.4s cubic-bezier(.3,.7,.3,1),opacity 1.6s';G.style.transform='translate('+x+'px,'+(y+150)+'px)';G.style.opacity=0;if(first){void G.getBoundingClientRect();first=false}place();return}
  const dayish=t==='day',oBase=t==='night'?1:t==='day'?.5:.9;
@@ -1850,7 +1865,7 @@ let rainNow=false;
 function place(){
  if(!SK)return;
  const t=H.dataset.tod||'day';let x=62,y=30,show=amt>.04;
- if(t!=='night'){y=30+(parseFloat(getComputedStyle(H).getPropertyValue('--sdy'))||0)}
+ if(t!=='night'){if(window.hxSun){x=window.hxSun.x;y=window.hxSun.y;if(!window.hxSun.on)show=false}else y=30+(parseFloat(getComputedStyle(H).getPropertyValue('--sdy'))||0)}
  else if(window.hxMoon&&window.hxMoon.on){x=window.hxMoon.x;y=window.hxMoon.y}
  else show=false;
  if(t==='night'&&(rainNow||storm))show=false;
@@ -1860,14 +1875,18 @@ function place(){
  SK.style.transition=sf?'none':'transform 4s ease,opacity 3s';
  SK.style.transform='translate('+(x+off).toFixed(1)+'px,'+y.toFixed(1)+'px) scale('+sc+')';
  SK.style.opacity=show?Math.min(1,amt*1.05+.05).toFixed(2):0;
- if(SUN)SUN.style.opacity=drz?'1':(1-amt*.85).toFixed(2);
+ if(SUN)SUN.style.opacity=(window.hxSun&&!window.hxSun.on)?'0':(drz?'1':(1-amt*.85).toFixed(2));
  if(t==='night')H.style.setProperty('--starO',(1-amt*.85).toFixed(2));else H.style.removeProperty('--starO');
  if(sf){void SK.getBoundingClientRect();sf=false}
 }
 window.hxSkyUpdate=()=>{rainNow=skyState();update()};
 new MutationObserver(()=>window.hxSkyUpdate()).observe(H,{attributes:true,attributeFilter:['data-weather']});
 setInterval(()=>{if(!FL||!storm||amt<.9||document.hidden)return;if(Math.random()<.45){FL.style.transition='none';FL.style.opacity=.5;setTimeout(()=>{FL.style.opacity=.1},70);setTimeout(()=>{FL.style.opacity=.45},150);setTimeout(()=>{FL.style.transition='opacity .5s';FL.style.opacity=0},240)}},5000);
-window.hxMoonUpdate=update;window.hxMoonCalc=calc;
+window.hxMoonCalc=calc;
+const forcedTod=new URLSearchParams(location.search).get('tod');
+const syncTod=()=>{if(forcedTod)return;const t=realTod();if(H.dataset.tod!==t)H.dataset.tod=t};
+window.hxMoonUpdate=()=>{syncTod();update()};
+syncTod();
 window.hxSkyUpdate();setInterval(update,60000);
 new MutationObserver(update).observe(H,{attributes:true,attributeFilter:['data-tod']});
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)update()});
