@@ -209,7 +209,6 @@ self.addEventListener('notificationclick', event => {
         try { await client.navigate(target.href); } catch (_) { /* ignore */ }
       }
       return;
-      
     }
     return self.clients.openWindow(target.href);
   })());
