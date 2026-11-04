@@ -1233,7 +1233,7 @@ function show(p){const ex=desc(p),r=(a,b)=>b?`<div class="row"><span>${a}</span>
  ${p.k.length?'<div style="margin-top:8px">'+p.k.map(c=>`<span class="chip" data-id="${c.id}" data-ne="${esc(c.ne||'')}">${esc(c.n)}</span>`).join('')+'</div>':''}${p.g=='f'&&!p.k.length&&(p.kids||[]).length?`<div class="kglass"><div class="kgh"><span class="kgt">${TL('মেয়ের সন্তান','Daughter\'s children')}</span><span class="kgc">${bn(p.kids.length)} ${TL('জন','')}</span></div><div class="kgl">${p.kids.map(c=>`<span class="kgp ${c.g=='f'?'kf':'km'}" data-kid="${esc(c.id)}"><i class="kgi">${c.g=='f'?'👧':'👦'}</i><span class="kgn">${esc(c.n)}${c.b?`<small class="kgb">${esc(c.b)}</small>`:''}</span>${isOwn?`<b class="kgx" data-kd="${esc(c.id)}" role="button" aria-label="remove">×</b>`:''}</span>`).join('')}</div></div>`:''}${p.notes.map(n=>`<div class="note">✔ ${esc(n)}</div>`).join('')}${isMe(p)?ADID(p):''}
 ${isMe(p)?'':(()=>{const sc=p.soc||{},has=SOC.some(x=>sc[x[0]]);return `<details style="margin-top:12px"${has?' open':''}><summary>🔗 ${TL('সোশ্যাল অ্যাকাউন্ট','Social accounts')}</summary><div class="socl">${SOC.filter(x=>safeUrl(sc[x[0]])).map(x=>`<a class="soca" href="${esc(safeUrl(sc[x[0]]))}" target="_blank" rel="noopener noreferrer">${socIc(x[0],20)}${TL(x[1],x[2])}</a>`).join('')}</div><input type="hidden" id="sps" value="fb"><div class="spk">${SOC.map((x,i)=>`<button type="button" class="spi${i?'':' on'}" data-k="${x[0]}" aria-label="${x[2]}" title="${x[1]}">${socIc(x[0],34)}</button>`).join('')}</div><div class="note" id="spl">ফেসবুক</div><input class="i" id="spu" placeholder="লিংক / নম্বর / ইউজারনেম" autocomplete="off"><button id="spb" style="margin-top:8px;width:100%">${isOwn?'সংরক্ষণ':'জমা দিন'}</button></details>`})()}
  ${isMe(p)?'':`<details style="margin-top:12px"><summary>${ICO.edit}${TL('তথ্য দিন / ভুল সংশোধন','Suggest an edit')}</summary><select id="fs"><option>জন্মতারিখ</option><option>মৃত্যুতারিখ</option><option>স্ত্রী/স্বামীর নাম</option><option>রক্তের গ্রুপ</option><option>পেশা</option><option>ঠিকানা</option><option>ফোন নম্বর</option><option>ইংরেজি নাম</option><option>স্ত্রী/স্বামীর ইংরেজি নাম</option><option>অন্য তথ্য</option></select><textarea id="fv" rows="2" placeholder="সঠিক তথ্য লিখুন"></textarea><button id="fb" style="margin-top:8px;width:100%">জমা দিন</button></details>
- <details style="margin-top:10px"><summary>${ICO.cam}${TL('ছবি পাঠান','Send a photo')}</summary><input type="file" id="af" accept="image/*" style="margin-top:6px"><button id="ab" style="margin-top:8px;width:100%">জমা দিন</button></details>`}
+ <details style="margin-top:10px"><summary>${ICO.cam}${TL('ছবি পাঠান','Send a photo')}</summary><input type="file" id="af" accept="image/*" style="margin-top:6px"><div id="afp" class="hide" style="text-align:center"></div><button type="button" class="alt sm" id="aadj" style="margin-top:8px;width:100%">✂️ ${TL('বর্তমান ছবি অ্যাডজাস্ট করুন','Adjust current photo')}</button><button id="ab" style="margin-top:8px;width:100%">জমা দিন</button></details>`}
  ${isOwn?`<details style="margin-top:10px"><summary>${ICO.tool}${TL('অ্যাডমিন সম্পাদনা','Admin edit')}</summary><input class="i" id="en" value="${esc(p.n)}"><input class="i" id="ene" placeholder="English name" value="${esc(p.ne)}"><input class="i" id="eb" placeholder="জন্ম" value="${esc(p.b)}"><input class="i" id="ed" placeholder="মৃত্যু" value="${esc(p.d)}"><input class="i" id="es" placeholder="স্ত্রী/স্বামী" value="${esc(p.s)}"><input class="i" id="ese" placeholder="Spouse English name" value="${esc(p.se)}"><select id="ebg"><option value="">রক্তের গ্রুপ</option>${BG.map(x=>`<option ${p.bg==x?'selected':''}>${x}</option>`).join('')}</select><input class="i" id="ej" placeholder="পেশা" value="${esc(p.job)}"><input class="i" id="ea" placeholder="ঠিকানা" value="${esc(p.addr)}"><input class="i" id="eph" placeholder="ফোন নম্বর" value="${esc(p.ph)}"><select id="eg"><option value="m" ${p.g=='m'?'selected':''}>ছেলে</option><option value="f" ${p.g=='f'?'selected':''}>মেয়ে</option></select>${p.par?`<div class="note">${p.par.g=='f'?'মাতা':'পিতা'} (বদলাতে চাইলে বেছে নিন)</div><select id="epar">${Object.values(map).filter(x=>!ex.has(x.id)).sort((a,b)=>a.n.localeCompare(b.n,'bn')).map(x=>`<option value="${x.id}" ${x.id==p.parent?'selected':''}>${esc(x.n)}${x.par?' — '+esc(x.par.n):''}</option>`).join('')}</select>`:''}${isMe(p)?`<input class="i" id="edid" placeholder="অন্তর ডিজিটাল আইডি লিংক" value="${esc(p.did)}">`:''}<div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap"><button id="sv">সংরক্ষণ</button><button class="alt" id="ac">+ সন্তান</button><button class="alt" id="dl">মুছুন</button></div>${p.g=='f'?`<div class="note" style="margin-top:8px">মেয়ের সন্তান শুধু এই প্রোফাইলের ভেতরে দেখা যাবে, গাছে নতুন প্রোফাইল হবে না।</div><div style="display:flex;gap:6px;margin-top:6px"><input class="i" id="kn" placeholder="সন্তানের নাম" style="flex:1;margin:0"><select id="kg" style="width:auto"><option value="m">ছেলে</option><option value="f">মেয়ে</option></select></div><div style="margin-top:6px"><input class="i" id="kb" placeholder="জন্মতারিখ (যেমন ২৬/০৭/২০১৫)" style="margin:0"></div><div class="note" style="margin-top:4px">আগে যোগ করা সন্তানের নামে চাপ দিলে জন্মতারিখ বদলানো যাবে।</div>`:''}</details>`:''}`;
  $('dc').querySelectorAll('.chip[data-id]').forEach(c=>c.onclick=()=>show(map[c.dataset.id]));
  if($('fb'))$('fb').onclick=async()=>{const v=$('fv').value.trim();if(!v)return;await addDoc(collection(db,'suggestions'),{pid:p.id,pn:p.n,f:$('fs').value,v,w:me.displayName||me.email,uid:me.uid,status:'pending',at:serverTimestamp()});notify('sug',{kind:'suggestion'});$('dc').innerHTML='<h2>ধন্যবাদ! 🙏</h2><p>আপনার তথ্য অ্যাডমিনের যাচাইয়ের জন্য জমা হয়েছে।</p>'};
@@ -1241,7 +1241,10 @@ ${isMe(p)?'':(()=>{const sc=p.soc||{},has=SOC.some(x=>sc[x[0]]);return `<details
   if($('spb'))$('spb').onclick=async()=>{const k=$('sps').value,raw=$('spu').value.trim(),u=normUrl(k,raw);if(raw&&!u)return alert(L('সঠিক লিংক দিন'));const x=SOC.find(a=>a[0]==k);try{if(isOwn){await updateDoc(doc(db,'people',p.id),{['soc.'+k]:u});dlg.close()}else{if(!u)return alert(L('লিংক লিখুন'));await reqEd(p.id,p.n,x[1]+' লিংক',u);dlg.close()}}catch(e){alert('Failed: '+(e.code||e.message))}};
  if(avs[p.id]&&$('av')){$('av').src=avs[p.id];$('av').classList.remove('hide');$('av').onclick=()=>viewPic(p)}
  else getDoc(doc(db,'avatars',p.id)).then(d=>{if(d.exists()&&$('av')){avs[p.id]=d.data().data;$('av').src=avs[p.id];$('av').classList.remove('hide');$('av').onclick=()=>viewPic(p)}}).catch(()=>{});
- if($('ab'))$('ab').onclick=async()=>{try{await ab_()}catch(e){console.log(e);alert('ছবি আপলোড হয়নি: '+(e.code||e.message||e)+(String(e.code||'').includes('permission')?'\n(Firestore rules Publish করা আছে কিনা দেখুন)':''))}};const ab_=async()=>{const f=$('af').files[0];if(!f)return alert(L('ছবি বেছে নিন'));const data=await shrink(f,480);
+ let cropped='';const setCr=d=>{cropped=d;const b=$('afp');if(b&&d){b.innerHTML='<img class="av" src="'+d+'" alt="">';b.classList.remove('hide')}};
+ if($('af'))$('af').onchange=async()=>{const f=$('af').files[0];if(!f)return;const d=await window.hxCrop(f);if(d)setCr(d);else{$('af').value='';cropped='';const b=$('afp');if(b){b.innerHTML='';b.classList.add('hide')}}};
+ if($('aadj'))$('aadj').onclick=async()=>{const s=avs[p.id];if(!s||!imgOk(s))return alert(L('এখনও কোনো ছবি নেই, ওপরে থেকে ছবি বেছে নিন'));const d=await window.hxCrop(s);if(d)setCr(d)};
+ if($('ab'))$('ab').onclick=async()=>{try{await ab_()}catch(e){console.log(e);alert('ছবি আপলোড হয়নি: '+(e.code||e.message||e)+(String(e.code||'').includes('permission')?'\n(Firestore rules Publish করা আছে কিনা দেখুন)':''))}};const ab_=async()=>{if(!cropped)return alert(L('ছবি বেছে নিন'));const data=cropped;
   if(isOwn)await setDoc(doc(db,'avatars',p.id),{data,by:me.email});else{await addDoc(collection(db,'avatarReq'),{pid:p.id,pn:p.n,data,w:me.displayName||me.email,uid:me.uid,status:'pending',at:serverTimestamp()});notify('sug',{kind:'avatar'})}
   $('dc').innerHTML=`<h2>ধন্যবাদ! 🙏</h2><p>${isOwn?'ছবি যোগ হয়েছে।':'আপনার তথ্য অ্যাডমিনের যাচাইয়ের জন্য জমা হয়েছে।'}</p>`};
  const reqEd=async(pid,pn,f,v)=>{await addDoc(collection(db,'suggestions'),{pid,pn,f,v,w:me.displayName||me.email,uid:me.uid,status:'pending',at:serverTimestamp()});notify('sug',{kind:'suggestion'});toast('ধন্যবাদ! 🙏','আপনার তথ্য অ্যাডমিনের যাচাইয়ের জন্য জমা হয়েছে।')};
@@ -2094,4 +2097,58 @@ r.g.setAttribute('transform','translate('+r.x.toFixed(1)+' '+(r.y+(1-r.v)*3).toF
 r.g.setAttribute('opacity',r.v.toFixed(2))})}
 requestAnimationFrame(tick);
 })();
-</script></body></html>
+</script><style>
+html.dlgo,html.dlgo body{overflow:hidden!important}
+dialog{overscroll-behavior:contain}
+#crd{max-width:380px;width:94vw;text-align:center;padding:16px}
+#crd h3{margin:0 0 4px}
+#crd .crs{position:relative;margin:10px auto;border-radius:16px;overflow:hidden;background:#000;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab}
+#crd .crs img{position:absolute;left:0;top:0;max-width:none;transform-origin:0 0;pointer-events:none;-webkit-user-drag:none}
+#crd .crs::after{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:0 0 0 999px rgba(0,0,0,.55);border:2px solid rgba(255,255,255,.9);pointer-events:none}
+#crd .crz{display:flex;align-items:center;gap:10px;margin:6px 4px 12px}
+#crd .crz input{flex:1;accent-color:var(--g2,#6366f1)}
+#crd .crb{display:flex;gap:8px}#crd .crb button{flex:1}
+</style>
+<dialog id="crd"><h3>ছবি ঠিক করুন</h3><div class="note">ছবি টেনে সরান, দুই আঙুলে বা নিচের স্লাইডারে বড়-ছোট করুন। বৃত্তের ভেতরের অংশটাই প্রোফাইলে দেখাবে।</div><div class="crs" id="crs"><img id="cri" alt=""></div><div class="crz"><span>➖</span><input type="range" id="crr" min="100" max="400" value="100" step="1" aria-label="Zoom"><span>➕</span></div><div class="crb"><button type="button" class="alt" id="crx">বাতিল</button><button type="button" class="alt" id="crt">রিসেট</button><button type="button" id="cro">ঠিক আছে</button></div></dialog>
+<script>
+(function(){
+var H=document.documentElement;
+/* ডায়ালগ খোলা থাকলে পেছনের পেজ/বংশবৃক্ষ স্ক্রোল বন্ধ */
+var os=HTMLDialogElement.prototype.showModal;
+HTMLDialogElement.prototype.showModal=function(){var r=os.apply(this,arguments);H.classList.add('dlgo');return r};
+function chk(){setTimeout(function(){if(!document.querySelector('dialog[open]'))H.classList.remove('dlgo')},0)}
+document.addEventListener('close',chk,true);document.addEventListener('cancel',chk,true);
+/* ফেসবুকের মতো ছবি অ্যাডজাস্ট (সরানো + জুম) */
+var S=300,OUT=640,LIM=220000;
+window.hxCrop=function(src){return new Promise(function(done){
+ var d=document.getElementById('crd'),st=document.getElementById('crs'),im=document.getElementById('cri'),rg=document.getElementById('crr');
+ var url=null,fin=false,w=0,h=0,base=1,z=1,x=0,y=0,pts=new Map(),p0=null;
+ S=Math.max(220,Math.min(320,Math.floor(Math.min(window.innerWidth,420)*0.78)));
+ st.style.width=st.style.height=S+'px';
+ function fix(){var sc=base*z,mx=Math.max(0,(w*sc-S)/2),my=Math.max(0,(h*sc-S)/2);x=Math.max(-mx,Math.min(mx,x));y=Math.max(-my,Math.min(my,y))}
+ function draw(){fix();var sc=base*z;im.style.transform='translate('+(S/2+x-w*sc/2)+'px,'+(S/2+y-h*sc/2)+'px) scale('+sc+')'}
+ function setZ(v){z=Math.max(1,Math.min(4,v));rg.value=Math.round(z*100);draw()}
+ function finish(v){if(fin)return;fin=true;cleanup();if(d.open)d.close();done(v||null)}
+ function cleanup(){st.onpointerdown=st.onpointermove=st.onpointerup=st.onpointercancel=st.onwheel=null;rg.oninput=null;if(url)URL.revokeObjectURL(url)}
+ function pdist(){var a=Array.from(pts.values());return Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y)}
+ st.onpointerdown=function(e){try{st.setPointerCapture(e.pointerId)}catch(_){}pts.set(e.pointerId,{x:e.clientX,y:e.clientY});p0=pts.size==2?{d:pdist(),z:z}:null;st.style.cursor='grabbing'};
+ st.onpointermove=function(e){var q=pts.get(e.pointerId);if(!q)return;var dx=e.clientX-q.x,dy=e.clientY-q.y;q.x=e.clientX;q.y=e.clientY;
+  if(pts.size==2&&p0){setZ(p0.z*pdist()/p0.d)}else if(pts.size==1){x+=dx;y+=dy;draw()}};
+ st.onpointerup=st.onpointercancel=function(e){pts.delete(e.pointerId);p0=pts.size==2?{d:pdist(),z:z}:null;st.style.cursor='grab'};
+ st.onwheel=function(e){e.preventDefault();setZ(z*(e.deltaY<0?1.08:0.93))};
+ rg.oninput=function(){setZ(rg.value/100)};
+ document.getElementById('crx').onclick=function(){finish(null)};
+ document.getElementById('crt').onclick=function(){x=y=0;setZ(1)};
+ d.oncancel=function(e){e.preventDefault();finish(null)};
+ document.getElementById('cro').onclick=function(){
+  var sc=base*z,size=OUT,q=.9,out='';
+  for(var i=0;i<10;i++){var c=document.createElement('canvas');c.width=c.height=size;var g=c.getContext('2d');g.imageSmoothingQuality='high';g.fillStyle='#fff';g.fillRect(0,0,size,size);
+   var k=size/S;g.drawImage(im,(S/2+x-w*sc/2)*k,(S/2+y-h*sc/2)*k,w*sc*k,h*sc*k);out=c.toDataURL('image/jpeg',q);if(out.length<LIM)break;if(q>.76)q-=.04;else size=Math.round(size*.88)}
+  finish(out)};
+ im.onload=function(){w=im.naturalWidth;h=im.naturalHeight;base=S/Math.min(w,h);x=y=0;z=1;rg.value=100;draw();if(!d.open)d.showModal()};
+ im.onerror=function(){finish(null);alert('ছবিটি খোলা যায়নি')};
+ im.removeAttribute('src');if(typeof src=='string')im.src=src;else{url=URL.createObjectURL(src);im.src=url}
+})};
+})();
+</script>
+</body></html>
