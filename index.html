@@ -2288,6 +2288,34 @@ html[data-view=card] #ctree{display:block;overflow-x:auto;margin:8px 0 16px;padd
 .cav img{width:100%;height:100%;object-fit:cover;display:block;border-radius:50%}
 .cn{display:block;font-size:12px;font-weight:700;line-height:1.3;word-break:break-word;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.5)}
 .cs{display:block;font-size:10.5px;color:rgba(238,242,255,.72);line-height:1.3;margin-top:2px;max-height:2.7em;overflow:hidden}
+#ctree{touch-action:pan-x pan-y}
+#czb{display:none;justify-content:flex-end;gap:6px;margin:4px 2px 0}
+html[data-view=card] #czb{display:flex}
+#czb button{min-width:38px;height:34px;padding:0 10px;border-radius:12px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:inherit;font:inherit;font-size:17px;font-weight:700;cursor:pointer;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+#czb button:active{background:rgba(255,255,255,.22)}
+#sbtn{display:none;border:0;border-radius:999px;padding:8px 14px;font:inherit;font-size:17px;line-height:1;cursor:pointer;background:transparent;color:inherit}
+html[data-view=card] #sbtn{display:inline-block}
+#sbov{position:fixed;inset:0;z-index:150;background:rgba(3,10,6,.55);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .25s}
+#sbov.open{opacity:1;pointer-events:auto}
+#sbar{position:fixed;top:0;bottom:0;left:0;z-index:151;width:min(80vw,290px);display:flex;flex-direction:column;padding:calc(18px + env(safe-area-inset-top,0px)) 14px calc(16px + env(safe-area-inset-bottom,0px));border-radius:0 26px 26px 0;color:#fff;background:linear-gradient(180deg,rgba(15,61,34,.96),rgba(20,83,45,.94) 55%,rgba(8,40,22,.97));border-right:1px solid rgba(110,231,183,.4);box-shadow:12px 0 40px -10px rgba(0,0,0,.7);transform:translateX(-108%);transition:transform .3s cubic-bezier(.2,.9,.3,1);overflow-y:auto}
+#sbar.open{transform:none}
+#sbar .sbh{display:flex;align-items:center;gap:10px;padding:4px 6px 16px;font-size:20px;font-weight:800}
+#sbar .sbh i{font-style:normal;font-size:30px}
+#sbar .sbi{display:flex;align-items:center;gap:12px;width:100%;margin:3px 0;padding:12px 14px;border:0;border-radius:16px;background:transparent;color:#fff;font:inherit;font-size:15.5px;text-align:left;cursor:pointer}
+#sbar .sbi b{font-size:20px;width:26px;text-align:center;font-weight:400}
+#sbar .sbi.on{background:linear-gradient(135deg,#16a34a,#22c55e);box-shadow:0 6px 16px -6px rgba(34,197,94,.9)}
+#sbar .sbi:active{background:rgba(255,255,255,.16)}
+#sbar .sbf{margin-top:auto;padding:18px 8px 4px;text-align:center;font-style:italic;font-size:15px;line-height:1.5;color:#d9f5e3;border-top:1px solid rgba(110,231,183,.3)}
+html[data-view=card] dialog:has(#dc){--ink:#16301f;--mut:#4f6a58;--card:#fff;--line:rgba(46,125,79,.25);background:linear-gradient(180deg,#fff,#f1faf3);color:#16301f;border:1px solid rgba(46,125,79,.4);border-radius:26px;padding:0 0 16px;overflow:auto}
+html[data-view=card] #dc{padding:0}
+html[data-view=card] #dc h2{margin:0;padding:16px 18px;text-align:center;font-size:21px;color:#fff;background:linear-gradient(135deg,#0f3d22,#1f7a45)}
+html[data-view=card] #dc>*:not(h2):not(.av){margin-left:18px;margin-right:18px}
+html[data-view=card] #dc .av:not(.hide){display:block;width:132px;height:132px;margin:18px auto 8px;border-radius:50%;object-fit:cover;border:4px solid #fff;box-shadow:0 0 0 3px #2e9d5f,0 10px 24px -6px rgba(31,122,69,.6)}
+html[data-view=card] #dc .row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 2px;border-bottom:1px solid rgba(46,125,79,.2);color:#16301f}
+html[data-view=card] #dc .row>span:first-child{font-weight:700;color:#14532d;white-space:nowrap}
+html[data-view=card] #dc .row>span:first-child::before{content:attr(data-ic) " ";font-weight:400}
+html[data-view=card] #dc .row>span:last-child{text-align:right;word-break:break-word}
+html[data-view=card] #dc .av.hide{display:none!important}html[data-view=card] #dc a{color:#1f7a45}
 #ctree .cempty{padding:20px;text-align:center;opacity:.7}
 @keyframes cshine{0%,60%{transform:translateX(-160%)}100%{transform:translateX(260%)}}
 @keyframes cbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
@@ -2303,13 +2331,34 @@ const av=n.querySelector('.av2'),b=n.querySelector('.nm b'),s=n.querySelector('.
 const a=document.createElement('span');a.className='cav';a.innerHTML=av?av.innerHTML:'';
 const w=document.createElement('span');const nn=document.createElement('span');nn.className='cn';nn.textContent=b?b.textContent:'';w.appendChild(nn);
 if(s&&s.textContent.trim()){const c=document.createElement('span');c.className='cs';c.textContent=s.textContent.trim();w.appendChild(c)}
-d.appendChild(a);d.appendChild(w);d.onclick=()=>n.click();return d};
+d.appendChild(a);d.appendChild(w);d.onclick=e=>{const t=e.target.closest('.cav'),x=t?n.querySelector('.av2'):n.querySelector('.nm');x&&x.click()};return d};
 const build=(ul,root)=>{const u=document.createElement('ul');if(root)u.className='cr';ul.querySelectorAll(':scope > li').forEach(li=>{const c=card(li,root);if(!c)return;const l=document.createElement('li');l.appendChild(c);const sub=li.querySelector(':scope > ul.t');if(sub&&sub.children.length)l.appendChild(build(sub,false));u.appendChild(l)});return u};
-let tm=0;const render=()=>{if(view!=='card')return;const keep=ct.scrollLeft;ct.textContent='';if(!tree.children.length){ct.innerHTML='<div class="cempty">…</div>';return}const w=document.createElement('div');w.className='ctin';w.appendChild(build(tree,true));ct.appendChild(w);ct.scrollLeft=keep||Math.max(0,(ct.scrollWidth-ct.clientWidth)/2)};
+let zs=1;const ZMIN=.4,ZMAX=2.6;
+const zb=document.createElement('div');zb.id='czb';zb.innerHTML='<button type="button" data-z="-" aria-label="Zoom out">−</button><button type="button" data-z="0" aria-label="Reset">১:১</button><button type="button" data-z="+" aria-label="Zoom in">+</button>';ct.parentNode.insertBefore(zb,ct);
+const applyZ=(ns,mid)=>{ns=Math.min(ZMAX,Math.max(ZMIN,ns));const w=ct.firstElementChild;if(!w||ns===zs)return;const r=ct.getBoundingClientRect(),mx=mid==null?r.width/2:mid,cx=(ct.scrollLeft+mx)/zs;zs=ns;w.style.zoom=zs;ct.scrollLeft=cx*zs-mx};
+zb.onclick=e=>{const b=e.target.closest('button');if(!b)return;const z=b.dataset.z;if(z==='+')applyZ(zs*1.25);else if(z==='-')applyZ(zs/1.25);else applyZ(1)};
+let pd=0,ps=1;const pdist=t=>Math.hypot(t[0].clientX-t[1].clientX,t[0].clientY-t[1].clientY);
+ct.addEventListener('touchstart',e=>{if(e.touches.length===2){pd=pdist(e.touches);ps=zs}},{passive:true});
+ct.addEventListener('touchmove',e=>{if(e.touches.length===2&&pd){e.preventDefault();const r=ct.getBoundingClientRect();applyZ(ps*pdist(e.touches)/pd,(e.touches[0].clientX+e.touches[1].clientX)/2-r.left)}},{passive:false});
+ct.addEventListener('touchend',e=>{if(e.touches.length<2)pd=0},{passive:true});
+ct.addEventListener('wheel',e=>{if(e.ctrlKey){e.preventDefault();const r=ct.getBoundingClientRect();applyZ(zs*(e.deltaY<0?1.1:.9),e.clientX-r.left)}},{passive:false});
+let tm=0;const render=()=>{if(view!=='card')return;const keep=ct.scrollLeft;ct.textContent='';if(!tree.children.length){ct.innerHTML='<div class="cempty">…</div>';return}const w=document.createElement('div');w.className='ctin';w.appendChild(build(tree,true));w.style.zoom=zs;ct.appendChild(w);ct.scrollLeft=keep||Math.max(0,(ct.scrollWidth-ct.clientWidth)/2)};
 const later=()=>{clearTimeout(tm);tm=setTimeout(render,150)};
 new MutationObserver(later).observe(tree,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:['class']});
 
-const set=v=>{view=v;if(v==='card')R.dataset.view='card';else delete R.dataset.view;sw.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));try{localStorage.setItem('khanView',v)}catch(e){}if(v==='card'){ct.scrollLeft=0;render()}};
-sw.onclick=e=>{const b=e.target.closest('button');if(b)set(b.dataset.v)};
+
+const IC={'জন্ম':'📅','মৃত্যু':'🕊️','স্ত্রী':'💑','স্বামী':'💑','পিতা':'👤','মাতা':'👩','রক্তের গ্রুপ':'🩸','পেশা':'💼','ঠিকানা':'📍','ফোন':'📞','সন্তান':'👶'};
+const dc=document.getElementById('dc');if(dc){let busy=0;new MutationObserver(()=>{if(busy)return;busy=1;dc.querySelectorAll('.row>span:first-child').forEach(x=>{const t=x.textContent.trim();if(IC[t])x.dataset.ic=IC[t]});busy=0}).observe(dc,{childList:true})}
+const sb=document.createElement('button');sb.id='sbtn';sb.type='button';sb.setAttribute('aria-label','Menu');sb.textContent='☰';sw.insertBefore(sb,sw.firstChild);
+const ov=document.createElement('div');ov.id='sbov';const bar=document.createElement('nav');bar.id='sbar';document.body.appendChild(ov);document.body.appendChild(bar);
+const TI={t1:'🌳',t3:'🖼️',t4:'👥',t5:'🔗',t6:'🏘️',t7:'🕯️',t8:'💬',t9:'📜',t2:'🛡️'};
+const closeSb=()=>{bar.classList.remove('open');ov.classList.remove('open')};
+const openSb=()=>{let h='<div class="sbh"><i>🌳</i><span>খান পরিবার</span></div><button type="button" class="sbi" data-go="home"><b>🏠</b><span>হোম</span></button>';
+document.querySelectorAll('.tabs button').forEach(b=>{if(b.classList.contains('hide'))return;const txt=b.textContent.trim().replace(/^[\p{Extended_Pictographic}\uFE0F\s]+/u,'');h+=`<button type="button" class="sbi${b.classList.contains('on')?' on':''}" data-go="${b.id}"><b>${TI[b.id]||'•'}</b><span>${txt}</span></button>`});
+h+='<div class="sbf">একটি পরিবারের<br>একটি ইতিহাস…</div>';bar.innerHTML=h;bar.classList.add('open');ov.classList.add('open')};
+sb.onclick=openSb;ov.onclick=closeSb;
+bar.onclick=e=>{const b=e.target.closest('.sbi');if(!b)return;const id=b.dataset.go,t=document.getElementById(id==='home'?'t1':id);closeSb();t&&t.click();if(id==='home'||id==='t1')scrollTo({top:0,behavior:'smooth'})};
+const set=v=>{view=v;if(v!=='card')closeSb();if(v==='card')R.dataset.view='card';else delete R.dataset.view;sw.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));try{localStorage.setItem('khanView',v)}catch(e){}if(v==='card'){ct.scrollLeft=0;render()}};
+sw.onclick=e=>{const b=e.target.closest('button');if(b&&b.dataset.v)set(b.dataset.v)};
 set(view)})();</script>
 </body></html>
