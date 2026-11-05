@@ -873,7 +873,7 @@ box-shadow:0 6px 14px -8px rgba(0,0,0,.65),inset 0 1px 0 rgba(255,255,255,.32)}
 /* প্রোফাইলে স্ত্রী অনুযায়ী সন্তানের গ্রুপ */
 .mg{margin:10px 0 2px}.mgh{font-size:12.5px;color:var(--mut);margin-bottom:2px}.mgh b{font-weight:700;color:var(--ink)}
 </style>
-</head><body><script>window.hxIdle=function(f,t){var r=function(){var g=function(){try{f()}catch(e){console.error(e)}};window.requestIdleCallback?requestIdleCallback(g,{timeout:t||1500}):setTimeout(g,300)};document.readyState==="complete"?r():addEventListener("load",r,{once:true})}</script>
+<style id="fitname">/* নাম সবসময় এক লাইনে: লম্বা হলে অক্ষর ছোট হবে */ #tree .nm b{white-space:nowrap!important;overflow:hidden;text-overflow:ellipsis;overflow-wrap:normal;font-size:16px;font-size:clamp(10px,calc(100cqw / var(--nl,10)),16px);line-height:1.5}</style></head><body><script>window.hxIdle=function(f,t){var r=function(){var g=function(){try{f()}catch(e){console.error(e)}};window.requestIdleCallback?requestIdleCallback(g,{timeout:t||1500}):setTimeout(g,300)};document.readyState==="complete"?r():addEventListener("load",r,{once:true})}</script>
 <header id="hdr" data-tod="dusk"><div class="scene"><svg class="hsc" viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="ska" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--s1)"/><stop offset=".6" style="stop-color:var(--s2)"/><stop offset="1" style="stop-color:var(--s3)"/></linearGradient>
 <linearGradient id="gda" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--gr1)"/><stop offset="1" style="stop-color:var(--gr2)"/></linearGradient>
 <radialGradient id="gla"><stop offset="0" style="stop-color:var(--sunc);stop-opacity:.9"/><stop offset=".35" style="stop-color:var(--sunc);stop-opacity:.35"/><stop offset="1" style="stop-color:var(--sunc);stop-opacity:0"/></radialGradient>
@@ -1263,7 +1263,7 @@ function kidsHtml(p){if(!p.k.length)return '';const a=p.g=='m'?sps(p):[];
  return '<div style="margin-top:4px">'+a.map((w,i)=>blk(`${TL('সন্তান','Children')} · <b data-ne="${esc(ne[i]||'')}">${esc(w)}</b>`,grp[i])).join('')+blk(TL('অন্যান্য (মা বাছাই করা নেই)','Others (mother not set)'),oth)+'</div>'}
 function momSel(p){const a=p.par&&p.par.g=='m'?sps(p.par):[];if(a.length<2)return '';const cur=typeof p.mo=='number'?p.mo:-1;
  return `<div class="note">${TL('মা (কোন স্ত্রীর সন্তান) বেছে নিন','Mother (which wife) — choose')}</div><select id="emo"><option value="-1" ${cur<0?'selected':''}>${TL('জানা নেই','Unknown')}</option>${a.map((w,i)=>`<option value="${i}" ${cur==i?'selected':''}>${esc(ordB(i)+' স্ত্রী: '+w)}</option>`).join('')}</select>`}
-function fitLen(){document.querySelectorAll('#tree .sl,#tree .ml').forEach(e=>{const t=e.textContent||'';e.style.setProperty('--len',Math.max(1,[...t].length)*(/[\u0980-\u09FF]/.test(t)?.5:.56))})}
+function fitLen(){document.querySelectorAll('#tree .sl,#tree .ml').forEach(e=>{const t=e.textContent||'';e.style.setProperty('--len',Math.max(1,[...t].length)*(/[\u0980-\u09FF]/.test(t)?.5:.56))});document.querySelectorAll('#tree .nm b').forEach(e=>{const t=e.textContent||'';e.style.setProperty('--nl',Math.max(1,[...t].length)*(/[\u0980-\u09FF]/.test(t)?.52:.65))})}
 function el(p){const li=document.createElement('li'),has=p.k.length,sp=p.g=='m'?'স্ত্রী':'স্বামী',mo=momOf(p),bd=p.d?'মৃত্যু '+esc(p.d):p.b?'জন্ম '+esc(p.b):'';
  const sm=(bd?`<span class="bl">${bd}</span>`:'')+(p.s?`<span class="sl">${sp}: <span data-ne="${esc(p.se||'')}">${esc(p.s)}</span></span>`:'')+(mo?`<span class="ml">মা: <span data-ne="${esc(mo.ne)}">${esc(mo.n)}</span></span>`:'');
  li.innerHTML=`<div class="n${p.g=='f'?' f':''}${(p.s||mo)?' hs':''}" data-id="${p.id}">${has?'<button class="tg">−</button>':'<span class="tg"></span>'}<span class="av2" data-pid="${p.id}" data-ne="${esc(ini2(p))}">${avInner(p)}</span><div class="nm"><b data-ne="${esc(p.ne||'')}">${esc(p.n)}</b><small>${sm}</small></div>${has?'<span class="badge" data-ne="Kids '+p.k.length+'">সন্তান '+bn(p.k.length)+' জন</span>':''}</div>`;
@@ -2251,114 +2251,4 @@ window.hxCrop=function(src){return new Promise(function(done){
 })};
 })();
 </script>
-<script>(function(){var a=document.getElementById('adm');if(!a)return;function mv(){var v=document.getElementById('verbox');if(v&&a.lastElementChild!==v)a.appendChild(v)}new MutationObserver(mv).observe(a,{childList:true});mv()})();</script><style id="cardview-css">
-#viewsw{display:flex;gap:6px;margin:6px auto 12px;padding:4px;border-radius:999px;width:max-content;max-width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
-#viewsw button{border:0;border-radius:999px;padding:8px 18px;font:inherit;font-size:14px;font-weight:600;cursor:pointer;background:transparent;color:inherit}
-#viewsw button.on{background:linear-gradient(135deg,var(--g),var(--g2));color:#fff;box-shadow:0 4px 14px -4px rgb(var(--gr) / .8)}
-#ctree{display:none}
-html[data-view=card] #tree{display:none}
-html[data-view=card] #ctree{display:block;overflow-x:auto;margin:8px 0 16px;padding:22px 8px 26px;border-radius:24px;color:#eef2ff;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 16px 36px -18px rgba(0,0,0,.7);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);-webkit-overflow-scrolling:touch}
-#ctree .ctin{width:max-content;min-width:100%;display:flex;justify-content:center}
-#ctree ul{list-style:none;margin:0;padding:22px 0 0;display:flex;justify-content:center;position:relative}
-#ctree ul.cr{padding-top:0}
-#ctree li{position:relative;padding:22px 4px 0;display:flex;flex-direction:column;align-items:center;animation:none}
-#ctree ul.cr>li{padding-top:0}
-#ctree li::before,#ctree li::after{content:"";position:absolute;top:0;width:50%;height:22px;border-top:2px solid #5eead4;background:none;box-shadow:none;border-radius:0;left:auto;right:auto;animation:none;filter:drop-shadow(0 0 3px rgba(94,234,212,.8))}
-#ctree li::before{right:50%}
-#ctree li::after{left:50%;border-left:2px solid #5eead4}
-#ctree li:only-child::before,#ctree li:only-child::after,#ctree ul.cr>li::before,#ctree ul.cr>li::after{display:none}
-#ctree li:first-child::before,#ctree li:last-child::after{border:0}
-#ctree li:last-child::before{border-right:2px solid #5eead4;border-radius:0 10px 0 0}
-#ctree li:first-child::after{border-radius:10px 0 0 0}
-#ctree ul ul::before{content:"";position:absolute;top:0;left:50%;height:22px;border-left:2px solid #5eead4;filter:drop-shadow(0 0 3px rgba(94,234,212,.8))}
-#ctree li:only-child{padding-top:22px}
-.cc{position:relative;overflow:hidden;width:90px;padding:9px 5px 10px;border-radius:20px;text-align:center;cursor:pointer;color:#eef2ff;background:linear-gradient(160deg,rgba(59,130,246,.34),rgba(34,211,238,.10)),rgba(255,255,255,.06);border:1px solid rgba(130,185,255,.55);box-shadow:0 10px 26px -12px rgba(59,130,246,.95),inset 0 1px 0 rgba(255,255,255,.35);-webkit-backdrop-filter:blur(12px) saturate(1.4);backdrop-filter:blur(12px) saturate(1.4);transition:transform .2s,box-shadow .25s,border-color .25s}
-.cc::after{content:"";position:absolute;top:0;bottom:0;left:0;width:60%;pointer-events:none;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.28) 50%,transparent 70%);transform:translateX(-160%);animation:cshine 6s ease-in-out infinite}
-#ctree li:nth-child(2n)>.cc::after{animation-delay:-2s}#ctree li:nth-child(3n)>.cc::after{animation-delay:-4s}
-.cc:hover{transform:translateY(-3px);box-shadow:0 16px 34px -10px rgba(59,130,246,1),inset 0 1px 0 rgba(255,255,255,.45)}
-.cc:active{transform:scale(.97)}
-.cc.f{background:linear-gradient(160deg,rgba(236,72,153,.34),rgba(168,85,247,.12)),rgba(255,255,255,.06);border-color:rgba(248,150,205,.6);box-shadow:0 10px 26px -12px rgba(236,72,153,.95),inset 0 1px 0 rgba(255,255,255,.35)}
-.cc.f:hover{box-shadow:0 16px 34px -10px rgba(236,72,153,1),inset 0 1px 0 rgba(255,255,255,.45)}
-.cc.root{width:auto;min-width:176px;display:flex;align-items:center;gap:8px;text-align:left;padding:8px 20px 8px 8px;border-radius:999px;background:linear-gradient(135deg,rgba(16,185,129,.55),rgba(5,90,60,.6)),rgba(255,255,255,.06);border-color:rgba(110,231,183,.75);box-shadow:0 12px 28px -10px rgba(16,185,129,.95),inset 0 1px 0 rgba(255,255,255,.4)}
-.cc.hit{outline:3px solid #fbbf24}
-.cav{display:block;width:54px;height:54px;margin:0 auto 6px;border-radius:50%;overflow:hidden;background:#0b1020;border:2px solid rgba(255,255,255,.9);box-shadow:0 0 0 2px #3b82f6,0 0 18px 2px rgba(59,130,246,.85);font-size:28px;line-height:50px;animation:cbob 3.5s ease-in-out infinite}
-#ctree li:nth-child(even)>.cc .cav{animation-delay:-1.7s}
-.cc.f .cav{box-shadow:0 0 0 2px #ec4899,0 0 18px 2px rgba(236,72,153,.85)}
-.cc.root .cav{margin:0;flex:none;box-shadow:0 0 0 2px #6ee7b7,0 0 18px 2px rgba(16,185,129,.9)}
-.cav img{width:100%;height:100%;object-fit:cover;display:block;border-radius:50%}
-.cn{display:block;font-size:12px;font-weight:700;line-height:1.3;word-break:break-word;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.5)}
-.cs{display:block;font-size:10.5px;color:rgba(238,242,255,.72);line-height:1.3;margin-top:2px;max-height:2.7em;overflow:hidden}
-#ctree{touch-action:pan-x pan-y}
-#czb{display:none;justify-content:flex-end;gap:6px;margin:4px 2px 0}
-html[data-view=card] #czb{display:flex}
-#czb button{min-width:38px;height:34px;padding:0 10px;border-radius:12px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:inherit;font:inherit;font-size:17px;font-weight:700;cursor:pointer;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
-#czb button:active{background:rgba(255,255,255,.22)}
-#sbtn{display:none;border:0;border-radius:999px;padding:8px 14px;font:inherit;font-size:17px;line-height:1;cursor:pointer;background:transparent;color:inherit}
-html[data-view=card] #sbtn{display:inline-block}
-#sbov{position:fixed;inset:0;z-index:150;background:rgba(3,10,6,.55);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .25s}
-#sbov.open{opacity:1;pointer-events:auto}
-#sbar{position:fixed;top:0;bottom:0;left:0;z-index:151;width:min(80vw,290px);display:flex;flex-direction:column;padding:calc(18px + env(safe-area-inset-top,0px)) 14px calc(16px + env(safe-area-inset-bottom,0px));border-radius:0 26px 26px 0;color:#fff;background:linear-gradient(180deg,rgba(15,61,34,.96),rgba(20,83,45,.94) 55%,rgba(8,40,22,.97));border-right:1px solid rgba(110,231,183,.4);box-shadow:12px 0 40px -10px rgba(0,0,0,.7);transform:translateX(-108%);transition:transform .3s cubic-bezier(.2,.9,.3,1);overflow-y:auto}
-#sbar.open{transform:none}
-#sbar .sbh{display:flex;align-items:center;gap:10px;padding:4px 6px 16px;font-size:20px;font-weight:800}
-#sbar .sbh i{font-style:normal;font-size:30px}
-#sbar .sbi{display:flex;align-items:center;gap:12px;width:100%;margin:3px 0;padding:12px 14px;border:0;border-radius:16px;background:transparent;color:#fff;font:inherit;font-size:15.5px;text-align:left;cursor:pointer}
-#sbar .sbi b{font-size:20px;width:26px;text-align:center;font-weight:400}
-#sbar .sbi.on{background:linear-gradient(135deg,#16a34a,#22c55e);box-shadow:0 6px 16px -6px rgba(34,197,94,.9)}
-#sbar .sbi:active{background:rgba(255,255,255,.16)}
-#sbar .sbf{margin-top:auto;padding:18px 8px 4px;text-align:center;font-style:italic;font-size:15px;line-height:1.5;color:#d9f5e3;border-top:1px solid rgba(110,231,183,.3)}
-html[data-view=card] dialog:has(#dc){--ink:#16301f;--mut:#4f6a58;--card:#fff;--line:rgba(46,125,79,.25);background:linear-gradient(180deg,#fff,#f1faf3);color:#16301f;border:1px solid rgba(46,125,79,.4);border-radius:26px;padding:0 0 16px;overflow:auto}
-html[data-view=card] #dc{padding:0}
-html[data-view=card] #dc h2{margin:0;padding:16px 18px;text-align:center;font-size:21px;color:#fff;background:linear-gradient(135deg,#0f3d22,#1f7a45)}
-html[data-view=card] #dc>*:not(h2):not(.av){margin-left:18px;margin-right:18px}
-html[data-view=card] #dc .av:not(.hide){display:block;width:132px;height:132px;margin:18px auto 8px;border-radius:50%;object-fit:cover;border:4px solid #fff;box-shadow:0 0 0 3px #2e9d5f,0 10px 24px -6px rgba(31,122,69,.6)}
-html[data-view=card] #dc .row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 2px;border-bottom:1px solid rgba(46,125,79,.2);color:#16301f}
-html[data-view=card] #dc .row>span:first-child{font-weight:700;color:#14532d;white-space:nowrap}
-html[data-view=card] #dc .row>span:first-child::before{content:attr(data-ic) " ";font-weight:400}
-html[data-view=card] #dc .row>span:last-child{text-align:right;word-break:break-word}
-html[data-view=card] #dc .av.hide{display:none!important}html[data-view=card] #dc a{color:#1f7a45}
-#ctree .cempty{padding:20px;text-align:center;opacity:.7}
-@keyframes cshine{0%,60%{transform:translateX(-160%)}100%{transform:translateX(260%)}}
-@keyframes cbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
-@media(prefers-reduced-motion:reduce){.cc::after,.cav{animation:none}}
-</style>
-<script>(function(){const R=document.documentElement,tree=document.getElementById('tree'),v1=document.getElementById('v1');if(!tree||!v1)return;
-let view='classic';try{view=localStorage.getItem('khanView')==='card'?'card':'classic'}catch(e){}
-const sw=document.createElement('div');sw.id='viewsw';sw.innerHTML='<button type="button" data-v="classic">ক্লাসিক</button><button type="button" data-v="card">কার্ড</button>';
-const ct=document.createElement('div');ct.id='ctree';
-const tp=document.querySelector('main .top');if(tp)tp.parentNode.insertBefore(sw,tp.nextSibling);else v1.insertBefore(sw,tree);tree.parentNode.insertBefore(ct,tree);
-const card=(li,root)=>{const n=li.querySelector(':scope > .n');if(!n)return null;const d=document.createElement('div');d.className='cc'+(n.classList.contains('f')?' f':'')+(root?' root':'')+(n.classList.contains('hit')?' hit':'');
-const av=n.querySelector('.av2'),b=n.querySelector('.nm b'),s=n.querySelector('.nm small');
-const a=document.createElement('span');a.className='cav';a.innerHTML=av?av.innerHTML:'';
-const w=document.createElement('span');const nn=document.createElement('span');nn.className='cn';nn.textContent=b?b.textContent:'';w.appendChild(nn);
-if(s&&s.textContent.trim()){const c=document.createElement('span');c.className='cs';c.textContent=s.textContent.trim();w.appendChild(c)}
-d.appendChild(a);d.appendChild(w);d.onclick=e=>{const t=e.target.closest('.cav'),x=t?n.querySelector('.av2'):n.querySelector('.nm');x&&x.click()};return d};
-const build=(ul,root)=>{const u=document.createElement('ul');if(root)u.className='cr';ul.querySelectorAll(':scope > li').forEach(li=>{const c=card(li,root);if(!c)return;const l=document.createElement('li');l.appendChild(c);const sub=li.querySelector(':scope > ul.t');if(sub&&sub.children.length)l.appendChild(build(sub,false));u.appendChild(l)});return u};
-let zs=1;const ZMIN=.4,ZMAX=2.6;
-const zb=document.createElement('div');zb.id='czb';zb.innerHTML='<button type="button" data-z="-" aria-label="Zoom out">−</button><button type="button" data-z="0" aria-label="Reset">১:১</button><button type="button" data-z="+" aria-label="Zoom in">+</button>';ct.parentNode.insertBefore(zb,ct);
-const applyZ=(ns,mid)=>{ns=Math.min(ZMAX,Math.max(ZMIN,ns));const w=ct.firstElementChild;if(!w||ns===zs)return;const r=ct.getBoundingClientRect(),mx=mid==null?r.width/2:mid,cx=(ct.scrollLeft+mx)/zs;zs=ns;w.style.zoom=zs;ct.scrollLeft=cx*zs-mx};
-zb.onclick=e=>{const b=e.target.closest('button');if(!b)return;const z=b.dataset.z;if(z==='+')applyZ(zs*1.25);else if(z==='-')applyZ(zs/1.25);else applyZ(1)};
-let pd=0,ps=1;const pdist=t=>Math.hypot(t[0].clientX-t[1].clientX,t[0].clientY-t[1].clientY);
-ct.addEventListener('touchstart',e=>{if(e.touches.length===2){pd=pdist(e.touches);ps=zs}},{passive:true});
-ct.addEventListener('touchmove',e=>{if(e.touches.length===2&&pd){e.preventDefault();const r=ct.getBoundingClientRect();applyZ(ps*pdist(e.touches)/pd,(e.touches[0].clientX+e.touches[1].clientX)/2-r.left)}},{passive:false});
-ct.addEventListener('touchend',e=>{if(e.touches.length<2)pd=0},{passive:true});
-ct.addEventListener('wheel',e=>{if(e.ctrlKey){e.preventDefault();const r=ct.getBoundingClientRect();applyZ(zs*(e.deltaY<0?1.1:.9),e.clientX-r.left)}},{passive:false});
-let tm=0;const render=()=>{if(view!=='card')return;const keep=ct.scrollLeft;ct.textContent='';if(!tree.children.length){ct.innerHTML='<div class="cempty">…</div>';return}const w=document.createElement('div');w.className='ctin';w.appendChild(build(tree,true));w.style.zoom=zs;ct.appendChild(w);ct.scrollLeft=keep||Math.max(0,(ct.scrollWidth-ct.clientWidth)/2)};
-const later=()=>{clearTimeout(tm);tm=setTimeout(render,150)};
-new MutationObserver(later).observe(tree,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:['class']});
-
-
-const IC={'জন্ম':'📅','মৃত্যু':'🕊️','স্ত্রী':'💑','স্বামী':'💑','পিতা':'👤','মাতা':'👩','রক্তের গ্রুপ':'🩸','পেশা':'💼','ঠিকানা':'📍','ফোন':'📞','সন্তান':'👶'};
-const dc=document.getElementById('dc');if(dc){let busy=0;new MutationObserver(()=>{if(busy)return;busy=1;dc.querySelectorAll('.row>span:first-child').forEach(x=>{const t=x.textContent.trim();if(IC[t])x.dataset.ic=IC[t]});busy=0}).observe(dc,{childList:true})}
-const sb=document.createElement('button');sb.id='sbtn';sb.type='button';sb.setAttribute('aria-label','Menu');sb.textContent='☰';sw.insertBefore(sb,sw.firstChild);
-const ov=document.createElement('div');ov.id='sbov';const bar=document.createElement('nav');bar.id='sbar';document.body.appendChild(ov);document.body.appendChild(bar);
-const TI={t1:'🌳',t3:'🖼️',t4:'👥',t5:'🔗',t6:'🏘️',t7:'🕯️',t8:'💬',t9:'📜',t2:'🛡️'};
-const closeSb=()=>{bar.classList.remove('open');ov.classList.remove('open')};
-const openSb=()=>{let h='<div class="sbh"><i>🌳</i><span>খান পরিবার</span></div><button type="button" class="sbi" data-go="home"><b>🏠</b><span>হোম</span></button>';
-document.querySelectorAll('.tabs button').forEach(b=>{if(b.classList.contains('hide'))return;const txt=b.textContent.trim().replace(/^[\p{Extended_Pictographic}\uFE0F\s]+/u,'');h+=`<button type="button" class="sbi${b.classList.contains('on')?' on':''}" data-go="${b.id}"><b>${TI[b.id]||'•'}</b><span>${txt}</span></button>`});
-h+='<div class="sbf">একটি পরিবারের<br>একটি ইতিহাস…</div>';bar.innerHTML=h;bar.classList.add('open');ov.classList.add('open')};
-sb.onclick=openSb;ov.onclick=closeSb;
-bar.onclick=e=>{const b=e.target.closest('.sbi');if(!b)return;const id=b.dataset.go,t=document.getElementById(id==='home'?'t1':id);closeSb();t&&t.click();if(id==='home'||id==='t1')scrollTo({top:0,behavior:'smooth'})};
-const set=v=>{view=v;if(v!=='card')closeSb();if(v==='card')R.dataset.view='card';else delete R.dataset.view;sw.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));try{localStorage.setItem('khanView',v)}catch(e){}if(v==='card'){ct.scrollLeft=0;render()}};
-sw.onclick=e=>{const b=e.target.closest('button');if(b&&b.dataset.v)set(b.dataset.v)};
-set(view)})();</script>
-</body></html>
+<script>(function(){var a=document.getElementById('adm');if(!a)return;function mv(){var v=document.getElementById('verbox');if(v&&a.lastElementChild!==v)a.appendChild(v)}new MutationObserver(mv).observe(a,{childList:true});mv()})();</script></body></html>
