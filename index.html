@@ -890,7 +890,20 @@ box-shadow:0 6px 14px -8px rgba(0,0,0,.65),inset 0 1px 0 rgba(255,255,255,.32)}
 .xfr{display:flex;gap:8px;align-items:center;justify-content:space-between;padding:8px 0;border-top:1px solid rgba(127,127,127,.2)}.xfr>div{flex:1;min-width:0}.xfr small{display:block}.xfr>span{font-weight:700;white-space:nowrap}
 .xan .bdi{filter:none}
 </style>
-</head><body><script>window.hxIdle=function(f,t){var r=function(){var g=function(){try{f()}catch(e){console.error(e)}};window.requestIdleCallback?requestIdleCallback(g,{timeout:t||1500}):setTimeout(g,300)};document.readyState==="complete"?r():addEventListener("load",r,{once:true})}</script>
+</head><body><style id="fps15">
+/* Same animations, same look - but the many tiny header SVG ambient animations (flowers, stars, fireflies, clouds, falling leaves)
+   now update ~15x/second instead of 60x/second. On phones every update repaints the 1900-element SVG scene, so this cuts that work ~4x. */
+header#hdr .fw{animation-timing-function:steps(24,end)!important}
+header#hdr .tw{animation-timing-function:steps(21,end)!important}
+header#hdr .ffm{animation-timing-function:steps(31,end)!important}
+header#hdr .gln{animation-timing-function:steps(22,end)!important}
+header#hdr .lfd{animation-timing-function:steps(48,end)!important}
+header#hdr .cl{animation-timing-function:steps(144,end)!important}
+/* blurred background blob: keep it on its own GPU layer so the blur is not redone while it drifts */
+body::after{will-change:transform}
+html.lite body::after{will-change:auto}
+</style>
+<script>window.hxIdle=function(f,t){var r=function(){var g=function(){try{f()}catch(e){console.error(e)}};window.requestIdleCallback?requestIdleCallback(g,{timeout:t||1500}):setTimeout(g,300)};document.readyState==="complete"?r():addEventListener("load",r,{once:true})}</script>
 <header id="hdr" data-tod="dusk"><div class="scene"><svg class="hsc" viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="ska" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--s1)"/><stop offset=".6" style="stop-color:var(--s2)"/><stop offset="1" style="stop-color:var(--s3)"/></linearGradient>
 <linearGradient id="gda" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--gr1)"/><stop offset="1" style="stop-color:var(--gr2)"/></linearGradient>
 <radialGradient id="gla"><stop offset="0" style="stop-color:var(--sunc);stop-opacity:.9"/><stop offset=".35" style="stop-color:var(--sunc);stop-opacity:.35"/><stop offset="1" style="stop-color:var(--sunc);stop-opacity:0"/></radialGradient>

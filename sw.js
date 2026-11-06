@@ -1,7 +1,7 @@
 'use strict';
 
 const CACHE_PREFIX = 'khan-family-';
-const CACHE_NAME = CACHE_PREFIX + 'v87';
+const CACHE_NAME = CACHE_PREFIX + 'v88';
 
 const SCOPE = new URL(self.registration.scope);
 const ROOT_URL = SCOPE.href;                         // e.g. https://site/
@@ -106,16 +106,21 @@ async function notifyUpdate() {
   list.forEach(c => { try { c.postMessage({ type: 'upd' }); } catch (_) { /* ignore */ } });
 }
 
+async function sameBody(a, b) {
+  const [x, y] = await Promise.all([a.clone().arrayBuffer(), b.clone().arrayBuffer()]);
+  if (x.byteLength !== y.byteLength) return false;
+  const u = new Uint8Array(x), v = new Uint8Array(y);
+  for (let i = 0; i < u.length; i++) if (u[i] !== v[i]) return false;
+  return true;
+}
+
 async function refreshShell(cache, cached) {
   try {
     const response = await fetch(ROOT_URL, { cache: 'no-cache' });
     if (!response.ok || response.type !== 'basic') return;
+    // Compare the actual page content, not headers (ETag / Content-Length can differ on every request on a CDN).
     let changed = true;
-    if (cached) {
-      const a = shellSig(cached), b = shellSig(response);
-      if (a !== '||' || b !== '||') changed = a !== b;
-      else changed = (await cached.clone().blob()).size !== (await response.clone().blob()).size;
-    }
+    if (cached) changed = !(await sameBody(cached, response));
     if (!changed) return;
     await putShell(cache, response);
     if (cached) await notifyUpdate();
