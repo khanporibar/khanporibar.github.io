@@ -1196,7 +1196,7 @@ const imgOk=v=>typeof v=='string'&&/^data:image\/(png|jpe?g|gif|webp);base64,[A-
 let me=null,isAdm=false,isOwn=false,people=[],map={},roots=[],sug=[],usr=[],unsub=[],avs={},avsF={}; window.__setHAdj=async n=>{if(!isAdm)return false;try{await setDoc(doc(db,'history','hdr'),{hadj:n===null?deleteField():n,at:serverTimestamp()},{merge:true});return true}catch(e){alert('সেভ হয়নি। Firestore নিয়মে history/hdr লেখার অনুমতি দিন।');return false}};
 const pvd=$('pvd');
 const PUSH_ENDPOINT=String(window.KHAN_PUSH_ENDPOINT||'').trim();
-async function notify(type,extra){try{if(!me||!PUSH_ENDPOINT)return;const t=await me.getIdToken(),r=await fetch(PUSH_ENDPOINT,{method:'POST',headers:{'content-type':'application/json',authorization:'Bearer '+t},body:JSON.stringify({type,...extra}),keepalive:true});if(!r.ok)console.warn('Push notification endpoint failed:',r.status)}catch(e){console.log('notify',e)}}
+async function notify(type,extra){try{if(!me||!PUSH_ENDPOINT)return;const t=await me.getIdToken(),r=await fetch(PUSH_ENDPOINT,{method:'POST',headers:{'content-type':'application/json',authorization:'Bearer '+t},body:JSON.stringify({type,...extra}),keepalive:true});if(!r.ok){console.warn('Push notification endpoint failed:',r.status);try{toast('নোটিফিকেশন পাঠানো যায়নি','সার্ভার কোড '+r.status)}catch(_){}}}catch(e){console.log('notify',e);try{toast('নোটিফিকেশন সার্ভারে পৌঁছানো যায়নি',String(e.message||e).slice(0,100))}catch(_){}}}
 function toast(t,b){const e=$('toast');e.innerHTML='<b></b><span></span>';const T=x=>lang=='en'&&x?trText(String(x)):x;e.firstChild.textContent=T(t);e.lastChild.textContent=T(b||'');e.classList.add('on');clearTimeout(toast.h);toast.h=setTimeout(()=>e.classList.remove('on'),5000)}
 const GO={tree:1,adm:2,gal:3,chat:8,cm:6,mem:7};
 function goTo(g,c){if(!g||!GO[g]||(g=='adm'&&!isAdm))return;tab(GO[g]);if(g=='chat'&&c){const t=setInterval(()=>{if(chs[c]){clearInterval(t);openChat(c)}},400);setTimeout(()=>clearInterval(t),8000)}}
@@ -1494,7 +1494,7 @@ function nRefresh(){birthdayFx(bdays(0));const b=bdays(0).length+dann(0).length,
  if(lastP!==null&&n>lastP)ping('অ্যাডমিন অনুমোদন দরকার',bn(n)+' টি অনুরোধ অপেক্ষায়','pending');lastP=n}
 async function regPush(){if(!VAPID||!('serviceWorker' in navigator)||!('Notification' in window)||Notification.permission!='granted')return;try{const {getMessaging,getToken}=await import('https://www.gstatic.com/firebasejs/10.14.1/firebase-messaging.js');
  const reg=await navigator.serviceWorker.ready,t=await getToken(getMessaging(app),{vapidKey:VAPID,serviceWorkerRegistration:reg});
- if(t)await setDoc(doc(db,'tokens',me.uid),{ts:arrayUnion(t),email:me.email,at:serverTimestamp()},{merge:true})}catch(e){console.log(e)}}
+ if(t){await setDoc(doc(db,'tokens',me.uid),{ts:arrayUnion(t),email:me.email,at:serverTimestamp()},{merge:true});try{if(!localStorage.getItem('khanPushOk')){localStorage.setItem('khanPushOk','1');toast('🔔 নোটিফিকেশন চালু হয়েছে','এই ফোনে এখন নোটিফিকেশন আসবে।')}}catch(_){}}else{try{toast('নোটিফিকেশন চালু হয়নি','ফোনের টোকেন পাওয়া যায়নি')}catch(_){}}}catch(e){console.log(e);try{toast('নোটিফিকেশন চালু হয়নি',String(e.code||e.message||e).slice(0,140))}catch(_){}}}
 let prefs={};
 function nbR(){const b=$('nb'),ios=/iphone|ipad|ipod/i.test(navigator.userAgent),st=matchMedia('(display-mode: standalone)').matches||navigator.standalone,can='Notification' in window&&'serviceWorker' in navigator;let m='';
  if(ios&&!st)m='ios';else if(can&&Notification.permission=='default')m='ask';
