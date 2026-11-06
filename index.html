@@ -1382,11 +1382,14 @@ addEventListener('fxcfg',()=>{try{if($('dlist')&&$('dq'))dirR()}catch(e){}});
 $('dq').oninput=dirR;$('dg').onchange=dirR;
 const pl_=p=>L(p.par&&p.par.g=='f'?'মাতা':'পিতা'),lab=p=>`${nmx(p)} — ${pl_(p)}: ${p.par?nmx(p.par):'—'}`,byLab=v=>Object.values(map).find(p=>lab(p)==v);
 function relList(){$('pl').innerHTML=Object.values(map).map(p=>`<option value="${esc(lab(p))}">`).join('')}
+const dsc=p=>{const sx=x=>x.g=='m'?'ছেলে':'মেয়ে';let t=sx(p[0]);if(p.length>1)t=p[0].g=='f'?(p[1].g=='m'?'নাতি':'নাতনি'):(p[1].g=='m'?'পোতা':'পুতনি');for(let i=2;i<p.length;i++)t+='র '+sx(p[i]);return t};
+const REN={'ছেলে':'son','মেয়ে':'daughter','নাতি':"daughter's son",'নাতনি':"daughter's daughter",'পোতা':"son's son",'পুতনি':"son's daughter",'ভাইয়ের':"brother's",'বোনের':"sister's"};
+const relEn=t=>{const o=[];for(const w of t.trim().split(/\s+/)){let e=REN[w];if(!e&&w.endsWith('র')&&REN[w.slice(0,-1)])e=REN[w.slice(0,-1)]+"'s";if(!e)return t;o.push(e)}return o.join(' ')};
 const ch=p=>{const c=[];while(p){c.push(p);p=p.par}return c};
 function rel(A,B){const ca=ch(A),cb=ch(B);let a=-1,b=-1;for(let i=0;i<ca.length;i++){const j=cb.indexOf(ca[i]);if(j>=0){a=i;b=j;break}}
  if(a<0)return null;const m=B.g=='m',fem=x=>x.some(y=>y.g=='f'),mid=fem(ca.slice(1,a))||fem(cb.slice(1,b));let t;
  if(a==b){if(a==1)t=m?'ভাই':'বোন';else if(a==2){const pa=ca[1],pb=cb[1];t=(pa.g=='f'?(pb.g=='m'?'মামাতো':'খালাতো'):(pb.g=='m'?'চাচাতো':'ফুফাতো'))+' '+(m?'ভাই':'বোন')}else t=mid?'দূর সম্পর্কের '+(m?'ভাই':'বোন'):'চাচাতো '+(m?'ভাই':'বোন')+' (দূর সম্পর্কের)'}
- else if(b>a){const d=b-a,s=m?'ছেলে':'মেয়ে',nn=m?'নাতি':'নাতনি',sb=cb[b-1].g=='f'?'বোনের':'ভাইয়ের',pn=m?'পোতা':'পুতনি',dg=cb[b-1].g=='f';t=a==0?(d==1?s:d==2?(dg?nn:pn):(dg?(cb[b-2].g=='m'?'নাতি':'নাতনি'):(cb[b-2].g=='m'?'পোতা':'পুতনি'))+'র '+s+' (বংশধর)'):a==1?(d==1?sb+' '+s:d==2?sb+' '+nn:sb+' বংশধর'):'দূর সম্পর্কের বংশধর'}
+ else if(b>a){const sb=cb[b-1].g=='f'?'বোনের':'ভাইয়ের';t=a==0?dsc(cb.slice(0,b).reverse()):a==1?sb+' '+dsc(cb.slice(0,b-1).reverse()):'দূর সম্পর্কের বংশধর'}
  else{const d=a-b;
   if(b==0){const pa=ca[1],fm=B.g=='f';t=d==1?(fm?'মা':'বাবা'):d==2?(pa.g=='f'?(fm?'নানি':'নানা'):(fm?'দাদি':'দাদা')):(d==3&&!mid)?(fm?'পরদাদি':'পরদাদা'):'ঊর্ধ্বতন পূর্বপুরুষ'}
   else if(b==1){const pa=ca[1];t=d==1?(m?(pa.g=='f'?'মামা':'চাচা'):(pa.g=='f'?'খালা':'ফুফু')):(d==2&&!mid)?(m?'চাচাদাদা':'ফুফুদাদি'):'দূর সম্পর্কের পূর্বপুরুষ'}
@@ -1433,7 +1436,7 @@ function tl(w){if(W[w])return W[w];let o='',pr=false;const c=[...w];
  return o?o[0].toUpperCase()+o.slice(1):o}
 const nmx=p=>lang=='en'?(p.ne||trText(p.n)):p.n,L=t=>lang=='en'?(PD[t]??t):t;
 const RX=[[/^(?:🎂 )?আজ (.+) এর জন্মদিন!$/,m=>'🎂 Today is '+m[1].split(/\s*[،,]\s*/).map(x=>trText(x)).join(', ')+"'s birthday!"],[/^([০-৯]+) দিন পরে$/,m=>'in '+dg(m[1])+' days'],[/^([০-৯]+) টি অনুরোধ অপেক্ষায়$/,m=>dg(m[1])+' requests pending'],[/^(ছবি আপলোড হয়নি|ব্যাকআপ হয়নি|হয়নি|লগইন হয়নি): ?(.*)$/,m=>({'ছবি আপলোড হয়নি':'Photo upload failed','ব্যাকআপ হয়নি':'Backup failed','হয়নি':'Failed','লগইন হয়নি':'Login failed'})[m[1]]+': '+m[2]],[/^(.+) — Firestore rules আপডেট করতে হবে$/,m=>trText(m[1])+' — Firestore rules need to be updated'],[/^পাঠিয়েছেন: (.+)$/,m=>'Sent by: '+m[1]]],dg=t=>t.replace(/[০-৯]/g,c=>DG[c]);
-function trText(t,pe){if(pe&&pe.dataset){if(pe.dataset.ne)return pe.dataset.ne;if(pe.dataset.t)return Q[t.trim()]||t}
+function trText(t,pe){if(pe&&pe.dataset){if(pe.dataset.ne)return pe.dataset.ne;if(pe.dataset.t)return Q[t.trim()]||relEn(t)}
  const m=t.match(/^(\s*)([\s\S]*?)(\s*)$/);if(PD[m[2]]!==undefined)return m[1]+PD[m[2]]+m[3];
  for(const [re,f] of RX){const x=m[2].match(re);if(x)return m[1]+f(x)+m[3]}
  if(m[2].includes(' — ')&&/[\u0980-\u09FF]/.test(m[2]))return m[1]+m[2].split(' — ').map(p=>trText(p)).join(' — ')+m[3];
