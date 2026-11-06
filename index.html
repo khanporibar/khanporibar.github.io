@@ -1095,6 +1095,42 @@ function ptNext(now){const p=window.__pt||{};for(let add=0;add<2;add++){for(cons
 function cdTxt(t,now){const mins=Math.max(1,Math.ceil((t-now)/6e4)),h=Math.floor(mins/60),m=mins%60;return (h?BD(h)+' ঘণ্টা ':'')+(m?BD(m)+' মিনিট ':'')+'পরে'}
 function qibla(la,lo){const r=Math.PI/180,k1=21.4225*r,k2=39.8262*r,p1=la*r,dl=k2-lo*r,y=Math.sin(dl),x=Math.cos(p1)*Math.tan(k1)-Math.sin(p1)*Math.cos(dl);return(Math.atan2(y,x)/r+360)%360}
 const DIRN=['উত্তরে','উত্তর-পূর্বে','পূর্বে','দক্ষিণ-পূর্বে','দক্ষিণে','দক্ষিণ-পশ্চিমে','পশ্চিমে','উত্তর-পশ্চিমে'];
+/* ---------- চলমান কিবলা কম্পাস (ফোনের সেন্সর) ---------- */
+const QC={b:0,sh:null,on:false,gr:false,ok:false,raf:0};
+const qcNeed=()=>!QC.on&&!QC.gr&&typeof window.DeviceOrientationEvent!=='undefined'&&typeof window.DeviceOrientationEvent.requestPermission==='function';
+function qcPaint(){QC.raf=0;const d=document.getElementById('qc-dial'),c=document.getElementById('qc');if(!d||!c)return;
+ const h=QC.sh==null?0:QC.sh;d.setAttribute('transform','rotate('+(-h).toFixed(1)+' 50 50)');
+ if(QC.sh==null)return;
+ const ok=Math.abs(((QC.b-h+540)%360)-180)<5;c.classList.toggle('ok',ok);
+ const t=document.getElementById('qc-t');if(t)t.textContent=ok?'কিবলা সামনে ✓':'ফোন ঘোরান';
+ if(ok&&!QC.ok&&navigator.vibrate){try{navigator.vibrate(30)}catch(e){}}QC.ok=ok}
+function qcEv(e){let h=null;
+ if(typeof e.webkitCompassHeading==='number'&&isFinite(e.webkitCompassHeading))h=e.webkitCompassHeading;
+ else if(e.alpha!=null&&(e.absolute||e.type==='deviceorientationabsolute'))h=360-e.alpha;
+ if(h==null)return;
+ h=(h+((screen.orientation&&screen.orientation.angle)||0)+360)%360;
+ if(QC.sh==null)QC.sh=h;else{const d=((h-QC.sh+540)%360)-180;QC.sh=(QC.sh+d*.22+360)%360}
+ if(!QC.raf)QC.raf=requestAnimationFrame(qcPaint)}
+function qcStart(){if(QC.on)return;QC.on=true;
+ addEventListener('deviceorientationabsolute',qcEv,true);addEventListener('deviceorientation',qcEv,true);
+ setTimeout(()=>{if(QC.on&&QC.sh==null){const t=document.getElementById('qc-t');if(t)t.textContent='কম্পাস সেন্সর পাওয়া যায়নি'}},3000)}
+function qcStop(){if(!QC.on)return;QC.on=false;QC.sh=null;QC.ok=false;removeEventListener('deviceorientationabsolute',qcEv,true);removeEventListener('deviceorientation',qcEv,true)}
+function qcAuto(){setTimeout(()=>{if(!QC.on&&!qcNeed()&&dlg.open)qcStart()},0)}
+function qcAsk(){const D=window.DeviceOrientationEvent;
+ const fin=()=>{QC.gr=true;qcStart();if(dlg.open&&!ptEdit)render()};
+ if(D&&typeof D.requestPermission==='function'){D.requestPermission().then(r=>{if(r==='granted')fin();else{const t=document.getElementById('qc-t');if(t)t.textContent='অনুমতি দেওয়া হয়নি'}}).catch(()=>{})}else fin()}
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-qc]');if(b){e.preventDefault();qcAsk()}},true);
+dlg.addEventListener('close',qcStop);
+function qcCard(b){const tk=[];for(let i=0;i<360;i+=30)tk.push('<line x1="50" y1="'+(i%90?7:5.5)+'" x2="50" y2="'+(i%90?11:12)+'" transform="rotate('+i+' 50 50)"/>');
+ const hint=qcNeed()?'<button type="button" class="qbtn" data-qc="1">কম্পাস চালু করুন</button>':'<span class="qs" id="qc-t">'+(QC.sh==null?'সেন্সর খোঁজা হচ্ছে…':'ফোন ঘোরান')+'</span>';
+ return '<div class="cal-mini qcm" id="qc"><small>কিবলার দিক</small>'
+ +'<svg viewBox="0 0 100 100" class="qsv" aria-hidden="true"><circle cx="50" cy="50" r="47" class="qr"/>'
+ +'<g id="qc-dial" transform="rotate('+(-(QC.sh||0)).toFixed(1)+' 50 50)"><g class="qt">'+tk.join('')+'</g>'
+ +'<text x="50" y="27" class="qn">N</text><text x="77" y="54" class="qe">E</text><text x="50" y="81" class="qe">S</text><text x="23" y="54" class="qe">W</text>'
+ +'<g transform="rotate('+b.toFixed(1)+' 50 50)"><line x1="50" y1="50" x2="50" y2="17" class="ql"/><rect x="44" y="1.5" width="12" height="12" rx="1.8" class="qk"/><rect x="44" y="5" width="12" height="2.6" class="qb"/></g></g>'
+ +'<path d="M50 0.5 L54.5 8 L45.5 8Z" class="qp"/><circle cx="50" cy="50" r="3" class="qd"/></svg>'
+ +'<b>'+BD(Math.round(b))+'° ('+DIRN[Math.round(b/45)%8]+')</b>'+hint+'</div>'}
+
 function ptBlock(sel,today){
  const sal=FXK('salah'),nx=FXK('next'),qb=FXK('qibla');if(!sal&&!nx&&!qb)return'';
  const isT=same(sel,today),p=window.__pt||{},has=PN.some(x=>ptOk(p[x[0]])),now=new Date(),n=isT?ptNext(now):null;let s='';
@@ -1110,7 +1146,7 @@ function ptBlock(sel,today){
  }
  const two=[];
  if(nx&&n)two.push('<div class="cal-mini"><small id="cal-cn" data-k="'+n.k+'">পরের নামাজ · '+n.n+'</small><b id="cal-cd">'+cdTxt(n.t,now)+'</b></div>');
- if(qb){const L=loc(),b=qibla(L.la,L.lo);two.push('<div class="cal-mini"><small>🧭 কিবলার দিক</small><b>'+BD(Math.round(b))+'° ('+DIRN[Math.round(b/45)%8]+')</b></div>')}
+ if(qb){const L=loc(),b=qibla(L.la,L.lo);QC.b=b;two.push(qcCard(b));qcAuto()}
  if(two.length)s+='<div class="cal-two">'+two.join('')+'</div>';
  return s}
 function updCd(){if(!dlg.open||ptEdit)return;const e=$('cal-cd');if(!e)return;const now=new Date(),n=ptNext(now),c=$('cal-cn');if(!n||(c&&c.dataset.k!==n.k)){render();return}e.textContent=cdTxt(n.t,now)}
@@ -1230,7 +1266,7 @@ async function notify(type,extra){try{if(!me||!PUSH_ENDPOINT)return;const t=awai
 function toast(t,b){const e=$('toast');e.innerHTML='<b></b><span></span>';const T=x=>lang=='en'&&x?trText(String(x)):x;e.firstChild.textContent=T(t);e.lastChild.textContent=T(b||'');e.classList.add('on');clearTimeout(toast.h);toast.h=setTimeout(()=>e.classList.remove('on'),5000)}
 const GO={tree:1,adm:2,gal:3,chat:8,cm:6,mem:7};
 function goTo(g,c){if(!g||!GO[g]||(g=='adm'&&!isAdm))return;tab(GO[g]);if(g=='chat'&&c){const t=setInterval(()=>{if(chs[c]){clearInterval(t);openChat(c)}},400);setTimeout(()=>clearInterval(t),8000)}}
-let offBad=false;const offSet=bad=>{const o=$('off');if(!o)return;clearTimeout(offSet.t);if(bad){o.classList.remove('hide','on')}else if(!o.classList.contains('hide')&&!o.classList.contains('on')){o.classList.add('on');offSet.t=setTimeout(()=>o.classList.add('hide'),2600)}};
+let offBad=false;const offSet=bad=>{const o=$('off');if(!o)return;clearTimeout(offSet.t);if(bad){o.classList.remove('hide','on','out')}else if(!o.classList.contains('hide')&&!o.classList.contains('on')){o.classList.add('on');offSet.t=setTimeout(()=>{o.classList.add('out');offSet.t=setTimeout(()=>{o.classList.add('hide');o.classList.remove('out')},480)},2300)}};
 const netProbe=()=>{if(!navigator.onLine){if(!offBad){offBad=true;offSet(true)}return}const c=new AbortController(),t=setTimeout(()=>c.abort(),5000);fetch('https://firestore.googleapis.com/?_='+Date.now(),{mode:'no-cors',cache:'no-store',signal:c.signal}).then(()=>{clearTimeout(t);if(offBad){offBad=false;offSet(false)}}).catch(()=>{clearTimeout(t);if(!offBad){offBad=true;offSet(true)}})};
 addEventListener('offline',netProbe);addEventListener('online',netProbe);setInterval(()=>{if(!document.hidden)netProbe()},30000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)netProbe()});netProbe();
 const avUrl={};const avSrc=id=>{const d=avs[id];if(!d)return'';const c=avUrl[id];if(c&&c.d===d)return c.u;try{const m=/^data:([^;,]*);base64,([\s\S]*)$/.exec(d);if(!m)return'';const b=atob(m[2]),a=new Uint8Array(b.length);for(let i=0;i<b.length;i++)a[i]=b.charCodeAt(i);const u=URL.createObjectURL(new Blob([a],{type:m[1]||'image/jpeg'}));if(c)URL.revokeObjectURL(c.u);avUrl[id]={d,u};return u}catch(e){return''}};
@@ -1339,7 +1375,7 @@ ${isMe(p)?'':(()=>{const sc=p.soc||{},has=SOC.some(x=>sc[x[0]]);return `<details
  if(p.par)enEd($('pne'),p.par.id,p.par.n,p.par.ne,'ne','ইংরেজি নাম',$('pnm'));
  if(p.s){if(p.g=='m'&&sps(p).length>1){const b=$('sne');if(b)b.onclick=async()=>{const v=prompt(isOwn?'English names (separate with •):':'English names (request will go to admin):',p.se||trText(p.s));if(v===null)return;const nv=v.trim();try{if(isOwn){await updateDoc(doc(db,'people',p.id),{se:nv});setTimeout(()=>{const np=map[p.id];if(np&&dlg.open)show(np)},300)}else{if(!nv)return;await reqEd(p.id,p.n,'স্ত্রী/স্বামীর ইংরেজি নাম',nv)}}catch(err){alert('Failed: '+(err.code||err.message))}}}else enEd($('sne'),p.id,p.s,p.se,'se','স্ত্রী/স্বামীর ইংরেজি নাম',$('snm'))}
  if(isOwn){const ref=doc(db,'people',p.id);
-  $('sv').onclick=async()=>{const s_=$('es').value.trim();let se_=$('ese').value.trim();if(!se_&&s_&&s_!==p.s)se_=trText(s_);const nn_=$('en').value.trim()||p.n;let ne_=$('ene').value.trim();if(!ne_&&nn_!==p.n)ne_=trText(nn_);await updateDoc(ref,{n:nn_,ne:ne_,b:$('eb').value.trim(),d:$('ed').value.trim(),s:s_,se:se_,g:$('eg').value,bg:$('ebg').value,job:$('ej').value.trim(),addr:$('ea').value.trim(),ph:$('eph').value.trim(),...($('emd')?{md:$('emd').value.trim()}:{}),...($('edid')?{did:normUrl('web',$('edid').value)}:{}),...(($('epar')&&$('epar').value!=p.parent)?{parent:$('epar').value,o:(map[$('epar').value]?.k.length||0),mo:null}:($('emo')?{mo:(+$('emo').value>=0?+$('emo').value:null)}:{}))});dlg.close()};
+  $('sv').onclick=async()=>{const s_=$('es').value.trim();let se_=$('ese').value.trim();if(!se_&&s_&&s_!==p.s)se_=trText(s_);const nn_=$('en').value.trim()||p.n;let ne_=$('ene').value.trim();if(!ne_&&nn_!==p.n)ne_=trText(nn_);await updateDoc(ref,{n:nn_,ne:ne_,b:$('eb').value.trim(),d:$('ed').value.trim(),s:s_,se:se_,g:$('eg').value,bg:$('ebg').value,job:$('ej').value.trim(),addr:$('ea').value.trim(),ph:$('eph').value.trim(),...($('egps')?{gps:(()=>{const g=window.gpsOf($('egps').value);return g?g.la.toFixed(6)+','+g.lo.toFixed(6):''})()}:{}),...($('emd')?{md:$('emd').value.trim()}:{}),...($('edid')?{did:normUrl('web',$('edid').value)}:{}),...(($('epar')&&$('epar').value!=p.parent)?{parent:$('epar').value,o:(map[$('epar').value]?.k.length||0),mo:null}:($('emo')?{mo:(+$('emo').value>=0?+$('emo').value:null)}:{}))});dlg.close()};
   $('ac').onclick=async()=>{
    if(p.g=='f'){const nm=($('kn').value||'').trim();if(!nm)return alert(L('সন্তানের নাম লিখুন'));
     const kbv=bn(($('kb').value||'').trim());try{await updateDoc(ref,{kids:arrayUnion(Object.assign({id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),n:nm,g:$('kg').value},kbv?{b:kbv}:{}))});setTimeout(()=>{const np=map[p.id];if(np&&dlg.open)show(np)},300)}catch(e){alert('Failed: '+(e.code||e.message))}
@@ -1761,6 +1797,7 @@ function xAge(p){const b=xpd(p.b);if(!b||b.y<1800)return null;const n=new Date()
  if(m>=1)return[bn(m)+' মাস',m+(m==1?' month':' months')];
  const dd=Math.max(0,Math.round((new Date(ey,em-1,ed)-new Date(b.y,b.m-1,b.d))/864e5));return[bn(dd)+' দিন',dd+(dd==1?' day':' days')]}
 function show(p){show0(p);try{xShow(p)}catch(e){console.error('xShow',e)}}
+window.gpsOf=function(v){if(!v)return null;v=String(v).replace(/[০-৯]/g,c=>'০১২৩৪৫৬৭৮৯'.indexOf(c));const m=v.match(/(-?\d{1,3}(?:\.\d+)?)\s*[,;\s]\s*(-?\d{1,3}(?:\.\d+)?)/);if(!m)return null;const la=+m[1],lo=+m[2];return Math.abs(la)<=90&&Math.abs(lo)<=180?{la,lo}:null};
 function xShow(p){const dc=$('dc');if(!dc||!p)return;const rows=[...dc.querySelectorAll('.row')];
  const find=t=>rows.find(r=>{const s=r.firstElementChild;return s&&s.textContent.trim()==t});
  const mk=(a,ae,b,be)=>{const r=document.createElement('div');r.className='row';r.innerHTML=`<span data-ne="${esc(ae)}">${esc(a)}</span><span data-ne="${esc(be||'')}">${esc(b)}</span>`;return r};
@@ -1770,7 +1807,17 @@ function xShow(p){const dc=$('dc');if(!dc||!p)return;const rows=[...dc.querySele
  if(p.s&&p.md&&sp){const d=xpd(p.md);let en=bd2en(p.md),bnv=p.md;if(d){const n=new Date(),yrs=n.getFullYear()-d.y;if(yrs>0){bnv+=' ('+bn(yrs)+' বছর)';en+=' ('+yrs+' yrs)'}}
   sp.after(mk('বিয়ের তারিখ','Marriage date',bnv,en))}
  const ar=find('ঠিকানা');
- if(ar&&p.addr){const l=document.createElement('a');l.className='xmap';l.target='_blank';l.rel='noopener noreferrer';l.href='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(p.addr);l.textContent='📍 ম্যাপে দেখুন';l.setAttribute('data-ne','📍 Open in Maps');ar.lastElementChild.append(' ',l)}
+ if(ar&&(p.addr||p.gps)){const gp=window.gpsOf(p.gps),pin='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.6"/></svg>';
+  const url='https://www.google.com/maps/search/?api=1&query='+(gp?gp.la+','+gp.lo:encodeURIComponent(p.addr));
+  const r=document.createElement('div');r.className='row xgps';
+  r.innerHTML='<span data-ne="'+(gp?'Live location':'Map')+'">'+(gp?'লাইভ লোকেশন':'ম্যাপ')+'</span><span><a class="xmap2" target="_blank" rel="noopener noreferrer" href="'+url+'">'+pin+'<span data-ne="Open in Maps">ম্যাপে খুলুন</span></a></span>';
+  ar.after(r)}
+ if($('ea')&&!$('egps')){const w=document.createElement('div');w.className='gpsw';
+  w.innerHTML='<input class="i" id="egps" inputmode="decimal" placeholder="জিপিএস লোকেশন (২৪.৭১২৩, ৮৯.১২৩৪ বা গুগল ম্যাপ লিংক)" value="'+esc(p.gps||'')+'"><button type="button" class="alt sm" id="egpb">📍 এই ফোনের লোকেশন নিন</button><span class="note" id="egpn" style="margin:0"></span>';
+  $('ea').after(w);
+  $('egpb').onclick=()=>{const n=$('egpn');if(!navigator.geolocation){n.textContent='এই ডিভাইসে জিপিএস নেই';return}
+   n.textContent='লোকেশন খোঁজা হচ্ছে…';
+   navigator.geolocation.getCurrentPosition(q=>{$('egps').value=q.coords.latitude.toFixed(6)+', '+q.coords.longitude.toFixed(6);n.textContent='লোকেশন বসেছে — সংরক্ষণ চাপুন'},()=>{n.textContent='লোকেশন পাওয়া যায়নি — অনুমতি দিন'},{enableHighAccuracy:true,timeout:15000,maximumAge:0})}}
  if($('eph')&&p.s&&!$('emd')){const i=document.createElement('input');i.className='i';i.id='emd';i.placeholder='বিয়ের তারিখ (দিন/মাস/বছর)';i.value=p.md||'';$('eph').after(i)}
  const fs=$('fs');if(fs&&p.s&&![...fs.options].some(o=>o.text=='বিবাহের তারিখ')){const o=document.createElement('option');o.textContent='বিবাহের তারিখ';fs.insertBefore(o,fs.options[2])}}
 function xAnn(){let box=$('anb');if(!box){const bd=$('bd');if(!bd)return;box=document.createElement('div');box.id='anb';bd.after(box)}
@@ -2425,11 +2472,39 @@ requestAnimationFrame(tick);
 </script><style>
 html.dlgo,html.dlgo body{overflow:hidden!important}
 dialog{overscroll-behavior:contain}
-#off{bottom:calc(6px + env(safe-area-inset-bottom,0px));width:auto;max-width:90%;padding:0;gap:0;border:0;border-radius:0;background:none;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;overflow:visible;justify-content:center;text-align:center;pointer-events:none}
-#off.on{border:0;box-shadow:none}
-#off .od,#off svg,#off .sc,#off .ot>span,#off .ot b i{display:none}
+#off{bottom:calc(12px + env(safe-area-inset-bottom,0px));width:auto;max-width:90%;padding:7px 15px 7px 12px;gap:9px;border-radius:999px;background:linear-gradient(180deg,rgba(14,6,14,.92),rgba(8,10,24,.92));border:1px solid rgba(255,69,96,.6);box-shadow:0 0 0 1px rgba(255,69,96,.12) inset,0 0 20px -3px rgba(255,69,96,.7),0 8px 22px -8px #000;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);overflow:hidden;justify-content:center;text-align:center;pointer-events:none}
+#off.on{border:1px solid rgba(52,211,153,.7);box-shadow:0 0 0 1px rgba(52,211,153,.14) inset,0 0 22px -3px rgba(52,211,153,.8),0 8px 22px -8px #000;background:linear-gradient(180deg,rgba(5,20,16,.92),rgba(6,14,24,.92))}
+#off .od{display:block;width:9px;height:9px;background:#ff4560;box-shadow:0 0 8px 2px rgba(255,69,96,.85)}
+#off.on .od{background:#34d399;box-shadow:0 0 9px 2px rgba(52,211,153,.9);animation:none}
+#off svg,#off .ot>span{display:none}
+#off .sc{display:block}
 #off .ot{display:block;flex:none}
-#off .ot b{font:700 13px/1.2 system-ui,-apple-system,sans-serif;letter-spacing:.4px;text-transform:none;text-shadow:0 1px 3px rgba(0,0,0,.95),0 0 10px rgba(0,0,0,.8)}
+#off .ot b{display:block;font:700 12.5px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:3px;text-transform:uppercase;color:#ff6b80;text-shadow:0 0 8px rgba(255,69,96,.9),0 0 16px rgba(255,69,96,.45);font-variant-numeric:tabular-nums}
+#off.on .ot b{color:#5eead4;text-shadow:0 0 8px rgba(52,211,153,.95),0 0 18px rgba(52,211,153,.5)}
+#off .ot b i{display:inline;margin-left:1px}
+#off.on .ot b i{display:none}
+#off.out{animation:offout .45s ease both}
+@keyframes offout{to{opacity:0;transform:translate(-50%,10px) scale(.92)}}
+.cal-dialog .cal-mini{display:flex;flex-direction:column;justify-content:center;align-items:center}
+.cal-dialog .qcm{gap:2px;transition:border-color .25s,box-shadow .25s}
+.cal-dialog .qsv{width:104px;height:104px;margin:4px auto 2px;display:block;overflow:visible}
+.cal-dialog .qr{fill:rgba(6,18,40,.75);stroke:rgba(140,200,255,.4);stroke-width:1.5}
+.cal-dialog .qt line{stroke:rgba(180,215,255,.55);stroke-width:1.2}
+.cal-dialog .qsv text{font:700 9px system-ui,sans-serif;text-anchor:middle;fill:#a9c9ea}
+.cal-dialog .qsv text.qn{fill:#ff6b6b;font-size:10.5px}
+.cal-dialog .qk{fill:#17120a;stroke:#f2c14e;stroke-width:1}
+.cal-dialog .qb{fill:#f2c14e}
+.cal-dialog .ql{stroke:#f2c14e;stroke-width:1.2;stroke-dasharray:2.5 2.5;opacity:.85}
+.cal-dialog .qp{fill:#7fe3ff}
+.cal-dialog .qd{fill:#7fe3ff;stroke:#06182e;stroke-width:1.5}
+.cal-dialog .qs{display:block;font-size:11px;color:#9fc3e6;margin-top:2px;min-height:14px}
+.cal-dialog .qbtn{margin-top:4px;padding:5px 11px;border-radius:999px;border:1px solid rgba(127,227,255,.5);background:rgba(127,227,255,.12);color:#bdf0ff;font:inherit;font-size:11.5px;font-weight:700;cursor:pointer}
+.cal-dialog .qcm.ok{border-color:rgba(52,211,153,.8);box-shadow:0 0 18px -4px rgba(52,211,153,.8)}
+.cal-dialog .qcm.ok .qr{stroke:#34d399}.cal-dialog .qcm.ok .qs{color:#6ee7b7;font-weight:700}.cal-dialog .qcm.ok .qp{fill:#6ee7b7}
+.xmap2{display:inline-flex;align-items:center;gap:6px;padding:6px 13px;border-radius:999px;background:linear-gradient(135deg,#2d8cff,#7a5cff);color:#fff!important;text-decoration:none!important;font-size:.9em;font-weight:700;box-shadow:0 4px 14px -4px rgba(80,120,255,.7)}
+.xmap2 svg{width:15px;height:15px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.gpsw{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:0 0 6px}
+.gpsw .i{flex:1 1 100%;margin:0}
 img.av{width:auto;max-width:100%;height:auto;max-height:260px;border-radius:16px;object-fit:contain}
 img#av.av{width:200px;height:200px;max-width:none;max-height:none;border-radius:50%;object-fit:cover}
 #afp img.av{width:150px;height:150px;max-width:none;max-height:none;border-radius:50%;object-fit:cover}
