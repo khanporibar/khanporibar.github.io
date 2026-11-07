@@ -999,7 +999,8 @@ html.lite #dc.psty .av.rg-pulse{animation:none}
 #dc.bp-dots{background-image:radial-gradient(circle,rgba(255,255,255,.09) 1.2px,transparent 1.7px);background-size:16px 16px}
 #dc.bp-grid{background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:20px 20px}
 #dc.bp-wave{background-image:repeating-radial-gradient(circle at 50% 0,transparent 0 14px,rgba(255,255,255,.05) 14px 16px)}
-.px{color:#eef2ff}
+.px{color:#eef2ff;background:#070b1a;border-radius:24px;padding:12px;font-family:inherit}
+/* Integrated profile mockup layout: compact 4-column action grid */
 .px .pxh{position:relative;text-align:center;padding:16px 14px 14px;margin-bottom:10px;border-radius:26px;border:1px solid #3b82f6;background:linear-gradient(160deg,rgba(109,124,255,.3),rgba(34,211,238,.1))}
 @supports (color:color-mix(in srgb,red,blue)){.px .pxh{border-color:color-mix(in srgb,var(--pa,#3b82f6) 85%,transparent);background:linear-gradient(160deg,color-mix(in srgb,var(--pa,#6d7cff) 30%,transparent),color-mix(in srgb,var(--pb,#22d3ee) 10%,transparent))}}
 .px .pmb{position:absolute;right:12px;top:12px;width:36px;height:36px}
@@ -1022,7 +1023,7 @@ html.lite #dc.psty .pxav:has(.av.rg-pulse){animation:none}
 .pxnk{font-size:14px;color:#a9b6d6}
 .pxp{display:inline-flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px;margin-top:10px;padding:5px 14px;border-radius:999px;background:rgba(79,124,255,.18);color:#9db4ff;font-size:13px}
 .pxp svg{width:15px;height:15px;flex:none}.pxp i{font-style:normal;opacity:.6}
-.pxsg{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:10px;margin-bottom:10px}
+.pxsg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:10px}
 .pxst{text-align:center;padding:14px 10px;border-radius:26px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14)}
 .pxsl{font-size:12px;color:#9aa7c7}
 .pxsb{font-size:26px;font-weight:500;line-height:1.3}
@@ -1040,9 +1041,10 @@ html.lite #dc.psty .pxav:has(.av.rg-pulse){animation:none}
 .px .row a{color:#9db4ff}
 .px .chip{background:rgba(59,130,246,.2);border:1px solid rgba(96,165,250,.5);color:#eef2ff;padding:6px 12px;font-size:13px;margin:0 6px 6px 0}
 .px .note{color:#a9b6d6}
-.pxqs{display:flex;justify-content:space-around;gap:8px}
-.pxq{flex:1;max-width:92px;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;color:#cfd8ee;text-decoration:none;text-align:center}
+.pxqs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;align-items:start}
+.pxq{min-width:0;max-width:none;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;color:#cfd8ee;text-decoration:none;text-align:center;overflow-wrap:anywhere}
 .pxib{width:46px;height:46px;border-radius:15px;display:grid;place-items:center;color:#fff}
+@media(max-width:360px){.pxqs{gap:5px}.pxib{width:42px;height:42px}.pxq{font-size:11px}}
 .pxib svg{width:22px;height:22px}
 .pxad{display:flex;gap:10px;font-size:15px;color:#c3cde6}
 .pxad svg{width:20px;height:20px;flex:none;margin-top:2px}
