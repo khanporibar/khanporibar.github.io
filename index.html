@@ -909,6 +909,100 @@ header#hdr .cl{animation-timing-function:steps(144,end)!important}
 body::after{will-change:transform}
 html.lite body::after{will-change:auto}
 </style>
+<style id="hxd-css">
+dialog.hxd{padding:0;border:1px solid rgba(255,255,255,.16);border-radius:26px;width:min(92vw,380px);max-width:92vw;background:linear-gradient(160deg,rgba(26,34,72,.97),rgba(9,14,36,.98));color:#eef2ff;box-shadow:0 30px 80px rgba(0,0,0,.65),0 0 70px -24px rgb(var(--gr,109 124 255)/.75);overflow:hidden;animation:hxdPop .28s cubic-bezier(.2,1.3,.4,1)!important;-webkit-backdrop-filter:none;backdrop-filter:none}
+dialog.hxd::backdrop{background:rgba(3,6,18,.66);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+@keyframes hxdPop{from{opacity:0;transform:translateY(14px) scale(.93)}to{opacity:1;transform:none}}
+.hxd .hxd-b{padding:26px 22px 8px;text-align:center}
+.hxd .hxd-i{width:60px;height:60px;border-radius:50%;margin:0 auto 14px;display:grid;place-items:center;color:var(--hxc);background:color-mix(in srgb,var(--hxc) 16%,transparent);box-shadow:0 0 0 7px color-mix(in srgb,var(--hxc) 8%,transparent)}
+.hxd .hxd-i svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hxd .hxd-t{margin:0 0 8px;font-size:19px;font-weight:800;line-height:1.3;color:#fff}
+.hxd .hxd-m{margin:0;font-size:15px;line-height:1.65;color:#c4cdea;white-space:pre-line;word-break:break-word;max-height:46vh;overflow:auto}
+.hxd .hxd-in{display:block;width:100%;margin-top:16px;padding:12px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.07);color:#fff;font:inherit;font-size:15px;text-align:left;box-sizing:border-box}
+.hxd .hxd-in:focus{outline:0;border-color:rgb(var(--g2r,34 211 238));box-shadow:0 0 0 3px rgb(var(--g2r,34 211 238)/.25)}
+.hxd .hxd-f{display:flex;gap:10px;padding:18px 18px 18px}
+.hxd .hxd-f button{flex:1;height:48px;border-radius:15px;font:inherit;font-size:15px;font-weight:700;cursor:pointer;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.07);color:#eef2ff;padding:0 10px;transition:transform .12s,filter .15s}
+.hxd .hxd-f button:active{transform:scale(.96)}
+.hxd .hxd-f button.p{border:0;background:linear-gradient(135deg,rgb(var(--gr,109 124 255)),rgb(var(--g2r,34 211 238)));color:#06122b;box-shadow:0 10px 24px -10px rgb(var(--g2r,34 211 238)/.8)}
+.hxd .hxd-f button.d{border:0;background:linear-gradient(135deg,#fb7185,#be123c);color:#fff;box-shadow:0 10px 24px -10px rgba(244,63,94,.85)}
+[data-theme="light"] dialog.hxd{background:linear-gradient(160deg,#fff,#f1f4fb);color:#1d2740;border-color:rgba(20,32,58,.12);box-shadow:0 30px 70px rgba(20,32,58,.28)}
+[data-theme="light"] .hxd .hxd-t{color:#111a33}[data-theme="light"] .hxd .hxd-m{color:#4a5675}
+[data-theme="light"] .hxd .hxd-in{background:#fff;color:#111a33;border-color:rgba(20,32,58,.22)}
+[data-theme="light"] .hxd .hxd-f button{background:#fff;color:#1d2740;border-color:rgba(20,32,58,.16)}
+[data-theme="light"] .hxd .hxd-f button.p{color:#06122b}[data-theme="light"] .hxd .hxd-f button.d{color:#fff}
+@media(prefers-reduced-motion:reduce){dialog.hxd{animation:none!important}}
+</style>
+<script>
+(function(){
+var NA=window.alert.bind(window),NC=window.confirm.bind(window),NP=window.prompt.bind(window);
+var EN=function(){return document.documentElement.lang==='en'};
+var tr=function(m){m=String(m==null?'':m);try{return window.hxTr?window.hxTr(m):m}catch(e){return m}};
+var IC={
+ info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>',
+ ok:'<circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.8 2.8L16 9.5"/>',
+ error:'<path d="M10.3 3.9 2.4 17.5a2 2 0 0 0 1.7 3h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9.5v4M12 17h.01"/>',
+ danger:'<path d="M4 7h16M10 11v6M14 11v6M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12M9 7V4h6v3"/>',
+ logout:'<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/>',
+ ask:'<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 .9-1 1.7M12 17h.01"/>',
+ edit:'<path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>'
+};
+var COL={info:'#60a5fa',ok:'#34d399',error:'#fb7185',danger:'#fb7185',logout:'#fb7185',ask:'#a78bfa',edit:'#22d3ee'};
+var TT={logout:['লগআউট','Log out'],danger:['নিশ্চিত করুন','Please confirm'],ask:['নিশ্চিত করুন','Please confirm'],error:['সমস্যা হয়েছে','Something went wrong'],ok:['সম্পন্ন','Done'],info:['বিজ্ঞপ্তি','Notice'],edit:['তথ্য লিখুন','Enter details']};
+function kindOf(m,type){
+ if(type==='prompt')return 'edit';
+ if(/লগআউট|log ?out/i.test(m))return 'logout';
+ if(type==='confirm')return /মুছ|রিমুভ|কাটবেন|সরালে|বাতিল করবেন|delete|remove|reject|cancel/i.test(m)?'danger':'ask';
+ if(/Failed|হয়নি|যায়নি|পারবেন না|যাবে না|অবৈধ|ভুল|error|denied|permission|ব্যর্থ|সমস্যা|ঠিক নয়|ইতিমধ্যে|বড়/i.test(m))return 'error';
+ if(/সংরক্ষিত|সফল|শেষ!|হয়েছে|saved|done|success/i.test(m))return 'ok';
+ return 'info';
+}
+function okLabel(k,m,type){
+ var e=EN();
+ if(type!=='confirm')return e?'OK':'ঠিক আছে';
+ if(k==='logout')return e?'Log out':'লগআউট';
+ if(/মুছ|delete/i.test(m)&&k==='danger')return e?'Delete':'মুছুন';
+ if(k==='danger')return e?'Yes':'হ্যাঁ';
+ return e?'Confirm':'নিশ্চিত';
+}
+function open(o){
+ return new Promise(function(res){
+  if(typeof HTMLDialogElement==='undefined'||!HTMLDialogElement.prototype.showModal){
+   var r=o.type==='alert'?NA(tr(o.msg)):o.type==='confirm'?NC(tr(o.msg)):NP(String(o.msg),o.val==null?'':o.val);res(o.type==='alert'?undefined:r);return}
+  var e=EN(),msg=o.type==='prompt'?String(o.msg==null?'':o.msg):tr(o.msg);
+  var k=o.kind||kindOf(msg,o.type),d=document.createElement('dialog');
+  d.className='hxd';d.setAttribute('aria-live','assertive');
+  var b=document.createElement('div');b.className='hxd-b';
+  var ic=document.createElement('div');ic.className='hxd-i';ic.style.setProperty('--hxc',COL[k]||COL.info);
+  ic.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true">'+(IC[k]||IC.info)+'</svg>';
+  var t=document.createElement('h3');t.className='hxd-t';t.textContent=(TT[k]||TT.info)[e?1:0];
+  var m=document.createElement('p');m.className='hxd-m';m.textContent=msg;
+  b.appendChild(ic);b.appendChild(t);b.appendChild(m);
+  var inp=null;
+  if(o.type==='prompt'){inp=document.createElement('input');inp.type='text';inp.className='hxd-in';inp.value=o.val==null?'':String(o.val);inp.setAttribute('autocomplete','off');b.appendChild(inp)}
+  var f=document.createElement('div');f.className='hxd-f';
+  var done=false,cancel=null,ok=document.createElement('button');
+  ok.type='button';ok.textContent=okLabel(k,msg,o.type);ok.className=(k==='danger'||k==='logout'||k==='error'&&o.type==='confirm')?'d':'p';
+  if(o.type!=='alert'){cancel=document.createElement('button');cancel.type='button';cancel.textContent=e?'Cancel':'বাতিল';f.appendChild(cancel)}
+  f.appendChild(ok);
+  var w=document.createElement('div');w.appendChild(b);w.appendChild(f);d.appendChild(w);
+  function fin(v){if(done)return;done=true;try{d.close()}catch(x){}setTimeout(function(){if(d.parentNode)d.remove()},50);res(v)}
+  var yes=function(){fin(o.type==='prompt'?inp.value:o.type==='confirm'?true:undefined)};
+  var no=function(){fin(o.type==='prompt'?null:o.type==='confirm'?false:undefined)};
+  ok.onclick=yes;if(cancel)cancel.onclick=no;
+  d.addEventListener('cancel',function(ev){ev.preventDefault();no()});
+  d.addEventListener('click',function(ev){if(ev.target===d)no()});
+  d.addEventListener('close',function(){if(!done){done=true;res(o.type==='prompt'?null:o.type==='confirm'?false:undefined)}if(d.parentNode)d.remove()});
+  if(inp)inp.addEventListener('keydown',function(ev){if(ev.key==='Enter'){ev.preventDefault();yes()}});
+  document.body.appendChild(d);d.showModal();
+  try{if(inp){inp.focus();inp.select()}else if(cancel&&(k==='danger'||k==='logout'))cancel.focus();else ok.focus()}catch(x){}
+ });
+}
+window.hxAlert=function(m){return open({type:'alert',msg:m})};
+window.hxConfirm=function(m,opt){return open(Object.assign({type:'confirm',msg:m},opt||{}))};
+window.hxPrompt=function(m,v){return open({type:'prompt',msg:m,val:v})};
+window.alert=function(m){hxAlert(m)};
+})();
+</script>
 <script>window.hxIdle=function(f,t){var r=function(){var g=function(){try{f()}catch(e){console.error(e)}};window.requestIdleCallback?requestIdleCallback(g,{timeout:t||1500}):setTimeout(g,300)};document.readyState==="complete"?r():addEventListener("load",r,{once:true})}</script>
 <header id="hdr" data-tod="dusk"><div class="scene"><svg class="hsc" viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="ska" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--s1)"/><stop offset=".6" style="stop-color:var(--s2)"/><stop offset="1" style="stop-color:var(--s3)"/></linearGradient>
 <linearGradient id="gda" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--gr1)"/><stop offset="1" style="stop-color:var(--gr2)"/></linearGradient>
@@ -1434,7 +1528,7 @@ function applyAv(ids){const els=[...document.querySelectorAll('.av2[data-pid]')]
 const gate=(k)=>{$('app').classList.toggle('hide',!!k);$('gate').classList.toggle('hide',!k);$('out').classList.toggle('hide',!me);
  if(k)$('gate').innerHTML=k=='login'?'<h2>পরিবারের সদস্যদের জন্য</h2><p>চালিয়ে যেতে Google দিয়ে সাইন ইন করুন।</p><button id="login">Google দিয়ে সাইন ইন</button>':'<h2>⏳ অনুমোদনের অপেক্ষায়</h2><p>আপনার অনুরোধ অ্যাডমিনের কাছে গেছে। অনুমোদন হলে পেজটা রিফ্রেশ করুন।</p>';
  if($('login'))$('login').onclick=()=>signInWithPopup(auth,new GoogleAuthProvider()).catch(e=>alert(L('লগইন হয়নি: ')+e.code))};
-$('out').onclick=()=>{if(confirm(lang=='en'?'Do you really want to log out?':'আপনি কি সত্যিই লগআউট করতে চান?'))signOut(auth)};
+$('out').onclick=async()=>{if(await hxConfirm(lang=='en'?'Do you really want to log out?':'আপনি কি সত্যিই লগআউট করতে চান?',{kind:'logout'}))signOut(auth)};
 const authCb=async u=>{unsub.forEach(f=>f());unsub=[];me=u;if(!u){window.__fastOk=false;try{localStorage.removeItem('khanFastU')}catch(e){}myClaim=null;claims=[];people=[];map={};roots=[];sug=[];usr=[];areq=[];preq=[];avs={};avsF={};ntc=[];ntcAll=[];polls=[];chs={};dU=[];hist=null;curChat=null;isAdm=false;isOwn=false;window.__isAdm=false;dispatchEvent(new Event('hxadm'));window._psig='';try{$('tree').innerHTML='';$('chat').classList.add('hide');$('t2').classList.add('hide');tab(1)}catch(e){}gate('login');return}
  const ref=doc(db,'users',u.uid);let s=null,fast=false;try{const c=await getDocFromCache(ref);if(c.exists()&&c.data().status=='approved'&&(u.email!==OWNER||c.data().admin)){s=c;fast=true}}catch(e){}
  if(u.__fast&&(!s||me!==u))return;
@@ -1583,7 +1677,7 @@ ${(isMe(p)||LK)?'':`<details>${pmr('soc',TL('সোশ্যাল অ্যা�
    $('sty-sv').onclick=async()=>{const v=[cur.c,cur.r,cur.b,cur.e].join('|');try{await updateDoc(doc(db,'people',p.id),{sty:v});p.sty=v;$('sty-sv').textContent='✔ '+L('সংরক্ষিত')}catch(e){alert('Failed: '+(e.code||e.message))}};
    $('sty-rs').onclick=async()=>{try{await updateDoc(doc(db,'people',p.id),{sty:deleteField()});p.sty='';dc.classList.remove('psty');STB.forEach(x=>dc.classList.remove('bp-'+x[0]));const av=$('av');if(av)STR.forEach(x=>av.classList.remove('rg-'+x[0]));const pe=dc.querySelector('.pe');if(pe)pe.textContent=p.g=='m'?'👨':'👩'}catch(e){alert('Failed: '+(e.code||e.message))}}}}
  $('dc').querySelectorAll('.chip[data-id]').forEach(c=>c.onclick=()=>{if(window.__curP&&window.__curP.id!==c.dataset.id)(window.__pStack=window.__pStack||[]).push(window.__curP.id);show(map[c.dataset.id]);dlg.scrollTop=0});
-  {const cx=$('pxcl');if(cx)cx.onclick=()=>dlg.close();const bk=$('pxbk');if(bk)bk.onclick=()=>{const m=$('pmenu');if(m&&!m.classList.contains('hide')){m.classList.add('hide');m.querySelectorAll('details[open]').forEach(d=>d.open=false);const b=$('pmb');if(b)b.setAttribute('aria-expanded','false');dlg.scrollTop=0}else if(!window.__profBack||!window.__profBack())dlg.close()};$('dc').querySelectorAll('.pxqr[data-cp]').forEach(b=>b.onclick=async()=>{const s=b.querySelector('span'),o=s.innerHTML;try{await navigator.clipboard.writeText(b.dataset.cp);s.textContent='✔';setTimeout(()=>{s.innerHTML=o},1300)}catch(e){prompt('Copy:',b.dataset.cp)}})}
+  {const cx=$('pxcl');if(cx)cx.onclick=()=>dlg.close();const bk=$('pxbk');if(bk)bk.onclick=()=>{const m=$('pmenu');if(m&&!m.classList.contains('hide')){m.classList.add('hide');m.querySelectorAll('details[open]').forEach(d=>d.open=false);const b=$('pmb');if(b)b.setAttribute('aria-expanded','false');dlg.scrollTop=0}else if(!window.__profBack||!window.__profBack())dlg.close()};$('dc').querySelectorAll('.pxqr[data-cp]').forEach(b=>b.onclick=async()=>{const s=b.querySelector('span'),o=s.innerHTML;try{await navigator.clipboard.writeText(b.dataset.cp);s.textContent='✔';setTimeout(()=>{s.innerHTML=o},1300)}catch(e){hxPrompt('Copy:',b.dataset.cp)}})}
  if($('fb'))$('fb').onclick=async()=>{const v=$('fv').value.trim();if(!v)return;await addDoc(collection(db,'suggestions'),{pid:p.id,pn:p.n,f:$('fs').value,v,w:me.displayName||me.email,uid:me.uid,status:'pending',at:serverTimestamp()});notify('sug',{kind:'suggestion'});$('dc').innerHTML='<h2>ধন্যবাদ! 🙏</h2><p>আপনার তথ্য অ্যাডমিনের যাচাইয়ের জন্য জমা হয়েছে।</p>'};
   dlg.querySelectorAll('.spi').forEach(b=>b.onclick=()=>{dlg.querySelectorAll('.spi').forEach(z=>z.classList.remove('on'));b.classList.add('on');$('sps').value=b.dataset.k;const x=SOC.find(a=>a[0]==b.dataset.k);$('spl').textContent=x[1];$('spu').placeholder=b.dataset.k=='wa'?'হোয়াটসঅ্যাপ নম্বর (যেমন 017...)':b.dataset.k=='tg'||b.dataset.k=='ig'||b.dataset.k=='th'?'@ইউজারনেম বা লিংক':'লিংক'});
   if($('spb'))$('spb').onclick=async()=>{const k=$('sps').value,raw=$('spu').value.trim(),u=normUrl(k,raw);if(raw&&!u)return alert(L('সঠিক লিংক দিন'));const x=SOC.find(a=>a[0]==k);try{if(CE){await updateDoc(doc(db,'people',p.id),{['soc.'+k]:u});dlg.close()}else{if(!u)return alert(L('লিংক লিখুন'));await reqEd(p.id,p.n,x[1]+' লিংক',u);dlg.close()}}catch(e){alert('Failed: '+(e.code||e.message))}};
@@ -1596,9 +1690,9 @@ ${(isMe(p)||LK)?'':`<details>${pmr('soc',TL('সোশ্যাল অ্যা�
   if(CE)await setDoc(doc(db,'avatars',p.id),{data,full,by:me.email});else{await addDoc(collection(db,'avatarReq'),{pid:p.id,pn:p.n,data,full,w:me.displayName||me.email,uid:me.uid,status:'pending',at:serverTimestamp()});notify('sug',{kind:'avatar'})}
   $('dc').innerHTML=`<h2>ধন্যবাদ! 🙏</h2><p>${CE?'ছবি যোগ হয়েছে।':'আপনার তথ্য অ্যাডমিনের যাচাইয়ের জন্য জমা হয়েছে।'}</p>`};
  const reqEd=async(pid,pn,f,v)=>{await addDoc(collection(db,'suggestions'),{pid,pn,f,v,w:me.displayName||me.email,uid:me.uid,status:'pending',at:serverTimestamp()});notify('sug',{kind:'suggestion'});toast('ধন্যবাদ! 🙏','আপনার তথ্য অ্যাডমিনের যাচাইয়ের জন্য জমা হয়েছে।')};
- const enEd=(btn,pid,pn,cur,fld,flab,el,can=CE)=>{if(!btn)return;btn.onclick=async()=>{const v=prompt(can?'English name:':'English name (request will go to admin):',cur||trText(pn));if(v===null)return;const nv=v.trim();try{if(can){await updateDoc(doc(db,'people',pid),{[fld]:nv});el.dataset.ne=nv;el.textContent=nv||trText(pn)}else{if(!nv)return;await reqEd(pid,pn,flab,nv)}}catch(err){alert('Failed: '+(err.code||err.message))}}};
+ const enEd=(btn,pid,pn,cur,fld,flab,el,can=CE)=>{if(!btn)return;btn.onclick=async()=>{const v=await hxPrompt(can?'English name:':'English name (request will go to admin):',cur||trText(pn));if(v===null)return;const nv=v.trim();try{if(can){await updateDoc(doc(db,'people',pid),{[fld]:nv});el.dataset.ne=nv;el.textContent=nv||trText(pn)}else{if(!nv)return;await reqEd(pid,pn,flab,nv)}}catch(err){alert('Failed: '+(err.code||err.message))}}};
  if(p.par)enEd($('pne'),p.par.id,p.par.n,p.par.ne,'ne','ইংরেজি নাম',$('pnm'),(isOwn&&!p.par.ouid)||!!(p.par.ouid&&me&&p.par.ouid===me.uid));
- if(p.s){if(p.g=='m'&&sps(p).length>1){const b=$('sne');if(b)b.onclick=async()=>{const v=prompt(CE?'English names (separate with •):':'English names (request will go to admin):',p.se||trText(p.s));if(v===null)return;const nv=v.trim();try{if(CE){await updateDoc(doc(db,'people',p.id),{se:nv});setTimeout(()=>{const np=map[p.id];if(np&&dlg.open)show(np)},300)}else{if(!nv)return;await reqEd(p.id,p.n,'স্ত্রী/স্বামীর ইংরেজি নাম',nv)}}catch(err){alert('Failed: '+(err.code||err.message))}}}else enEd($('sne'),p.id,p.s,p.se,'se','স্ত্রী/স্বামীর ইংরেজি নাম',$('snm'))}
+ if(p.s){if(p.g=='m'&&sps(p).length>1){const b=$('sne');if(b)b.onclick=async()=>{const v=await hxPrompt(CE?'English names (separate with •):':'English names (request will go to admin):',p.se||trText(p.s));if(v===null)return;const nv=v.trim();try{if(CE){await updateDoc(doc(db,'people',p.id),{se:nv});setTimeout(()=>{const np=map[p.id];if(np&&dlg.open)show(np)},300)}else{if(!nv)return;await reqEd(p.id,p.n,'স্ত্রী/স্বামীর ইংরেজি নাম',nv)}}catch(err){alert('Failed: '+(err.code||err.message))}}}else enEd($('sne'),p.id,p.s,p.se,'se','স্ত্রী/স্বামীর ইংরেজি নাম',$('snm'))}
  if(CE){const ref=doc(db,'people',p.id);
   $('sv').onclick=async()=>{const s_=$('es').value.trim();let se_=$('ese').value.trim();if(!se_&&s_&&s_!==p.s)se_=trText(s_);const nn_=$('en').value.trim()||p.n;let ne_=$('ene').value.trim();if(!ne_&&nn_!==p.n)ne_=trText(nn_);await updateDoc(ref,{n:nn_,ne:ne_,b:$('eb').value.trim(),...(($('ehy')&&$('ehy').checked!==!!p.hby)?{hby:$('ehy').checked}:{}),...($('ed')?{d:$('ed').value.trim()}:{}),nk:$('enk').value.trim(),edu:$('eedu').value.trim(),wp:$('ewp').value.trim(),em:$('eem').value.trim(),...($('egr')?{grave:$('egr').value.trim()}:{}),s:s_,se:se_,...(SELF?{}:{g:$('eg').value}),bg:$('ebg').value,job:$('ej').value.trim(),addr:$('ea').value.trim(),ph:$('eph').value.trim(),...($('egps')?{gps:(()=>{const g=window.gpsOf($('egps').value);return g?g.la.toFixed(6)+','+g.lo.toFixed(6):''})()}:{}),...($('emd')?{md:$('emd').value.trim()}:{}),...($('edid')?{did:normUrl('web',$('edid').value)}:{}),...(($('epar')&&$('epar').value!=p.parent)?{parent:$('epar').value,o:(map[$('epar').value]?.k.length||0),mo:null}:($('emo')?{mo:(+$('emo').value>=0?+$('emo').value:null)}:{}))});dlg.close()};
   if($('ac'))$('ac').onclick=async()=>{
@@ -1606,17 +1700,17 @@ ${(isMe(p)||LK)?'':`<details>${pmr('soc',TL('সোশ্যাল অ্যা�
     const kbv=bn(($('kb').value||'').trim());try{await updateDoc(ref,{kids:arrayUnion(Object.assign({id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),n:nm,g:$('kg').value},kbv?{b:kbv}:{}))});setTimeout(()=>{const np=map[p.id];if(np&&dlg.open)show(np)},300)}catch(e){alert('Failed: '+(e.code||e.message))}
     return}
    await addDoc(collection(db,'people'),{n:'নতুন সদস্য',g:'m',b:'',d:'',s:'',parent:p.id,o:p.k.length,notes:[]});dlg.close()};
-  $('dc').querySelectorAll('.kgp[data-kid]').forEach(e=>e.onclick=async ev=>{if(!CE||SELF||ev.target.closest('[data-kd]'))return;const c=(p.kids||[]).find(x=>x.id==e.dataset.kid);if(!c)return;const v=prompt('জন্মতারিখ (দিন/মাস/বছর):',c.b||'');if(v===null)return;try{await updateDoc(ref,{kids:(p.kids||[]).map(x=>x.id==c.id?Object.assign({},x,{b:bn(v.trim())}):x)});setTimeout(()=>{const np=map[p.id];if(np&&dlg.open)show(np)},300)}catch(err){alert('Failed: '+(err.code||err.message))}});
-  $('dc').querySelectorAll('[data-kd]').forEach(b=>b.onclick=async()=>{if(!confirm(L('সত্যিই মুছবেন?')))return;try{await updateDoc(ref,{kids:(p.kids||[]).filter(c=>c.id!=b.dataset.kd)})}catch(e){alert('Failed: '+(e.code||e.message))}});
-  if($('dl'))$('dl').onclick=async()=>{if(p.k.length)return alert(L('আগে সন্তানদের মুছুন বা সরান।'));if(confirm(L('সত্যিই মুছবেন?'))){await deleteDoc(ref);deleteDoc(doc(db,'avatars',p.id)).catch(()=>{});dlg.close()}}}
- {const ad=$('adid');if(ad){let lp=0,tm;const edl=async()=>{const v=prompt('অন্তর ডিজিটাল আইডি লিংক:',p.did||'');if(v===null)return;try{await updateDoc(doc(db,'people',p.id),{did:normUrl('web',v)});toast('✔','অন্তর ডিজিটাল আইডি লিংক সংরক্ষিত হয়েছে।')}catch(e){alert('Failed: '+(e.code||e.message))}};const go=()=>{if(safeUrl(p.did))window.open(safeUrl(p.did),'_blank','noopener');else if(CE)edl();else toast('অন্তর ডিজিটাল আইডি','লিংক এখনও যোগ করা হয়নি।')};if(CE){ad.addEventListener('pointerdown',()=>{lp=0;tm=setTimeout(()=>{lp=1;edl()},800)});['pointerup','pointerleave','pointercancel'].forEach(ev=>ad.addEventListener(ev,()=>clearTimeout(tm)))}ad.onclick=()=>{if(lp){lp=0;return}go()};ad.onkeydown=e=>{if(e.key=='Enter'||e.key==' '){e.preventDefault();go()}}}}
-  if($('clb'))$('clb').onclick=async()=>{if(!confirm('"'+p.n+'" কি সত্যিই আপনার নিজের প্রোফাইল?\n\nঅ্যাডমিন যাচাই করে অনুমোদন দিলে এটি আপনার নিয়ন্ত্রণে যাবে। অনুমোদনের আগে আর কোনো প্রোফাইল দাবি করা যাবে না।'))return;try{await setDoc(doc(db,'claims',me.uid),{pid:p.id,pn:p.n,w:me.displayName||me.email||'',em:me.email||'',uid:me.uid,at:serverTimestamp()});notify('sug',{kind:'claim',pn:p.n,who:me.displayName||me.email||''});toast('🙏','আপনার দাবি অ্যাডমিনের কাছে গেছে।');dlg.close()}catch(e){alert('দাবি পাঠানো যায়নি: '+(e.code||e.message)+(String(e.code||'').includes('permission')?'\nFirestore rules Publish করা আছে কিনা দেখুন।':''))}};
+  $('dc').querySelectorAll('.kgp[data-kid]').forEach(e=>e.onclick=async ev=>{if(!CE||SELF||ev.target.closest('[data-kd]'))return;const c=(p.kids||[]).find(x=>x.id==e.dataset.kid);if(!c)return;const v=await hxPrompt('জন্মতারিখ (দিন/মাস/বছর):',c.b||'');if(v===null)return;try{await updateDoc(ref,{kids:(p.kids||[]).map(x=>x.id==c.id?Object.assign({},x,{b:bn(v.trim())}):x)});setTimeout(()=>{const np=map[p.id];if(np&&dlg.open)show(np)},300)}catch(err){alert('Failed: '+(err.code||err.message))}});
+  $('dc').querySelectorAll('[data-kd]').forEach(b=>b.onclick=async()=>{if(!await hxConfirm(L('সত্যিই মুছবেন?')))return;try{await updateDoc(ref,{kids:(p.kids||[]).filter(c=>c.id!=b.dataset.kd)})}catch(e){alert('Failed: '+(e.code||e.message))}});
+  if($('dl'))$('dl').onclick=async()=>{if(p.k.length)return alert(L('আগে সন্তানদের মুছুন বা সরান।'));if(await hxConfirm(L('সত্যিই মুছবেন?'))){await deleteDoc(ref);deleteDoc(doc(db,'avatars',p.id)).catch(()=>{});dlg.close()}}}
+ {const ad=$('adid');if(ad){let lp=0,tm;const edl=async()=>{const v=await hxPrompt('অন্তর ডিজিটাল আইডি লিংক:',p.did||'');if(v===null)return;try{await updateDoc(doc(db,'people',p.id),{did:normUrl('web',v)});toast('✔','অন্তর ডিজিটাল আইডি লিংক সংরক্ষিত হয়েছে।')}catch(e){alert('Failed: '+(e.code||e.message))}};const go=()=>{if(safeUrl(p.did))window.open(safeUrl(p.did),'_blank','noopener');else if(CE)edl();else toast('অন্তর ডিজিটাল আইডি','লিংক এখনও যোগ করা হয়নি।')};if(CE){ad.addEventListener('pointerdown',()=>{lp=0;tm=setTimeout(()=>{lp=1;edl()},800)});['pointerup','pointerleave','pointercancel'].forEach(ev=>ad.addEventListener(ev,()=>clearTimeout(tm)))}ad.onclick=()=>{if(lp){lp=0;return}go()};ad.onkeydown=e=>{if(e.key=='Enter'||e.key==' '){e.preventDefault();go()}}}}
+  if($('clb'))$('clb').onclick=async()=>{if(!await hxConfirm('"'+p.n+'" কি সত্যিই আপনার নিজের প্রোফাইল?\n\nঅ্যাডমিন যাচাই করে অনুমোদন দিলে এটি আপনার নিয়ন্ত্রণে যাবে। অনুমোদনের আগে আর কোনো প্রোফাইল দাবি করা যাবে না।'))return;try{await setDoc(doc(db,'claims',me.uid),{pid:p.id,pn:p.n,w:me.displayName||me.email||'',em:me.email||'',uid:me.uid,at:serverTimestamp()});notify('sug',{kind:'claim',pn:p.n,who:me.displayName||me.email||''});toast('🙏','আপনার দাবি অ্যাডমিনের কাছে গেছে।');dlg.close()}catch(e){alert('দাবি পাঠানো যায়নি: '+(e.code||e.message)+(String(e.code||'').includes('permission')?'\nFirestore rules Publish করা আছে কিনা দেখুন।':''))}};
   if($('clx'))$('clx').onclick=async()=>{try{await deleteDoc(doc(db,'claims',me.uid));dlg.close()}catch(e){alert('Failed: '+(e.code||e.message))}};
-  if($('oset'))$('oset').onclick=async()=>{const uid=$('osel').value;if(!uid)return alert('একজন সদস্য বেছে নিন।');const u=usr.find(x=>x.id==uid);if(!u)return;const other=people.find(x=>x.ouid==uid&&x.id!=p.id);if(other)return alert((u.name||u.email)+' ইতিমধ্যে "'+other.n+'" প্রোফাইলের মালিক। আগে সেখান থেকে সরান।');if(!confirm((u.name||u.email)+' ('+u.email+') কে "'+p.n+'" প্রোফাইলের মালিক করবেন?\n\nএরপর অ্যাডমিন সহ আর কেউ এই প্রোফাইলে সম্পাদনা বা সাজেশন পাঠাতে পারবে না।'))return;try{await updateDoc(doc(db,'people',p.id),{ouid:uid,oem:u.email||'',onm:u.name||''});toast('✔','প্রোফাইল মালিক সেট হয়েছে।');dlg.close()}catch(e){alert('সেট হয়নি: '+(e.code||e.message)+(String(e.code||'').includes('permission')?'\nFirestore rules আপডেট করুন।':''))}};
-  if($('oun'))$('oun').onclick=async()=>{if(isOwnP(p))return;if(!confirm('মালিকানা সরালে প্রোফাইল আবার অ্যাডমিনের নিয়ন্ত্রণে ফিরবে। নিশ্চিত?'))return;try{await updateDoc(doc(db,'people',p.id),{ouid:deleteField(),oem:deleteField(),onm:deleteField()});toast('✔','মালিকানা সরানো হয়েছে।');dlg.close()}catch(e){alert('Failed: '+(e.code||e.message))}};
+  if($('oset'))$('oset').onclick=async()=>{const uid=$('osel').value;if(!uid)return alert('একজন সদস্য বেছে নিন।');const u=usr.find(x=>x.id==uid);if(!u)return;const other=people.find(x=>x.ouid==uid&&x.id!=p.id);if(other)return alert((u.name||u.email)+' ইতিমধ্যে "'+other.n+'" প্রোফাইলের মালিক। আগে সেখান থেকে সরান।');if(!await hxConfirm((u.name||u.email)+' ('+u.email+') কে "'+p.n+'" প্রোফাইলের মালিক করবেন?\n\nএরপর অ্যাডমিন সহ আর কেউ এই প্রোফাইলে সম্পাদনা বা সাজেশন পাঠাতে পারবে না।'))return;try{await updateDoc(doc(db,'people',p.id),{ouid:uid,oem:u.email||'',onm:u.name||''});toast('✔','প্রোফাইল মালিক সেট হয়েছে।');dlg.close()}catch(e){alert('সেট হয়নি: '+(e.code||e.message)+(String(e.code||'').includes('permission')?'\nFirestore rules আপডেট করুন।':''))}};
+  if($('oun'))$('oun').onclick=async()=>{if(isOwnP(p))return;if(!await hxConfirm('মালিকানা সরালে প্রোফাইল আবার অ্যাডমিনের নিয়ন্ত্রণে ফিরবে। নিশ্চিত?'))return;try{await updateDoc(doc(db,'people',p.id),{ouid:deleteField(),oem:deleteField(),onm:deleteField()});toast('✔','মালিকানা সরানো হয়েছে।');dlg.close()}catch(e){alert('Failed: '+(e.code||e.message))}};
  if(isOwn&&!p.ouid){const c=claims.find(x=>x.pid==p.id);if(c){const d=document.createElement('div');d.className='pend';d.id='clrv';d.style.cssText='border-left-color:#ef4444;margin:0 0 12px';d.innerHTML=`🙋 <b>${esc(c.w||'')}</b> <small>${esc(c.em||'')}</small><br>${TL('দাবি করছেন: এটা তাঁর নিজের প্রোফাইল। নিচের তথ্য মিলিয়ে দেখে সিদ্ধান্ত নিন।','Claims this is their own profile. Check the details below, then decide.')}<div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap"><button id="clok">${ICO.ok}${TL('মেনে নিন (মালিক করুন)','Accept (make owner)')}</button><button class="alt" id="clno">${ICO.x}${TL('বাতিল','Reject')}</button></div>`;$('dc').prepend(d);
   $('clok').onclick=()=>claimOk(c,$('clok'),()=>dlg.close());
-  $('clno').onclick=async()=>{if(!confirm(dvT('দাবিটি বাতিল করবেন?','Reject this claim?')))return;try{await deleteDoc(doc(db,'claims',c.id));dlg.close()}catch(e){alert('Failed: '+(e.code||e.message))}}}}
+  $('clno').onclick=async()=>{if(!await hxConfirm(dvT('দাবিটি বাতিল করবেন?','Reject this claim?')))return;try{await deleteDoc(doc(db,'claims',c.id));dlg.close()}catch(e){alert('Failed: '+(e.code||e.message))}}}}
  if(!dlg.open)dlg.showModal()}
 const FM={'ফেসবুক লিংক':'soc.fb','হোয়াটসঅ্যাপ লিংক':'soc.wa','ইনস্টাগ্রাম লিংক':'soc.ig','থ্রেডস লিংক':'soc.th','টেলিগ্রাম লিংক':'soc.tg','ইউটিউব লিংক':'soc.yt','ওয়েবসাইট লিংক':'soc.web','জন্মতারিখ':'b','মৃত্যুতারিখ':'d','স্ত্রী/স্বামীর নাম':'s','রক্তের গ্রুপ':'bg','পেশা':'job','ঠিকানা':'addr','ফোন নম্বর':'ph','বিবাহের তারিখ':'md','ইংরেজি নাম':'ne','স্ত্রী/স্বামীর ইংরেজি নাম':'se','বাংলা নাম':'n','ডাকনাম':'nk','শিক্ষাগত যোগ্যতা':'edu','কর্মস্থল / প্রতিষ্ঠান':'wp','ইমেইল':'em','কবরস্থান / দাফনের স্থান':'grave'};
 function hdrAdm(){const a=$('adm');if(!a||$('hdrcfg'))return;const ks=window.HX_KEYS||[],off=new Set(window.__hdrOff||[]);
@@ -1651,9 +1745,9 @@ function adm0(){setTimeout(()=>{if(isOwn){hdrAdm();fxAdm()}},0);const pu=usr.fil
  $('adm').querySelectorAll('button[data-pr]').forEach(b=>b.onclick=async()=>{const a=areq.find(x=>x.id==b.dataset.pr);await deleteDoc(doc(db,'avatarReq',b.dataset.pr));if(a&&a.uid)notify('avno',{uid:a.uid,pn:a.pn})});
   $('adm').querySelectorAll('img[data-gpv]').forEach(m=>m.onclick=()=>{const a=preq.find(x=>x.id==m.dataset.gpv);if(a&&imgOk(a.data))viewPhoto({title:a.title,data:a.data})});
   $('adm').querySelectorAll('button[data-gpa]').forEach(b=>b.onclick=async()=>{if(!isOwn)return;const a=preq.find(x=>x.id==b.dataset.gpa);if(!a||!imgOk(a.data))return alert('অবৈধ ছবি');b.disabled=true;try{await addDoc(collection(db,'photos'),Object.assign({title:a.title||'',data:a.data,at:serverTimestamp()},a.alb?{alb:a.alb}:{},(a.tags&&a.tags.length)?{tags:a.tags}:{}));await deleteDoc(doc(db,'photoReq',a.id));notify('photo',{title:a.title||''})}catch(e){b.disabled=false;alert('অনুমোদন করা যায়নি: '+(e.code||e.message||e))}});
-  $('adm').querySelectorAll('button[data-gpr]').forEach(b=>b.onclick=async()=>{if(!isOwn)return;if(!confirm(L('অনুরোধটি বাতিল করবেন?')))return;b.disabled=true;try{await deleteDoc(doc(db,'photoReq',b.dataset.gpr))}catch(e){b.disabled=false;alert('বাতিল করা যায়নি: '+(e.code||e.message||e))}});
- $('adm').querySelectorAll('button[data-rm]').forEach(b=>b.onclick=async()=>{if(!isOwn)return;const id=b.dataset.rm;if(!confirm(b.dataset.nm+' — সদস্যকে রিমুভ করবেন? সে আর অ্যাপে ঢুকতে পারবে না (আবার অনুমোদন লাগবে)।'))return;b.disabled=true;try{await deleteDoc(doc(db,'users',id));deleteDoc(doc(db,'members',id)).catch(()=>{});toast('✔',b.dataset.nm+' — রিমুভ হয়েছে')}catch(e){alert('রিমুভ হয়নি: '+(e.code||e.message)+(String(e.code||'').includes('permission')?'\n(Firestore rules-এ মালিককে users ডকুমেন্ট delete করার অনুমতি দিন)':''));b.disabled=false}});
- $('adm').querySelectorAll('button[data-ut]').forEach(b=>b.onclick=async()=>{const mk=b.dataset.av=='1';if(!confirm(b.dataset.nm+' — '+L(mk?'অ্যাডমিন করবেন?':'অ্যাডমিন থেকে কাটবেন?')))return;try{await updateDoc(doc(db,'users',b.dataset.ut),{admin:mk});notify(mk?'admin':'adminoff',{uid:b.dataset.ut});toast('✔',b.dataset.nm+(mk?' — অ্যাডমিন হয়েছে':' — অ্যাডমিন থেকে কাটা হয়েছে'))}catch(e){alert('হয়নি: '+(e.code||e.message))}});
+  $('adm').querySelectorAll('button[data-gpr]').forEach(b=>b.onclick=async()=>{if(!isOwn)return;if(!await hxConfirm(L('অনুরোধটি বাতিল করবেন?')))return;b.disabled=true;try{await deleteDoc(doc(db,'photoReq',b.dataset.gpr))}catch(e){b.disabled=false;alert('বাতিল করা যায়নি: '+(e.code||e.message||e))}});
+ $('adm').querySelectorAll('button[data-rm]').forEach(b=>b.onclick=async()=>{if(!isOwn)return;const id=b.dataset.rm;if(!await hxConfirm(b.dataset.nm+' — সদস্যকে রিমুভ করবেন? সে আর অ্যাপে ঢুকতে পারবে না (আবার অনুমোদন লাগবে)।'))return;b.disabled=true;try{await deleteDoc(doc(db,'users',id));deleteDoc(doc(db,'members',id)).catch(()=>{});toast('✔',b.dataset.nm+' — রিমুভ হয়েছে')}catch(e){alert('রিমুভ হয়নি: '+(e.code||e.message)+(String(e.code||'').includes('permission')?'\n(Firestore rules-এ মালিককে users ডকুমেন্ট delete করার অনুমতি দিন)':''));b.disabled=false}});
+ $('adm').querySelectorAll('button[data-ut]').forEach(b=>b.onclick=async()=>{const mk=b.dataset.av=='1';if(!await hxConfirm(b.dataset.nm+' — '+L(mk?'অ্যাডমিন করবেন?':'অ্যাডমিন থেকে কাটবেন?')))return;try{await updateDoc(doc(db,'users',b.dataset.ut),{admin:mk});notify(mk?'admin':'adminoff',{uid:b.dataset.ut});toast('✔',b.dataset.nm+(mk?' — অ্যাডমিন হয়েছে':' — অ্যাডমিন থেকে কাটা হয়েছে'))}catch(e){alert('হয়নি: '+(e.code||e.message))}});
  $('adm').querySelectorAll('button[data-ua]').forEach(b=>b.onclick=async()=>{await updateDoc(doc(db,'users',b.dataset.ua),{status:'approved'});notify('approved',{uid:b.dataset.ua});notify('newmember',{uid:b.dataset.ua})});
  $('adm').querySelectorAll('button[data-ur]').forEach(b=>b.onclick=async()=>{notify('rejected',{uid:b.dataset.ur});await deleteDoc(doc(db,'users',b.dataset.ur))});
  $('adm').querySelectorAll('button[data-sr]').forEach(b=>b.onclick=async()=>{const s=sug.find(x=>x.id==b.dataset.sr);await updateDoc(doc(db,'suggestions',b.dataset.sr),{status:'rejected'});if(s&&s.uid)notify('sugno',{uid:s.uid,pn:s.pn})});
@@ -1716,7 +1810,7 @@ function loadGal0(){if(gU)return;gU=onSnapshot(collection(db,'photos'),sn=>{phot
 function galR0(){if(!$('gu'))$('gadm').innerHTML=isOwn?'<div class="pend"><input type="file" id="gf" accept="image/*"><input class="i" id="gt" placeholder="ছবির শিরোনাম (যেমন: ঈদ মিলন)"><button id="gu" style="margin-top:8px">ছবি যোগ করুন</button></div>':'';
  $('gal').innerHTML=photos.map((x,i)=>`<figure><img decoding="async" src="${imgOk(x.data)}" data-gi="${i}" loading="lazy"><figcaption>${esc(x.title)}${isOwn?` <button class="alt sm" data-gd="${x.id}">মুছুন</button>`:''}</figcaption></figure>`).join('')||'<p class="note">এখনও কোনো ছবি নেই।</p>';
  $('gal').querySelectorAll('img[data-gi]').forEach(m=>m.onclick=()=>viewPhoto(photos[+m.dataset.gi]));
-  $('gal').querySelectorAll('button[data-gd]').forEach(b=>b.onclick=()=>confirm(L('ছবি মুছবেন?'))&&deleteDoc(doc(db,'photos',b.dataset.gd)));
+  $('gal').querySelectorAll('button[data-gd]').forEach(b=>b.onclick=async()=>await hxConfirm(L('ছবি মুছবেন?'))&&deleteDoc(doc(db,'photos',b.dataset.gd)));
  if($('gu'))$('gu').onclick=async()=>{const f=$('gf').files[0];if(!f)return alert(L('ছবি বেছে নিন'));const ti=$('gt').value.trim(),data=await fit(f,2400,.93,950000);await addDoc(collection(db,'photos'),{title:ti,data,at:serverTimestamp()});$('gf').value='';$('gt').value='';notify('photo',{title:ti})}}
 function viewPhoto(x){$('pvc').innerHTML=`<h3 style="margin:0 0 10px">${esc(x.title||'')}</h3><img decoding="async" src="${imgOk(x.data)}" alt="">`;const a=$('pvdl');a.href=x.data;a.download=((x.title||'').replace(/[\\/:*?"<>|]/g,'')||'khan-photo')+'.jpg';if(!pvd.open)pvd.showModal()}
 
@@ -1752,7 +1846,7 @@ function trNode(n){if(n.nodeType==3){if(n.parentElement&&n.parentElement.id=='lg
 new MutationObserver(ms=>{if(lang!='en')return;ms.forEach(m=>m.addedNodes.forEach(trNode))}).observe(document.body,{childList:true,subtree:true});
 function setLang(l){lang=l;try{localStorage.setItem('khanLang',l)}catch(e){}document.documentElement.lang=l;trNode(document.body);document.title=l=='en'?'Khan Family Tree':'খান পরিবারের বংশবৃক্ষ';$('lg').textContent=l=='en'?'বাংলা':'English';if(people.length)relList();try{fitLen()}catch(e){}}
 $('lg').onclick=()=>setLang(lang=='en'?'bn':'en');
-(()=>{const A=window.alert.bind(window),C=window.confirm.bind(window),T=m=>lang=='en'?String(m).split('\n').map(x=>trText(x)).join('\n'):m;window.alert=m=>A(T(m));window.confirm=m=>C(T(m))})();
+(()=>{const A=window.alert.bind(window),C=window.confirm.bind(window),T=m=>lang=='en'?String(m).split('\n').map(x=>trText(x)).join('\n'):m;window.hxTr=T;window.alert=m=>A(T(m));window.confirm=m=>C(T(m))})();
 setLang(lang);
 /* Firebase Console → Project settings → Cloud Messaging → Web Push certificates → Key pair এখানে বসান (SETUP.md দেখুন) */
 const VAPID=String(window.KHAN_VAPID_PUBLIC_KEY||'').trim();
@@ -1905,7 +1999,7 @@ function qrSvg(text,fg){const g=qrMatrix(text);if(!g)return'';const n=g.length,q
 const siteUrl=()=>location.origin+location.pathname.replace(/index\.html$/,'');
 function qrOpen(){const u=siteUrl(),d=$('qd'),msg=TX('খান পরিবারের বংশবৃক্ষ','Khan Family Tree')+' — '+u;
  d.innerHTML=`<div class="qdi"><button class="alt sm qdx" id="qx" aria-label="Close">✕</button><h3>${TL('পরিবারের কাউকে আমন্ত্রণ জানান','Invite a family member')}</h3><div class="qdq">${qrSvg(u)}</div><p class="note qdu">${esc(u)}</p><p class="note">${TL('স্ক্যান করে অ্যাপ খুলুন','Scan to open the app')}</p><div class="qda"><button id="qc">${TL('লিংক কপি','Copy link')}</button><a class="btnl" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(msg)}">WhatsApp</a><button class="alt" id="qs">${TL('অন্যান্য','More')}</button><button class="alt" id="qdl">${TL('ছবি ডাউনলোড','Download image')}</button></div></div>`;
- const cp=()=>{try{navigator.clipboard.writeText(u).then(()=>toast('✔',TX('লিংক কপি হয়েছে','Link copied')),()=>prompt('Link',u))}catch(e){prompt('Link',u)}};
+ const cp=()=>{try{navigator.clipboard.writeText(u).then(()=>toast('✔',TX('লিংক কপি হয়েছে','Link copied')),()=>hxPrompt('Link',u))}catch(e){hxPrompt('Link',u)}};
  $('qx').onclick=()=>d.close();$('qc').onclick=cp;$('qdl').onclick=invDl;$('qs').onclick=()=>{if(navigator.share)navigator.share({title:TX('খান পরিবারের বংশবৃক্ষ','Khan Family Tree'),text:msg,url:u}).catch(()=>{});else cp()};
  d.onclick=e=>{if(e.target===d)d.close()};d.showModal()}
 function invDl(){const u=siteUrl(),g=qrMatrix(u),n=g.length,c=document.createElement('canvas');c.width=600;c.height=860;const x=c.getContext('2d'),ac=getComputedStyle(document.documentElement).getPropertyValue('--g').trim()||'#5b6cff',ff='"Noto Sans Bengali","Hind Siliguri","Segoe UI",sans-serif';
@@ -1986,7 +2080,7 @@ function openChat(id){const c=chs[id];if(!c)return;curChat=id;rpTo=null;let lim=
   $('ma1').onclick=()=>{rpTo={id:m.id,n:sN(m),t:pv};rbR();dlg.close();$('mt').focus()};
   if($('ma2'))$('ma2').onclick=()=>{try{navigator.clipboard.writeText(m.t).then(()=>toast('কপি হয়েছে'))}catch(e){}dlg.close()};
   if($('ma3'))$('ma3').onclick=()=>{updateDoc(doc(db,'chats',id),{pin:{id:m.id,t:pv,n:sN(m)}}).then(()=>notify('pin',{chat:id,text:pv})).catch(()=>denied('পিন করা'));dlg.close()};
-  if($('ma4'))$('ma4').onclick=()=>{dlg.close();if(confirm(L('বার্তাটি মুছবেন?')))deleteDoc(ref).catch(()=>denied('মেসেজ মোছা'))};
+  if($('ma4'))$('ma4').onclick=async()=>{dlg.close();if(await hxConfirm(L('বার্তাটি মুছবেন?')))deleteDoc(ref).catch(()=>denied('মেসেজ মোছা'))};
   if($('ma6'))$('ma6').onclick=()=>nickDlg(m.u);
   if(!dlg.open)dlg.showModal()};
  const mr=()=>{const box=$('ms');if(!box)return;const v=qs.trim().toLowerCase(),near=first||box.scrollHeight-box.scrollTop-box.clientHeight<140,A=v?ML.filter(m=>(m.t||'').toLowerCase().includes(v)||sN(m).toLowerCase().includes(v)):ML;
@@ -2127,7 +2221,7 @@ function xBloodDlg(keep){window.__bloodOpen=1;const L=xActiveBlood(),opts=Object
  if(!dlg.open)dlg.showModal();dlg.addEventListener('close',()=>{window.__bloodOpen=0},{once:true})}
 const L_=t=>lang=='en'?(PD[t]??t):t;
 function xBloodReqHtml(L){return L.length?`<h3 style="margin:8px 0">${TL('এখন যাদের রক্ত দরকার','Active requests')}</h3>`+L.map(x=>`<div class="pend xreq"><b>🩸 ${esc(x.g)}</b> — ${esc(x.pl||'')}${x.wh?`<br><small>⏰ ${esc(x.wh)}</small>`:''}${x.n?`<br><small>${esc(x.n)}</small>`:''}<br><small>${esc(x.w||'')}</small><div style="margin-top:6px;display:flex;gap:8px;flex-wrap:wrap">${x.ph?`<a class="btnl" href="tel:${esc(telN(x.ph))}">📞 ${esc(x.ph)}</a>`:''}${(x.uid==(me&&me.uid)||isOwn)?`<button class="alt sm" data-bd="${x.id}">✔ ${TL('প্রয়োজন মিটেছে','Fulfilled')}</button>`:''}</div></div>`).join(''):`<p class="note">${TL('এখন কোনো জরুরি রক্তের অনুরোধ নেই।','No active blood requests.')}</p>`}
-function xBloodBind(){const b=$('xbl');if(!b)return;b.querySelectorAll('button[data-bd]').forEach(x=>x.onclick=()=>confirm(L_('প্রয়োজন মিটেছে? অনুরোধটি মুছে যাবে।'))&&deleteDoc(doc(db,'bloodReq',x.dataset.bd)).catch(e=>alert(e.code||e.message)))}
+function xBloodBind(){const b=$('xbl');if(!b)return;b.querySelectorAll('button[data-bd]').forEach(x=>x.onclick=async()=>await hxConfirm(L_('প্রয়োজন মিটেছে? অনুরোধটি মুছে যাবে।'))&&deleteDoc(doc(db,'bloodReq',x.dataset.bd)).catch(e=>alert(e.code||e.message)))}
 
 /* ---- ১৮. অ্যালবাম ও ট্যাগ, ১৯. অডিও/ভিডিও ---- */
 const xYt=u=>{const m=String(u||'').match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:.*&)?v=|shorts\/|embed\/|live\/))([A-Za-z0-9_-]{11})/);return m?m[1]:''};
@@ -2140,12 +2234,75 @@ function xVidInfo(u){u=String(u||'');let m;const y=xYt(u);
  return{k:'ext',lb:lang=='en'?'Video':'ভিডিও'}}
 function xVidCard(url,cap){const u=safeUrl(url);if(!u)return '';const i=xVidInfo(u);
  return `<figure class="xmed xv"><div class="xvc" role="button" tabindex="0" aria-label="${lang=='en'?'Play video':'ভিডিও চালান'}" data-vk="${i.k}" data-vid="${esc(i.id||'')}" data-u="${esc(u)}"${i.th?` style="background-image:url('${esc(i.th)}'),linear-gradient(135deg,#1e2a5a,#3b1d5a)"`:''}><span class="xvp"></span><em class="xvl">${esc(i.lb)}</em></div>${cap}</figure>`}
+const xvIc={play:'<path d="M8 5v14l11-7z" fill="currentColor" stroke="none"/>',pause:'<path d="M7 5h4v14H7zM13 5h4v14h-4z" fill="currentColor" stroke="none"/>',fs:'<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>',fsx:'<path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/>',vol:'<path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/>',mute:'<path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor"/><path d="M17 9l5 6M22 9l-5 6"/>'};
+const xvSvg=(n,s)=>`<svg viewBox="0 0 24 24" width="${s||22}" height="${s||22}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${xvIc[n]}</svg>`;
+let xvYT=null;
+function xvApi(){return xvYT||(xvYT=new Promise((res,rej)=>{if(window.YT&&window.YT.Player)return res(window.YT);const prev=window.onYouTubeIframeAPIReady,t=setTimeout(()=>rej(new Error('yt timeout')),12000);window.onYouTubeIframeAPIReady=()=>{clearTimeout(t);try{prev&&prev()}catch(e){}res(window.YT)};const s=document.createElement('script');s.src='https://www.youtube.com/iframe_api';s.onerror=()=>{clearTimeout(t);rej(new Error('yt load'))};document.head.appendChild(s)}).catch(e=>{xvYT=null;throw e}))}
+const xvAll=new Set(),xvFe=()=>document.fullscreenElement||document.webkitFullscreenElement;
+const xvEach=f=>xvAll.forEach(p=>{if(!p.c.isConnected){xvAll.delete(p);return}try{f(p)}catch(e){}});
+window.addEventListener('resize',()=>xvEach(p=>p.rot()));window.addEventListener('orientationchange',()=>setTimeout(()=>xvEach(p=>p.rot()),150));
+['fullscreenchange','webkitfullscreenchange'].forEach(ev=>document.addEventListener(ev,()=>xvEach(p=>p.fsch())));
+document.addEventListener('keydown',e=>{if(e.key=='Escape')xvEach(p=>p.esc())});
+function xvInit(c,k,id,u){
+ const en=lang=='en',T2=(b,e)=>en?e:b,drive=k=='drive',th=c.style.backgroundImage||'';
+ c.innerHTML=`<div class="xvs"><div class="xvf${drive?' xvd':''}"><div class="xvh"></div></div><div class="xvth"></div>`+(drive?`<button type="button" class="xvfb xvfd" aria-label="${T2('ফুলস্ক্রিন','Fullscreen')}"></button>`:`<div class="xvtop"></div><div class="xvsh"></div><button type="button" class="xvcb" aria-label="${T2('চালান / থামান','Play / Pause')}"></button><div class="xvu"><button type="button" class="xvpp" aria-label="${T2('চালান / থামান','Play / Pause')}"></button><span class="xvt xt1">0:00</span><input class="xvr" type="range" min="0" max="1000" value="0" step="1" aria-label="${T2('অগ্রগতি','Seek')}"><span class="xvt xt2">0:00</span><button type="button" class="xvmu" aria-label="${T2('শব্দ','Sound')}"></button><button type="button" class="xvfb" aria-label="${T2('ফুলস্ক্রিন','Fullscreen')}"></button></div>`)+`<div class="xvsp"></div></div>`;
+ const q=s=>c.querySelector(s),st=q('.xvs'),fr=q('.xvf'),thEl=q('.xvth'),bfs=q('.xvfb'),rg=q('.xvr'),t1=q('.xt1'),t2=q('.xt2'),bpp=q('.xvpp'),bcb=q('.xvcb'),bmu=q('.xvmu'),sh=q('.xvsh');
+ thEl.style.backgroundImage=th;
+ let P=null,drag=false,hideT=0,mode=null,dead=false;
+ const fmt=t=>{t=Math.max(0,Math.floor(t||0));const h=Math.floor(t/3600),m=Math.floor(t%3600/60),s=t%60;return(h?h+':'+String(m).padStart(2,'0'):m)+':'+String(s).padStart(2,'0')};
+ const portrait=()=>innerHeight>innerWidth,playing=()=>c.classList.contains('pl');
+ const syncIc=()=>{if(bfs)bfs.innerHTML=xvSvg(mode?'fsx':'fs');if(bpp){bpp.innerHTML=xvSvg(playing()?'pause':'play');bcb.innerHTML=xvSvg(playing()?'pause':'play',30);bmu.innerHTML=xvSvg(P&&P.muted()?'mute':'vol')}};
+ const fit=()=>{const w=c.clientWidth,h=c.clientHeight;if(!w||!h)return;const sw=Math.min(w,h*16/9);st.style.width=sw+'px';st.style.height=(sw*9/16)+'px'};
+ const poke=()=>{c.classList.add('ui');clearTimeout(hideT);if(playing())hideT=setTimeout(()=>c.classList.remove('ui'),3200)};
+ const setGo=()=>{if(!c.classList.contains('go'))c.classList.add('go')};
+ const setPl=on=>{c.classList.toggle('pl',on);if(on){if(!c.classList.contains('go')){c.classList.add('go','cov');setTimeout(()=>c.classList.remove('cov'),4500)}c.classList.remove('bf');poke()}else{clearTimeout(hideT);c.classList.remove('ui')}syncIc()};
+ const rot=()=>c.classList.toggle('xvrot',mode=='pseudo'&&portrait());
+ async function enter(){
+  if(mode)return;let real=false;const rq=c.requestFullscreen||c.webkitRequestFullscreen;
+  if(rq&&screen.orientation&&screen.orientation.lock){
+   try{await rq.call(c,{navigationUI:'hide'});real=true;await screen.orientation.lock('landscape')}
+   catch(e){if(real&&portrait()){try{await(document.exitFullscreen||document.webkitExitFullscreen).call(document)}catch(_){}real=false}}
+  }
+  mode=real?'real':'pseudo';c.classList.add('xvfs');
+  if(!real){if(typeof c.showPopover=='function'){try{c.setAttribute('popover','manual');c.showPopover()}catch(e){c.removeAttribute('popover')}}rot()}
+  document.documentElement.classList.add('xvlock');syncIc();fit();poke()}
+ function cleanup(){
+  if(!mode)return;mode=null;c.classList.remove('xvfs','xvrot');
+  try{if(c.hasAttribute('popover')){c.hidePopover();c.removeAttribute('popover')}}catch(e){c.removeAttribute('popover')}
+  try{screen.orientation&&screen.orientation.unlock&&screen.orientation.unlock()}catch(e){}
+  document.documentElement.classList.remove('xvlock');syncIc();setTimeout(fit,60)}
+ async function leave(){if(xvFe()===c){try{await(document.exitFullscreen||document.webkitExitFullscreen).call(document)}catch(e){}}cleanup()}
+ xvAll.add({c,rot,fsch:()=>{if(mode=='real'&&xvFe()!==c)cleanup()},esc:()=>{if(mode=='pseudo')leave()}});
+ if(bfs)bfs.onclick=e=>{e.stopPropagation();mode?leave():enter()};
+ if('ResizeObserver' in window)new ResizeObserver(fit).observe(c);fit();syncIc();
+ if(drive){
+  fr.innerHTML=`<iframe src="https://drive.google.com/file/d/${id}/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+  fr.querySelector('iframe').addEventListener('load',()=>setTimeout(setGo,400));setTimeout(setGo,6000);return}
+ const toggle=()=>{if(!P)return;try{playing()?P.pause():P.play()}catch(e){}};
+ sh.onclick=()=>{if(!playing()){toggle();return}if(c.classList.contains('ui')){c.classList.remove('ui');clearTimeout(hideT)}else poke()};
+ bcb.onclick=e=>{e.stopPropagation();toggle();poke()};bpp.onclick=e=>{e.stopPropagation();toggle();poke()};
+ bmu.onclick=e=>{e.stopPropagation();if(!P)return;P.mute(!P.muted());syncIc();poke()};
+ rg.addEventListener('input',()=>{drag=true;if(P)t1.textContent=fmt(rg.value/1000*P.dur());poke()});
+ rg.addEventListener('change',()=>{if(P)P.seek(rg.value/1000*P.dur());drag=false});
+ const tick=setInterval(()=>{if(!c.isConnected){clearInterval(tick);return}if(!P||drag)return;try{const d=P.dur(),t=P.cur();rg.value=d?Math.round(t/d*1000):0;t1.textContent=fmt(t);t2.textContent=fmt(d)}catch(e){}},250);
+ c.classList.add('bf');
+ if(k=='mp4'){
+  const v=document.createElement('video');v.src=u;v.setAttribute('playsinline','');v.playsInline=true;v.preload='auto';
+  fr.querySelector('.xvh').replaceWith(v);
+  P={play:()=>v.play().catch(()=>setGo()),pause:()=>v.pause(),cur:()=>v.currentTime,dur:()=>v.duration||0,seek:t=>{v.currentTime=t},mute:m=>{v.muted=m},muted:()=>v.muted};
+  v.addEventListener('playing',()=>setPl(true));v.addEventListener('pause',()=>{if(!v.ended)setPl(false)});
+  v.addEventListener('waiting',()=>c.classList.add('bf'));v.addEventListener('canplay',()=>c.classList.remove('bf'));
+  v.addEventListener('ended',()=>{setPl(false);v.currentTime=0});v.addEventListener('error',()=>{c.classList.remove('bf');setGo()});
+  syncIc();v.play().catch(()=>{c.classList.remove('bf');setGo()});return}
+ const plain=()=>{if(dead)return;dead=true;fr.innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&playsinline=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`;sh.remove();bcb.remove();q('.xvu').remove();q('.xvtop').remove();c.classList.add('go');c.classList.remove('bf')};
+ xvApi().then(YT=>{if(dead)return;new YT.Player(fr.querySelector('.xvh'),{host:'https://www.youtube-nocookie.com',videoId:id,width:'100%',height:'100%',
+  playerVars:{autoplay:1,controls:0,rel:0,modestbranding:1,playsinline:1,iv_load_policy:3,disablekb:1,fs:0,cc_load_policy:0,origin:location.origin},
+  events:{onReady:e=>{const p=e.target;P={play:()=>p.playVideo(),pause:()=>p.pauseVideo(),cur:()=>p.getCurrentTime()||0,dur:()=>p.getDuration()||0,seek:t=>p.seekTo(t,true),mute:m=>m?p.mute():p.unMute(),muted:()=>p.isMuted()};syncIc();try{p.playVideo()}catch(_){}setTimeout(()=>{if(!c.classList.contains('go')){c.classList.remove('bf');setGo()}},3500)},
+   onStateChange:e=>{const s=e.data;if(s===1){setPl(true)}else{if(s===3||s===-1){if(s===3)c.classList.add('bf')}else{c.classList.remove('bf');setPl(false)}}if(s===0){try{e.target.seekTo(0,true);e.target.pauseVideo()}catch(_){}}},
+   onError:()=>plain()}})}).catch(()=>plain())}
 function xVidPlay(c){if(!c||c.dataset.on)return;const k=c.dataset.vk,id=c.dataset.vid,u=c.dataset.u;
  if(k=='ext'){window.open(u,'_blank','noopener,noreferrer');return}
- c.dataset.on='1';c.classList.add('on');
- if(k=='yt')c.innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&playsinline=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
- else if(k=='drive')c.innerHTML=`<iframe src="https://drive.google.com/file/d/${id}/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
- else if(k=='mp4')c.innerHTML=`<video src="${esc(u)}" controls autoplay playsinline></video>`}
+ c.dataset.on='1';c.classList.add('on');xvInit(c,k,id,u)}
 document.addEventListener('click',e=>{const c=e.target.closest&&e.target.closest('.xvc');if(c)xVidPlay(c)});
 document.addEventListener('keydown',e=>{if((e.key=='Enter'||e.key==' ')&&e.target.classList&&e.target.classList.contains('xvc')){e.preventDefault();xVidPlay(e.target)}});
 let xGalF={alb:'',tag:''},xTags=[],xGalT='img';
@@ -2208,7 +2365,7 @@ function galR(){
  const gl=$('gal');gl.className='gal gx'+(isV?' gxv':'');
  gl.innerHTML=vis.map(({x,i})=>fig(x,i)).join('')||`<div class="gxe"><i>${isV?'🎬':'🖼'}</i>${isV?TL('এখনও কোনো ভিডিও নেই।','No videos yet.'):TL('এখনও কোনো ছবি নেই।','No photos yet.')}</div>`;
  gl.querySelectorAll('img[data-gi]').forEach(m=>{const open=()=>viewPhoto(photos[+m.dataset.gi]);m.onclick=open;m.onkeydown=e=>{if(e.key=='Enter'||e.key==' '){e.preventDefault();open()}}});
- gl.querySelectorAll('button[data-gd]').forEach(b=>b.onclick=()=>confirm(L(b.dataset.k=='v'?'ভিডিও মুছবেন?':'ছবি মুছবেন?'))&&deleteDoc(doc(db,'photos',b.dataset.gd)));
+ gl.querySelectorAll('button[data-gd]').forEach(b=>b.onclick=async()=>await hxConfirm(L(b.dataset.k=='v'?'ভিডিও মুছবেন?':'ছবি মুছবেন?'))&&deleteDoc(doc(db,'photos',b.dataset.gd)));
  gl.querySelectorAll('.chip.xt').forEach(c=>c.onclick=()=>{if(map[c.dataset.id])show(map[c.dataset.id])})}
 
 /* ---- ২০. টাইমলাইন (ইতিহাস ট্যাবে) ---- */
@@ -2230,7 +2387,7 @@ function xTl(){const hs=$('hs');if(!hs)return;const old=$('xtl');if(old)old.remo
  if($('xta'))$('xta').onclick=async()=>{const y=parseInt(A2($('xty').value.trim()),10),tt=$('xtt').value.trim(),dd=$('xtd').value.trim();if(!y||y<1000||y>2200||!tt)return alert('সাল (যেমন ১৯৪৭) ও ঘটনা লিখুন।');
   const cur=((window.__hd&&window.__hd.timeline&&window.__hd.timeline.items)||[]).slice();cur.push({id:Date.now().toString(36),y,t:tt,d:dd});
   try{await setDoc(doc(db,'history','timeline'),{items:cur,at:serverTimestamp()})}catch(e){alert('সেভ হয়নি: '+(e.code||e.message))}};
- d.querySelectorAll('button[data-td]').forEach(b=>b.onclick=async()=>{if(!confirm(L_('ঘটনাটি মুছবেন?')))return;const cur=((window.__hd&&window.__hd.timeline&&window.__hd.timeline.items)||[]).filter(x=>x.id!=b.dataset.td);try{await setDoc(doc(db,'history','timeline'),{items:cur,at:serverTimestamp()})}catch(e){alert('সেভ হয়নি: '+(e.code||e.message))}})}
+ d.querySelectorAll('button[data-td]').forEach(b=>b.onclick=async()=>{if(!await hxConfirm(L_('ঘটনাটি মুছবেন?')))return;const cur=((window.__hd&&window.__hd.timeline&&window.__hd.timeline.items)||[]).filter(x=>x.id!=b.dataset.td);try{await setDoc(doc(db,'history','timeline'),{items:cur,at:serverTimestamp()})}catch(e){alert('সেভ হয়নি: '+(e.code||e.message))}})}
 
 /* ---- ২১. দলিল ঘর, ২৮. স্বয়ংক্রিয় ব্যাকআপ (অ্যাডমিন ট্যাবে) ---- */
 let xVaultArr=[],xVaultU=null,xBkList=[],xBkBusy=false;
@@ -2254,8 +2411,8 @@ function dvItem(x){const t=x.at&&x.at.seconds?new Date(x.at.seconds*1000).toLoca
 function dvBind(root){const get=e=>(xVaultArr||[]).find(i=>i.id==e);
  root.querySelectorAll('[data-dvo]').forEach(b=>b.onclick=()=>{const x=get(b.dataset.dvo);if(x)dvOpen(x)});
  root.querySelectorAll('[data-dvd]').forEach(b=>b.onclick=()=>{const x=get(b.dataset.dvd);if(x)dvDl(x)});
- root.querySelectorAll('[data-dvx]').forEach(b=>b.onclick=()=>{if(!isOwn)return;if(confirm(L_('দলিলটি মুছবেন?')))deleteDoc(doc(db,'vault',b.dataset.dvx)).catch(e=>alert(e.code||e.message))});
- root.querySelectorAll('[data-dvq]').forEach(b=>b.onclick=async()=>{const x=get(b.dataset.dvq);if(!x)return;if(!confirm(dvT('মালিকের কাছে এই ডকুমেন্ট মোছার অনুরোধ পাঠাবেন?','Send a delete request to the owner?')))return;b.disabled=true;try{await updateDoc(doc(db,'vault',x.id),{delReq:{by:xNm(),uid:me.uid,at:Date.now()}});toast('✔',dvT('অনুরোধ মালিকের কাছে গেছে।','Request sent to the owner.'))}catch(e){alert('অনুরোধ যায়নি: '+(e.code||e.message)+(String(e.code||'').includes('permission')?'\n(Firestore rules-এ অ্যাডমিনকে vault-এ delReq লেখার অনুমতি দিন)':''));b.disabled=false}});
+ root.querySelectorAll('[data-dvx]').forEach(b=>b.onclick=async()=>{if(!isOwn)return;if(await hxConfirm(L_('দলিলটি মুছবেন?')))deleteDoc(doc(db,'vault',b.dataset.dvx)).catch(e=>alert(e.code||e.message))});
+ root.querySelectorAll('[data-dvq]').forEach(b=>b.onclick=async()=>{const x=get(b.dataset.dvq);if(!x)return;if(!await hxConfirm(dvT('মালিকের কাছে এই ডকুমেন্ট মোছার অনুরোধ পাঠাবেন?','Send a delete request to the owner?')))return;b.disabled=true;try{await updateDoc(doc(db,'vault',x.id),{delReq:{by:xNm(),uid:me.uid,at:Date.now()}});toast('✔',dvT('অনুরোধ মালিকের কাছে গেছে।','Request sent to the owner.'))}catch(e){alert('অনুরোধ যায়নি: '+(e.code||e.message)+(String(e.code||'').includes('permission')?'\n(Firestore rules-এ অ্যাডমিনকে vault-এ delReq লেখার অনুমতি দিন)':''));b.disabled=false}});
  root.querySelectorAll('[data-dvn]').forEach(b=>b.onclick=()=>{if(isOwn)updateDoc(doc(db,'vault',b.dataset.dvn),{delReq:deleteField()}).catch(e=>alert(e.code||e.message))})}
 function dvUpForm(root,getCat){root.innerHTML=`<select class="vc">${xCats.map(c=>`<option>${c}</option>`).join('')}</select><input class="i vt" placeholder="${esc(dvT('শিরোনাম (যেমন: দাগ নং ১২৩ খতিয়ান)','Title (e.g. Plot no. 123 record)'))}"><textarea class="vn" rows="2" placeholder="${esc(dvT('নোট (ঐচ্ছিক)','Note (optional)'))}"></textarea><input type="file" class="vf" accept="image/*,application/pdf"><div class="note">${TL('ছবি বা PDF (প্রায় ৭০০ কেবি পর্যন্ত)।','Image or PDF (up to about 700 KB).')}</div><button class="vb" style="margin-top:8px;width:100%">${TL('সংরক্ষণ করুন','Save')}</button>`;
  const sel=root.querySelector('.vc');if(getCat&&getCat())sel.value=getCat();
@@ -2289,7 +2446,7 @@ async function claimOk(c,b,done){const person=map[c.pid];
  if(!person)return alert('প্রোফাইলটি খুঁজে পাওয়া যায়নি। দাবিটি বাতিল করুন।');
  if(person.ouid)return alert('এই প্রোফাইলের মালিক আগেই সেট আছে। দাবিটি বাতিল করুন।');
  const other=people.find(x=>x.ouid==c.uid);if(other)return alert((c.w||c.em)+' ইতিমধ্যে "'+other.n+'" প্রোফাইলের মালিক। আগে সেখান থেকে সরান।');
- if(!confirm((c.w||'')+' ('+(c.em||'')+') কে "'+person.n+'" প্রোফাইলের মালিক করবেন?\n\nযাচাই করে নিন এটা সত্যিই তার নিজের প্রোফাইল কি না। এরপর অ্যাডমিন সহ আর কেউ এটা বদলাতে পারবে না।'))return;
+ if(!await hxConfirm((c.w||'')+' ('+(c.em||'')+') কে "'+person.n+'" প্রোফাইলের মালিক করবেন?\n\nযাচাই করে নিন এটা সত্যিই তার নিজের প্রোফাইল কি না। এরপর অ্যাডমিন সহ আর কেউ এটা বদলাতে পারবে না।'))return;
  if(b)b.disabled=true;try{const bt=writeBatch(db);bt.update(doc(db,'people',c.pid),{ouid:c.uid,oem:c.em||'',onm:c.w||''});bt.delete(doc(db,'claims',c.id));await bt.commit();toast('✔','প্রোফাইল মালিক সেট হয়েছে।');if(done)done()}catch(e){alert('করা যায়নি: '+(e.code||e.message))}finally{if(b)b.disabled=false}}
 function xClaimBind(){const a=$('adm');if(!a||!isOwn)return;
  a.querySelectorAll('button[data-clv]').forEach(b=>b.onclick=()=>{const q=map[b.dataset.clv];if(q)show(q)});
@@ -2298,7 +2455,7 @@ function xClaimBind(){const a=$('adm');if(!a||!isOwn)return;
   if(!person)return alert('প্রোফাইলটি খুঁজে পাওয়া যায়নি। দাবিটি বাতিল করুন।');
   if(person.ouid)return alert('এই প্রোফাইলের মালিক আগেই সেট আছে। দাবিটি বাতিল করুন।');
   const other=people.find(x=>x.ouid==c.uid);if(other)return alert((c.w||c.em)+' ইতিমধ্যে "'+other.n+'" প্রোফাইলের মালিক। আগে সেখান থেকে সরান।');
-  if(!confirm((c.w||'')+' ('+(c.em||'')+') কে "'+person.n+'" প্রোফাইলের মালিক করবেন?\n\nযাচাই করে নিন এটা সত্যিই তার নিজের প্রোফাইল কি না। এরপর অ্যাডমিন সহ আর কেউ এটা বদলাতে পারবে না।'))return;
+  if(!await hxConfirm((c.w||'')+' ('+(c.em||'')+') কে "'+person.n+'" প্রোফাইলের মালিক করবেন?\n\nযাচাই করে নিন এটা সত্যিই তার নিজের প্রোফাইল কি না। এরপর অ্যাডমিন সহ আর কেউ এটা বদলাতে পারবে না।'))return;
   b.disabled=true;try{const bt=writeBatch(db);bt.update(doc(db,'people',c.pid),{ouid:c.uid,oem:c.em||'',onm:c.w||''});bt.delete(doc(db,'claims',c.id));await bt.commit();toast('✔','প্রোফাইল মালিক সেট হয়েছে।')}catch(e){alert('করা যায়নি: '+(e.code||e.message))}finally{b.disabled=false}})}
 async function xBkLoad(){if(!isAdm)return;try{const sn=await getDocs(query(collection(db,'backups'),orderBy('at','desc'),limit(6)));xBkList=sn.docs.map(d=>({id:d.id,...d.data()}));xAdminExtra()}catch(e){xBkList=null;xAdminExtra()}}
 const xCats=['জমির দলিল','জন্ম/মৃত্যু সনদ','চিঠি/কাগজপত্র','পুরোনো ছবি','অন্যান্য'];
@@ -2360,7 +2517,7 @@ function xMourn(){const cm=$('cm');if(!cm||!isOwn||$('xmn'))return;const c=docum
  cm.insertBefore(c,cm.firstChild);
  $('xmns').onclick=async()=>{const n=$('xmnm').value.trim(),t=$('xmnt').value.trim(),p=$('xmnp').value.trim(),o=$('xmno').value.trim();if(!n)return alert('মরহুমের নাম লিখুন।');
   const text=`🕊 ইন্না লিল্লাহি ওয়া ইন্না ইলাইহি রাজিউন।\n${n} ইন্তেকাল করেছেন।${t?'\nজানাজা: '+t:''}${p?'\nস্থান: '+p:''}${o?'\n'+o:''}\nআল্লাহ তাঁকে জান্নাতুল ফেরদাউস দান করুন। আমিন।`;
-  if(!confirm('সব সদস্যকে জরুরি নোটিফিকেশন যাবে। পাঠাবেন?'))return;
+  if(!await hxConfirm('সব সদস্যকে জরুরি নোটিফিকেশন যাবে। পাঠাবেন?'))return;
   try{await addDoc(collection(db,'notices'),{text,ev:false,rsvp:{},urg:1,exp:Date.now()+72*36e5,at:serverTimestamp()});notify('notice',{text,ev:false,urgent:true});toast('🕊','জরুরি শোক সংবাদ পাঠানো হয়েছে।');['xmnm','xmnt','xmnp','xmno'].forEach(i=>$(i).value='')}catch(e){alert('পাঠানো যায়নি: '+(e.code||e.message))}}}
 function xUrgent(){let b=$('xurg');const u=(ntc||[]).find(n=>n.urg);if(!u){if(b)b.remove();return}
  if(!b){const t=document.querySelector('#app .bar');if(!t)return;b=document.createElement('div');b.id='xurg';b.className='xalert xdark';b.onclick=()=>tab(6);t.before(b)}
@@ -2378,7 +2535,7 @@ function xFunds(){const cm=$('cm');if(!cm||!me)return;const old=$('xfund');if(ol
  if($('xfs'))$('xfs').onclick=async()=>{const a=parseFloat(A2($('xfa').value.replace(/[,৳\s]/g,'')));const t=$('xft').value.trim();if(!a||a<=0||!t)return alert('বিবরণ ও টাকার পরিমাণ দিন।');
   const cur=((window.__hd&&window.__hd.funds&&window.__hd.funds.items)||[]).slice();cur.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,5),k:$('xfk').value,c:$('xfc').value.trim()||'সাধারণ',t,w:$('xfw').value.trim(),a,dt:$('xfd').value.trim(),at:Date.now()});
   try{await setDoc(doc(db,'history','funds'),{items:cur,at:serverTimestamp()});toast('✔','হিসাব সংরক্ষিত হয়েছে।')}catch(e){alert('সেভ হয়নি: '+(e.code||e.message))}};
- d.querySelectorAll('button[data-fd]').forEach(b=>b.onclick=async()=>{if(!confirm(L_('এন্ট্রিটি মুছবেন?')))return;const cur=((window.__hd&&window.__hd.funds&&window.__hd.funds.items)||[]).filter(x=>x.id!=b.dataset.fd);try{await setDoc(doc(db,'history','funds'),{items:cur,at:serverTimestamp()})}catch(e){alert('সেভ হয়নি: '+(e.code||e.message))}})}
+ d.querySelectorAll('button[data-fd]').forEach(b=>b.onclick=async()=>{if(!await hxConfirm(L_('এন্ট্রিটি মুছবেন?')))return;const cur=((window.__hd&&window.__hd.funds&&window.__hd.funds.items)||[]).filter(x=>x.id!=b.dataset.fd);try{await setDoc(doc(db,'history','funds'),{items:cur,at:serverTimestamp()})}catch(e){alert('সেভ হয়নি: '+(e.code||e.message))}})}
 function xDocs(){if(!$('v6').classList.contains('hide'))xFunds()}
 
 /* ---- ২৪. মরহুমের পাতায় দোয়া ও স্মৃতি ---- */
@@ -2396,7 +2553,7 @@ function xDuaDlg(p,keep){if(!p)return;window.__duaP=p;
  $('xdq').onclick=()=>{$('xdt').value='আল্লাহুম্মাগফির লাহু ওয়ারহামহু। আল্লাহ তাঁকে জান্নাতুল ফেরদাউস নসিব করুন। আমিন।'};
  $('xds').onclick=async()=>{const t=$('xdt').value.trim();if(!t)return;try{await addDoc(collection(db,'duas'),{pid:p.id,t,k:$('xdk').value,w:xNm(),uid:me.uid,at:serverTimestamp()});$('xdt').value=''}catch(e){alert('পাঠানো যায়নি: '+(e.code||e.message)+(String(e.code||'').includes('permission')?'\n(Firestore rules-এ duas যোগ করুন)':''))}};
  if(!dlg.open)dlg.showModal();dlg.addEventListener('close',()=>{window.__duaP=null},{once:true})}
-function xDuaBind(){const l=$('xdl');if(!l)return;l.querySelectorAll('button[data-xd]').forEach(b=>b.onclick=()=>confirm(L_('মুছবেন?'))&&deleteDoc(doc(db,'duas',b.dataset.xd)).catch(e=>alert(e.code||e.message)))}
+function xDuaBind(){const l=$('xdl');if(!l)return;l.querySelectorAll('button[data-xd]').forEach(b=>b.onclick=async()=>await hxConfirm(L_('মুছবেন?'))&&deleteDoc(doc(db,'duas',b.dataset.xd)).catch(e=>alert(e.code||e.message)))}
 
 /* ---- ট্যাব হুক ও লগইনের পর চালু ---- */
 function xTab(a){if(a==7)xDuaSub();if(a==4)xBloodBtn()}
@@ -3013,7 +3170,7 @@ details.dvupw summary{cursor:pointer;font-weight:700;list-style:none}details.dvu
  .tarr.tl{left:0}.tarr.tr{right:0}.tarr.off{opacity:0;pointer-events:none}}
 
 /* ===== top bar fix: ৮টা সমান ঘর, কোনো বাটন বাইরে যাবে না ===== */
-.top{display:grid!important;grid-template-columns:repeat(8,minmax(0,1fr))!important;gap:6px!important;width:100%!important;box-sizing:border-box;margin:0 0 10px!important;align-items:stretch}
+.top{display:grid!important;grid-auto-flow:column!important;grid-auto-columns:minmax(0,1fr)!important;grid-template-columns:none!important;gap:6px!important;width:100%!important;box-sizing:border-box;margin:0 0 10px!important;align-items:stretch}
 .top>button{width:100%!important;min-width:0!important;max-width:none!important;height:40px!important;min-height:0!important;padding:0!important;margin:0!important;border-radius:12px!important;display:inline-grid!important;place-items:center;font-size:12px!important;line-height:1;white-space:nowrap;overflow:hidden;position:relative;box-sizing:border-box}
 .top>button.hide,.top>.hide{display:none!important}
 .top>button .ic,.top>button .bi,.top>button .bellic{width:19px!important;height:19px!important;margin:0!important;vertical-align:0!important}
@@ -3028,15 +3185,43 @@ details.dvupw summary{cursor:pointer;font-weight:700;list-style:none}details.dvu
 .top>#lg::after{content:'BN';font-size:9.5px;font-weight:800;letter-spacing:.4px;line-height:1;color:rgb(var(--g2r));opacity:.95}
 html[lang="en"] .top>#lg::after{content:'EN'}
 /* লগআউট: হালকা লাল আইকন */
-.top>#out{color:#fda4af!important;border-color:rgba(253,164,175,.35)!important}
+.top>#out{color:#fda4af!important;border-color:rgba(253,164,175,.35)!important;display:inline-flex!important;align-items:center;justify-content:center}.top>#out.hide{display:none!important}.top>#out::after{flex:none}
 .top>#out::after{content:'';width:19px;height:19px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4'/%3E%3Cpath d='M16 17l5-5-5-5M21 12H9'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4'/%3E%3Cpath d='M16 17l5-5-5-5M21 12H9'/%3E%3C/svg%3E") center/contain no-repeat}
 
 .xvc{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:linear-gradient(135deg,#1e2a5a,#3b1d5a) center/cover no-repeat;cursor:pointer;display:grid;place-items:center;-webkit-tap-highlight-color:transparent}
 .xvc .xvp{width:62px;height:62px;border-radius:50%;background:rgba(15,23,42,.72);border:2px solid rgba(255,255,255,.85);display:grid;place-items:center;box-shadow:0 6px 20px -6px rgba(0,0,0,.6)}
 .xvc .xvp::before{content:'';border-style:solid;border-width:11px 0 11px 18px;border-color:transparent transparent transparent #fff;margin-left:4px}
 .xvc .xvl{position:absolute;left:10px;bottom:10px;font-size:12px;font-style:normal;font-weight:700;color:#fff;background:rgba(15,23,42,.7);padding:3px 9px;border-radius:20px}
-.xvc.on{cursor:default;background:#000}
+.xvc.on{cursor:default;background:#000;-webkit-user-select:none;user-select:none}
+.xvc .xvl{display:none!important}
 .xvc iframe,.xvc video{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000}
+.xvs{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:100%;aspect-ratio:16/9;overflow:hidden;background:#000}
+.xvf{position:absolute;inset:0}
+.xvf video{object-fit:contain}
+.xvf.xvd iframe{top:-46px;height:calc(100% + 46px)}
+.xvth{position:absolute;inset:0;z-index:3;background:#0b1024 center/cover no-repeat;transition:opacity .4s}
+.xvc.go .xvth{opacity:0;pointer-events:none}
+.xvtop{position:absolute;left:0;right:0;top:0;height:25%;min-height:56px;max-height:84px;z-index:2;background:linear-gradient(#000 40%,transparent);opacity:0;transition:opacity .4s;pointer-events:none}
+.xvc.cov .xvtop{opacity:1}
+.xvsh{position:absolute;inset:0;z-index:2;-webkit-tap-highlight-color:transparent;cursor:pointer}
+.xvc.go:not(.pl) .xvsh{background:rgba(0,0,0,.45);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.xvc button.xvcb,.xvc .xvu button,.xvc button.xvfb{margin:0!important;padding:6px!important;min-width:0!important;border:0!important;background:none!important;box-shadow:none!important;color:#fff!important;display:grid!important;place-items:center;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.xvc button .rip{display:none!important}
+.xvc button.xvcb{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:66px!important;height:66px!important;border-radius:50%!important;background:rgba(15,23,42,.68)!important;border:2px solid rgba(255,255,255,.85)!important;opacity:0;pointer-events:none;transition:opacity .25s;z-index:5;padding:0!important}
+.xvc.go:not(.pl) button.xvcb,.xvc.go.ui button.xvcb{opacity:1;pointer-events:auto}
+.xvc.bf button.xvcb{opacity:0!important}
+.xvu{position:absolute;left:0;right:0;bottom:0;z-index:5;display:flex;align-items:center;gap:6px;padding:26px 8px 6px;background:linear-gradient(transparent,rgba(0,0,0,.78));color:#fff;opacity:0;transform:translateY(6px);transition:opacity .25s,transform .25s;pointer-events:none}
+.xvc.go:not(.pl) .xvu,.xvc.go.ui .xvu{opacity:1;transform:none;pointer-events:auto}
+.xvt{font-size:12px;font-variant-numeric:tabular-nums;color:#fff;min-width:34px;text-align:center}
+.xvr{flex:1;min-width:0;height:26px;margin:0!important;padding:0!important;border:0!important;background:none!important;accent-color:#22d3ee;cursor:pointer}
+.xvc button.xvfd{position:absolute;left:8px;top:8px;z-index:6;width:36px!important;height:36px!important;border-radius:50%!important;background:rgba(8,12,28,.62)!important}
+.xvsp{position:absolute;left:50%;top:50%;width:42px;height:42px;margin:-21px 0 0 -21px;border:3px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:xvspin .8s linear infinite;opacity:0;z-index:6;pointer-events:none;transition:opacity .2s}
+.xvc:not(.go) .xvsp,.xvc.bf .xvsp{opacity:1}
+@keyframes xvspin{to{transform:rotate(360deg)}}
+.xvc.xvfs{position:fixed!important;top:0!important;left:0!important;right:0!important;bottom:0!important;width:100%!important;height:100%!important;max-width:none!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;aspect-ratio:auto!important;background:#000!important;overflow:hidden!important;z-index:2147483000;touch-action:none}
+.xvc.xvfs.xvrot{right:auto!important;bottom:auto!important;width:100vh!important;height:100vw!important;transform-origin:0 0;transform:translateX(100vw) rotate(90deg)}
+@supports(width:100dvh){.xvc.xvfs.xvrot{width:100dvh!important;height:100dvw!important;transform:translateX(100dvw) rotate(90deg)}}
+html.xvlock,html.xvlock body{overflow:hidden!important}
 /* ---- গ্যালারি: ছবি/ভিডিও টগল ও নতুন কার্ড ---- */
 .gxseg{display:flex;gap:6px;padding:5px;margin:0 0 12px;background:var(--card);border:1px solid var(--line);border-radius:18px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
 .gxseg button{flex:1;min-width:0;display:flex;align-items:center;justify-content:center;gap:8px;margin:0;padding:11px 8px;border:0;border-radius:13px;background:transparent;color:var(--mut);box-shadow:none;font:inherit;font-weight:700;font-size:15px;cursor:pointer;transition:background .25s,color .25s,transform .15s}
