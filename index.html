@@ -1586,6 +1586,7 @@ addEventListener('offline',netProbe);addEventListener('online',netProbe);setInte
 const avUrl={};const avSrc=id=>{const d=avs[id];if(!d)return'';const c=avUrl[id];if(c&&c.d===d)return c.u;try{const m=/^data:([^;,]*);base64,([\s\S]*)$/.exec(d);if(!m)return'';const b=atob(m[2]),a=new Uint8Array(b.length);for(let i=0;i<b.length;i++)a[i]=b.charCodeAt(i);const u=URL.createObjectURL(new Blob([a],{type:m[1]||'image/jpeg'}));if(c)URL.revokeObjectURL(c.u);avUrl[id]={d,u};return u}catch(e){return''}};
 const avInner=p=>avs[p.id]?`<img src="${avSrc(p.id)}" alt="" decoding="async" loading="lazy">`:(p.g=='f'?'👩':'👦');
 function viewPic(p){const src=avsF[p.id]||avs[p.id];if(!src||!imgOk(src))return;$('pvc').innerHTML=`<h3 style="margin:0 0 10px">${esc(nmx(p))}</h3><img decoding="async" src="${src}" alt="">`;const a=$('pvdl');a.href=src;a.download=(nmx(p)||'photo').replace(/[\\/:*?"<>|]/g,'')+'.jpg';if(!pvd.open)pvd.showModal()}
+function viewCover(p){const u0=imgOk(p.cov);if(!u0)return;const nm=(nmx(p)||'cover').replace(/[\\/:*?"<>|]/g,'');$('pvc').innerHTML=`<h3 style="margin:0 0 10px">${esc(nmx(p))}</h3><img decoding="async" id="pvci" src="${u0}" alt="">`;const a=$('pvdl');a.href=u0;a.download=nm+'-cover.jpg';if(!pvd.open)pvd.showModal();getDoc(doc(db,'covers',p.id)).then(g=>{const f=g.exists()?imgOk(g.data().full):'';if(!f||!pvd.open)return;const i=$('pvci');if(i)i.src=f;a.href=f}).catch(()=>{})}
 function applyAv(ids){const els=[...document.querySelectorAll('.av2[data-pid]')].filter(e=>!ids||ids.has(e.dataset.pid));let i=0;const step=()=>{const end=Math.min(i+8,els.length);for(;i<end;i++){const e=els[i],p=map[e.dataset.pid];if(p)e.innerHTML=avInner(p)}if(i<els.length)requestAnimationFrame(step)};step()}
 const gate=(k)=>{$('app').classList.toggle('hide',!!k);$('gate').classList.toggle('hide',!k);$('out').classList.toggle('hide',!me);
  if(k)$('gate').innerHTML=k=='login'?'<h2>পরিবারের সদস্যদের জন্য</h2><p>চালিয়ে যেতে Google দিয়ে সাইন ইন করুন।</p><button id="login">Google দিয়ে সাইন ইন</button>':'<h2>⏳ অনুমোদনের অপেক্ষায়</h2><p>আপনার অনুরোধ অ্যাডমিনের কাছে গেছে। অনুমোদন হলে পেজটা রিফ্রেশ করুন।</p>';
@@ -1822,6 +1823,7 @@ ${(isMe(p)||LK)?'':`<details>${pmr('soc',TL('সোশ্যাল অ্যা�
   if(SELF){const qd=$('qad');if(qd)qd.addEventListener('toggle',()=>{if(qd.open)qaRender(p,$('qal'))})}
   const cb=$('pxcam');if(cb&&pm)cb.onclick=()=>{if(pm.classList.contains('hide')&&pb)pb.click();const g_=$('pgrp');if(g_)g_.open=true;const d=$('phd');if(d){d.open=true;setTimeout(()=>d.scrollIntoView({block:'center',behavior:'smooth'}),50);const f=$('af');if(f)setTimeout(()=>{try{f.click()}catch(x){}},120)}};
      {const cvO=()=>{if(pm&&pm.classList.contains('hide')&&pb)pb.click();const g_=$('pgrp');if(g_)g_.open=true;const d=$('cvd');if(d){d.open=true;setTimeout(()=>d.scrollIntoView({block:'center',behavior:'smooth'}),50);const f=$('cvf');if(f)setTimeout(()=>{try{f.click()}catch(x){}},120)}};const cvb=$('pxcvc');if(cvb&&pm)cvb.onclick=cvO}
+     {const cvE=$('pxcover');if(cvE)cvE.onclick=e=>{if(e.target.closest&&e.target.closest('#pxcvc'))return;if(imgOk(p.cov))viewCover(p)}}
 if(CE&&$('sty-box')){const cur={c:c0[0],r:r0[0],b:b0[0],e:pstyP(p)[3]},pv=()=>{pstyApply(STC.find(x=>x[0]==cur.c),STR.find(x=>x[0]==cur.r),STB.find(x=>x[0]==cur.b));const pe=dc.querySelector('.pe');if(pe)pe.textContent=cur.e||(p.g=='m'?'👨':'👩');$('sty-sv').textContent=L('সংরক্ষণ')};
    dc.querySelectorAll('#sty-box [data-g]').forEach(bt=>bt.onclick=()=>{const g=bt.dataset.g;cur[g]=bt.dataset.v;dc.querySelectorAll('#sty-box [data-g="'+g+'"]').forEach(z=>z.classList.toggle('on',z===bt));pv()});
    $('sty-sv').onclick=async()=>{const v=[cur.c,cur.r,cur.b,cur.e].join('|');try{await updateDoc(doc(db,'people',p.id),{sty:v});p.sty=v;$('sty-sv').textContent='✔ '+L('সংরক্ষিত')}catch(e){alert('Failed: '+(e.code||e.message))}};
@@ -3742,6 +3744,7 @@ html[lang="en"] #dc .px .efg .efh{letter-spacing:1.1px;text-transform:uppercase}
 })();
 </script>
 <style>
+#pxcover.has{cursor:pointer}
 html.hx-idle body::before,html.hx-idle body::after,html.hx-idle :root::before,html.hx-idle main *:not(.bd-confetti-piece):not(header):not(header *),html.hx-idle main *:not(header *)::before,html.hx-idle main *:not(header *)::after,html.hx-idle #fab,html.hx-idle #fab::before,html.hx-idle #fab::after{animation-play-state:paused!important}
 html.hx-idle:root::before{animation-play-state:paused!important}
 </style>
