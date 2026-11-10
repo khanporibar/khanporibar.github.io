@@ -1,16 +1,15 @@
 'use strict';
 
 const CACHE_PREFIX = 'khan-family-';
-const CACHE_NAME = CACHE_PREFIX + 'v149';
+const CACHE_NAME = CACHE_PREFIX + 'v151';
 
 const SCOPE = new URL(self.registration.scope);
 const ROOT_URL = SCOPE.href;                         // e.g. https://site/
 const INDEX_URL = new URL('index.html', SCOPE).href; // e.g. https://site/index.html
-const ICONS = {
-  chat: 'icon-chat.png', notice: 'icon-notice.png', photo: 'icon-photo.png', birthday: 'icon-birthday.png',
-  admin: 'icon-admin.png', urgent: 'icon-urgent.png', update: 'icon-update.png'
-};
-const OPTIONAL = ['manifest.webmanifest'].concat(Object.values(ICONS));           // cached if available, never blocks install
+const ICON_KEYS = ['chat', 'group', 'pin', 'notice', 'poll', 'blood', 'photo', 'birthday', 'urgent', 'memorial', 'pending', 'newmember', 'approved', 'rejected', 'admin', 'adminoff', 'sug', 'sugok', 'sugno', 'avok', 'avno', 'hist', 'ver']; // icon-<name>.png : each kind of notification has its own logo
+const ICONS = {}; ICON_KEYS.forEach(k => { ICONS[k] = 'icon-' + k + '.png'; });
+const BADGE = 'badge-96.png'; // status-bar icon: must be a white silhouette on transparent, or Android shows a white square
+const OPTIONAL = ['manifest.webmanifest', BADGE].concat(Object.values(ICONS));           // cached if available, never blocks install
 
 // Versioned, never-changing files (Firebase SDK 10.14.1, font binaries): once cached they are never downloaded again.
 const FIREBASE_BASE = 'https://www.gstatic.com/firebasejs/10.14.1/';
@@ -230,28 +229,26 @@ self.addEventListener('message', event => {
 
 /* ---------- push notifications ---------- */
 
-// Which kind of notification is this? Decides the logo. Server 'type' first, then hints, then the emoji in the title.
-const TYPE_TO_KIND = {
-  chat: 'chat', group: 'chat', pin: 'chat', msg: 'chat', message: 'chat',
-  notice: 'notice', news: 'notice', poll: 'notice', event: 'notice',
-  photo: 'photo', video: 'photo', gallery: 'photo',
-  birthday: 'birthday', bday: 'birthday', anniversary: 'birthday',
-  approved: 'admin', rejected: 'admin', newmember: 'admin', pending: 'admin',
-  sug: 'admin', sugok: 'admin', sugno: 'admin', avok: 'admin', avno: 'admin', claim: 'admin',
-  hist: 'update', ver: 'update', update: 'update',
-  urgent: 'urgent', death: 'urgent', condolence: 'urgent'
+// Which kind of notification is this? Decides the logo: server 'type' first, then hints, then the emoji in the title.
+const ALIAS = {
+  msg: 'chat', message: 'chat', news: 'notice', event: 'notice', video: 'photo', gallery: 'photo',
+  bday: 'birthday', anniversary: 'birthday', death: 'memorial', condolence: 'urgent',
+  update: 'ver', claim: 'sug', avatar: 'sug', blooddonor: 'blood'
 };
 const EMOJI_TO_KIND = [
-  [/^\s*💬/, 'chat'], [/^\s*(🎂|🎉|🥳)/, 'birthday'], [/^\s*(🕊|🚨|⚠)/, 'urgent'], [/^\s*(🩸|📣|📢|🗳|📰)/, 'notice'],
-  [/^\s*(📷|🖼|🎞|🎥)/, 'photo'], [/^\s*(✅|❌|🙋|🔑|👤)/, 'admin'], [/^\s*(🆕|📜|⬆)/, 'update']
+  [/^\s*💬/, 'chat'], [/^\s*👥/, 'group'], [/^\s*📌/, 'pin'], [/^\s*🩸/, 'blood'], [/^\s*(🎂|🥳)/, 'birthday'],
+  [/^\s*🕊/, 'memorial'], [/^\s*(🚨|⚠)/, 'urgent'], [/^\s*(📣|📢|📰)/, 'notice'], [/^\s*🗳/, 'poll'],
+  [/^\s*(📷|🖼|🎞|🎥)/, 'photo'], [/^\s*✅/, 'approved'], [/^\s*❌/, 'rejected'], [/^\s*🎉/, 'admin'],
+  [/^\s*🛠/, 'pending'], [/^\s*📜/, 'hist'], [/^\s*🆕/, 'ver']
 ];
-function kindOf(d, n, title) {
-  if (d.urgent === true || d.urgent === 'true') return 'urgent';
+function kindOf(d, n, title, body) {
   const t = String(d.type || n.type || d.kind || '').toLowerCase();
-  if (TYPE_TO_KIND[t]) return TYPE_TO_KIND[t];
+  if (d.urgent === true || d.urgent === 'true') return /🩸/.test(body + title) ? 'blood' : 'urgent';
+  if (t === 'notice' && /🩸/.test(body)) return 'blood';
+  if (ICONS[t]) return t;
+  if (ALIAS[t]) return ALIAS[t];
   const g = String(d.go || '').toLowerCase();
   if (g === 'chat' || d.chat) return 'chat';
-  if (TYPE_TO_KIND[g]) return TYPE_TO_KIND[g];
   for (const [re, k] of EMOJI_TO_KIND) if (re.test(title)) return k;
   return null;
 }
@@ -279,13 +276,21 @@ self.addEventListener('push', event => {
     const d = Object.assign({}, payload.data || {}, n.data || {});
     const tag = n.tag || d.tag || undefined;
 
-    const title = n.title || d.title || 'খান পরিবার';
-    const kind = kindOf(d, n, title);
+    // The round logo already shows the kind, so the old emoji prefix is dropped from the text (modern look).
+    const plain = t => { const r = String(t || '').replace(/^[\s\p{Extended_Pictographic}\uFE0F\u200D]+/u, ''); return r || String(t || ''); };
+    const rawTitle = n.title || d.title || 'খান পরিবার';
+    const rawBody = n.body || d.body || '';
+    const kind = kindOf(d, n, rawTitle, rawBody);
+    const title = plain(rawTitle);
+    const isChat = kind === 'chat' || kind === 'group' || kind === 'pin';
 
     const options = {
-      body: n.body || d.body || '',
-      icon: n.icon || (kind && ICONS[kind]) || 'icon-192.png', // each kind of notification gets its own logo
-      badge: 'icon-192.png',
+      body: plain(rawBody),
+      icon: n.icon || (kind && ICONS[kind]) || 'icon-192.png', // round logo per kind of notification
+      badge: BADGE,                                            // small white status-bar icon
+      timestamp: Date.now(),
+      vibrate: [120, 60, 120],
+      actions: [{ action: 'open', title: isChat ? 'উত্তর দিন' : 'খুলুন' }],
       data: { url: targetFrom(d, n, payload), go: d.go, chat: d.chat }
     };
     if (tag) { options.tag = tag; options.renotify = true; } // renotify is only valid together with a tag
