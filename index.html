@@ -1607,7 +1607,7 @@ const authCb=async u=>{unsub.forEach(f=>f());unsub=[];me=u;if(!u){window.__fastO
 {const uid0=u.uid;idle(()=>{if(!me||me.uid!==uid0)return;unsub.push(onSnapshot(collection(db,'avatars'),sn=>{const nv={},nf={};sn.docs.forEach(d=>{const x=d.data();nv[d.id]=x.data;if(x.full)nf[d.id]=x.full});const ch=new Set(Object.keys({...avs,...nv}).filter(k=>avs[k]!==nv[k]));avs=nv;avsF=nf;if(ch.size){applyAv(ch);try{chL()}catch(e){}if(isAdm)try{adm()}catch(e){}}},()=>{}))},1200)}
  
  try{xInit(u)}catch(e){console.error('xInit',e)}
- if(!isOwn&&isAdm)unsub.push(onSnapshot(doc(db,'users',me.uid),s=>{const d=s.exists()?s.data():null;if(!d)return;if(!!d.admin!==isAdm||pk(d.perms)!==pk(myPerms)){let t=0;try{t=+sessionStorage.getItem('khanPR')||0}catch(e){}if(Date.now()-t<8000)return;try{sessionStorage.setItem('khanPR',String(Date.now()))}catch(e){}toast('🔑','আপনার পারমিশন বদলেছে — অ্যাপ নতুন করে লোড হচ্ছে…');setTimeout(()=>location.reload(),1200)}},()=>{}));
+ if(!isOwn&&isAdm)unsub.push(onSnapshot(doc(db,'users',me.uid),s=>{const d=s.exists()?s.data():null;if(!d)return;if(!!d.admin!==isAdm||pk(d.perms)!==pk(myPerms)){let t=0;try{t=+sessionStorage.getItem('khanPR')||0}catch(e){}if(Date.now()-t<8000)return;try{sessionStorage.setItem('khanPR',String(Date.now()))}catch(e){}toast('🔑',lang=='en'?'Your permissions have changed — reloading the app…':'আপনার পারমিশন বদলেছে — অ্যাপ নতুন করে লোড হচ্ছে…');setTimeout(()=>location.reload(),1200)}},()=>{}));
  unsub.push(onSnapshot(doc(db,'claims',me.uid),s=>{myClaim=s.exists()?{id:s.id,...s.data()}:null},()=>{}));if(can('claims'))unsub.push(onSnapshot(collection(db,'claims'),sn=>{claims=sn.docs.map(d=>({id:d.id,...d.data()}));adm()},()=>{}));if(can('galreq'))unsub.push(onSnapshot(collection(db,'photoReq'),sn=>{preq=sn.docs.map(d=>({id:d.id,...d.data()})).filter(x=>x.status=='pending').sort((a,b)=>(a.at?.seconds||0)-(b.at?.seconds||0));adm()},()=>{}));if(isAdm){unsub.push(onSnapshot(collection(db,'suggestions'),sn=>{sug=sn.docs.map(d=>({id:d.id,...d.data()})).filter(x=>x.status=='pending');adm()}));
   unsub.push(onSnapshot(collection(db,'users'),sn=>{usr=sn.docs.map(d=>({id:d.id,...d.data()}));adm()}));unsub.push(onSnapshot(collection(db,'avatarReq'),sn=>{areq=sn.docs.map(d=>({id:d.id,...d.data()})).filter(x=>x.status=='pending');adm()}))}};
 onAuthStateChanged(auth,u=>{if(u&&me&&me.__fast&&me.uid===u.uid&&window.__fastOk){me=u;return}authCb(u)});
@@ -2038,7 +2038,7 @@ function autoUpd(){
  if(updP)return;updP=true;
  const busy=()=>{const a=document.activeElement;return !!((a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)&&a.type!='checkbox'&&!a.readOnly)||document.querySelector('dialog[open]'))};
  const go=()=>{try{sessionStorage.setItem('khanReloadAt',String(Date.now()))}catch(e){}location.reload()};
- const tick=()=>{if(document.hidden)return go();if(!busy()){try{toast('নতুন সংস্করণ এসেছে','অ্যাপ আপডেট হচ্ছে…')}catch(e){}return setTimeout(go,1200)}setTimeout(tick,4000)};
+ const tick=()=>{if(document.hidden)return go();if(!busy()){try{toast(lang=='en'?'New version available':'নতুন সংস্করণ এসেছে',lang=='en'?'Updating the app…':'অ্যাপ আপডেট হচ্ছে…')}catch(e){}return setTimeout(go,1200)}setTimeout(tick,4000)};
  tick()}
 if('serviceWorker' in navigator){const hadCtl=!!navigator.serviceWorker.controller;let told=false;
  navigator.serviceWorker.addEventListener('controllerchange',()=>{if(hadCtl&&!told){told=true;autoUpd()}});
