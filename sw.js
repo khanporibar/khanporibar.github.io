@@ -1,7 +1,7 @@
 'use strict';
 
 const CACHE_PREFIX = 'khan-family-';
-const CACHE_NAME = CACHE_PREFIX + 'v151';
+const CACHE_NAME = CACHE_PREFIX + 'v153';
 
 const SCOPE = new URL(self.registration.scope);
 const ROOT_URL = SCOPE.href;                         // e.g. https://site/
@@ -209,6 +209,10 @@ self.addEventListener('fetch', event => {
   }
 
   const sameOrigin = url.origin === self.location.origin;
+  if (sameOrigin && (request.destination === 'image' || request.destination === 'font')) {
+    event.respondWith(cacheFirst(event)); // icons never change within a version (cache name changes on update)
+    return;
+  }
   if ((sameOrigin && STATIC_DESTINATIONS.has(request.destination)) || APPROVED_EXTERNAL.has(url.hostname)) {
     event.respondWith(staleWhileRevalidate(event));
   }

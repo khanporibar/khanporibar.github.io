@@ -3171,7 +3171,7 @@ let last=0,clock=0;
 function tick(ts){
 requestAnimationFrame(tick);
 const dt=Math.min(.05,(ts-last)/1000||0);last=ts;
-if(document.hidden||H.dataset.tod!=='night'||off.has('rabbit')||document.documentElement.classList.contains('lite')||(mq&&mq.matches))return;
+if(document.hidden||H.dataset.tod!=='night'||off.has('rabbit')||document.documentElement.classList.contains('lite')||document.documentElement.classList.contains('hdr-off')||(mq&&mq.matches))return;
 clock+=dt;
 D.forEach(r=>{
 const k=r.s*(.82+Math.max(0,r.y-160)/100*.5)*(.3+.7*r.v);
@@ -3511,8 +3511,21 @@ function pick(i){
  i._fpn=wrap.querySelector('.fpn')}
 function sync(){document.querySelectorAll('input.fpin').forEach(function(i){var f=i._fpn;if(!f)return;var t=i.files&&i.files[0]?i.files[0].name:'';if(t){f.removeAttribute('data-ne');f.textContent=t}else if(f.dataset.has!==''&&f.textContent!=='কোনো ফাইল বাছাই হয়নি'&&!/No file/.test(f.textContent)){f.setAttribute('data-ne','No file selected');f.textContent=(document.documentElement.lang=='en')?'No file selected':'কোনো ফাইল বাছাই হয়নি'}})}
 function run(){document.querySelectorAll('input[type=file]').forEach(pick);conv(document.body);sync()}
-var q=0;function sched(){if(q)return;q=requestAnimationFrame(function(){q=0;obs.disconnect();try{run()}catch(e){}obs.observe(document.body,{childList:true,subtree:true,characterData:true})})}
-var obs=new MutationObserver(sched);
+/* পারফরম্যান্স: প্রতিটি পরিবর্তনে পুরো body স্ক্যান না করে শুধু বদলানো অংশ প্রসেস করা হয় */
+var q=0,pend=[];
+function inc(ms){
+ var seen=new Set(),hasFile=false;
+ ms.forEach(function(m){
+  if(m.type==='characterData'){var p=m.target.parentElement;if(!p)return;var c=p.closest?p.closest(SEL):null;seen.add(c||p);return}
+  m.addedNodes.forEach(function(n){if(n.nodeType===1)seen.add(n)})});
+ seen.forEach(function(n){
+  if(!n.isConnected)return;
+  if(n.matches&&n.matches('input[type=file]')){pick(n);hasFile=true}
+  if(n.querySelectorAll){var fs=n.querySelectorAll('input[type=file]');if(fs.length){hasFile=true;fs.forEach(pick)}}
+  conv(n)});
+ if(hasFile||document.querySelector('input.fpin'))sync()}
+function sched(){if(q)return;q=requestAnimationFrame(function(){q=0;var ms=pend;pend=[];obs.disconnect();try{if(ms.length>400)run();else inc(ms)}catch(e){}obs.observe(document.body,{childList:true,subtree:true,characterData:true})})}
+var obs=new MutationObserver(function(ms){for(var i=0;i<ms.length;i++)pend.push(ms[i]);sched()});
 document.addEventListener('change',function(e){if(e.target&&e.target.type==='file')setTimeout(sync,0)},true);
 if(document.body){run();obs.observe(document.body,{childList:true,subtree:true,characterData:true})}
 })();</script><style>
@@ -3716,4 +3729,20 @@ html[lang="en"] #dc .px .efg .efh{letter-spacing:1.1px;text-transform:uppercase}
 #adm .adback2{width:100%;margin-top:14px;height:48px;color:#e4eaff;background:rgba(124,147,255,.14);border:1px solid var(--bd);box-shadow:none}
 </style>
 <style id="pfp-size">#dc .px .pxh .pxav{width:118px;height:118px;margin-top:-48px;border-radius:34px}#dc .px .pxh .pxav .av{border-radius:31px}</style>
+<script id="hx-battery-js">
+(function(){
+ var R=document.documentElement,T=0,low=false,MS=40000;
+ /* ব্যাটারি: কিছুক্ষণ হাত না দিলে (বা ব্যাটারি কম হলে) সাজসজ্জার অ্যানিমেশন থেমে থাকে, ছোঁয়ামাত্র আবার চলে */
+ function idle(){R.classList.add('hx-idle')}
+ function wake(){if(R.classList.contains('hx-idle'))R.classList.remove('hx-idle');clearTimeout(T);T=setTimeout(idle,low?10000:MS)}
+ ['pointerdown','touchstart','keydown','wheel','scroll'].forEach(function(e){addEventListener(e,wake,{passive:true,capture:true})});
+ document.addEventListener('visibilitychange',function(){if(!document.hidden)wake()});
+ wake();
+ try{if(navigator.getBattery)navigator.getBattery().then(function(b){var u=function(){low=b.level<=.2&&!b.charging;wake()};b.addEventListener('levelchange',u);b.addEventListener('chargingchange',u);u()}).catch(function(){})}catch(e){}
+})();
+</script>
+<style>
+html.hx-idle body::before,html.hx-idle body::after,html.hx-idle :root::before,html.hx-idle main *:not(.bd-confetti-piece):not(header):not(header *),html.hx-idle main *:not(header *)::before,html.hx-idle main *:not(header *)::after,html.hx-idle #fab,html.hx-idle #fab::before,html.hx-idle #fab::after{animation-play-state:paused!important}
+html.hx-idle:root::before{animation-play-state:paused!important}
+</style>
 </body></html>
