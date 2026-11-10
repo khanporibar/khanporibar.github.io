@@ -3487,7 +3487,6 @@ if(document.body){run();obs.observe(document.body,{childList:true,subtree:true,c
 /* ===== পারফরম্যান্স: লুক একই, শুধু বাড়তি কাজ কমানো ===== */
 /* বংশবৃক্ষের শত শত নোডে স্ক্রল-টাইমলাইন ও ডট-পালস বন্ধ (স্ক্রলে ল্যাগের মূল কারণ) */
 ul.t li{animation:none!important;opacity:1!important}
-ul.t:not(.root)>li::after{animation:none!important}
 /* ডায়ালগ (প্রোফাইল/চ্যাট ইত্যাদি) খোলা থাকলে পেছনের অ্যানিমেশন থামে */
 html:has(dialog[open]) body::before,html:has(dialog[open]) body::after,
 html:has(dialog[open]) body>:not(dialog),html:has(dialog[open]) body>:not(dialog) *,
@@ -3499,6 +3498,12 @@ html.hx-hdroff #hdr,html.hx-hdroff #hdr *,html.hx-hdroff #hdr::before,html.hx-hd
 html.hx-scr body::before,html.hx-scr body::after,html.hx-scr header,html.hx-scr header *,html.hx-scr header::before,html.hx-scr header *::before,html.hx-scr header *::after,html.hx-scr .tabs *,html.hx-scr #fab,html.hx-scr #fab::before,html.hx-scr #fab::after{animation-play-state:paused!important}
 /* লম্বা তালিকার অফ-স্ক্রিন কার্ড রেন্ডার করা হয় না */
 #dlist>.pend,#v2 .pend,#v7 .pend{content-visibility:auto;contain-intrinsic-size:auto 84px}
+/* ===== বংশবৃক্ষ: শুধু স্ক্রলে স্লাইড/ফেড হওয়া এনিমেশন বন্ধ; কার্ড, হোভার, ছবি ও বাকি ইফেক্ট আগের মতোই ===== */
+#tree li{animation:none!important;opacity:1!important;transform:none!important}
+/* নামের লেখা স্থির */
+#tree .nm b,#tree .nm small,#tree .nm small *{animation:none!important;transform:none!important;opacity:1!important}
+/* অফ-স্ক্রিন কার্ডের ভুল উচ্চতায় ওভারল্যাপ ঠেকাতে */
+#tree .n{content-visibility:visible!important}
 </style>
 <script id="hx-perf-js">
 (function(){
