@@ -1,7 +1,7 @@
 'use strict';
 
 const CACHE_PREFIX = 'khan-family-';
-const CACHE_NAME = CACHE_PREFIX + 'v139';
+const CACHE_NAME = CACHE_PREFIX + 'v143';
 
 const SCOPE = new URL(self.registration.scope);
 const ROOT_URL = SCOPE.href;                         // e.g. https://site/
