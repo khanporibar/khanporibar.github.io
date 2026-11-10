@@ -1559,7 +1559,12 @@ F('মতিজান বিবি')]);
 
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
 import {getAuth,GoogleAuthProvider,signInWithPopup,reauthenticateWithPopup,signOut,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
-import {getFirestore,collection,query,orderBy,limit,where,doc,getDoc,setDoc,addDoc,updateDoc,deleteDoc,onSnapshot,writeBatch,serverTimestamp,arrayUnion,deleteField,initializeFirestore,persistentLocalCache,persistentMultipleTabManager,getDocs,getDocFromCache} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+import {getFirestore,collection,query,orderBy,limit,where,doc,getDoc,setDoc as _setDoc,addDoc as _addDoc,updateDoc as _updateDoc,deleteDoc as _deleteDoc,onSnapshot,writeBatch as _writeBatch,serverTimestamp,arrayUnion,deleteField,initializeFirestore,persistentLocalCache,persistentMultipleTabManager,getDocs,getDocFromCache} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js"
+/* offline-save fix: Firestore write promises only settle on server ack, so offline they never resolve. Local write is already applied/queued, so stop waiting. */
+const _fast=p=>{p=Promise.resolve(p);p.catch(()=>{});return Promise.race([p,new Promise(r=>setTimeout(r,navigator.onLine?10000:300))])};
+const setDoc=(...a)=>_fast(_setDoc(...a)),addDoc=(...a)=>{const p=_addDoc(...a);return navigator.onLine?_fast(p):(p.catch(()=>{}),Promise.resolve({id:''}))},updateDoc=(...a)=>_fast(_updateDoc(...a)),deleteDoc=(...a)=>_fast(_deleteDoc(...a));
+const writeBatch=(...a)=>{const b=_writeBatch(...a),c=b.commit.bind(b);b.commit=()=>_fast(c());return b};
+;
 const app=initializeApp({apiKey:"AIzaSyA0P3NXnHzLR4rDxu6FFXn0d-47JaL0idc",authDomain:"khan-poribar.firebaseapp.com",projectId:"khan-poribar",storageBucket:"khan-poribar.firebasestorage.app",messagingSenderId:"378186531699",appId:"1:378186531699:web:9167dd70c2c6be8d693b06"});
 let db;try{db=initializeFirestore(app,{localCache:persistentLocalCache({tabManager:persistentMultipleTabManager()}),experimentalAutoDetectLongPolling:true})}catch(e){db=getFirestore(app)}
 const auth=getAuth(app),OWNER='shironamhinantor@gmail.com';
@@ -1855,7 +1860,7 @@ if(CE&&$('sty-box')){const cur={c:c0[0],r:r0[0],b:b0[0],e:pstyP(p)[3]},pv=()=>{p
     if($('eda'))$('eda').onclick=()=>draw(-1);if($('edc'))$('edc').onclick=()=>draw();
     if($('eds'))$('eds').onclick=async()=>{const d=$('edd').value.trim();if(!d)return alert(L('ডিগ্রির নাম লিখুন'));const y=$('edy').value.trim().replace(/[০-৯]/g,c=>'০১২৩৪৫৬৭৮৯'.indexOf(c));if(y&&!/^\d{4}$/.test(y))return alert(L('সাল ৪ সংখ্যায় লিখুন (যেমন ২০১৫)'));const v={d,i:$('edi').value.trim(),y,yp:!!y&&$('edyp').checked,pv:$('edp').checked};if(ei>=0)list[ei]=v;else list.push(v);await sv();draw()}};
    draw()}}
-  if($('pad'))adrInit(p);spInit(p);$('sv').onclick=async()=>{if($('pad'))adrCompose();const s_=$('es').value.trim();let se_=$('ese').value.trim();if(!se_&&s_&&s_!==p.s)se_=trText(s_);const nn_=$('en').value.trim()||p.n;let ne_=$('ene').value.trim();if(!ne_&&nn_!==p.n)ne_=trText(nn_);const D_={n:nn_,ne:ne_,b:$('eb').value.trim(),...(($('ehy')&&$('ehy').checked!==!!p.hby)?{hby:$('ehy').checked}:{}),...($('ed')?{d:$('ed').value.trim()}:{}),nk:$('enk').value.trim(),wp:$('ewp').value.trim(),em:$('eem').value.trim(),...($('egr')?{grave:$('egr').value.trim()}:{}),s:s_,se:se_,...(SELF?{}:{g:$('eg').value}),bg:$('ebg').value,job:$('ej').value.trim(),addr:$('ea').value.trim(),ph:$('eph').value.trim(),...($('egps')?{gps:(()=>{const v=$('egps').value,l=window.gpsLink(v);if(l)return l;const g=window.gpsOf(v);return g?g.la.toFixed(6)+','+g.lo.toFixed(6):''})()}:{}),...($('eab')?{about:$('eab').value.trim().slice(0,600)}:{}),...($('emd')?{md:$('emd').value.trim()}:{}),...($('emdv')?{mdh:!$('emdv').checked}:{}),...($('edid')?{did:normUrl('web',$('edid').value)}:{}),...(($('epar')&&$('epar').value!=p.parent)?{parent:$('epar').value,o:(map[$('epar').value]?.k.length||0),mo:null}:($('emo')?{mo:(+$('emo').value>=0?+$('emo').value:null)}:{})),...adrData()};await adrSave(ref,D_);dlg.close()};
+  if($('pad'))adrInit(p);spInit(p);$('sv').onclick=async()=>{if($('pad'))adrCompose();const s_=$('es').value.trim();let se_=$('ese').value.trim();if(!se_&&s_&&s_!==p.s)se_=trText(s_);const nn_=$('en').value.trim()||p.n;let ne_=$('ene').value.trim();if(!ne_&&nn_!==p.n)ne_=trText(nn_);const D_={n:nn_,ne:ne_,b:$('eb').value.trim(),...(($('ehy')&&$('ehy').checked!==!!p.hby)?{hby:$('ehy').checked}:{}),...($('ed')?{d:$('ed').value.trim()}:{}),nk:$('enk').value.trim(),wp:$('ewp').value.trim(),em:$('eem').value.trim(),...($('egr')?{grave:$('egr').value.trim()}:{}),s:s_,se:se_,...(SELF?{}:{g:$('eg').value}),bg:$('ebg').value,job:$('ej').value.trim(),addr:$('ea').value.trim(),ph:$('eph').value.trim(),...($('egps')?{gps:(()=>{const v=$('egps').value,l=window.gpsLink(v);if(l)return l;const g=window.gpsOf(v);return g?g.la.toFixed(6)+','+g.lo.toFixed(6):''})()}:{}),...($('eab')?{about:$('eab').value.trim().slice(0,600)}:{}),...($('emd')?{md:$('emd').value.trim()}:{}),...($('emdv')?{mdh:!$('emdv').checked}:{}),...($('edid')?{did:normUrl('web',$('edid').value)}:{}),...(($('epar')&&$('epar').value!=p.parent)?{parent:$('epar').value,o:(map[$('epar').value]?.k.length||0),mo:null}:($('emo')?{mo:(+$('emo').value>=0?+$('emo').value:null)}:{})),...adrData()};const sc_=[dlg,$('dc'),document.scrollingElement].map(e=>e?e.scrollTop:0);await adrSave(ref,D_);toast('✔','সংরক্ষিত হয়েছে।');setTimeout(()=>{const np=map[p.id];if(np&&dlg.open){show(np);requestAnimationFrame(()=>{[dlg,$('dc'),document.scrollingElement].forEach((e,i)=>{if(e)e.scrollTop=sc_[i]})})}},350)};
   if($('ac'))$('ac').onclick=async()=>{
    if(p.g=='f'){const nm=($('kn').value||'').trim();if(!nm)return alert(L('সন্তানের নাম লিখুন'));
     const kbv=bn(($('kb').value||'').trim());try{await updateDoc(ref,{kids:arrayUnion(Object.assign({id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),n:nm,g:$('kg').value},kbv?{b:kbv}:{}))});setTimeout(()=>{const np=map[p.id];if(np&&dlg.open)show(np)},300)}catch(e){alert('Failed: '+(e.code||e.message))}
@@ -3302,14 +3307,17 @@ window.hxCrop=function(src,opt){return new Promise(function(done){
   g.putImageData(id,0,0)}
  function shot(cw,ch,fn){var c=document.createElement('canvas');c.width=cw;c.height=ch;var g=c.getContext('2d',{willReadFrequently:true});g.imageSmoothingQuality='high';g.fillStyle='#fff';g.fillRect(0,0,cw,ch);g.save();fn(g);g.restore();flt(g,cw,ch);return c}
  $('cro').onclick=function(){
-  var r=dims(),rw=r[0],rh=r[1],k=k0*z,OW=R==1?480:800,OH=Math.round(OW/R),f=OW/C,a=rot*Math.PI/180,out1='',out2='',q;
-  var c1=shot(OW,OH,function(g){g.translate(OW/2+cx*f,OH/2+cy*f);g.rotate(a);g.drawImage(im,-w*k*f/2,-h*k*f/2,w*k*f,h*k*f)});
-  for(q=.9;q>=(R==1?.7:.45);q-=.05){out1=c1.toDataURL('image/jpeg',q);if(out1.length<(R==1?90000:70000))break}
+  var r=dims(),rw=r[0],rh=r[1],k=k0*z,OW0=R==1?480:1200,a=rot*Math.PI/180,out1='',out2='',q,LIM=R==1?90000:400000;
+  /* যত MB-এর ছবিই হোক: আগে মান কমায়, তবুও বড় থাকলে মাপ ধাপে ধাপে ছোট করে সীমার ভেতরে আনে */
+  for(var t=0;t<10;t++){var OW=Math.round(OW0*Math.pow(.88,t)),OH=Math.round(OW/R),f=OW/C;
+   var c1=shot(OW,OH,function(g){g.translate(OW/2+cx*f,OH/2+cy*f);g.rotate(a);g.drawImage(im,-w*k*f/2,-h*k*f/2,w*k*f,h*k*f)});
+   for(q=.92;q>=(R==1?.7:.4);q-=.04){out1=c1.toDataURL('image/jpeg',q);if(out1.length<LIM)break}
+   if(out1.length<LIM)break}
   var sc2=Math.min(1,1000/Math.max(rw,rh));
   for(var i=0;i<12;i++){var cw=Math.max(1,Math.round(rw*sc2)),ch=Math.max(1,Math.round(rh*sc2));
    var c2=shot(cw,ch,function(g){g.translate(cw/2,ch/2);g.rotate(a);g.drawImage(im,-w*sc2/2,-h*sc2/2,w*sc2,h*sc2)});
-   for(q=.9;q>=.76;q-=.04){out2=c2.toDataURL('image/jpeg',q);if(out2.length<250000)break}
-   if(out2.length<250000)break;sc2*=.88}
+   for(q=.9;q>=.76;q-=.04){out2=c2.toDataURL('image/jpeg',q);if(out2.length<380000)break}
+   if(out2.length<380000)break;sc2*=.88}
   finish({crop:out1,full:out2})};
  im.onload=function(){w=im.naturalWidth;h=im.naturalHeight;rot=0;z=1;cx=cy=0;zm.value=100;
   if(R==1){S=Math.max(220,Math.min(320,Math.floor(window.innerWidth*.82),Math.floor(window.innerHeight*.36)));C=S-24;SH=S;CH=C}else{S=Math.max(240,Math.min(360,Math.floor(window.innerWidth*.86)));C=S-24;CH=Math.round(C/R);SH=CH+24}
@@ -3707,4 +3715,5 @@ html[lang="en"] #dc .px .efg .efh{letter-spacing:1.1px;text-transform:uppercase}
 #adm .adback:active{transform:scale(.97)}
 #adm .adback2{width:100%;margin-top:14px;height:48px;color:#e4eaff;background:rgba(124,147,255,.14);border:1px solid var(--bd);box-shadow:none}
 </style>
+<style id="pfp-size">#dc .px .pxh .pxav{width:118px;height:118px;margin-top:-48px;border-radius:34px}#dc .px .pxh .pxav .av{border-radius:31px}</style>
 </body></html>
