@@ -2866,11 +2866,11 @@ const top=document.querySelector('.top');if(top){const b=document.createElement(
 const Z='<svg class="bi" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>',Zo='<svg class="bi" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/><path d="M4 4l16 16"/></svg>';
 if(top&&th){const lt=document.createElement('button');lt.id='lt';lt.type='button';lt.className='alt sm';lt.style.padding='0';
  let v=0;try{v=+(localStorage.getItem('khanLite2')||0)}catch(e){v=0}
- const MODES=[[2,'🌙','হেডার সহ সব অ্যানিমেশন বন্ধ'],[1,'🖼️','হেডার বাদে বাকি সব বন্ধ'],[0,'✨','সব অ্যানিমেশন চালু']];
+ const MODES=[[1,'🌙','হেডার সহ সব অ্যানিমেশন বন্ধ'],[2,'🖼️','হেডার বাদে বাকি সব বন্ধ'],[0,'✨','সব অ্যানিমেশন চালু']];
  const pop=document.createElement('div');pop.id='ltpop';pop.setAttribute('role','menu');
  pop.innerHTML='<div class="lth">অ্যানিমেশন নিয়ন্ত্রণ</div>'+MODES.map(m=>'<button type="button" data-m="'+m[0]+'"><i>'+m[1]+'</i><span>'+m[2]+'</span><b>✓</b></button>').join('');
  document.body.appendChild(pop);
- const ap=()=>{R.classList.toggle('lite',v==2);R.classList.toggle('lite2',v==1);lt.classList.toggle('on',!!v);lt.innerHTML=v?Zo:Z;lt.title=v==2?'সব অ্যানিমেশন বন্ধ':v==1?'হেডার বাদে বন্ধ':'অ্যানিমেশন চালু';lt.setAttribute('aria-label',lt.title);pop.querySelectorAll('button').forEach(b=>b.classList.toggle('sel',+b.dataset.m===v))};
+ const ap=()=>{R.classList.toggle('lite',v==1);R.classList.toggle('lite2',v==2);lt.classList.toggle('on',!!v);lt.innerHTML=v?Zo:Z;lt.title=v==1?'সব অ্যানিমেশন বন্ধ':v==2?'হেডার বাদে বন্ধ':'অ্যানিমেশন চালু';lt.setAttribute('aria-label',lt.title);pop.querySelectorAll('button').forEach(b=>b.classList.toggle('sel',+b.dataset.m===v))};
  const shut=()=>pop.classList.remove('open');
  lt.onclick=e=>{e.stopPropagation();if(pop.classList.contains('open')){shut();return}const r=lt.getBoundingClientRect();pop.classList.add('open');pop.style.top=(r.bottom+8)+'px';pop.style.left=Math.max(8,Math.min(r.left-20,innerWidth-pop.offsetWidth-8))+'px'};
  pop.onclick=e=>{e.stopPropagation();const b=e.target.closest('button[data-m]');if(!b)return;v=+b.dataset.m;try{localStorage.setItem('khanLite2',v)}catch(x){}ap();shut()};
