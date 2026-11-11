@@ -939,7 +939,29 @@ header#hdr .scrim::before{display:none!important}
 header#hdr .ttl,header#hdr .ttl>span,header#hdr .ttl .ac,header#hdr .hl p{text-shadow:none!important}
 header#hdr .ttl{filter:drop-shadow(0 1px 1.5px rgba(0,30,80,.55))}
 </style>
-</head><body><style id="dgi">
+
+<style>
+/* ===== Animation control popup (3 modes) ===== */
+#ltpop{position:fixed;z-index:250;display:none;flex-direction:column;gap:6px;padding:10px;min-width:236px;border-radius:18px;background:rgba(14,20,42,.97);border:1px solid rgba(255,255,255,.2);box-shadow:0 20px 60px rgba(0,0,0,.6)}
+#ltpop.open{display:flex}
+#ltpop .lth{font-size:12px;opacity:.65;padding:2px 6px 4px;color:#cfe0ff}
+#ltpop button{display:flex;align-items:center;gap:10px;width:100%;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:#eaf1ff;font:inherit;font-size:14px;text-align:left;cursor:pointer}
+#ltpop button i{font-style:normal;font-size:18px}
+#ltpop button span{flex:1}
+#ltpop button b{opacity:0;color:#34d399}
+#ltpop button.sel{border-color:var(--g2);background:rgb(var(--g2r) / .22)}
+#ltpop button.sel b{opacity:1}
+/* Mode: everything off EXCEPT the header */
+html.lite2 *:not(header#hdr):not(header#hdr *):not(.bd-confetti-piece),html.lite2 *:not(header#hdr):not(header#hdr *):not(.bd-confetti-piece)::before,html.lite2 *:not(header#hdr):not(header#hdr *):not(.bd-confetti-piece)::after{animation:none!important;transition:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;will-change:auto!important}
+html.lite2 body::before,html.lite2 body::after,html.lite2 .rip{display:none!important}
+html.lite2 .bar,html.lite2 .stats div,html.lite2 .pend,html.lite2 .n,html.lite2 .card,html.lite2 dialog,html.lite2 .tabs{box-shadow:none!important}
+html.lite2 .bd-confetti-piece{animation:bdConfettiRain var(--fall-time,4.8s) linear var(--fall-delay,0s) forwards!important}
+/* Startup lag fix: heavy looping effects wait until first paint is done */
+html.boot body::before,html.boot body::after,html.boot #fab,html.boot #fab::before,html.boot #fab::after,html.boot .av2,html.boot .tabs button.on,html.boot ul.t li::before,html.boot ul.t li::after,html.boot .badge,html.boot .badge::after,html.boot .tkt{animation-play-state:paused!important}
+html.bootm main{content-visibility:hidden;contain-intrinsic-size:auto 1800px}
+</style>
+</head><script>(function(){var r=document.documentElement;r.classList.add('boot','bootm');var d=0,m=0,go=function(){if(d)return;d=1;r.classList.remove('boot')},showMain=function(){if(m)return;m=1;r.classList.remove('bootm')},raf=window.requestAnimationFrame||function(f){setTimeout(f,16)},afterLoad=function(){raf(function(){raf(function(){setTimeout(showMain,150);(window.requestIdleCallback||function(f){setTimeout(f,300)})(function(){setTimeout(go,500)},{timeout:2500})})})};if(document.readyState==='complete')afterLoad();else addEventListener('load',afterLoad);setTimeout(showMain,2200);setTimeout(go,5000)})();</script>
+<body><style id="dgi">
 .ei{display:inline-block;width:1.15em;height:1.15em;vertical-align:-.2em;margin-inline-end:.4em;flex:none}
 .ei:last-child{margin-inline-end:0}
 .ei svg{width:100%;height:100%;display:block;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
@@ -2844,8 +2866,16 @@ const top=document.querySelector('.top');if(top){const b=document.createElement(
 const Z='<svg class="bi" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>',Zo='<svg class="bi" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/><path d="M4 4l16 16"/></svg>';
 if(top&&th){const lt=document.createElement('button');lt.id='lt';lt.type='button';lt.className='alt sm';lt.style.padding='0';
  let v=0;try{v=+(localStorage.getItem('khanLite2')||0)}catch(e){v=0}
- const ap=()=>{R.classList.toggle('lite',!!v);lt.classList.toggle('on',!!v);lt.innerHTML=v?Zo:Z;lt.title=v?'Effects off (tap to turn on) / এফেক্ট বন্ধ (চালু করতে চাপুন)':'Effects on (tap to turn off) / এফেক্ট চালু (বন্ধ করতে চাপুন)';lt.setAttribute('aria-label',lt.title);};
- lt.onclick=e=>{e.stopPropagation();v=v?0:1;try{localStorage.setItem('khanLite2',v?1:0)}catch(x){}ap()};th.after(lt);ap();
+ const MODES=[[2,'🌙','হেডার সহ সব অ্যানিমেশন বন্ধ'],[1,'🖼️','হেডার বাদে বাকি সব বন্ধ'],[0,'✨','সব অ্যানিমেশন চালু']];
+ const pop=document.createElement('div');pop.id='ltpop';pop.setAttribute('role','menu');
+ pop.innerHTML='<div class="lth">অ্যানিমেশন নিয়ন্ত্রণ</div>'+MODES.map(m=>'<button type="button" data-m="'+m[0]+'"><i>'+m[1]+'</i><span>'+m[2]+'</span><b>✓</b></button>').join('');
+ document.body.appendChild(pop);
+ const ap=()=>{R.classList.toggle('lite',v==2);R.classList.toggle('lite2',v==1);lt.classList.toggle('on',!!v);lt.innerHTML=v?Zo:Z;lt.title=v==2?'সব অ্যানিমেশন বন্ধ':v==1?'হেডার বাদে বন্ধ':'অ্যানিমেশন চালু';lt.setAttribute('aria-label',lt.title);pop.querySelectorAll('button').forEach(b=>b.classList.toggle('sel',+b.dataset.m===v))};
+ const shut=()=>pop.classList.remove('open');
+ lt.onclick=e=>{e.stopPropagation();if(pop.classList.contains('open')){shut();return}const r=lt.getBoundingClientRect();pop.classList.add('open');pop.style.top=(r.bottom+8)+'px';pop.style.left=Math.max(8,Math.min(r.left-20,innerWidth-pop.offsetWidth-8))+'px'};
+ pop.onclick=e=>{e.stopPropagation();const b=e.target.closest('button[data-m]');if(!b)return;v=+b.dataset.m;try{localStorage.setItem('khanLite2',v)}catch(x){}ap();shut()};
+ document.addEventListener('click',shut);
+ th.after(lt);ap();
  const sz=()=>{th.style.border='1px solid rgba(255,255,255,.55)'};
  sz();setTimeout(sz,300);setTimeout(sz,1500);addEventListener('resize',sz);addEventListener('load',sz);bl&&new MutationObserver(sz).observe(bl,{attributes:true,childList:true,subtree:true})}
 const c=document.getElementById('chat');if(c){const f=()=>R.classList.toggle('chatopen',!c.classList.contains('hide'));new MutationObserver(f).observe(c,{attributes:true,attributeFilter:['class']});f()}
