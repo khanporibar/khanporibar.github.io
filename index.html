@@ -3990,11 +3990,7 @@ html[data-gfx="n"] *,html[data-gfx="n"] ::backdrop{-webkit-backdrop-filter:none!
 /* ULTRA: প্রিমিয়াম ফিল — মসৃণ মোশন, গভীরতা, আলোর ঝলক */
 html[data-gfx="u"] header#hdr .fw,html[data-gfx="u"] header#hdr .tw,html[data-gfx="u"] header#hdr .ffm,html[data-gfx="u"] header#hdr .gln{animation-timing-function:cubic-bezier(.45,.05,.55,.95)!important}
 html[data-gfx="u"] header#hdr .scene{filter:saturate(1.12) contrast(1.04)}
-html[data-gfx="u"] header#hdr .ttl{text-shadow:0 2px 16px rgba(255,214,120,.42),0 1px 3px rgba(0,0,0,.55)!important}
-html[data-gfx="u"] header#hdr::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;background:radial-gradient(120% 90% at 50% 0%,rgba(255,255,255,.10),transparent 55%),radial-gradient(110% 80% at 50% 100%,rgba(0,0,0,.22),transparent 60%)}
-.hx-sheen{display:none}
-html[data-gfx="u"] .hx-sheen{display:block;position:absolute;inset:0;pointer-events:none;z-index:3;background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.13) 50%,transparent 58%);transform:translate3d(-110%,0,0);animation:hxsheen 11s cubic-bezier(.4,0,.2,1) infinite}
-@keyframes hxsheen{0%,55%{transform:translate3d(-110%,0,0)}100%{transform:translate3d(110%,0,0)}}
+html[data-gfx="u"] header#hdr{contain:layout style;box-shadow:0 0 0 1px rgb(var(--g2r) / .75),0 0 10px 1px rgb(var(--g2r) / .65),0 0 26px 4px rgb(var(--g2r) / .38),0 0 60px 10px rgb(var(--g2r) / .18),inset 0 0 0 1px rgba(255,255,255,.22),inset 0 0 22px rgb(var(--g2r) / .30)!important}
 html[data-gfx="u"] .card,html[data-gfx="u"] .onlb,html[data-gfx="u"] .stats>div{transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .3s ease}
 html[data-gfx="u"] .card:active,html[data-gfx="u"] .onlb:active{transform:scale(.985)}
 html[data-gfx="u"] .card{box-shadow:0 14px 34px -14px rgba(15,28,46,.45),0 2px 6px rgba(15,28,46,.08)}
@@ -4020,7 +4016,7 @@ html:not([data-gfx="u"]).hx-boot header#hdr .scene,html:not([data-gfx="u"]).hx-b
  var NAME={n:'Normal',p:'Pro',u:'Ultra'};
  function sheen(on){var h=document.getElementById('hdr');if(!h)return;var e=h.querySelector('.hx-sheen');if(on&&!e){e=document.createElement('div');e.className='hx-sheen';h.appendChild(e)}else if(!on&&e)e.remove()}
  function mark(){var ch=L('hxgfx');ch=(ch=='n'||ch=='p'||ch=='u')?ch:'a';document.querySelectorAll('#ltpop button[data-g]').forEach(function(b){b.classList.toggle('sel',b.dataset.g===ch);if(b.dataset.g=='a'){var s=b.querySelector('span');if(s)s.textContent='অটো (এখন: '+NAME[window.__gfxEff()]+')'}})}
- function apply(){var e=window.__gfxEff();R.setAttribute('data-gfx',e);sheen(e=='u');mark()}
+ function apply(){var e=window.__gfxEff();R.setAttribute('data-gfx',e);sheen(false);mark()}
  window.hxMarkGfx=mark;
  window.hxSetGfx=function(c){if(c=='a')try{localStorage.removeItem('hxgfx')}catch(e){}else S('hxgfx',c);apply()};
  apply();
