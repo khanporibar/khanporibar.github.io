@@ -1,12 +1,12 @@
 'use strict';
 
 const CACHE_PREFIX = 'khan-family-';
-const CACHE_NAME = CACHE_PREFIX + 'v162';
+const CACHE_NAME = CACHE_PREFIX + 'v164';
 
 const SCOPE = new URL(self.registration.scope);
 const ROOT_URL = SCOPE.href;                         // e.g. https://site/
 const INDEX_URL = new URL('index.html', SCOPE).href; // e.g. https://site/index.html
-const ICON_KEYS = ['chat', 'group', 'pin', 'notice', 'poll', 'blood', 'photo', 'birthday', 'urgent', 'memorial', 'pending', 'newmember', 'approved', 'rejected', 'admin', 'adminoff', 'sug', 'sugok', 'sugno', 'avok', 'avno', 'hist', 'ver']; // icon-<name>.png : each kind of notification has its own logo
+const ICON_KEYS = ['chat', 'group', 'pin', 'notice', 'poll', 'blood', 'photo', 'birthday', 'urgent', 'memorial', 'pending', 'newmember', 'approved', 'rejected', 'admin', 'adminoff', 'sug', 'sugok', 'sugno', 'avok', 'avno', 'hist', 'ver', 'baby']; // icon-<name>.png : each kind of notification has its own logo
 const ICONS = {}; ICON_KEYS.forEach(k => { ICONS[k] = 'icon-' + k + '.png'; });
 const BADGE = 'badge-96.png'; // status-bar icon: must be a white silhouette on transparent, or Android shows a white square
 const OPTIONAL = ['manifest.webmanifest', BADGE].concat(Object.values(ICONS));           // cached if available, never blocks install
@@ -249,6 +249,7 @@ function kindOf(d, n, title, body) {
   const t = String(d.type || n.type || d.kind || '').toLowerCase();
   if (d.urgent === true || d.urgent === 'true') return /🩸/.test(body + title) ? 'blood' : 'urgent';
   if (t === 'notice' && /🩸/.test(body)) return 'blood';
+  if ((t === 'notice' || t === 'baby') && (d.joy === true || d.joy === 'true' || /👶/.test(body + title))) return 'baby'; // আনন্দ সংবাদ (নবজাতক)
   if (ICONS[t]) return t;
   if (ALIAS[t]) return ALIAS[t];
   const g = String(d.go || '').toLowerCase();

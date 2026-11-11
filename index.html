@@ -933,6 +933,11 @@ box-shadow:0 6px 14px -8px rgba(0,0,0,.65),inset 0 1px 0 rgba(255,255,255,.32)}
 .xpath{margin-top:10px}.xpc{display:flex;flex-wrap:wrap;gap:4px;align-items:center;margin-top:4px}.xpc span{padding:3px 10px;border-radius:999px;background:rgba(127,127,127,.18);font-size:.9em}.xpc span.lc{background:rgba(255,193,7,.28);font-weight:700}.xpc i{font-style:normal;opacity:.6}
 .xalert{display:flex;gap:10px;align-items:center;margin:8px 0;padding:10px 14px;border-radius:14px;background:linear-gradient(135deg,#b91c1c,#ef4444);color:#fff;cursor:pointer;box-shadow:0 4px 14px rgba(185,28,28,.35)}.xalert>span{font-size:1.5em}.xalert small{display:block;opacity:.92}.xalert.xdark{background:linear-gradient(135deg,#1f2937,#4b5563)}
 .xurg{border-left:4px solid #6b7280;background:rgba(107,114,128,.14)}
+.xjoy{border-color:rgba(250,204,21,.55)!important;background:linear-gradient(135deg,rgba(250,204,21,.18),rgba(34,197,94,.16))!important}
+.xjoy summary{cursor:pointer}.xjoy .i,.xjoy select{width:100%;margin-top:8px}
+.xjrow{display:flex;gap:8px;margin-top:8px}.xjrow button{flex:1}
+.xjoy .xjsel{background:linear-gradient(135deg,#16a34a,#eab308);color:#fff}
+.xjoyn{border-left:4px solid #eab308;background:linear-gradient(135deg,rgba(250,204,21,.16),rgba(34,197,94,.12))}
 .xreq{border-left:4px solid #dc2626}
 .xmed{text-align:center}.xmed audio{width:100%;margin:6px 0}.xmi{font-size:2.2em}.xmed iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:12px}
 .xalb{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.xtg{margin-top:4px}.xtg .chip{cursor:pointer;font-size:.8em}
@@ -2038,7 +2043,7 @@ a.insertAdjacentHTML('beforeend',h+'</div>');
 const save=()=>{const o=[...a.querySelectorAll('#hdrcfg [data-hk]')].filter(i=>!i.checked).map(i=>i.dataset.hk);o.push('tcfg');window.__hdrOff=o;dispatchEvent(new CustomEvent('hcfg',{detail:{off:o}}));setDoc(doc(db,'history','hdr'),{off:o,at:serverTimestamp()},{merge:true}).catch(()=>alert('সেভ হয়নি। Firestore নিয়মে history/hdr লেখার অনুমতি দিন।'))};
 a.querySelectorAll('#hdrcfg [data-hk]').forEach(i=>i.onchange=save);
 a.querySelectorAll('#hdrcfg [data-hall]').forEach(b=>b.onclick=()=>{a.querySelectorAll('#hdrcfg [data-hk]').forEach(i=>i.checked=b.dataset.hall==='1');save()})}
-const FXG=[['ডিরেক্টরি',[['call','📞 কল বোতাম'],['wa','💬 হোয়াটসঅ্যাপ বোতাম']]],['ব্যানার (ঘোষণা বারে)',[['juma','🕌 জুমা মোবারক ব্যানার'],['bidh','◯ আইয়ামে বীজের রোজা রিমাইন্ডার']]],['ক্যালেন্ডারে নামাজ',[['salah','পাঁচ ওয়াক্ত নামাজের সময়'],['next','পরের নামাজের কাউন্টডাউন'],['qibla','🧭 কিবলার দিক']]]];
+const FXG=[['পরিবার',[['baby','🎉 আনন্দ সংবাদ (নবজাতক)']]],['ডিরেক্টরি',[['call','📞 কল বোতাম'],['wa','💬 হোয়াটসঅ্যাপ বোতাম']]],['ব্যানার (ঘোষণা বারে)',[['juma','🕌 জুমা মোবারক ব্যানার'],['bidh','◯ আইয়ামে বীজের রোজা রিমাইন্ডার']]],['ক্যালেন্ডারে নামাজ',[['salah','পাঁচ ওয়াক্ত নামাজের সময়'],['next','পরের নামাজের কাউন্টডাউন'],['qibla','🧭 কিবলার দিক']]]];
 function fxAdm(){const a=$('adm');if(!a||$('fxcfg'))return;const off=new Set(window.__fxOff||[]);
 let h='<div id="fxcfg" style="margin-top:18px"><h3>নতুন ফিচার (চালু/বন্ধ)</h3><p class="note">এখানে বন্ধ করলে সবার ফোনে বন্ধ হয়ে যাবে।</p>';
 FXG.forEach(g=>{h+=`<h4 style="margin:12px 0 4px;font-size:13px;opacity:.8">${g[0]}</h4>`;g[1].forEach(k=>{h+=`<label style="display:flex;align-items:center;gap:8px;padding:5px 0"><input type="checkbox" data-fk="${k[0]}" ${off.has(k[0])?'':'checked'}> ${k[1]}</label>`})});
@@ -2074,7 +2079,7 @@ if($('presbox')){const sv=async m=>{if(!isOwn)return;try{await setDoc(doc(db,'hi
  $('adm').querySelectorAll('button[data-ua]').forEach(b=>b.onclick=async()=>{await updateDoc(doc(db,'users',b.dataset.ua),{status:'approved'});notify('approved',{uid:b.dataset.ua});notify('newmember',{uid:b.dataset.ua})});
  $('adm').querySelectorAll('button[data-ur]').forEach(b=>b.onclick=async()=>{notify('rejected',{uid:b.dataset.ur});await deleteDoc(doc(db,'users',b.dataset.ur))});
  $('adm').querySelectorAll('button[data-sr]').forEach(b=>b.onclick=async()=>{const s=sug.find(x=>x.id==b.dataset.sr);await updateDoc(doc(db,'suggestions',b.dataset.sr),{status:'rejected'});if(s&&s.uid)notify('sugno',{uid:s.uid,pn:s.pn})});
- $('adm').querySelectorAll('button[data-sa]').forEach(b=>b.onclick=async()=>{const s=sug.find(x=>x.id==b.dataset.sa);if(!s)return;const person=map[s.pid];if(!person){alert('সদস্যের তথ্য খুঁজে পাওয়া যায়নি। সাজেশনটি অনুমোদন করা হয়নি।');return}if(person.ouid){alert('এই প্রোফাইল এখন মালিকের নিজের নিয়ন্ত্রণে, তাই সাজেশন অনুমোদন করা যাবে না। বাতিল করুন।');return}b.disabled=true;try{const k=FM[s.f],batch=writeBatch(db);if(k)batch.update(doc(db,'people',s.pid),{[k]:s.v});else batch.update(doc(db,'people',s.pid),{notes:[...(person.notes||[]),s.f+': '+s.v]});batch.update(doc(db,'suggestions',s.id),{status:'approved'});await batch.commit();if(s.uid)notify('sugok',{uid:s.uid,pn:s.pn});toast('✔','সাজেশন অনুমোদিত হয়েছে।')}catch(e){console.error('Suggestion approval failed:',e);alert('অনুমোদন করা যায়নি: '+(e.code||e.message||e)+'\nFirestore Rules Publish করা আছে কিনা দেখুন।')}finally{b.disabled=false}});
+ $('adm').querySelectorAll('button[data-sa]').forEach(b=>b.onclick=async()=>{const s=sug.find(x=>x.id==b.dataset.sa);if(!s)return;const person=map[s.pid];if(!person){alert('সদস্যের তথ্য খুঁজে পাওয়া যায়নি। সাজেশনটি অনুমোদন করা হয়নি।');return}if(person.ouid&&!(s.baby&&person.g!='f'&&isOwn)){alert('এই প্রোফাইল এখন মালিকের নিজের নিয়ন্ত্রণে, তাই সাজেশন অনুমোদন করা যাবে না। বাতিল করুন।');return}b.disabled=true;try{const k=FM[s.f],batch=writeBatch(db);if(s.baby){const B=s.baby;if(person.g=='f')batch.update(doc(db,'people',s.pid),{kids:arrayUnion({id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),n:B.n||'নবজাতক',g:B.g,b:B.b||'',bp:B.bp||''})});else batch.set(doc(collection(db,'people')),{n:B.n||'নতুন সদস্য',g:B.g,b:B.b||'',d:'',s:'',parent:s.pid,o:person.k.length,notes:[],bp:B.bp||'',...(typeof B.mo=='number'?{mo:B.mo}:{})})}else if(k)batch.update(doc(db,'people',s.pid),{[k]:s.v});else batch.update(doc(db,'people',s.pid),{notes:[...(person.notes||[]),s.f+': '+s.v]});batch.update(doc(db,'suggestions',s.id),{status:'approved'});await batch.commit();if(s.uid)notify('sugok',{uid:s.uid,pn:s.pn});toast('✔','সাজেশন অনুমোদিত হয়েছে।')}catch(e){console.error('Suggestion approval failed:',e);alert('অনুমোদন করা যায়নি: '+(e.code||e.message||e)+'\nFirestore Rules Publish করা আছে কিনা দেখুন।')}finally{b.disabled=false}});
  if($('imp'))$('imp').onclick=async()=>{const list=[];(function w(p,par,o){const id='p'+list.length;list.push({id,n:p.n,g:p.g,b:p.b,d:p.d,s:p.s,parent:par,o,notes:[]});p.k.forEach((c,i)=>w(c,id,i))})(root,'',0);
   const b=writeBatch(db);list.forEach(({id,...r})=>b.set(doc(db,'people',id),r));await b.commit();alert(L('ইম্পোর্ট শেষ!'))}}
 const tab=a=>{[1,2,3,4,5,6,7,8,9].forEach(i=>{$('v'+i).classList.toggle('hide',i!=a);$('t'+i).classList.toggle('on',i==a)});if(a==3)loadGal();if(a==6)cmR();if(a==8)chL();if(a==9)hsR();if(a==7)memR();xTab(a);try{$('t'+a).scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'})}catch(e){}};
@@ -2394,7 +2399,7 @@ document.addEventListener('DOMContentLoaded',()=>{const b=$('tk');if(b)b.onclick
 function cmR0(){if(!me)return;const uid=me.uid,nm=me.displayName||me.email;let h='';
  if(can('notice'))h+='<div class="card"><b>📣 নতুন নোটিশ / অনুষ্ঠান</b><textarea id="cn" rows="2" placeholder="নতুন নোটিশ লিখুন…"></textarea><label class="note"><input type="checkbox" id="ce"> <span>আসছি/আসছি না (RSVP) চালু করুন</span></label><br>'+exSel('cx')+'<button id="cb" style="margin-top:6px">নোটিশ দিন</button></div><div class="card"><b>🗳 নতুন ভোট</b><input class="i" id="pq" placeholder="প্রশ্ন"><textarea id="po" rows="3" placeholder="অপশনগুলো, প্রতি লাইনে একটা"></textarea><button id="pb" style="margin-top:6px">ভোট শুরু করুন</button></div>';
  h+='<h3>📣 নোটিশ বোর্ড</h3>'+(ntc.map(x=>{const r=x.rsvp||{},ys=Object.values(r).filter(v=>v.s=='y'),no=Object.values(r).filter(v=>v.s=='n'),my=r[uid]?.s;
-  return `<div class="card${x.urg?' xurg':''}"><span style="white-space:pre-wrap" data-ne="${esc(x.text)}">${esc(x.text)}</span>${x.exp?`<small class="note exd">⏳ ${expTxt(x)} পর্যন্ত</small>`:''}${x.ev?`<div class="rs"><button class="${my=='y'?'':'alt'}" data-rs="${x.id}" data-v="y">✅ <span>আসছি</span> (${bn(ys.length)})</button><button class="${my=='n'?'':'alt'}" data-rs="${x.id}" data-v="n">❌ <span>আসছি না</span> (${bn(no.length)})</button></div>${can('notice')&&ys.length?`<small class="note">${ys.map(v=>esc(v.n)).join(', ')}</small>`:''}`:''}${can('notice')?`<br><button class="alt sm" data-nd="${x.id}">মুছুন</button>`:''}</div>`}).join('')||'<p class="note">কোনো নোটিশ নেই।</p>');
+  return `<div class="card${x.urg?' xurg':''}${x.joy?' xjoyn':''}"><span style="white-space:pre-wrap" data-ne="${esc(x.text)}">${esc(x.text)}</span>${x.exp?`<small class="note exd">⏳ ${expTxt(x)} পর্যন্ত</small>`:''}${x.ev?`<div class="rs"><button class="${my=='y'?'':'alt'}" data-rs="${x.id}" data-v="y">✅ <span>আসছি</span> (${bn(ys.length)})</button><button class="${my=='n'?'':'alt'}" data-rs="${x.id}" data-v="n">❌ <span>আসছি না</span> (${bn(no.length)})</button></div>${can('notice')&&ys.length?`<small class="note">${ys.map(v=>esc(v.n)).join(', ')}</small>`:''}`:''}${can('notice')?`<br><button class="alt sm" data-nd="${x.id}">মুছুন</button>`:''}</div>`}).join('')||'<p class="note">কোনো নোটিশ নেই।</p>');
  h+='<h3>🗳 ভোট</h3>'+(polls.map(x=>{const v=x.votes||{},tot=Object.keys(v).length,my=v[uid];
   return `<div class="card"><b data-ne="${esc(x.q)}">${esc(x.q)}</b>${x.o.map((o,i)=>{const c=Object.values(v).filter(z=>z==i).length,pc=tot?Math.round(c*100/tot):0;return `<div class="opt ${my===i?'me':''}" data-pv="${x.id}" data-i="${i}"><i style="width:${pc}%"></i><span data-ne="${esc(o)}">${esc(o)}</span><em>${bn(c)}</em></div>`}).join('')}<small class="note">${bn(tot)} <span>জন ভোট দিয়েছেন</span></small>${can('notice')?` <button class="alt sm" data-pd="${x.id}">মুছুন</button>`:''}</div>`}).join('')||'<p class="note">কোনো ভোট নেই।</p>');
  $('cm').innerHTML=h;const q=s=>$('cm').querySelectorAll(s);
@@ -2882,7 +2887,7 @@ window.addEventListener('popstate',()=>{if(admOpen){admOpen='';try{admApply();co
 async function xBkCheck(force){if(!isAdm||!me||xBkBusy||!people.length)return;
  try{xBkBusy=true;const sn=await getDocs(query(collection(db,'backups'),orderBy('at','desc'),limit(6)));const list=sn.docs.map(d=>({id:d.id,...d.data()}));
   const last=list[0]?list[0].ts||0:0;if(!force&&Date.now()-last<7*864e5){xBkList=list;return}
-  const F=['n','ne','g','b','d','s','se','parent','o','mo','bg','job','addr','ph','soc','did','md','kids','notes','nk','edu','wp','em','grave','ouid','oem','onm'],data=people.map(p=>{const o={id:p.id};F.forEach(k=>{if(p[k]!==undefined)o[k]=p[k]});return o}),json=JSON.stringify({exportedAt:new Date().toISOString(),kind:'people-only',people:data});
+  const F=['n','ne','g','b','d','s','se','parent','o','mo','bg','job','addr','ph','soc','did','md','kids','bp','notes','nk','edu','wp','em','grave','ouid','oem','onm'],data=people.map(p=>{const o={id:p.id};F.forEach(k=>{if(p[k]!==undefined)o[k]=p[k]});return o}),json=JSON.stringify({exportedAt:new Date().toISOString(),kind:'people-only',people:data});
   if(new TextEncoder().encode(json).length>950000){console.warn('backup too large');if(force)alert('তথ্য অনেক বড় হয়ে গেছে, ব্যাকআপ রাখা যায়নি। পূর্ণ ব্যাকআপ বাটন ব্যবহার করুন।');return}
   const ts=Date.now();await setDoc(doc(db,'backups','w'+ts),{ts,n:data.length,json,by:me.email,at:serverTimestamp()});
   const all=[{id:'w'+ts,ts,n:data.length,json},...list];for(const x of all.slice(4)){try{await deleteDoc(doc(db,'backups',x.id))}catch(e){}}
@@ -2892,7 +2897,7 @@ async function xBkCheck(force){if(!isAdm||!me||xBkBusy||!people.length)return;
 
 /* ---- ২২. চাঁদা ও হিসাব, ২৫. শোক সংবাদ (কমিউনিটি ট্যাবে) ---- */
 const xOpenC=new Set();
-function cmR(){cmR0();try{xMourn();xFunds()}catch(e){console.error('cmR+',e)}}
+function cmR(){cmR0();try{xMourn();xJoy();xFunds()}catch(e){console.error('cmR+',e)}}
 function xMourn(){const cm=$('cm');if(!cm||!can('mourn')||$('xmn'))return;const c=document.createElement('div');c.className='card xmn';c.id='xmn';
  c.innerHTML=`<details><summary><b>🕊 ${TL('শোক সংবাদ (জরুরি নোটিফিকেশন)','Mourning notice (urgent alert)')}</b></summary><input class="i" id="xmnm" placeholder="মরহুমের নাম"><input class="i" id="xmnt" placeholder="জানাজার সময় (যেমন: আজ বাদ আসর)"><input class="i" id="xmnp" placeholder="জানাজার স্থান"><textarea id="xmno" rows="2" placeholder="অতিরিক্ত তথ্য (ঐচ্ছিক)"></textarea><button id="xmns" style="margin-top:8px;width:100%;background:#7f1d1d">🕊 ${TL('সবাইকে জানান','Alert everyone')}</button></details>`;
  cm.insertBefore(c,cm.firstChild);
@@ -2900,6 +2905,40 @@ function xMourn(){const cm=$('cm');if(!cm||!can('mourn')||$('xmn'))return;const 
   const text=`🕊 ইন্না লিল্লাহি ওয়া ইন্না ইলাইহি রাজিউন।\n${n} ইন্তেকাল করেছেন।${t?'\nজানাজা: '+t:''}${p?'\nস্থান: '+p:''}${o?'\n'+o:''}\nআল্লাহ তাঁকে জান্নাতুল ফেরদাউস দান করুন। আমিন।`;
   if(!await hxConfirm('সব সদস্যকে জরুরি নোটিফিকেশন যাবে। পাঠাবেন?'))return;
   try{await addDoc(collection(db,'notices'),{text,ev:false,rsvp:{},urg:1,exp:Date.now()+72*36e5,at:serverTimestamp()});notify('notice',{text,ev:false,urgent:true});toast('🕊','জরুরি শোক সংবাদ পাঠানো হয়েছে।');['xmnm','xmnt','xmnp','xmno'].forEach(i=>$(i).value='')}catch(e){alert('পাঠানো যায়নি: '+(e.code||e.message))}}}
+/* ---- আনন্দ সংবাদ (নবজাতক): সবাই দিতে পারবে; সেভ করলে সদস্যের ঘরে নতুন সন্তানের ঘর + নোটিশ + পুশ নোটিফিকেশন ---- */
+function xJoy(){const cm=$('cm');if(!cm||!me||$('xjoy')||(window.hxFx&&!hxFx('baby')))return;
+ const c=document.createElement('div');c.className='card xjoy';c.id='xjoy';
+ c.innerHTML=`<details><summary><b>🎉 ${TL('আনন্দ সংবাদ (নবজাতক)','Joyful news (newborn)')}</b></summary><input class="i" id="xjq" placeholder="${TL('কার সন্তান হলো? নাম খুঁজুন…','Whose baby? Search name…')}"><select id="xjp"></select><div id="xjm"></div><div class="note" style="margin-top:8px">📍 ${TL('কোথায় জন্ম','Place of birth')}</div><div class="xjrow"><button type="button" class="alt" data-jw="h">🏥 ${TL('হাসপাতাল','Hospital')}</button><button type="button" class="alt" data-jw="b">🏠 ${TL('বাড়ি','Home')}</button></div><input class="i" id="xjh" maxlength="80" placeholder="${TL('হাসপাতালের নাম (ঐচ্ছিক)','Hospital name (optional)')}" style="display:none"><div class="note" style="margin-top:8px">👶 ${TL('নবজাতক','Newborn')}</div><div class="xjrow"><button type="button" class="alt" data-jg="m">👦 ${TL('ছেলে','Boy')}</button><button type="button" class="alt" data-jg="f">👧 ${TL('মেয়ে','Girl')}</button></div><input class="i" id="xjn" maxlength="100" placeholder="${TL('নবজাতকের নাম (ঐচ্ছিক)','Baby\'s name (optional)')}"><input class="i" id="xjd" maxlength="30" placeholder="${TL('জন্মের তারিখ','Date of birth')}" value="${xTodayStr()}"><button id="xjs" style="margin-top:10px;width:100%;background:linear-gradient(135deg,#16a34a,#eab308)">🎉 ${TL('আনন্দ সংবাদ জানান','Share the joyful news')}</button></details>`;
+ const mx=$('xmn');mx?cm.insertBefore(c,mx):cm.insertBefore(c,cm.firstChild);
+ let place='',gen='';const sel=$('xjp');
+ const fill=q=>{q=String(q||'').trim().toLowerCase();const cur=sel.value;
+  const L=people.filter(p=>!p.d&&(!q||String(p.n||'').toLowerCase().includes(q)||String(p.ne||'').toLowerCase().includes(q))).slice().sort((a,b)=>String(a.n).localeCompare(String(b.n),'bn'));
+  sel.innerHTML=`<option value="">${TL('— সদস্য বেছে নিন —','— Choose a member —')}</option>`+L.slice(0,200).map(p=>{const par=map[p.parent];return `<option value="${esc(p.id)}" ${p.id==cur?'selected':''}>${esc(p.n)}${par?' ('+esc(par.n)+TL('-এর '+(p.g=='f'?'মেয়ে':'ছেলে'),'\'s '+(p.g=='f'?'daughter':'son'))+')':''}</option>`}).join('')};
+ fill('');$('xjq').oninput=e=>fill(e.target.value);
+ sel.onchange=()=>{const p=map[sel.value],a=p&&p.g=='m'?sps(p):[];$('xjm').innerHTML=a.length>=2?`<div class="note" style="margin-top:8px">${TL('মা (কোন স্ত্রীর সন্তান)','Mother (which wife)')}</div><select id="xjmo"><option value="-1">${TL('জানা নেই','Unknown')}</option>${a.map((w,i)=>`<option value="${i}">${esc(ordB(i)+' স্ত্রী: '+w)}</option>`).join('')}</select>`:''};
+ c.querySelectorAll('[data-jw]').forEach(b=>b.onclick=()=>{place=b.dataset.jw;c.querySelectorAll('[data-jw]').forEach(x=>x.classList.toggle('alt',x!==b));$('xjh').style.display=place=='h'?'':'none'});
+ c.querySelectorAll('[data-jg]').forEach(b=>b.onclick=()=>{gen=b.dataset.jg;c.querySelectorAll('[data-jg]').forEach(x=>x.classList.toggle('alt',x!==b))});
+ $('xjs').onclick=async()=>{const p=map[sel.value];if(!p)return alert('কার সন্তান হলো, সদস্য বেছে নিন।');if(!place)return alert('হাসপাতাল না বাড়ি, বেছে নিন।');if(!gen)return alert('ছেলে না মেয়ে, বেছে নিন।');
+  const nm=$('xjn').value.trim(),dt=bn(($('xjd').value||'').trim()),hn=$('xjh').value.trim(),plc=place=='h'?'হাসপাতালে'+(hn?' ('+hn+')':''):'বাড়িতে',mv=$('xjmo')?+$('xjmo').value:-1,mo=mv>=0?mv:null;
+  const text=`🎉 আলহামদুলিল্লাহ! নতুন অতিথি এসেছে 👶\n${p.n}-এর ঘর আলোকিত করে একটি ${gen=='f'?'কন্যা':'পুত্র'} সন্তান জন্ম নিয়েছে।${nm?'\nনাম: '+nm:''}\nজন্ম: ${dt?dt+', ':''}${plc}।\nনবজাতক ও মা সুস্থ থাকুক, এই দোয়া করি। 🤲`;
+  if(!await hxConfirm('সব সদস্যকে আনন্দ সংবাদ জানানো হবে। পাঠাবেন?'))return;
+  const SELFp=!!(p.ouid&&p.ouid===me.uid),direct=SELFp||(can('edit')&&!p.ouid)||(isOwn&&p.g!='f'),locked=!direct&&!!p.ouid;
+  try{
+   if(direct){
+    if(p.g=='f')await updateDoc(doc(db,'people',p.id),{kids:arrayUnion({id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),n:nm||'নবজাতক',g:gen,b:dt,bp:plc})});
+    else await addDoc(collection(db,'people'),{n:nm||'নতুন সদস্য',g:gen,b:dt,d:'',s:'',parent:p.id,o:p.k.length,notes:[],bp:plc,...(mo!=null?{mo}:{})});
+   }else if(!locked){
+    await addDoc(collection(db,'suggestions'),{pid:p.id,pn:p.n,f:'নবজাতক সন্তান',v:(gen=='f'?'মেয়ে':'ছেলে')+' · '+(nm||'নাম এখনো ঠিক হয়নি')+' · '+dt+' · '+plc,baby:{n:nm,g:gen,b:dt,bp:plc,...(mo!=null?{mo}:{})},w:me.displayName||me.email,uid:me.uid,status:'pending',at:serverTimestamp()});
+    notify('sug',{kind:'suggestion'});
+   }
+  }catch(e){return alert('সেভ হয়নি: '+(e.code||e.message))}
+  let nok=true;
+  try{await addDoc(collection(db,'notices'),{text,ev:false,rsvp:{},joy:1,exp:Date.now()+7*864e5,at:serverTimestamp()})}catch(e){nok=false;console.warn('joy notice',e)}
+  if(!nok)return alert('নোটিশ বোর্ডে আনন্দ সংবাদ দেওয়া যায়নি: '+(direct?'সদস্যের ঘর যোগ হয়েছে, কিন্তু ':'')+'Firestore Rules Publish করা আছে কিনা দেখুন।');
+  notify('notice',{text,ev:false,joy:true});
+  toast('🎉',direct?'আনন্দ সংবাদ সবাইকে জানানো হয়েছে।':locked?'আনন্দ সংবাদ জানানো হয়েছে। এই প্রোফাইল মালিকের নিয়ন্ত্রণে, তাই সন্তানের ঘর মালিক নিজে যোগ করবেন।':'আনন্দ সংবাদ জানানো হয়েছে। সদস্যের ঘর অ্যাডমিন অনুমোদন করলে যুক্ত হবে।');
+  ['xjn','xjh'].forEach(i=>$(i).value='');sel.value='';$('xjm').innerHTML='';place='';gen='';c.querySelectorAll('[data-jw],[data-jg]').forEach(x=>x.classList.add('alt'));$('xjh').style.display='none';c.querySelector('details').open=false}}
+addEventListener('fxcfg',()=>{try{const e=$('xjoy');if(e)e.remove();if($('cm'))xJoy()}catch(_){}});
 function xUrgent(){let b=$('xurg');const u=(ntc||[]).find(n=>n.urg);if(!u){if(b)b.remove();return}
  if(!b){const t=document.querySelector('#app .bar');if(!t)return;b=document.createElement('div');b.id='xurg';b.className='xalert xdark';b.onclick=()=>tab(6);t.before(b)}
  b.innerHTML=`<span>🕊</span><div><b>${TL('শোক সংবাদ','Mourning notice')}</b><small>${esc(String(u.text||'').split('\n').slice(1,3).join(' · '))}</small></div>`}
