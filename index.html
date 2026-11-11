@@ -3963,6 +3963,20 @@ html.hx-boot *:not(#hdr):not(#hdr *),html.hx-boot *:not(#hdr):not(#hdr *)::befor
 html.hx-hold *:not(#hdr):not(#hdr *),html.hx-hold *:not(#hdr):not(#hdr *)::before,html.hx-hold *:not(#hdr):not(#hdr *)::after{animation-play-state:paused!important}
 html.hx-boot #tree li,html.hx-boot .rvp{opacity:1!important}
 header#hdr{contain:layout paint style;transform:translateZ(0);backface-visibility:hidden}
+/* ===== ফোন-হালকা: হেডারের ভেতরের রিপেইন্ট কমানো (পিসিতে কোনো পরিবর্তন নেই) ===== */
+@media (pointer:coarse),(max-width:700px){
+ /* এজ-অ্যান্টিঅ্যালিয়াসিং কম = প্রতি ফ্রেমে কম পেইন্ট */
+ header#hdr svg{shape-rendering:optimizeSpeed}
+ /* ঘাস/তারা/জোনাকি: অর্ধেকগুলো স্থির (দেখতে প্রায় একই, কাজ অর্ধেক) */
+ header#hdr .fw:nth-child(2n),header#hdr .tw:nth-child(2n),header#hdr .ffm:nth-child(2n),header#hdr .ffg:nth-child(2n),header#hdr .gln:nth-child(2n){animation:none!important}
+ /* দিনে/ভোরে অকেজো ব্রাইটনেস ফিল্টার (প্রতিটা গ্রুপে আলাদা লেয়ার বানায়) */
+ header#hdr[data-tod="day"] [style*="filter:brightness"],header#hdr[data-tod="dawn"] [style*="filter:brightness"]{filter:none!important}
+ /* শিরোনামের ভারী ড্রপ-শ্যাডো ফিল্টার */
+ header .ttl .ac{filter:none!important}
+ header#hdr .ttl,header#hdr .hl p{text-shadow:0 1px 4px rgba(0,0,0,.7)!important}
+}
+/* ঢোকার প্রথম মুহূর্তে হেডারের পেছনের দৃশ্য স্থির; শিরোনাম চলে। লোড শেষে দৃশ্য চালু */
+html.hx-boot header#hdr .scene,html.hx-boot header#hdr .scene *{animation-play-state:paused!important}
 </style>
 <script id="hx-hold-js">
 (function(){
