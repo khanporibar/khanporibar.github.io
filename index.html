@@ -953,7 +953,7 @@ header#hdr .ttl{filter:drop-shadow(0 1px 1.5px rgba(0,30,80,.55))}
 
 <style>
 /* ===== Animation control popup (3 modes) ===== */
-#ltpop{position:fixed;z-index:250;display:none;flex-direction:column;gap:6px;padding:10px;min-width:236px;border-radius:18px;background:rgba(14,20,42,.97);border:1px solid rgba(255,255,255,.2);box-shadow:0 20px 60px rgba(0,0,0,.6)}
+#ltpop{position:fixed;z-index:250;display:none;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;max-width:calc(100vw - 16px);flex-direction:column;gap:6px;padding:10px;min-width:236px;border-radius:18px;background:rgba(14,20,42,.97);border:1px solid rgba(255,255,255,.2);box-shadow:0 20px 60px rgba(0,0,0,.6)}
 #ltpop.open{display:flex}
 #ltpop .lth{font-size:12px;opacity:.65;padding:2px 6px 4px;color:#cfe0ff}
 #ltpop button{display:flex;align-items:center;gap:10px;width:100%;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:#eaf1ff;font:inherit;font-size:14px;text-align:left;cursor:pointer}
@@ -2977,7 +2977,7 @@ if(top&&th){const lt=document.createElement('button');lt.id='lt';lt.type='button
  document.body.appendChild(pop);
  const ap=()=>{R.classList.toggle('lite',v==1);R.classList.toggle('lite2',v==2);lt.classList.toggle('on',!!v);lt.innerHTML=v?Zo:Z;lt.title=v==1?'সব অ্যানিমেশন বন্ধ':v==2?'হেডার বাদে বন্ধ':'অ্যানিমেশন চালু';lt.setAttribute('aria-label',lt.title);pop.querySelectorAll('button[data-m]').forEach(b=>b.classList.toggle('sel',+b.dataset.m===v));window.hxMarkGfx&&window.hxMarkGfx()};
  const shut=()=>pop.classList.remove('open');
- lt.onclick=e=>{e.stopPropagation();if(pop.classList.contains('open')){shut();return}const r=lt.getBoundingClientRect();pop.classList.add('open');pop.style.top=(r.bottom+8)+'px';pop.style.left=Math.max(8,Math.min(r.left-20,innerWidth-pop.offsetWidth-8))+'px'};
+ lt.onclick=e=>{e.stopPropagation();if(pop.classList.contains('open')){shut();return}const r=lt.getBoundingClientRect();pop.classList.add('open');pop.style.top=(r.bottom+8)+'px';pop.style.maxHeight=Math.max(180,innerHeight-r.bottom-20)+'px';pop.style.left=Math.max(8,Math.min(r.left-20,innerWidth-pop.offsetWidth-8))+'px'};
  pop.onclick=e=>{e.stopPropagation();const g=e.target.closest('button[data-g]');if(g){window.hxSetGfx&&window.hxSetGfx(g.dataset.g);shut();return}const b=e.target.closest('button[data-m]');if(!b)return;v=+b.dataset.m;try{localStorage.setItem('khanLite2',v)}catch(x){}ap();shut()};
  document.addEventListener('click',shut);
  th.after(lt);ap();
