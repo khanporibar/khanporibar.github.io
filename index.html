@@ -2349,7 +2349,7 @@ if(n)h+=row(`⏳ <b>${bn(n)}</b> <span>অনুমোদনের অপেক�
  $('dc').querySelectorAll('input[data-pf]').forEach(x=>x.onchange=()=>{prefs[x.dataset.pf]=x.checked;setDoc(doc(db,'tokens',me.uid),{prefs},{merge:true}).catch(()=>{})});
  if($('go2'))$('go2').onclick=()=>{dlg.close();tab(2)};
  $('dc').querySelectorAll('[data-clv]').forEach(b=>b.onclick=()=>{const q=map[b.dataset.clv];if(q)show(q)});
- if($('na'))$('na').onclick=async()=>{const t=$('nt').value.trim();if(t){await addDoc(collection(db,'notices'),{text:t,ev:false,rsvp:{},...expOf('nx'),at:serverTimestamp()});notify('notice',{text:t,ev:false});dlg.close()}};
+ if($('na'))$('na').onclick=async()=>{const t=$('nt').value.trim(),b=$('na');if(!t)return alert(lang=='en'?'Write the notice first.':'আগে নোটিশ লিখুন।');b.disabled=true;try{const ex=expOf('nx');await addDoc(collection(db,'notices'),{text:t,ev:false,rsvp:{},...ex,at:serverTimestamp()});notify('notice',{text:t,ev:false});toast('✔',ex.exp?(lang=='en'?'Notice posted. It will disappear automatically.':'নোটিশ দেওয়া হয়েছে। সময় শেষে নিজে থেকে চলে যাবে।'):(lang=='en'?'Notice posted.':'নোটিশ দেওয়া হয়েছে।'));dlg.close()}catch(e){alert((lang=='en'?'Notice not posted: ':'নোটিশ দেওয়া যায়নি: ')+(e.code||e.message)+(String(e.code||'').includes('permission')?'\nFirestore rules Publish করা আছে কিনা দেখুন।':''))}finally{b.disabled=false}};
  if($('np'))$('np').onclick=()=>Notification.requestPermission().then(()=>{regPush();dlg.close()});
  $('dc').querySelectorAll('button[data-nd]').forEach(b=>b.onclick=async()=>{await deleteDoc(doc(db,'notices',b.dataset.nd));dlg.close()});
  if(!dlg.open)dlg.showModal()};
@@ -2443,7 +2443,7 @@ function cmR0(){if(!me)return;const uid=me.uid,nm=me.displayName||me.email;let h
  h+='<h3>🗳 ভোট</h3>'+(polls.map(x=>{const v=x.votes||{},tot=Object.keys(v).length,my=v[uid];
   return `<div class="card"><b data-ne="${esc(x.q)}">${esc(x.q)}</b>${x.o.map((o,i)=>{const c=Object.values(v).filter(z=>z==i).length,pc=tot?Math.round(c*100/tot):0;return `<div class="opt ${my===i?'me':''}" data-pv="${x.id}" data-i="${i}"><i style="width:${pc}%"></i><span data-ne="${esc(o)}">${esc(o)}</span><em>${bn(c)}</em></div>`}).join('')}<small class="note">${bn(tot)} <span>জন ভোট দিয়েছেন</span></small>${can('notice')?` <button class="alt sm" data-pd="${x.id}">মুছুন</button>`:''}</div>`}).join('')||'<p class="note">কোনো ভোট নেই।</p>');
  $('cm').innerHTML=h;const q=s=>$('cm').querySelectorAll(s);
- if($('cb'))$('cb').onclick=async()=>{const t=$('cn').value.trim();if(t){const ev=$('ce').checked;await addDoc(collection(db,'notices'),{text:t,ev,rsvp:{},...expOf('cx'),at:serverTimestamp()});notify('notice',{text:t,ev})}};
+ if($('cb'))$('cb').onclick=async()=>{const t=$('cn').value.trim(),b=$('cb');if(!t)return alert(lang=='en'?'Write the notice first.':'আগে নোটিশ লিখুন।');b.disabled=true;try{const ev=$('ce').checked,ex=expOf('cx');await addDoc(collection(db,'notices'),{text:t,ev,rsvp:{},...ex,at:serverTimestamp()});notify('notice',{text:t,ev});$('cn').value='';toast('✔',ex.exp?(lang=='en'?'Notice posted. It will disappear automatically.':'নোটিশ দেওয়া হয়েছে। সময় শেষে নিজে থেকে চলে যাবে।'):(lang=='en'?'Notice posted.':'নোটিশ দেওয়া হয়েছে।'))}catch(e){alert((lang=='en'?'Notice not posted: ':'নোটিশ দেওয়া যায়নি: ')+(e.code||e.message)+(String(e.code||'').includes('permission')?'\nFirestore rules Publish করা আছে কিনা দেখুন।':''))}finally{b.disabled=false}};
  if($('pb'))$('pb').onclick=async()=>{const o=$('po').value.split('\n').map(x=>x.trim()).filter(Boolean),t=$('pq').value.trim();if(t&&o.length>1){await addDoc(collection(db,'polls'),{q:t,o,votes:{},at:serverTimestamp()});notify('poll',{q:t})}};
  q('button[data-rs]').forEach(b=>b.onclick=()=>updateDoc(doc(db,'notices',b.dataset.rs),{['rsvp.'+uid]:{s:b.dataset.v,n:nm}}));
  q('[data-pv]').forEach(b=>b.onclick=()=>updateDoc(doc(db,'polls',b.dataset.pv),{['votes.'+uid]:+b.dataset.i}));
@@ -2995,7 +2995,7 @@ function xJoy(){const cm=$('cm');if(!cm||!me||$('xjoy')||(window.hxFx&&!hxFx('ba
    }
   }catch(e){return alert('সেভ হয়নি: '+(e.code||e.message))}
   let nok=true;
-  try{await addDoc(collection(db,'notices'),{text,ev:false,rsvp:{},joy:1,exp:Date.now()+7*864e5,at:serverTimestamp()})}catch(e){nok=false;console.warn('joy notice',e)}
+  try{await addDoc(collection(db,'notices'),{text,ev:false,rsvp:{},joy:1,exp:Date.now()+864e5,at:serverTimestamp()})}catch(e){nok=false;console.warn('joy notice',e)}
   if(!nok)return alert('নোটিশ বোর্ডে আনন্দ সংবাদ দেওয়া যায়নি: '+(direct?'সদস্যের ঘর যোগ হয়েছে, কিন্তু ':'')+'Firestore Rules Publish করা আছে কিনা দেখুন।');
   notify('notice',{text,ev:false,joy:true});
   toast('🎉',direct?'আনন্দ সংবাদ সবাইকে জানানো হয়েছে।':locked?'আনন্দ সংবাদ জানানো হয়েছে। এই প্রোফাইল মালিকের নিয়ন্ত্রণে, তাই সন্তানের ঘর মালিক নিজে যোগ করবেন।':'আনন্দ সংবাদ জানানো হয়েছে। সদস্যের ঘর অ্যাডমিন অনুমোদন করলে যুক্ত হবে।');
@@ -3091,7 +3091,7 @@ const c=document.getElementById('chat');if(c){const f=()=>R.classList.toggle('ch
 const t=document.getElementById('tree');if(t&&'IntersectionObserver' in window){const seen=new WeakSet(),io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.target.isConnected){io.unobserve(e.target);return}e.target.classList.toggle('offs',!e.isIntersecting);if(e.target.parentElement)e.target.parentElement.classList.toggle('offs',!e.isIntersecting)}),{rootMargin:'120px'});let q=0;const scan=()=>{q=0;t.querySelectorAll('.n').forEach(n=>{if(!seen.has(n)){seen.add(n);io.observe(n)}})};new MutationObserver(()=>{if(!q)q=requestAnimationFrame(scan)}).observe(t,{childList:true,subtree:true});scan()}
 })();</script><script>(function(){const r=document.documentElement,h=document.querySelector('header');
 if(h&&'IntersectionObserver' in window)new IntersectionObserver(e=>r.classList.toggle('hdr-off',!e[0].isIntersecting),{rootMargin:'500px 0px 500px 0px'}).observe(h);
-document.addEventListener('visibilitychange',()=>r.classList.toggle('tab-off',document.hidden));let held=[];const ds=()=>{const open=!!document.querySelector('dialog[open]');if(open&&!held.length){requestAnimationFrame(()=>setTimeout(()=>{if(!document.querySelector('dialog[open]'))return;try{held=document.getAnimations().filter(a=>a.playState=='running'&&!(a.effect&&a.effect.target&&a.effect.target.closest&&a.effect.target.closest('dialog')));held.forEach(a=>a.pause())}catch(e){held=[]}},60))}else if(!open&&held.length){held.forEach(a=>{try{a.play()}catch(e){}});held=[]}};document.querySelectorAll('dialog').forEach(d=>new MutationObserver(ds).observe(d,{attributes:true,attributeFilter:['open']}))})();</script>
+document.addEventListener('visibilitychange',()=>r.classList.toggle('tab-off',document.hidden));let held=[];const ds=()=>{const open=!!document.querySelector('dialog[open]');if(open&&!held.length){requestAnimationFrame(()=>setTimeout(()=>{if(!document.querySelector('dialog[open]'))return;try{held=document.getAnimations().filter(a=>a.playState=='running'&&!(a.effect&&a.effect.target&&a.effect.target.closest&&a.effect.target.closest('dialog'))&&!(a.effect&&a.effect.target&&a.effect.target.closest&&a.effect.target.closest('.tk')));held.forEach(a=>a.pause())}catch(e){held=[]}},60))}else if(!open&&held.length){held.forEach(a=>{try{a.play()}catch(e){}});held=[]}};document.querySelectorAll('dialog').forEach(d=>new MutationObserver(ds).observe(d,{attributes:true,attributeFilter:['open']}))})();</script>
 <script>(function(){const H=document.getElementById('hdr');if(!H)return;const f=new URLSearchParams(location.search).get('tod'),tod=m=>m>=315&&m<450?'dawn':m>=450&&m<975?'day':m>=975&&m<1070?'dusk':'night';
 function tick(){const n=new Date(),t=f||(window.hxTod?window.hxTod():tod(n.getHours()*60+n.getMinutes()));if(H.dataset.tod!==t)H.dataset.tod=t}tick();setInterval(()=>{if(!document.hidden)tick()},60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)tick()})})();</script><script>(function(){
 const H=document.getElementById('hdr'),S=H&&H.querySelector('.hsc'),NS='http://www.w3.org/2000/svg';if(!S)return;
@@ -4135,4 +4135,13 @@ html:not([data-gfx="u"]).hx-boot header#hdr .scene,html:not([data-gfx="u"]).hx-b
   addEventListener('load',function(){setTimeout(go,4500)},{once:true})}
 })();
 </script>
+<style id="tkkeep">/* নোটিশ বোর্ডের ঘোষণা বার (টিকার): কোনো অফ/লাইট মোড, স্ক্রল, ইডল বা ব্যাটারি-সেভে থামবে না ও চেহারা বদলাবে না */
+html[class] #tk#tk#tk{backdrop-filter:blur(12px)!important;-webkit-backdrop-filter:blur(12px)!important}
+html[class] #tk#tk#tk .tkt{animation:tkm var(--d,20s) linear infinite!important;animation-play-state:running!important;will-change:transform!important}
+html[class] #tk#tk#tk:active .tkt{animation-play-state:paused!important}
+html[class] #tk#tk#tk .tks{animation:bellring 3s ease-in-out infinite!important;animation-play-state:running!important}
+html[class] #tk#tk#tk .tks .w1,html[class] #tk#tk#tk .tks .w2{animation:wv 1.6s ease-in-out infinite!important;animation-play-state:running!important}
+html[class] #tk#tk#tk .tks .w2{animation-delay:.3s!important}
+html[class] #tk#tk#tk .tkd{animation:dtp 1.6s ease-in-out infinite!important;animation-play-state:running!important}
+</style>
 </body></html>
