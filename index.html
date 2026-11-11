@@ -1,4 +1,17 @@
-<!DOCTYPE html><html lang="bn" class="hx-boot"><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'"><meta name="referrer" content="strict-origin-when-cross-origin"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>খান পরিবারের বংশবৃক্ষ</title><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#070b1a"><meta name="color-scheme" content="dark"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="খান পরিবার"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><link rel="icon" type="image/svg+xml" href="favicon.svg?v=3"><link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=3"><link rel="apple-touch-icon" href="apple-touch-icon.png?v=3">
+<!DOCTYPE html><html lang="bn" class="hx-boot"><head><script id="hx-gfx-head">
+(function(){var R=document.documentElement,L=function(k){try{return localStorage.getItem(k)}catch(e){return null}};
+ function detect(){var a=L('hxgfxA');if(a=='n'||a=='p'||a=='u')return a;
+  var m=navigator.deviceMemory,c=navigator.hardwareConcurrency||4,cn=navigator.connection,sd=cn&&cn.saveData,
+  touch=window.matchMedia&&matchMedia('(pointer:coarse)').matches,ios=/iPhone|iPad|iPod/.test(navigator.userAgent);
+  if(sd||(m&&m<=4)||c<=4)return 'n';
+  if(m&&m>=8&&c>=8)return 'u';
+  if(!m&&!touch)return 'u';
+  return 'p'}
+ function eff(){var ch=L('hxgfx');return(ch=='n'||ch=='p'||ch=='u')?ch:detect()}
+ window.__gfxDetect=detect;window.__gfxEff=eff;
+ R.setAttribute('data-gfx',eff())})();
+</script>
+<meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'"><meta name="referrer" content="strict-origin-when-cross-origin"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>খান পরিবারের বংশবৃক্ষ</title><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#070b1a"><meta name="color-scheme" content="dark"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="খান পরিবার"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><link rel="icon" type="image/svg+xml" href="favicon.svg?v=3"><link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=3"><link rel="apple-touch-icon" href="apple-touch-icon.png?v=3">
 <link rel="preconnect" href="https://www.gstatic.com" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://firestore.googleapis.com" crossorigin><link rel="dns-prefetch" href="https://identitytoolkit.googleapis.com"><link rel="dns-prefetch" href="https://securetoken.googleapis.com"><link rel="modulepreload" href="https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js"><link rel="modulepreload" href="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js"><link rel="modulepreload" href="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js"><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&display=swap" rel="stylesheet"></noscript><style>
 :root{--bg:#f6f3ea;--card:#fff;--ink:#1d2b22;--mut:#6b7a70;--g:#1f6b45;--g2:#2e8b5a;--gold:#c9a227;--boy:#2f6fb5;--girl:#d4568a;--line:#d9d3c0;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121a15;--card:#1c2822;--ink:#eaf1ec;--mut:#98a89d;--g:#3aa56f;--g2:#4cbd83;--line:#33443a;color-scheme:dark}}
@@ -1657,7 +1670,7 @@ const prNm=(id,fb)=>{const p=prWho(id);return p?nmx(p):(fb||'')};
 const prAv=(id,nm,on)=>{const p=prWho(id);return `<span class="onla">${p?avInner(p):esc((nm||'?').trim().charAt(0)||'?')}${on?'<i></i>':''}</span>`};
 const prMap=d=>{const x=d.data(),a=x.at;return{id:d.id,n:x.n||'',ms:a&&a.toMillis?a.toMillis():Date.now()}};
 const prOn=()=>PR.docs.filter(d=>d.ms>Date.now()-300000&&d.n);
-function prRender(){const b=$('onl');if(!b)return;if(!prSee()||!PR.ready){b.innerHTML='';b.dataset.sig='';const d0=$('onld');if(d0&&d0.open&&!prSee())d0.close();return}
+function prRender(){const b=$('onl');if(!b)return;if(prSee()&&!PR.ready&&PR.err&&(isAdm||isOwn)){b.dataset.sig='err';b.innerHTML='<div class="onlb" style="cursor:default"><span>⚠️</span><span>অনলাইন তালিকা লোড হয়নি ('+esc(String(PR.err))+'). Firestore rules-এ <b>presence</b> ও <b>visits</b> যোগ করুন।</span></div>';return}if(!prSee()||!PR.ready){b.innerHTML='';b.dataset.sig='';const d0=$('onld');if(d0&&d0.open&&!prSee())d0.close();return}
  const k=prOn().length,ic=k?'🟢':'⚪',h=k?prT(`<b>${prN(k)}</b> জন এখন একটিভ`,`<b>${k}</b> active now`):prT('এখন কেউ একটিভ নেই','No one is active now'),o=PR.mode=='own'?`<em class="onlo">${prT('শুধু মালিক','Owner only')}</em>`:'',sig=ic+h+o;
  if(b.dataset.sig!==sig||!$('onlb')){b.dataset.sig=sig;b.innerHTML=`<button type="button" class="onlb" id="onlb"><span>${ic}</span><span>${h}${o}</span><span class="ar">›</span></button>`;$('onlb').onclick=prOpen}
  const d=$('onld');if(d&&d.open)prFill()}
@@ -1690,16 +1703,17 @@ function prOpen(){const d=prDlg();prFill(true);prLoadRec();if(!d.open)d.showModa
 function prAdmSync(){const bx=$('presbox');if(!bx)return;const on=PR.mode!='off',ca=$('prm-on'),cl=$('prm-all'),n=$('prmn');if(ca)ca.checked=on;if(cl){cl.checked=PR.mode=='all';cl.disabled=!on}const w=$('prm-allw');if(w)w.style.opacity=on?'':'.45';
  if(n){n.textContent=PR.mode=='off'?'⛔ এখন বন্ধ: কেউ দেখছে না।':PR.mode=='own'?'✅ চালু · শুধু আপনি দেখছেন।':'✅ চালু · সবাই কে কখন একটিভ ছিল দেখতে পাচ্ছে। গ্রাফ দেখতে পাবেন মালিক আর যাকে "📊 একটিভ গ্রাফ" পারমিশন দেবেন।';n.style.color=PR.mode=='off'?'var(--text-danger,#f87171)':'var(--text-success,#34d399)'}}
 function prBeat(u,force){if(!u||PR.mode=='off'||(document.hidden&&!force))return;const now=Date.now();if(!force&&now-PR.last<90000)return;PR.last=now;const nm=(u.displayName||(u.email||'').split('@')[0]||'Member').slice(0,80);
- setDoc(doc(db,'presence',u.uid),{n:nm,at:serverTimestamp(),hide:false},{merge:true}).catch(()=>{});
+ setDoc(doc(db,'presence',u.uid),{n:nm,at:serverTimestamp(),hide:false},{merge:true}).catch(e=>{console.error('presence write',e);PR.err=(e&&e.code)||'error';prRender()});
  const day=prDay(),k='hxpDay_'+u.uid;let last='';try{last=localStorage.getItem(k)||''}catch(e){}
  if(last!==day){try{localStorage.setItem(k,day)}catch(e){}setDoc(doc(db,'visits',day),{u:{[u.uid]:nm}},{merge:true}).catch(()=>{try{localStorage.removeItem(k)}catch(e){}})}}
-function presenceStart(u){PR.u=u;PR.docs=[];PR.rec=null;PR.days=null;PR.ready=false;PR.last=0;PR.mode='all';
+function presenceStart(u){PR.u=u;PR.docs=[];PR.rec=null;PR.days=null;PR.ready=false;PR.last=0;try{const m0=localStorage.getItem('hxPresMode');PR.mode=(m0=='own'||m0=='off')?m0:'all'}catch(e){PR.mode='all'}
  let ul=null;
  const stopL=()=>{if(ul){ul();ul=null}},
  startL=()=>{if(ul||!prSee()||document.hidden)return;
-  ul=onSnapshot(query(collection(db,'presence'),where('at','>',new Date(Date.now()-600000))),sn=>{PR.docs=sn.docs.map(prMap);PR.ready=true;prRender()},()=>{PR.docs=[];PR.ready=false;prRender()})},
+  ul=onSnapshot(query(collection(db,'presence'),where('at','>',new Date(Date.now()-600000))),sn=>{if(sn.metadata.fromCache&&!sn.docs.length&&!PR.ready)return;PR.docs=sn.docs.map(prMap);PR.ready=true;PR.err='';prRender()},e=>{console.error('presence listen',e);PR.docs=[];PR.ready=false;PR.err=(e&&e.code)||'error';prRender()})},
  apply=()=>{if(prSee()&&!document.hidden)startL();else stopL();if(!prSee()){PR.docs=[];PR.ready=false}prRender()};
- unsub.push(onSnapshot(doc(db,'history','pres'),s=>{const m=s.exists()?s.data().m:'all';PR.mode=(m=='own'||m=='off')?m:'all';apply();prAdmSync();prBeat(u,false)},()=>{}));
+ unsub.push(onSnapshot(doc(db,'history','pres'),s=>{const m=s.exists()?s.data().m:'all';PR.mode=(m=='own'||m=='off')?m:'all';try{localStorage.setItem('hxPresMode',PR.mode)}catch(e){}apply();prAdmSync();prBeat(u,false)},()=>{}));
+ apply();prBeat(u,false);
  const t1=setInterval(()=>prBeat(u),120000),t2=setInterval(()=>{if(!document.hidden&&prSee())prRender()},60000),vc=()=>{apply();if(!document.hidden&&Date.now()-PR.last>60000)prBeat(u,true)};document.addEventListener('visibilitychange',vc);
  unsub.push(()=>{clearInterval(t1);clearInterval(t2);document.removeEventListener('visibilitychange',vc);stopL();PR.docs=[];PR.u=null;const b=$('onl');if(b)b.innerHTML=''})}
 const authCb=async u=>{unsub.forEach(f=>f());unsub=[];me=u;if(!u){window.__fastOk=false;try{localStorage.removeItem('khanFastU')}catch(e){}myClaim=null;claims=[];people=[];map={};roots=[];sug=[];usr=[];areq=[];preq=[];avs={};avsF={};ntc=[];ntcAll=[];polls=[];chs={};dU=[];hist=null;curChat=null;isAdm=false;isOwn=false;myPerms={};window.__isAdm=false;dispatchEvent(new Event('hxadm'));window._psig='';try{$('tree').innerHTML='';$('chat').classList.add('hide');$('t2').classList.add('hide');tab(1)}catch(e){}gate('login');return}
@@ -2958,12 +2972,13 @@ if(top&&th){const lt=document.createElement('button');lt.id='lt';lt.type='button
  let v=0;try{v=+(localStorage.getItem('khanLite2')||0)}catch(e){v=0}
  const MODES=[[1,'🌙','হেডার সহ সব অ্যানিমেশন বন্ধ'],[2,'🖼️','হেডার বাদে বাকি সব বন্ধ'],[0,'✨','সব অ্যানিমেশন চালু']];
  const pop=document.createElement('div');pop.id='ltpop';pop.setAttribute('role','menu');
- pop.innerHTML='<div class="lth">অ্যানিমেশন নিয়ন্ত্রণ</div>'+MODES.map(m=>'<button type="button" data-m="'+m[0]+'"><i>'+m[1]+'</i><span>'+m[2]+'</span><b>✓</b></button>').join('');
+ const GFX=[['a','🤖','অটো (ফোন দেখে ঠিক হবে)'],['n','⚡','Normal — হালকা, ল্যাগ কম'],['p','🎨','Pro — সুষম'],['u','💎','Ultra — প্রিমিয়াম ভিজ্যুয়াল']];
+ pop.innerHTML='<div class="lth">অ্যানিমেশন নিয়ন্ত্রণ</div>'+MODES.map(m=>'<button type="button" data-m="'+m[0]+'"><i>'+m[1]+'</i><span>'+m[2]+'</span><b>✓</b></button>').join('')+'<div class="lth" style="margin-top:8px">গ্রাফিক্স মোড</div>'+GFX.map(m=>'<button type="button" data-g="'+m[0]+'"><i>'+m[1]+'</i><span>'+m[2]+'</span><b>✓</b></button>').join('');
  document.body.appendChild(pop);
- const ap=()=>{R.classList.toggle('lite',v==1);R.classList.toggle('lite2',v==2);lt.classList.toggle('on',!!v);lt.innerHTML=v?Zo:Z;lt.title=v==1?'সব অ্যানিমেশন বন্ধ':v==2?'হেডার বাদে বন্ধ':'অ্যানিমেশন চালু';lt.setAttribute('aria-label',lt.title);pop.querySelectorAll('button').forEach(b=>b.classList.toggle('sel',+b.dataset.m===v))};
+ const ap=()=>{R.classList.toggle('lite',v==1);R.classList.toggle('lite2',v==2);lt.classList.toggle('on',!!v);lt.innerHTML=v?Zo:Z;lt.title=v==1?'সব অ্যানিমেশন বন্ধ':v==2?'হেডার বাদে বন্ধ':'অ্যানিমেশন চালু';lt.setAttribute('aria-label',lt.title);pop.querySelectorAll('button[data-m]').forEach(b=>b.classList.toggle('sel',+b.dataset.m===v));window.hxMarkGfx&&window.hxMarkGfx()};
  const shut=()=>pop.classList.remove('open');
  lt.onclick=e=>{e.stopPropagation();if(pop.classList.contains('open')){shut();return}const r=lt.getBoundingClientRect();pop.classList.add('open');pop.style.top=(r.bottom+8)+'px';pop.style.left=Math.max(8,Math.min(r.left-20,innerWidth-pop.offsetWidth-8))+'px'};
- pop.onclick=e=>{e.stopPropagation();const b=e.target.closest('button[data-m]');if(!b)return;v=+b.dataset.m;try{localStorage.setItem('khanLite2',v)}catch(x){}ap();shut()};
+ pop.onclick=e=>{e.stopPropagation();const g=e.target.closest('button[data-g]');if(g){window.hxSetGfx&&window.hxSetGfx(g.dataset.g);shut();return}const b=e.target.closest('button[data-m]');if(!b)return;v=+b.dataset.m;try{localStorage.setItem('khanLite2',v)}catch(x){}ap();shut()};
  document.addEventListener('click',shut);
  th.after(lt);ap();
  const sz=()=>{th.style.border='1px solid rgba(255,255,255,.55)'};
@@ -3959,24 +3974,33 @@ html.hx-idle:root::before{animation-play-state:paused!important}
 .onlbars.mo{gap:2px}.onlbars.mo>div>span:first-child{display:none}.onlbars.mo>div>span:last-child{font-size:9px;white-space:nowrap;overflow:visible}
 </style>
 <style id="hx-hold-css">
-html.hx-boot *:not(#hdr):not(#hdr *),html.hx-boot *:not(#hdr):not(#hdr *)::before,html.hx-boot *:not(#hdr):not(#hdr *)::after,
+html.hx-boot:not([data-gfx="u"]) *:not(#hdr):not(#hdr *),html.hx-boot:not([data-gfx="u"]) *:not(#hdr):not(#hdr *)::before,html.hx-boot:not([data-gfx="u"]) *:not(#hdr):not(#hdr *)::after,
 html.hx-hold *:not(#hdr):not(#hdr *),html.hx-hold *:not(#hdr):not(#hdr *)::before,html.hx-hold *:not(#hdr):not(#hdr *)::after{animation-play-state:paused!important}
 html.hx-boot #tree li,html.hx-boot .rvp{opacity:1!important}
 header#hdr{contain:layout paint style;transform:translateZ(0);backface-visibility:hidden}
-/* ===== ফোন-হালকা: হেডারের ভেতরের রিপেইন্ট কমানো (পিসিতে কোনো পরিবর্তন নেই) ===== */
-@media (pointer:coarse),(max-width:700px){
- /* এজ-অ্যান্টিঅ্যালিয়াসিং কম = প্রতি ফ্রেমে কম পেইন্ট */
- header#hdr svg{shape-rendering:optimizeSpeed}
- /* ঘাস/তারা/জোনাকি: অর্ধেকগুলো স্থির (দেখতে প্রায় একই, কাজ অর্ধেক) */
- header#hdr .fw:nth-child(2n),header#hdr .tw:nth-child(2n),header#hdr .ffm:nth-child(2n),header#hdr .ffg:nth-child(2n),header#hdr .gln:nth-child(2n){animation:none!important}
- /* দিনে/ভোরে অকেজো ব্রাইটনেস ফিল্টার (প্রতিটা গ্রুপে আলাদা লেয়ার বানায়) */
- header#hdr[data-tod="day"] [style*="filter:brightness"],header#hdr[data-tod="dawn"] [style*="filter:brightness"]{filter:none!important}
- /* শিরোনামের ভারী ড্রপ-শ্যাডো ফিল্টার */
- header .ttl .ac{filter:none!important}
- header#hdr .ttl,header#hdr .hl p{text-shadow:0 1px 4px rgba(0,0,0,.7)!important}
-}
-/* ঢোকার প্রথম মুহূর্তে হেডারের পেছনের দৃশ্য স্থির; শিরোনাম চলে। লোড শেষে দৃশ্য চালু */
-html.hx-boot header#hdr .scene,html.hx-boot header#hdr .scene *{animation-play-state:paused!important}
+/* ===== গ্রাফিক্স মোড ===== */
+/* NORMAL: কম RAM/ধীর ফোন — হালকা, মসৃণ */
+html[data-gfx="n"] header#hdr svg{shape-rendering:optimizeSpeed}
+html[data-gfx="n"] header#hdr .fw:nth-child(2n),html[data-gfx="n"] header#hdr .tw:nth-child(2n),html[data-gfx="n"] header#hdr .ffm:nth-child(2n),html[data-gfx="n"] header#hdr .ffg:nth-child(2n),html[data-gfx="n"] header#hdr .gln:nth-child(2n){animation:none!important}
+html[data-gfx="n"] header#hdr[data-tod="day"] [style*="filter:brightness"],html[data-gfx="n"] header#hdr[data-tod="dawn"] [style*="filter:brightness"]{filter:none!important}
+html[data-gfx="n"] header .ttl .ac{filter:none!important}
+html[data-gfx="n"] header#hdr .ttl,html[data-gfx="n"] header#hdr .hl p{text-shadow:0 1px 4px rgba(0,0,0,.7)!important}
+html[data-gfx="n"] *,html[data-gfx="n"] ::backdrop{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+/* PRO: সুষম — আগের মতোই (কোনো বাড়তি নিয়ম নেই) */
+/* ULTRA: প্রিমিয়াম ফিল — মসৃণ মোশন, গভীরতা, আলোর ঝলক */
+html[data-gfx="u"] header#hdr .fw,html[data-gfx="u"] header#hdr .tw,html[data-gfx="u"] header#hdr .ffm,html[data-gfx="u"] header#hdr .gln{animation-timing-function:cubic-bezier(.45,.05,.55,.95)!important}
+html[data-gfx="u"] header#hdr .scene{filter:saturate(1.12) contrast(1.04)}
+html[data-gfx="u"] header#hdr .ttl{text-shadow:0 2px 16px rgba(255,214,120,.42),0 1px 3px rgba(0,0,0,.55)!important}
+html[data-gfx="u"] header#hdr::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;background:radial-gradient(120% 90% at 50% 0%,rgba(255,255,255,.10),transparent 55%),radial-gradient(110% 80% at 50% 100%,rgba(0,0,0,.22),transparent 60%)}
+.hx-sheen{display:none}
+html[data-gfx="u"] .hx-sheen{display:block;position:absolute;inset:0;pointer-events:none;z-index:3;background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.13) 50%,transparent 58%);transform:translate3d(-110%,0,0);animation:hxsheen 11s cubic-bezier(.4,0,.2,1) infinite}
+@keyframes hxsheen{0%,55%{transform:translate3d(-110%,0,0)}100%{transform:translate3d(110%,0,0)}}
+html[data-gfx="u"] .card,html[data-gfx="u"] .onlb,html[data-gfx="u"] .stats>div{transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .3s ease}
+html[data-gfx="u"] .card:active,html[data-gfx="u"] .onlb:active{transform:scale(.985)}
+html[data-gfx="u"] .card{box-shadow:0 14px 34px -14px rgba(15,28,46,.45),0 2px 6px rgba(15,28,46,.08)}
+html[data-gfx="u"] dialog::backdrop{-webkit-backdrop-filter:blur(8px) saturate(1.2);backdrop-filter:blur(8px) saturate(1.2)}
+/* ঢোকার প্রথম মুহূর্তে (Normal/Pro) হেডারের পেছনের দৃশ্য স্থির; শিরোনাম চলে */
+html:not([data-gfx="u"]).hx-boot header#hdr .scene,html:not([data-gfx="u"]).hx-boot header#hdr .scene *{animation-play-state:paused!important}
 </style>
 <script id="hx-hold-js">
 (function(){
@@ -3984,11 +4008,32 @@ html.hx-boot header#hdr .scene,html.hx-boot header#hdr .scene *{animation-play-s
  var done=function(){R.classList.remove('hx-boot')};
  var fin=function(){setTimeout(function(){requestAnimationFrame(done)},300)};
  if(document.readyState==='complete')fin();else addEventListener('load',fin,{once:true});
- setTimeout(done,2000);
+ var G=R.getAttribute('data-gfx');if(G=='u')done();else setTimeout(done,G=='n'?2600:2000);
  var rel=function(){clearTimeout(ht);if(on){on=0;R.classList.remove('hx-hold')}};
  addEventListener('pointerdown',function(){clearTimeout(ht);ht=setTimeout(function(){on=1;R.classList.add('hx-hold')},180)},{passive:true,capture:true});
  ['pointerup','pointercancel','touchend','touchcancel','blur','contextmenu'].forEach(function(e){addEventListener(e,rel,{passive:true,capture:true})});
  document.addEventListener('visibilitychange',rel);
+})();
+</script>
+<script id="hx-gfx-js">
+(function(){var R=document.documentElement,L=function(k){try{return localStorage.getItem(k)}catch(e){return null}},S=function(k,v){try{localStorage.setItem(k,v)}catch(e){}};
+ var NAME={n:'Normal',p:'Pro',u:'Ultra'};
+ function sheen(on){var h=document.getElementById('hdr');if(!h)return;var e=h.querySelector('.hx-sheen');if(on&&!e){e=document.createElement('div');e.className='hx-sheen';h.appendChild(e)}else if(!on&&e)e.remove()}
+ function mark(){var ch=L('hxgfx');ch=(ch=='n'||ch=='p'||ch=='u')?ch:'a';document.querySelectorAll('#ltpop button[data-g]').forEach(function(b){b.classList.toggle('sel',b.dataset.g===ch);if(b.dataset.g=='a'){var s=b.querySelector('span');if(s)s.textContent='অটো (এখন: '+NAME[window.__gfxEff()]+')'}})}
+ function apply(){var e=window.__gfxEff();R.setAttribute('data-gfx',e);sheen(e=='u');mark()}
+ window.hxMarkGfx=mark;
+ window.hxSetGfx=function(c){if(c=='a')try{localStorage.removeItem('hxgfx')}catch(e){}else S('hxgfx',c);apply()};
+ apply();
+ /* অটো মোডে একবার আসল ফ্রেম-রেট মেপে দরকার হলে এক ধাপ নামানো */
+ var ch=L('hxgfx');
+ if((ch!='n'&&ch!='p'&&ch!='u')&&!L('hxgfxP')){
+  var go=function(){if(document.hidden){setTimeout(go,4000);return}
+   var n=0,sum=0,last=0;
+   (function f(t){if(last){sum+=t-last;n++}last=t;if(n<50)requestAnimationFrame(f);else{
+     S('hxgfxP','1');var avg=sum/n,cur=window.__gfxEff(),to=null;
+     if(avg>30&&cur!='n')to=cur=='u'?'p':'n';else if(avg>22&&cur=='u')to='p';
+     if(to){S('hxgfxA',to);apply()}}})(0)};
+  addEventListener('load',function(){setTimeout(go,4500)},{once:true})}
 })();
 </script>
 </body></html>
