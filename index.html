@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="bn"><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'"><meta name="referrer" content="strict-origin-when-cross-origin"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>খান পরিবারের বংশবৃক্ষ</title><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#070b1a"><meta name="color-scheme" content="dark"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="খান পরিবার"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><link rel="icon" type="image/svg+xml" href="favicon.svg?v=3"><link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=3"><link rel="apple-touch-icon" href="apple-touch-icon.png?v=3">
+<!DOCTYPE html><html lang="bn" class="hx-boot"><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'"><meta name="referrer" content="strict-origin-when-cross-origin"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>খান পরিবারের বংশবৃক্ষ</title><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#070b1a"><meta name="color-scheme" content="dark"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="খান পরিবার"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><link rel="icon" type="image/svg+xml" href="favicon.svg?v=3"><link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=3"><link rel="apple-touch-icon" href="apple-touch-icon.png?v=3">
 <link rel="preconnect" href="https://www.gstatic.com" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://firestore.googleapis.com" crossorigin><link rel="dns-prefetch" href="https://identitytoolkit.googleapis.com"><link rel="dns-prefetch" href="https://securetoken.googleapis.com"><link rel="modulepreload" href="https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js"><link rel="modulepreload" href="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js"><link rel="modulepreload" href="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js"><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&display=swap" rel="stylesheet"></noscript><style>
 :root{--bg:#f6f3ea;--card:#fff;--ink:#1d2b22;--mut:#6b7a70;--g:#1f6b45;--g2:#2e8b5a;--gold:#c9a227;--boy:#2f6fb5;--girl:#d4568a;--line:#d9d3c0;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121a15;--card:#1c2822;--ink:#eaf1ec;--mut:#98a89d;--g:#3aa56f;--g2:#4cbd83;--line:#33443a;color-scheme:dark}}
@@ -188,7 +188,7 @@ header::after{display:block;content:"";position:absolute;inset:2px;border-radius
 .bar,.stats div,.pend,.n,.card,.gate{backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
 .n{content-visibility:auto;contain-intrinsic-size:auto 62px}
 li{animation:spring .6s cubic-bezier(.2,1.2,.3,1) both}
-.scr body::before,.scr body::after,.scr header::before,.scr header h1,.scr .av2,.scr .badge,.scr .tabs button.on{animation-play-state:paused}
+.scr body::before,.scr body::after,.scr .av2,.scr .badge,.scr .tabs button.on{animation-play-state:paused}
 #ms{overscroll-behavior:contain;-webkit-overflow-scrolling:touch;scroll-behavior:auto}
 .b{contain:layout style}
 #chat{inset:0 0 auto 0;height:var(--vvh,100dvh)}
@@ -606,20 +606,18 @@ header#hdr{backdrop-filter:none;-webkit-backdrop-filter:none}
 .scene{contain:paint}
 header#hdr[data-tod="day"] .ffm,header#hdr[data-tod="dawn"] .ffm,header#hdr[data-tod="day"] .tw,header#hdr[data-tod="dawn"] .tw{animation-play-state:paused}
 header#hdr[data-tod="night"] .bfl,header#hdr[data-tod="night"] .bwl,header#hdr[data-tod="night"] .bwr,header#hdr[data-tod="night"] .lfd,header#hdr[data-tod="night"] .gln,header#hdr[data-tod="night"] .tks2,header#hdr[data-tod="night"] .bd{animation-play-state:paused}
-.scr header#hdr .scene *,.scr header#hdr .ttl>span,.scr header#hdr .ttl>span::before,.scr header#hdr .ttl>span::after,.scr header#hdr .hl p,html.chatopen header#hdr *,html.chatopen header#hdr *::before,html.chatopen header#hdr *::after{animation-play-state:paused!important}
+html.chatopen header#hdr *,html.chatopen header#hdr *::before,html.chatopen header#hdr *::after{animation-play-state:paused!important}
 @media(prefers-reduced-motion:reduce){header#hdr .ttl>span,header#hdr .hl p{animation:none!important}}
 header#hdr .ttl>span::after{display:none!important;content:none!important}
 @keyframes ttol{0%,100%{-webkit-text-stroke-color:rgba(255,255,255,.4)}50%{-webkit-text-stroke-color:var(--glow)}}
 header#hdr .ttl>span{-webkit-text-stroke:1.6px rgba(255,255,255,.4);paint-order:stroke fill;filter:drop-shadow(0 0 3px var(--glow));animation:ttin .8s cubic-bezier(.2,1.2,.3,1) both,ttf 4.6s ease-in-out .9s infinite,ttol 3s ease-in-out infinite}
 header#hdr .ttl>span+span{animation-delay:.18s,1.4s,-1.5s}
-.scr header#hdr .ttl>span{animation-play-state:paused}
 @media(prefers-reduced-motion:reduce){header#hdr .ttl>span{animation:none!important}}
 /* text: same running light as the header box border */
 @keyframes ttsh{to{background-position:-250% 0}}
 header#hdr .ttl>span::before,header#hdr .ttl>span::after{display:none!important;content:none!important;animation:none!important}
 header#hdr[data-tod][id] .ttl>span{-webkit-text-stroke:0;filter:none;color:#fff;background-image:linear-gradient(100deg,#fff 0,#fff 38%,#5eead4 46%,#fde68a 50%,#7dd3fc 54%,#fff 62%,#fff 100%)!important;background-size:250% 100%!important;background-repeat:no-repeat!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;animation:ttin .8s cubic-bezier(.2,1.2,.3,1) both,ttf 4.6s ease-in-out .9s infinite,ttsh 6s linear infinite}
 header#hdr[data-tod][id] .ttl>span+span{animation-delay:.18s,1.4s,-1.5s}
-.scr header#hdr[data-tod][id] .ttl>span{animation-play-state:paused}
 @media(prefers-reduced-motion:reduce){header#hdr[data-tod][id] .ttl>span{animation:none!important;background-position:0 0!important}}
 /* text: no lighting, plain white */
 header#hdr[data-tod][id] .ttl>span{-webkit-text-stroke:0!important;filter:none!important;color:#fff!important;background:none!important;background-image:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;-webkit-text-fill-color:#fff!important;animation:ttin .8s cubic-bezier(.2,1.2,.3,1) both,ttf 4.6s ease-in-out .9s infinite!important}
@@ -2973,7 +2971,7 @@ if(top&&th){const lt=document.createElement('button');lt.id='lt';lt.type='button
 const c=document.getElementById('chat');if(c){const f=()=>R.classList.toggle('chatopen',!c.classList.contains('hide'));new MutationObserver(f).observe(c,{attributes:true,attributeFilter:['class']});f()}
 const t=document.getElementById('tree');if(t&&'IntersectionObserver' in window){const seen=new WeakSet(),io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.target.isConnected){io.unobserve(e.target);return}e.target.classList.toggle('offs',!e.isIntersecting);if(e.target.parentElement)e.target.parentElement.classList.toggle('offs',!e.isIntersecting)}),{rootMargin:'120px'});let q=0;const scan=()=>{q=0;t.querySelectorAll('.n').forEach(n=>{if(!seen.has(n)){seen.add(n);io.observe(n)}})};new MutationObserver(()=>{if(!q)q=requestAnimationFrame(scan)}).observe(t,{childList:true,subtree:true});scan()}
 })();</script><script>(function(){const r=document.documentElement,h=document.querySelector('header');
-if(h&&'IntersectionObserver' in window)new IntersectionObserver(e=>r.classList.toggle('hdr-off',!e[0].isIntersecting)).observe(h);
+if(h&&'IntersectionObserver' in window)new IntersectionObserver(e=>r.classList.toggle('hdr-off',!e[0].isIntersecting),{rootMargin:'500px 0px 500px 0px'}).observe(h);
 document.addEventListener('visibilitychange',()=>r.classList.toggle('tab-off',document.hidden));let held=[];const ds=()=>{const open=!!document.querySelector('dialog[open]');if(open&&!held.length){requestAnimationFrame(()=>setTimeout(()=>{if(!document.querySelector('dialog[open]'))return;try{held=document.getAnimations().filter(a=>a.playState=='running'&&!(a.effect&&a.effect.target&&a.effect.target.closest&&a.effect.target.closest('dialog')));held.forEach(a=>a.pause())}catch(e){held=[]}},60))}else if(!open&&held.length){held.forEach(a=>{try{a.play()}catch(e){}});held=[]}};document.querySelectorAll('dialog').forEach(d=>new MutationObserver(ds).observe(d,{attributes:true,attributeFilter:['open']}))})();</script>
 <script>(function(){const H=document.getElementById('hdr');if(!H)return;const f=new URLSearchParams(location.search).get('tod'),tod=m=>m>=315&&m<450?'dawn':m>=450&&m<975?'day':m>=975&&m<1070?'dusk':'night';
 function tick(){const n=new Date(),t=f||(window.hxTod?window.hxTod():tod(n.getHours()*60+n.getMinutes()));if(H.dataset.tod!==t)H.dataset.tod=t}tick();setInterval(()=>{if(!document.hidden)tick()},60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)tick()})})();</script><script>(function(){
@@ -3022,7 +3020,7 @@ addEventListener('hx',e=>{const P=e.detail||[],y=N.getFullYear();
   mk('line',{x1:198,y1:123,x2:198,y2:131,stroke:'#5a3a1a','stroke-width':.8},g);mk('rect',{x:198-w/2,y:131,width:w,height:12,rx:3,fill:'#f5deb3',stroke:'#7a4e2b','stroke-width':.7},g);
   const tx=mk('text',{x:198,y:139.6,'font-size':6.8,fill:'#3b2a14','text-anchor':'middle','font-weight':700},g);tx.textContent=n}
  on('ex-nm',!!Y||ALL||want.includes('name'))});
-try{new IntersectionObserver(es=>H.classList.toggle('hpause',!es[0].isIntersecting)).observe(H)}catch(e){}
+try{new IntersectionObserver(es=>H.classList.toggle('hpause',!es[0].isIntersecting),{rootMargin:'500px 0px 500px 0px'}).observe(H)}catch(e){}
 const pt=S.createSVGPoint(),tods=['dawn','day','dusk','night'];
 S.addEventListener('pointerdown',e=>{pt.x=e.clientX;pt.y=e.clientY;const m=S.getScreenCTM();if(!m)return;const p=pt.matrixTransform(m.inverse());
  if(K('tapsun')&&(Math.hypot(p.x-(window.hxSun&&window.hxSun.on?window.hxSun.x:62),p.y-(window.hxSun&&window.hxSun.on?window.hxSun.y:30))<26||(window.hxMoon&&window.hxMoon.on&&Math.hypot(p.x-window.hxMoon.x,p.y-window.hxMoon.y)<26))){const i=tods.indexOf(H.dataset.tod);H.dataset.tod=tods[(i+1)%4];return}
@@ -3759,7 +3757,7 @@ html:has(dialog[open]) body>:not(dialog)::after,html:has(dialog[open]) body>:not
 /* হেডার স্ক্রিনের বাইরে গেলে তার ইফেক্ট থামে */
 html.hx-hdroff #hdr,html.hx-hdroff #hdr *,html.hx-hdroff #hdr::before,html.hx-hdroff #hdr *::before,html.hx-hdroff #hdr *::after{animation-play-state:paused!important}
 /* স্ক্রল চলার সময় অ্যানিমেশন থামে, থামলে আবার চলে */
-html.hx-scr body::before,html.hx-scr body::after,html.hx-scr header,html.hx-scr header *,html.hx-scr header::before,html.hx-scr header *::before,html.hx-scr header *::after,html.hx-scr .tabs *,html.hx-scr #fab,html.hx-scr #fab::before,html.hx-scr #fab::after{animation-play-state:paused!important}
+html.hx-scr body::before,html.hx-scr body::after,html.hx-scr .tabs *,html.hx-scr #fab,html.hx-scr #fab::before,html.hx-scr #fab::after{animation-play-state:paused!important}
 /* লম্বা তালিকার অফ-স্ক্রিন কার্ড রেন্ডার করা হয় না */
 #dlist>.pend,#v2 .pend,#v7 .pend{content-visibility:auto;contain-intrinsic-size:auto 84px}
 /* ===== বংশবৃক্ষ: শুধু স্ক্রলে স্লাইড/ফেড হওয়া এনিমেশন বন্ধ; কার্ড, হোভার, ছবি ও বাকি ইফেক্ট আগের মতোই ===== */
@@ -3781,7 +3779,7 @@ html.hx-scr body::before,html.hx-scr body::after,html.hx-scr header,html.hx-scr 
  function watch(){
   var h=document.getElementById('hdr');
   if(!h||!('IntersectionObserver' in window))return;
-  new IntersectionObserver(function(e){R.classList.toggle('hx-hdroff',!e[0].isIntersecting)},{threshold:0}).observe(h)
+  new IntersectionObserver(function(e){R.classList.toggle('hx-hdroff',!e[0].isIntersecting)},{threshold:0,rootMargin:'500px 0px 500px 0px'}).observe(h)
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',watch);else watch();
 })();
@@ -3960,4 +3958,23 @@ html.hx-idle:root::before{animation-play-state:paused!important}
 .onlst{font-size:12px;opacity:.8;margin:4px 0}
 .onlbars.mo{gap:2px}.onlbars.mo>div>span:first-child{display:none}.onlbars.mo>div>span:last-child{font-size:9px;white-space:nowrap;overflow:visible}
 </style>
+<style id="hx-hold-css">
+html.hx-boot *:not(#hdr):not(#hdr *),html.hx-boot *:not(#hdr):not(#hdr *)::before,html.hx-boot *:not(#hdr):not(#hdr *)::after,
+html.hx-hold *:not(#hdr):not(#hdr *),html.hx-hold *:not(#hdr):not(#hdr *)::before,html.hx-hold *:not(#hdr):not(#hdr *)::after{animation-play-state:paused!important}
+html.hx-boot #tree li,html.hx-boot .rvp{opacity:1!important}
+header#hdr{contain:layout paint style;transform:translateZ(0);backface-visibility:hidden}
+</style>
+<script id="hx-hold-js">
+(function(){
+ var R=document.documentElement,ht=0,on=0;
+ var done=function(){R.classList.remove('hx-boot')};
+ var fin=function(){setTimeout(function(){requestAnimationFrame(done)},300)};
+ if(document.readyState==='complete')fin();else addEventListener('load',fin,{once:true});
+ setTimeout(done,2000);
+ var rel=function(){clearTimeout(ht);if(on){on=0;R.classList.remove('hx-hold')}};
+ addEventListener('pointerdown',function(){clearTimeout(ht);ht=setTimeout(function(){on=1;R.classList.add('hx-hold')},180)},{passive:true,capture:true});
+ ['pointerup','pointercancel','touchend','touchcancel','blur','contextmenu'].forEach(function(e){addEventListener(e,rel,{passive:true,capture:true})});
+ document.addEventListener('visibilitychange',rel);
+})();
+</script>
 </body></html>
