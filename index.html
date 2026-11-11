@@ -960,6 +960,22 @@ html.lite2 .bd-confetti-piece{animation:bdConfettiRain var(--fall-time,4.8s) lin
 html.boot body::before,html.boot body::after,html.boot #fab,html.boot #fab::before,html.boot #fab::after,html.boot .av2,html.boot .tabs button.on,html.boot ul.t li::before,html.boot ul.t li::after,html.boot .badge,html.boot .badge::after,html.boot .tkt{animation-play-state:paused!important}
 html.bootm main{content-visibility:hidden;contain-intrinsic-size:auto 1800px}
 </style>
+<style>
+dialog.pdk{border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:14px;width:min(92vw,340px);background:rgba(14,20,42,.98);color:#eaf1ff;box-shadow:0 24px 70px rgba(0,0,0,.65)}
+dialog.pdk::backdrop{background:rgba(0,0,0,.55)}
+dialog.pdk .pdh{font-weight:700;margin:2px 4px 10px}
+dialog.pdk .pdr{display:flex;gap:8px;margin-bottom:10px}
+dialog.pdk select{flex:1;min-width:0;padding:9px 10px;border-radius:12px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.07);color:#eaf1ff;font:inherit}
+dialog.pdk select option{color:#111}
+dialog.pdk .pdg{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+dialog.pdk .pdg i{font-style:normal;text-align:center;font-size:11px;opacity:.55;padding:4px 0}
+dialog.pdk .pdg button{aspect-ratio:1;border-radius:10px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);color:#eaf1ff;font:inherit;font-size:14px;cursor:pointer;padding:0}
+dialog.pdk .pdg button.on{background:linear-gradient(135deg,#3b82f6,#8b5cf6);border-color:transparent;color:#fff;font-weight:700}
+dialog.pdk .pdv{text-align:center;margin:10px 0 8px;font-size:14px;opacity:.85}
+dialog.pdk .pda{display:flex;gap:8px}
+dialog.pdk .pda button{flex:1;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.07);color:#eaf1ff;font:inherit;cursor:pointer}
+dialog.pdk .pda button.pri{background:linear-gradient(135deg,#3b82f6,#8b5cf6);border-color:transparent;color:#fff;font-weight:700}
+</style>
 </head><script>(function(){var r=document.documentElement;r.classList.add('boot','bootm');var d=0,m=0,go=function(){if(d)return;d=1;r.classList.remove('boot')},showMain=function(){if(m)return;m=1;r.classList.remove('bootm')},raf=window.requestAnimationFrame||function(f){setTimeout(f,16)},afterLoad=function(){raf(function(){raf(function(){setTimeout(showMain,150);(window.requestIdleCallback||function(f){setTimeout(f,300)})(function(){setTimeout(go,500)},{timeout:2500})})})};if(document.readyState==='complete')afterLoad();else addEventListener('load',afterLoad);setTimeout(showMain,2200);setTimeout(go,5000)})();</script>
 <body><style id="dgi">
 .ei{display:inline-block;width:1.15em;height:1.15em;vertical-align:-.2em;margin-inline-end:.4em;flex:none}
@@ -2014,7 +2030,7 @@ const tab=a=>{[1,2,3,4,5,6,7,8,9].forEach(i=>{$('v'+i).classList.toggle('hide',i
 const BG=['A+','A-','B+','B-','AB+','AB-','O+','O-'];
 function bday(){const n=new Date(),m=n.getMonth()+1,d=n.getDate(),A=t=>t.replace(/[০-৯]/g,c=>'০১২৩৪৫৬৭৮৯'.indexOf(c));
  const MB=['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'],ME=['January','February','March','April','May','June','July','August','September','October','November','December'];
- const L=people.filter(p=>/^[০-৯]{2}\/[০-৯]{2}\//.test(p.b||'')&&!p.d).map(p=>{const [dd,mm,yy]=A(p.b).split('/');return{p,dd:+dd,mm:+mm,yy:+yy}}).filter(x=>x.mm==m).sort((a,b)=>a.dd-b.dd);
+ const L=people.filter(p=>!p.d&&pdate(p.b)).map(p=>{const q=pdate(p.b);return{p,dd:q.d,mm:q.m,yy:q.y}}).filter(x=>x.mm==m).sort((a,b)=>a.dd-b.dd);
  const row=x=>{const df=x.dd-d,age=(!hyHid(x.p)&&x.yy>1800&&x.yy<n.getFullYear())?n.getFullYear()-x.yy:0;
   const st=df==0?['আজ 🎉','Today 🎉']:df>0?[bn(df)+' দিন পরে',df+(df==1?' day left':' days left')]:[bn(-df)+' দিন আগে',(-df)+(df==-1?' day ago':' days ago')];
   const ag=age?(df==0?[bn(age)+' বছর পূর্ণ হলো','Turns '+age]:df>0?[bn(age)+' বছর পূর্ণ হবে','Turns '+age]:[bn(age)+' বছর পূর্ণ হয়েছে','Turned '+age]):null;
@@ -2023,6 +2039,41 @@ function bday(){const n=new Date(),m=n.getMonth()+1,d=n.getDate(),A=t=>t.replace
  box.innerHTML=L.length?`<div class="bdc"><div class="bdh"><span class="bdi">🎂</span><div class="bdt"><b data-ne="Birthdays this month">এ মাসের জন্মদিন</b><small data-ne="${ME[m-1]} • ${L.length}">${MB[m-1]} • ${bn(L.length)} জন</small></div><span class="bdx" aria-hidden="true"><i>🎈</i><i>✨</i><i>🎉</i></span></div><div class="bdl">${L.map(row).join('')}</div></div>`:'';
  box.onclick=e=>{const r=e.target.closest('.bdr');if(r&&!e.target.closest('.av2')&&map[r.dataset.id])show(map[r.dataset.id])};try{xAnn()}catch(e){}}
 const bd2en=s=>String(s||'').replace(/[০-৯]/g,c=>'০১২৩৪৫৬৭৮৯'.indexOf(c));
+/* ===== জন্মতারিখ: বাংলা/ইংরেজি দুই ভাষার তারিখ চেনা + ক্যালেন্ডার পপআপ ===== */
+const PD_ME=['january','february','march','april','may','june','july','august','september','october','november','december'],PD_MB=['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
+function pdim(m,y){return [31,(y&&(y%4==0&&y%100!=0||y%400==0))||!y?29:28,31,30,31,30,31,31,30,31,30,31][m-1]}
+function pdate(v){let t=bd2en(String(v==null?'':v)).trim();if(!t)return null;t=t.split(/\s*[•·]\s*/)[0].trim();
+ const ok=(d,m,y)=>(m>=1&&m<=12&&d>=1&&d<=pdim(m,y)&&(!y||(y>=1000&&y<=9999)))?{d,m,y:y||0}:null;let x;
+ if(x=t.match(/^(\d{4})\s*[\/\-.]\s*(\d{1,2})\s*[\/\-.]\s*(\d{1,2})$/))return ok(+x[3],+x[2],+x[1]);
+ if(x=t.match(/^(\d{1,2})\s*[\/\-.]\s*(\d{1,2})(?:\s*[\/\-.]\s*(\d{4})?)?$/))return ok(+x[1],+x[2],x[3]?+x[3]:0);
+ const mi=w=>{w=w.toLowerCase().replace(/\.$/,'');let i=PD_MB.indexOf(w);if(i<0)i=PD_ME.findIndex(e=>w.length>=3&&e.startsWith(w));return i<0?0:i+1};
+ if(x=t.match(/^(\d{1,2})(?:st|nd|rd|th)?\s+([A-Za-z\u0980-\u09FF.]+),?\s*(\d{4})?$/)){const m=mi(x[2]);return m?ok(+x[1],m,x[3]?+x[3]:0):null}
+ if(x=t.match(/^([A-Za-z.]+)\s+(\d{1,2})(?:st|nd|rd|th)?,?\s*(\d{4})?$/)){const m=mi(x[1]);return m?ok(+x[2],m,x[3]?+x[3]:0):null}
+ return null}
+function pdFmt(d,m,y){const f=n=>String(n).padStart(2,'0');return bn(f(d))+'/'+bn(f(m))+'/'+(y?bn(y):'')}
+let PDK=null;
+function pdPick(inp){
+ if(!inp)return;const cur=pdate(inp.value),now=new Date(),en=(typeof lang!=='undefined'&&lang=='en');
+ const N=n=>en?String(n):bn(n),MN=en?['January','February','March','April','May','June','July','August','September','October','November','December']:PD_MB,WD=en?['Su','Mo','Tu','We','Th','Fr','Sa']:['র','সো','ম','বু','বৃ','শু','শ'];
+ let S={d:cur?cur.d:0,m:cur?cur.m:now.getMonth()+1,y:cur?cur.y:0,vy:cur&&cur.y?cur.y:now.getFullYear()-20};
+ if(PDK){try{PDK.close()}catch(e){}PDK.remove()}
+ const dl=document.createElement('dialog');dl.className='pdk';PDK=dl;document.body.appendChild(dl);
+ const draw=()=>{const dm=pdim(S.m,S.y),lay=S.y||S.vy,first=new Date(S.y?S.y:2000,S.m-1,1).getDay();if(S.d>dm)S.d=dm;
+  let yo='<option value="0"'+(S.y?'':' selected')+'>'+(en?'No year':'সাল নেই')+'</option>';for(let y=now.getFullYear();y>=1900;y--)yo+='<option value="'+y+'"'+(S.y==y?' selected':'')+'>'+N(y)+'</option>';
+  let mo='';for(let i=1;i<=12;i++)mo+='<option value="'+i+'"'+(S.m==i?' selected':'')+'>'+MN[i-1]+'</option>';
+  let g=WD.map(w=>'<i class="w">'+w+'</i>').join('');for(let i=0;i<first;i++)g+='<i></i>';for(let d=1;d<=dm;d++)g+='<button type="button" data-d="'+d+'" class="'+(S.d==d?'on':'')+'">'+N(d)+'</button>';
+  dl.innerHTML='<div class="pdh">'+(en?'Date of birth':'জন্মতারিখ')+'</div><div class="pdr"><select id="pdm">'+mo+'</select><select id="pdy">'+yo+'</select></div><div class="pdg">'+g+'</div><div class="pdv">'+(S.d?N(S.d)+' '+MN[S.m-1]+(S.y?' '+N(S.y):''):(en?'Pick a day':'একটি দিন বাছুন'))+'</div><div class="pda"><button type="button" data-a="clr">'+(en?'Clear':'মুছুন')+'</button><button type="button" data-a="x">'+(en?'Cancel':'বাতিল')+'</button><button type="button" data-a="ok" class="pri">'+(en?'OK':'ঠিক আছে')+'</button></div>';
+  dl.querySelector('#pdm').onchange=e=>{S.m=+e.target.value;draw()};dl.querySelector('#pdy').onchange=e=>{S.y=+e.target.value;draw()}};
+ dl.onclick=e=>{if(e.target===dl){dl.close();return}const b=e.target.closest('button');if(!b)return;
+  if(b.dataset.d){S.d=+b.dataset.d;draw();return}
+  if(b.dataset.a=='clr'){inp.value='';inp.dispatchEvent(new Event('input',{bubbles:true}));dl.close()}
+  else if(b.dataset.a=='x')dl.close();
+  else if(b.dataset.a=='ok'){if(!S.d){return}inp.value=pdFmt(S.d,S.m,S.y);inp.dispatchEvent(new Event('input',{bubbles:true}));inp.dispatchEvent(new Event('change',{bubbles:true}));dl.close()}};
+ dl.addEventListener('close',()=>{dl.remove();if(PDK===dl)PDK=null});
+ draw();dl.showModal()}
+document.addEventListener('focusin',e=>{const t=e.target;if(t&&(t.id=='eb'||t.id=='kb')){t.setAttribute('readonly','');t.setAttribute('inputmode','none');t.blur();pdPick(t)}},true);
+document.addEventListener('click',e=>{const t=e.target;if(t&&(t.id=='eb'||t.id=='kb')&&!PDK){t.setAttribute('readonly','');pdPick(t)}},true);
+
 function phN(v){let r=bd2en(v).replace(/[^\d+]/g,''),plus=r.startsWith('+'),d=r.replace(/\D/g,'');if(!d)return null;if(d.startsWith('00')){d=d.slice(2);plus=true}else if(!plus&&d.startsWith('01')&&d.length===11){d='88'+d;plus=true}if(d.length<8)return null;return{d,plus}}
 function cbtns(p){if(!p.ph)return'';const n=phN(p.ph);if(!n)return'';const c=window.hxFx('call'),w=window.hxFx('wa');if(!c&&!w)return'';
  return '<div class="cbt">'+(c?'<a class="cbc" href="tel:'+(n.plus?'+':'')+n.d+'" onclick="event.stopPropagation()">📞 কল</a>':'')+(w?'<a class="wa" href="https://wa.me/'+n.d+'" target="_blank" rel="noopener" onclick="event.stopPropagation()">💬 হোয়াটসঅ্যাপ</a>':'')+'</div>'}
@@ -2150,7 +2201,7 @@ $('qrb').onclick=qrOpen;
 $('ins').onclick=()=>{if(dpr){const d=dpr;dpr=null;d.prompt();d.userChoice&&d.userChoice.then(r=>{if(r.outcome=='accepted'){fl(1);insH()}})}else toast('ইনস্টল করতে','ব্রাউজারের মেনু থেকে \"Install app\" বা \"Add to Home Screen\" বেছে নিন।')};
 const A2=t=>t.replace(/[০-৯]/g,c=>'০১২৩৪৫৬৭৮৯'.indexOf(c));
 function bdays(n){const t=new Date(),t0=new Date(t.getFullYear(),t.getMonth(),t.getDate()),o=[];
- people.forEach(p=>{if(p.d||!/^[০-৯]{2}\/[০-৯]{2}\//.test(p.b||''))return;const[dd,mm]=A2(p.b).split('/').map(Number);
+ people.forEach(p=>{const q=!p.d&&pdate(p.b);if(!q)return;const dd=q.d,mm=q.m;
   let x=new Date(t.getFullYear(),mm-1,dd);if(x<t0)x=new Date(t.getFullYear()+1,mm-1,dd);const df=Math.round((x-t0)/864e5);if(df<=n)o.push({p,df})});
  return o.sort((a,b)=>a.df-b.df)}
 const pendN=()=>isAdm?sug.length+usr.filter(u=>u.status=='pending').length+areq.length+(can('claims')?claims.length:0)+(can('galreq')?preq.length:0):0;
@@ -2207,7 +2258,7 @@ if(n)h+=row(`⏳ <b>${bn(n)}</b> <span>অনুমোদনের অপেক�
 let polls=[];
 const ini=n=>[...n.replace(/^(মোঃ|মোছাঃ)\s*/,'')][0]||'?',ini2=p=>(p.ne||tl(p.n.replace(/^(মোঃ|মোছাঃ)\s*/,'').split(' ')[0]))[0]||'?';
 function dann(n){const t=new Date(),t0=new Date(t.getFullYear(),t.getMonth(),t.getDate()),o=[];
- people.forEach(p=>{if(!/^[০-৯]{2}\/[০-৯]{2}\//.test(p.d||''))return;const[dd,mm]=A2(p.d).split('/').map(Number);
+ people.forEach(p=>{const q=pdate(p.d);if(!q)return;const dd=q.d,mm=q.m;
   let x=new Date(t.getFullYear(),mm-1,dd);if(x<t0)x=new Date(t.getFullYear()+1,mm-1,dd);const df=Math.round((x-t0)/864e5);if(df<=n)o.push({p,df})});
  return o.sort((a,b)=>a.df-b.df)}
 function stats2(){const dep=p=>1+Math.max(0,...p.k.map(dep)),y=new Date().getFullYear();
