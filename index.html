@@ -4290,8 +4290,7 @@ function $(s){return document.querySelector(s)}
 function el(h){var d=document.createElement('div');d.innerHTML=h;return d.firstChild}
 function vis(e){if(!e)return false;var r=e.getBoundingClientRect();return r.width>2&&r.height>2&&getComputedStyle(e).visibility!=='hidden'}
 function pick(){var v=(speechSynthesis.getVoices()||[]);voice=v.find(function(x){return /^bn/i.test(x.lang)})||null}
-if('speechSynthesis' in window){pick();speechSynthesis.onvoiceschanged=pick}
-function say(t){if(!on||!('speechSynthesis' in window))return;speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);u.lang=voice?voice.lang:'bn-BD';if(voice)u.voice=voice;u.rate=.95;speechSynthesis.speak(u)}
+function say(t){if(!on||!('speechSynthesis' in window))return;if(!voice)pick();speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);u.lang=voice?voice.lang:'bn-BD';if(voice)u.voice=voice;u.rate=.95;speechSynthesis.speak(u)}
 function place(){var e=S[i]&&$(S[i][0]);if(!e||!vis(e)){spot.style.display='none';return}
  var r=e.getBoundingClientRect();spot.style.display='block';
  spot.style.left=(r.left-6)+'px';spot.style.top=(r.top-6)+'px';spot.style.width=(r.width+12)+'px';spot.style.height=(r.height+12)+'px'}
@@ -4326,13 +4325,19 @@ function start(){
  card.style.display='block';
  window.scrollTo({top:0});cancelAnimationFrame(raf);loop();
  if(!$('#app')||$('#app').classList.contains('hide'))alert('ট্যুরের পুরো অংশ দেখতে আগে লগইন করে অনুমোদিত হতে হবে। এখন শুধু উপরের অংশ দেখানো হবে।');
- if('speechSynthesis' in window&&!voice)pick();
- show(0,1);
+  show(0,1);
 }
 function stop(){cancelAnimationFrame(raf);if('speechSynthesis' in window)speechSynthesis.cancel();if(card)card.style.display='none';if(spot)spot.style.display='none';i=-1;var b=document.getElementById('t1');if(vis(b))b.click();window.scrollTo({top:0})}
 function init(){var bar=$('#app>.bar');if(!bar)return;var b=el('<button id="gtGo" type="button" class="alt" aria-label="অ্যাপ ট্যুর" title="ট্যুর">🎓</button>');bar.appendChild(b);b.onclick=start}
 if(document.body)init();else addEventListener('DOMContentLoaded',init);
 })();
 </script>
+<style id="gt-perf-css">#hdr.gtp,#hdr.gtp *{animation-play-state:paused!important}</style>
+<script id="gt-perf">(function(){var h=document.getElementById('hdr');if(!h)return;var sv=h.querySelector('svg.hsc'),PAUSE=40,RESUME=-500,off=false,last=window.scrollY,tk=false;
+function set(v){if(v===off)return;off=v;h.classList.toggle('gtp',v);try{if(sv)v?sv.pauseAnimations():sv.unpauseAnimations()}catch(_){}}
+function run(){tk=false;var y=window.scrollY,d=y-last,bt=h.getBoundingClientRect().bottom;last=y;
+ if(d>0){if(bt<PAUSE)set(true)}else if(d<0){if(bt>RESUME)set(false)}}
+addEventListener('scroll',function(){if(!tk){tk=true;requestAnimationFrame(run)}},{passive:true});
+setTimeout(function(){if(h.getBoundingClientRect().bottom<PAUSE)set(true)},800)})();</script>
 <!-- ===== শেষ ===== -->
 </body></html>
