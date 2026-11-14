@@ -4243,4 +4243,96 @@ html[class] #tk#tk#tk .tks .w1,html[class] #tk#tk#tk .tks .w2{animation:wv 1.6s 
 html[class] #tk#tk#tk .tks .w2{animation-delay:.3s!important}
 html[class] #tk#tk#tk .tkd{animation:dtp 1.6s ease-in-out infinite!important;animation-play-state:running!important}
 </style>
+<!-- ===== গাইডেড ট্যুর (ভয়েসসহ) ===== -->
+<style id="gt-css">
+#app>.bar{flex-wrap:nowrap;align-items:center;gap:6px;padding:8px}
+#app>.bar input#q{flex:1 1 0;min-width:0;padding:9px 10px;font-size:14px}
+#app>.bar #exb,#app>.bar #co{flex:none;width:auto;margin:0;padding:9px 9px;font-size:13px;white-space:nowrap}
+#app>.bar #gtGo{flex:none;width:40px;height:40px;margin:0;padding:0;border-radius:12px;font-size:19px;line-height:1;display:flex;align-items:center;justify-content:center;background:#f5c542;color:#10141f;border:0}
+#gtSpot{position:fixed;z-index:9001;border-radius:14px;box-shadow:0 0 0 9999px rgba(3,6,18,.72),0 0 0 3px #f5c542;pointer-events:none;transition:all .25s ease;display:none}
+#gtCard{position:fixed;z-index:9002;left:10px;right:10px;bottom:10px;max-width:520px;margin:0 auto;padding:14px 16px 12px;border-radius:18px;background:#0f1630;color:#eef2ff;border:1px solid #3b4a8a;box-shadow:0 10px 40px rgba(0,0,0,.5);font-family:system-ui,sans-serif;display:none}
+#gtCard h4{margin:0 0 6px;font-size:16px;color:#f5c542}
+#gtCard p{margin:0 0 10px;font-size:15px;line-height:1.55}
+#gtCard .gr{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+#gtCard button{border:0;border-radius:10px;padding:8px 13px;font:600 14px system-ui,sans-serif;background:#26325e;color:#fff;cursor:pointer}
+#gtCard button.p{background:#f5c542;color:#10141f}
+#gtCard .c{margin-left:auto;font-size:12px;opacity:.7}
+</style>
+<script id="gt-js">
+(function(){
+var S=[
+['#hdr','হেডার','এটি অ্যাপের হেডার। দিন, রাত, ঋতু ও বিশেষ দিন অনুযায়ী গ্রামের দৃশ্য বদলায়। সূর্য, চাঁদ, মেঘ, গাছ ও পুকুর দেখা যায়। লেখা আছে খান পরিবারের বংশবৃক্ষ।'],
+['#calBtn','ক্যালেন্ডার','এই বাটনে ক্যালেন্ডার খোলে। তারিখ ও বিশেষ দিন দেখা যায়।'],
+['#weatherBtn','আবহাওয়া','এখানে চাপলে আজকের আবহাওয়া দেখা যায়।'],
+['#bl','নোটিফিকেশন','ঘণ্টার আইকনে নতুন বিজ্ঞপ্তি দেখা যায়।'],
+['#qrb','QR কোড','QR কোড দেখিয়ে অ্যাপের লিংক সহজে অন্যকে শেয়ার করা যায়।'],
+['#ins','ইনস্টল','ইনস্টল চাপলে অ্যাপটি ফোনের হোম স্ক্রিনে বসে যায়।'],
+['#lg','ভাষা','এখানে চাপলে বাংলা থেকে ইংরেজি, আবার ইংরেজি থেকে বাংলায় যাওয়া যায়।'],
+['#out','লগআউট','এই বাটনে অ্যাকাউন্ট থেকে বের হওয়া যায়।'],
+['#q','নাম খুঁজুন','এখানে নাম লিখলেই বংশবৃক্ষে সেই সদস্যকে খুঁজে পাওয়া যায়।'],
+['#exb','সব খুলুন','সব খুলুন চাপলে পুরো গাছ খুলে যায়। পাশের সব বন্ধ বাটনে আবার গুটিয়ে যায়।'],
+['#tk','নোটিশ বার','এখানে পরিবারের নোটিশ ও বিজ্ঞপ্তি ঘুরে ঘুরে দেখা যায়।'],
+['.tabs','ট্যাব বার','এগুলো অ্যাপের ট্যাব। ডানে বামে সরিয়ে সব ট্যাব দেখা যায়।','t1'],
+['.stats','পরিসংখ্যান','এখানে মোট সদস্য, ছেলে, মেয়ে, কত প্রজন্ম, কতজন জীবিত এবং এ বছর কতজনের জন্ম, সব এক নজরে।','t1'],
+['#tree','বংশবৃক্ষ','এটাই মূল বংশবৃক্ষ। যেকোনো নামে ট্যাপ করলে তার প্রোফাইল খোলে। সেখানে ছবি, রক্তের গ্রুপ, পেশা, ঠিকানা ও অন্যান্য তথ্য থাকে। নিজের প্রোফাইল দাবি করে সম্পাদনা করা যায়, আর অন্যের তথ্যে ভুল থাকলে সাজেশন পাঠানো যায়।','t1'],
+['#t9','ইতিহাস ও ডকুমেন্টস','এই ট্যাবে বংশের ইতিহাস ও গুরুত্বপূর্ণ ডকুমেন্ট থাকে।','t9'],
+['#t8','চ্যাট','চ্যাট ট্যাবে সবার জন্য গ্রুপ চ্যাট ও ব্যক্তিগত চ্যাট আছে। ছবি পাঠানো, রিপ্লাই ও রিঅ্যাকশনও চলে।','t8'],
+['#t3','গ্যালারি','গ্যালারিতে পারিবারিক ছবি দেখা যায়। সদস্যরা ছবি পাঠাতে পারেন, অ্যাডমিন অনুমোদন দিলে ছাপা হয়।','t3'],
+['#t4','ডিরেক্টরি','ডিরেক্টরিতে নাম, পেশা বা ঠিকানা লিখে খোঁজা যায়। রক্তের গ্রুপ বেছে ফিল্টারও করা যায়, জরুরি রক্তের প্রয়োজনে খুব কাজের।','t4'],
+['#t5','সম্পর্ক','সম্পর্ক ট্যাবে দুজনের নাম দিয়ে সম্পর্ক দেখুন চাপলে জানা যায় তাঁরা একে অপরের কী হন।','t5'],
+['#t6','কমিউনিটি','কমিউনিটিতে পরিবারের নোটিশ, পোল, রক্তের অনুরোধ ও আনন্দ সংবাদ থাকে।','t6'],
+['#t7','স্মরণ','স্মরণ ট্যাবে প্রয়াত সদস্যদের জন্য দোয়া ও স্মৃতি লেখা যায়।','t7'],
+['#t2','অ্যাডমিন','এটি শুধু অ্যাডমিনদের জন্য। নতুন সদস্য অনুমোদন, সাজেশন যাচাই ও নোটিশ ব্যবস্থাপনা এখান থেকে হয়।','t2'],
+['footer.appcr','শেষ','একদম নিচে অ্যাপের ভার্সন ও ডেভেলপারের নাম। ট্যুর শেষ। ধন্যবাদ।','t1']
+];
+var i=-1,on=true,spot,card,voice=null,raf;
+function $(s){return document.querySelector(s)}
+function el(h){var d=document.createElement('div');d.innerHTML=h;return d.firstChild}
+function vis(e){if(!e)return false;var r=e.getBoundingClientRect();return r.width>2&&r.height>2&&getComputedStyle(e).visibility!=='hidden'}
+function pick(){var v=(speechSynthesis.getVoices()||[]);voice=v.find(function(x){return /^bn/i.test(x.lang)})||null}
+if('speechSynthesis' in window){pick();speechSynthesis.onvoiceschanged=pick}
+function say(t){if(!on||!('speechSynthesis' in window))return;speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);u.lang=voice?voice.lang:'bn-BD';if(voice)u.voice=voice;u.rate=.95;speechSynthesis.speak(u)}
+function place(){var e=S[i]&&$(S[i][0]);if(!e||!vis(e)){spot.style.display='none';return}
+ var r=e.getBoundingClientRect();spot.style.display='block';
+ spot.style.left=(r.left-6)+'px';spot.style.top=(r.top-6)+'px';spot.style.width=(r.width+12)+'px';spot.style.height=(r.height+12)+'px'}
+function loop(){place();raf=requestAnimationFrame(loop)}
+function show(n,dir){
+ var k=n;
+ while(k>=0&&k<S.length){
+  var st=S[k];if(st[3]){var b=document.getElementById(st[3]);if(vis(b))b.click()}
+  var e=$(st[0]);if(vis(e))break;k+=dir}
+ if(k<0||k>=S.length){if(k>=S.length)stop();return}
+ i=k;
+ setTimeout(function(){
+  var e=$(S[i][0]);if(!vis(e)){show(i+dir,dir);return}
+  var r=e.getBoundingClientRect(),h=innerHeight;
+  if(r.top<70||r.bottom>h*.55)window.scrollTo({top:Math.max(0,scrollY+r.top-90),behavior:'smooth'});
+  $('#gtT').textContent=S[i][1];$('#gtX').textContent=S[i][2];
+  $('#gtC').textContent=(i+1)+' / '+S.length;
+  $('#gtP').style.opacity=i?1:.4;
+  say(S[i][1]+'। '+S[i][2]);
+ },350);
+}
+function start(){
+ if(!card){
+  spot=el('<div id="gtSpot"></div>');
+  card=el('<div id="gtCard"><h4 id="gtT"></h4><p id="gtX"></p><div class="gr"><button id="gtP">← আগে</button><button class="p" id="gtN">পরে →</button><button id="gtV">🔊</button><button id="gtE">✕</button><span class="c" id="gtC"></span></div></div>');
+  document.body.appendChild(spot);document.body.appendChild(card);
+  $('#gtN').onclick=function(){show(i+1,1)};
+  $('#gtP').onclick=function(){if(i>0)show(i-1,-1)};
+  $('#gtV').onclick=function(){on=!on;this.textContent=on?'🔊':'🔇';if(on)say(S[i][2]);else speechSynthesis.cancel()};
+  $('#gtE').onclick=stop;
+ }
+ card.style.display='block';
+ window.scrollTo({top:0});cancelAnimationFrame(raf);loop();
+ if(!$('#app')||$('#app').classList.contains('hide'))alert('ট্যুরের পুরো অংশ দেখতে আগে লগইন করে অনুমোদিত হতে হবে। এখন শুধু উপরের অংশ দেখানো হবে।');
+ if('speechSynthesis' in window&&!voice)pick();
+ show(0,1);
+}
+function stop(){cancelAnimationFrame(raf);if('speechSynthesis' in window)speechSynthesis.cancel();if(card)card.style.display='none';if(spot)spot.style.display='none';i=-1;var b=document.getElementById('t1');if(vis(b))b.click();window.scrollTo({top:0})}
+function init(){var bar=$('#app>.bar');if(!bar)return;var b=el('<button id="gtGo" type="button" class="alt" aria-label="অ্যাপ ট্যুর" title="ট্যুর">🎓</button>');bar.appendChild(b);b.onclick=start}
+if(document.body)init();else addEventListener('DOMContentLoaded',init);
+})();
+</script>
+<!-- ===== শেষ ===== -->
 </body></html>
