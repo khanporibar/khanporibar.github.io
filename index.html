@@ -2080,7 +2080,7 @@ a.insertAdjacentHTML('beforeend',h+'</div>');
 const save=()=>{const o=[...a.querySelectorAll('#hdrcfg [data-hk]')].filter(i=>!i.checked).map(i=>i.dataset.hk);o.push('tcfg');window.__hdrOff=o;dispatchEvent(new CustomEvent('hcfg',{detail:{off:o}}));setDoc(doc(db,'history','hdr'),{off:o,at:serverTimestamp()},{merge:true}).catch(()=>alert('সেভ হয়নি। Firestore নিয়মে history/hdr লেখার অনুমতি দিন।'))};
 a.querySelectorAll('#hdrcfg [data-hk]').forEach(i=>i.onchange=save);
 a.querySelectorAll('#hdrcfg [data-hall]').forEach(b=>b.onclick=()=>{a.querySelectorAll('#hdrcfg [data-hk]').forEach(i=>i.checked=b.dataset.hall==='1');save()})}
-const FXG=[['পরিবার',[['baby','🎉 আনন্দ সংবাদ (নবজাতক)']]],['ডিরেক্টরি',[['call','📞 কল বোতাম'],['wa','💬 হোয়াটসঅ্যাপ বোতাম']]],['ব্যানার (ঘোষণা বারে)',[['juma','🕌 জুমা মোবারক ব্যানার'],['bidh','◯ আইয়ামে বীজের রোজা রিমাইন্ডার']]],['ক্যালেন্ডারে নামাজ',[['salah','পাঁচ ওয়াক্ত নামাজের সময়'],['next','পরের নামাজের কাউন্টডাউন'],['qibla','🧭 কিবলার দিক']]],['আবহাওয়া ও ঝড়',[['stormn','⛈ ঝড়ের সতর্কতা (নোটিশ বোর্ড ও নোটিফিকেশন)'],['cyc','🌀 ম্যাপে ঘূর্ণিঝড় ট্যাব']]]];
+const FXG=[['পরিবার',[['baby','🎉 আনন্দ সংবাদ (নবজাতক)']]],['ডিরেক্টরি',[['call','📞 কল বোতাম'],['wa','💬 হোয়াটসঅ্যাপ বোতাম']]],['ব্যানার (ঘোষণা বারে)',[['juma','🕌 জুমা মোবারক ব্যানার'],['bidh','◯ আইয়ামে বীজের রোজা রিমাইন্ডার']]],['ক্যালেন্ডারে নামাজ',[['salah','পাঁচ ওয়াক্ত নামাজের সময়'],['next','পরের নামাজের কাউন্টডাউন'],['qibla','🧭 কিবলার দিক']]],['আবহাওয়া ও ঝড়',[['stormn','⛈ ঝড়ের সতর্কতা (নোটিশ বোর্ড ও নোটিফিকেশন)'],['cyc','🌀 ম্যাপে ঘূর্ণিঝড় ট্যাব']]],['অ্যাপ ট্যুর',[['tour','🎓 ট্যুর বাটন (বন্ধ করলে সার্চ বক্স আগের মতো বড় হবে)']]]];
 function fxAdm(){const a=$('adm');if(!a||$('fxcfg'))return;const off=new Set(window.__fxOff||[]);
 let h='<div id="fxcfg" style="margin-top:18px"><h3>নতুন ফিচার (চালু/বন্ধ)</h3><p class="note">এখানে বন্ধ করলে সবার ফোনে বন্ধ হয়ে যাবে।</p>';
 FXG.forEach(g=>{h+=`<h4 style="margin:12px 0 4px;font-size:13px;opacity:.8">${g[0]}</h4>`;g[1].forEach(k=>{h+=`<label style="display:flex;align-items:center;gap:8px;padding:5px 0"><input type="checkbox" data-fk="${k[0]}" ${off.has(k[0])?'':'checked'}> ${k[1]}</label>`})});
@@ -4245,10 +4245,11 @@ html[class] #tk#tk#tk .tkd{animation:dtp 1.6s ease-in-out infinite!important;ani
 </style>
 <!-- ===== গাইডেড ট্যুর (ভয়েসসহ) ===== -->
 <style id="gt-css">
-#app>.bar{flex-wrap:nowrap;align-items:center;gap:6px;padding:8px}
-#app>.bar input#q{flex:1 1 0;min-width:0;padding:9px 10px;font-size:14px}
-#app>.bar #exb,#app>.bar #co{flex:none;width:auto;margin:0;padding:9px 9px;font-size:13px;white-space:nowrap}
-#app>.bar #gtGo{flex:none;width:40px;height:40px;margin:0;padding:0;border-radius:12px;font-size:19px;line-height:1;display:flex;align-items:center;justify-content:center;background:#f5c542;color:#10141f;border:0}
+#gtGo{display:none}
+#app>.bar.gt-on{flex-wrap:nowrap;align-items:center;gap:6px;padding:8px}
+#app>.bar.gt-on input#q{flex:1 1 0;min-width:0;padding:9px 10px;font-size:14px}
+#app>.bar.gt-on #exb,#app>.bar.gt-on #co{flex:none;width:auto;margin:0;padding:9px 9px;font-size:13px;white-space:nowrap}
+#app>.bar.gt-on #gtGo{flex:none;width:40px;height:40px;margin:0;padding:0;border-radius:12px;font-size:19px;line-height:1;display:flex;align-items:center;justify-content:center;background:#f5c542;color:#10141f;border:0}
 #gtSpot{position:fixed;z-index:9001;border-radius:14px;box-shadow:0 0 0 9999px rgba(3,6,18,.72),0 0 0 3px #f5c542;pointer-events:none;transition:all .25s ease;display:none}
 #gtCard{position:fixed;z-index:9002;left:10px;right:10px;bottom:10px;max-width:520px;margin:0 auto;padding:14px 16px 12px;border-radius:18px;background:#0f1630;color:#eef2ff;border:1px solid #3b4a8a;box-shadow:0 10px 40px rgba(0,0,0,.5);font-family:system-ui,sans-serif;display:none}
 #gtCard h4{margin:0 0 6px;font-size:16px;color:#f5c542}
@@ -4328,7 +4329,7 @@ function start(){
   show(0,1);
 }
 function stop(){cancelAnimationFrame(raf);if('speechSynthesis' in window)speechSynthesis.cancel();if(card)card.style.display='none';if(spot)spot.style.display='none';i=-1;var b=document.getElementById('t1');if(vis(b))b.click();window.scrollTo({top:0})}
-function init(){var bar=$('#app>.bar');if(!bar)return;var b=el('<button id="gtGo" type="button" class="alt" aria-label="অ্যাপ ট্যুর" title="ট্যুর">🎓</button>');bar.appendChild(b);b.onclick=start}
+function init(){var bar=$('#app>.bar');if(!bar)return;var b=el('<button id="gtGo" type="button" class="alt" aria-label="অ্যাপ ট্যুর" title="ট্যুর">🎓</button>');bar.appendChild(b);b.onclick=start;function ap(){var o=window.__fxOff;if(!o){try{o=JSON.parse(localStorage.getItem('hxfx')||'[]')}catch(_){o=[]}}var on=o.indexOf('tour')<0;bar.classList.toggle('gt-on',on);if(!on&&card&&card.style.display==='block')stop()}ap();addEventListener('fxcfg',ap)}
 if(document.body)init();else addEventListener('DOMContentLoaded',init);
 })();
 </script>
