@@ -1224,7 +1224,7 @@ window.alert=function(m){hxAlert(m)};
 <div id="v4" class="hide"><div class="bar"><input id="dq" placeholder="নাম, পেশা বা ঠিকানা…"><select id="dg" class="dsel"><option value="">সব রক্তের গ্রুপ</option><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>AB+</option><option>AB-</option><option>O+</option><option>O-</option></select></div><div id="dlist"></div></div>
 <div id="v5" class="hide"><div class="pend"><b>দুজনের সম্পর্ক জানুন</b><input class="i" id="ra" list="pl" placeholder="প্রথম ব্যক্তি"><input class="i" id="rb" list="pl" placeholder="দ্বিতীয় ব্যক্তি"><button id="rg" style="margin-top:8px;width:100%">সম্পর্ক দেখুন</button><datalist id="pl"></datalist></div><div id="rr"></div></div>
 <div id="v9" class="hide"><div id="hs"></div></div><div id="v8" class="hide"><div id="cl"></div></div><div id="v6" class="hide"><div id="cm"></div></div><div id="v7" class="hide"><div id="mem"></div></div></div></main>
-<div id="toast"></div><div id="off" class="hide" role="status" aria-live="polite"><span class="od"></span><div class="ot"><b><span class="t1">Offline</span><span class="t2">Online</span><i>_</i></b><span><span class="t1" data-ne="No internet — showing saved data">ইন্টারনেট নেই — সংরক্ষিত ডাটা দেখানো হচ্ছে</span><span class="t2" data-ne="Back online — syncing">ইন্টারনেট ফিরেছে — আপডেট হচ্ছে</span></span></div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 8.8a15 15 0 0 1 4.2-2.6M22 8.8a15 15 0 0 0-9.4-3.7M5.6 12.5a10 10 0 0 1 3.1-1.9M18.4 12.5a10 10 0 0 0-3.2-1.9M9 16.2a5 5 0 0 1 6 0"/><circle cx="12" cy="19.5" r=".6"/><path d="M3 3l18 18"/></svg><u class="sc"></u></div><div id="chbk"></div><div id="chat" class="hide"></div><dialog id="weatherDialog" class="weather-dialog" aria-labelledby="weatherTitle"><div class="weather-head"><div><div class="weather-kicker"><i></i>লাইভ আবহাওয়া</div><h2 id="weatherTitle">আবহাওয়া</h2><div id="weatherPlace" class="weather-muted">আপনার এলাকার আবহাওয়া</div></div><div class="weather-actions"><button type="button" class="weather-close" id="weatherRefresh" aria-label="রিফ্রেশ" title="রিফ্রেশ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.1-5.7"/><path d="M21 3v6h-6"/></svg></button><button type="button" class="weather-close" id="weatherClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div></div><div id="weatherContent"><div class="weather-loading"><div class="wspin"></div>আবহাওয়ার তথ্য লোড হচ্ছে…</div></div><div class="weather-section" id="weatherMap" hidden><h3>লাইভ মানচিত্র (Windy)</h3><div class="wmap-tabs"><button type="button" data-ov="rain" class="on">বৃষ্টি</button><button type="button" data-ov="radar">রাডার</button><button type="button" data-ov="satellite">স্যাটেলাইট</button><button type="button" data-ov="clouds">মেঘ</button><button type="button" data-ov="thunder">বজ্র</button><button type="button" data-ov="wind">বাতাস</button></div><div class="wmap"><iframe title="Windy লাইভ মানচিত্র" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><button type="button" class="wmap-lock">ম্যাপ চালু করতে ট্যাপ করুন</button><button type="button" class="wmap-off">ম্যাপ বন্ধ করুন</button></div><div class="weather-muted" style="font-size:11px;margin-top:6px">জুম করতে দুই আঙুল ব্যবহার করুন · মানচিত্র: Windy.com</div></div><div class="weather-foot" id="weatherUpdated">Open-Meteo থেকে আবহাওয়ার তথ্য</div></dialog><dialog id="calDialog" class="weather-dialog cal-dialog" aria-labelledby="calTitle"><div class="weather-head"><div><div class="weather-kicker"><i></i>বাংলা · ইংরেজি · হিজরি</div><h2 id="calTitle">ক্যালেন্ডার</h2><div id="calPlace" class="weather-muted"></div></div><button type="button" class="weather-close" id="calClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="cal-body" id="calBody"></div><div class="weather-foot">তিন ক্যালেন্ডার, চাঁদ ও সেহরি-ইফতারের সময় গাণিতিক হিসাবে নির্ণীত</div></dialog><dialog id="qd"></dialog><dialog id="pvd"><button type="button" class="pmb dbk" aria-label="Back" title="Back" onclick="pvd.close()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><div id="pvc"></div><div style="display:flex;gap:8px;margin-top:12px"><a id="pvdl" style="flex:1;text-decoration:none"><button style="width:100%;display:flex;align-items:center;justify-content:center;gap:8px"><svg class="gi" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v12M7 11l5 5 5-5M4 20h16"/></svg><span data-ne="Download">ডাউনলোড</span></button></a></div></dialog><dialog id="dlg"><button type="button" class="pmb dbk" aria-label="Back" title="Back" onclick="dlg.close()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><div id="dc"></div></dialog>
+<div id="toast"></div><div id="off" class="hide" role="status" aria-live="polite"><span class="od"></span><div class="ot"><b><span class="t1">Offline</span><span class="t2">Online</span><i>_</i></b><span><span class="t1" data-ne="No internet — showing saved data">ইন্টারনেট নেই — সংরক্ষিত ডাটা দেখানো হচ্ছে</span><span class="t2" data-ne="Back online — syncing">ইন্টারনেট ফিরেছে — আপডেট হচ্ছে</span></span></div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 8.8a15 15 0 0 1 4.2-2.6M22 8.8a15 15 0 0 0-9.4-3.7M5.6 12.5a10 10 0 0 1 3.1-1.9M18.4 12.5a10 10 0 0 0-3.2-1.9M9 16.2a5 5 0 0 1 6 0"/><circle cx="12" cy="19.5" r=".6"/><path d="M3 3l18 18"/></svg><u class="sc"></u></div><div id="chbk"></div><div id="chat" class="hide"></div><dialog id="weatherDialog" class="weather-dialog" aria-labelledby="weatherTitle"><div class="weather-head"><div><div class="weather-kicker"><i></i>লাইভ আবহাওয়া</div><h2 id="weatherTitle">আবহাওয়া</h2><div id="weatherPlace" class="weather-muted">আপনার এলাকার আবহাওয়া</div></div><div class="weather-actions"><button type="button" class="weather-close" id="weatherRefresh" aria-label="রিফ্রেশ" title="রিফ্রেশ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.1-5.7"/><path d="M21 3v6h-6"/></svg></button><button type="button" class="weather-close" id="weatherClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div></div><div id="weatherContent"><div class="weather-loading"><div class="wspin"></div>আবহাওয়ার তথ্য লোড হচ্ছে…</div></div><div class="weather-section" id="weatherMap" hidden><h3>লাইভ মানচিত্র (Windy)</h3><div class="wmap-tabs"><button type="button" data-ov="rain" class="on">বৃষ্টি</button><button type="button" data-ov="radar">রাডার</button><button type="button" data-ov="satellite">স্যাটেলাইট</button><button type="button" data-ov="clouds">মেঘ</button><button type="button" data-ov="thunder">বজ্র</button><button type="button" data-ov="wind">বাতাস</button><button type="button" data-ov="cyclone">ঘূর্ণিঝড়</button></div><div class="wmap"><iframe title="Windy লাইভ মানচিত্র" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><button type="button" class="wmap-lock">ম্যাপ চালু করতে ট্যাপ করুন</button><button type="button" class="wmap-off">ম্যাপ বন্ধ করুন</button></div><div class="weather-muted" style="font-size:11px;margin-top:6px">জুম করতে দুই আঙুল ব্যবহার করুন · মানচিত্র: Windy.com · <a class="wmap-full" target="_blank" rel="noopener" style="color:#9ee7ff">পুরো পর্দায় খুলুন ↗</a></div></div><div class="weather-foot" id="weatherUpdated">Open-Meteo থেকে আবহাওয়ার তথ্য</div></dialog><dialog id="calDialog" class="weather-dialog cal-dialog" aria-labelledby="calTitle"><div class="weather-head"><div><div class="weather-kicker"><i></i>বাংলা · ইংরেজি · হিজরি</div><h2 id="calTitle">ক্যালেন্ডার</h2><div id="calPlace" class="weather-muted"></div></div><button type="button" class="weather-close" id="calClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="cal-body" id="calBody"></div><div class="weather-foot">তিন ক্যালেন্ডার, চাঁদ ও সেহরি-ইফতারের সময় গাণিতিক হিসাবে নির্ণীত</div></dialog><dialog id="qd"></dialog><dialog id="pvd"><button type="button" class="pmb dbk" aria-label="Back" title="Back" onclick="pvd.close()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><div id="pvc"></div><div style="display:flex;gap:8px;margin-top:12px"><a id="pvdl" style="flex:1;text-decoration:none"><button style="width:100%;display:flex;align-items:center;justify-content:center;gap:8px"><svg class="gi" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v12M7 11l5 5 5-5M4 20h16"/></svg><span data-ne="Download">ডাউনলোড</span></button></a></div></dialog><dialog id="dlg"><button type="button" class="pmb dbk" aria-label="Back" title="Back" onclick="dlg.close()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><div id="dc"></div></dialog>
 <style id="pm-css">
 .phd{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .phd h2{margin:0;flex:1;min-width:0;overflow-wrap:anywhere}
@@ -2080,7 +2080,7 @@ a.insertAdjacentHTML('beforeend',h+'</div>');
 const save=()=>{const o=[...a.querySelectorAll('#hdrcfg [data-hk]')].filter(i=>!i.checked).map(i=>i.dataset.hk);o.push('tcfg');window.__hdrOff=o;dispatchEvent(new CustomEvent('hcfg',{detail:{off:o}}));setDoc(doc(db,'history','hdr'),{off:o,at:serverTimestamp()},{merge:true}).catch(()=>alert('সেভ হয়নি। Firestore নিয়মে history/hdr লেখার অনুমতি দিন।'))};
 a.querySelectorAll('#hdrcfg [data-hk]').forEach(i=>i.onchange=save);
 a.querySelectorAll('#hdrcfg [data-hall]').forEach(b=>b.onclick=()=>{a.querySelectorAll('#hdrcfg [data-hk]').forEach(i=>i.checked=b.dataset.hall==='1');save()})}
-const FXG=[['পরিবার',[['baby','🎉 আনন্দ সংবাদ (নবজাতক)']]],['ডিরেক্টরি',[['call','📞 কল বোতাম'],['wa','💬 হোয়াটসঅ্যাপ বোতাম']]],['ব্যানার (ঘোষণা বারে)',[['juma','🕌 জুমা মোবারক ব্যানার'],['bidh','◯ আইয়ামে বীজের রোজা রিমাইন্ডার']]],['ক্যালেন্ডারে নামাজ',[['salah','পাঁচ ওয়াক্ত নামাজের সময়'],['next','পরের নামাজের কাউন্টডাউন'],['qibla','🧭 কিবলার দিক']]]];
+const FXG=[['পরিবার',[['baby','🎉 আনন্দ সংবাদ (নবজাতক)']]],['ডিরেক্টরি',[['call','📞 কল বোতাম'],['wa','💬 হোয়াটসঅ্যাপ বোতাম']]],['ব্যানার (ঘোষণা বারে)',[['juma','🕌 জুমা মোবারক ব্যানার'],['bidh','◯ আইয়ামে বীজের রোজা রিমাইন্ডার']]],['ক্যালেন্ডারে নামাজ',[['salah','পাঁচ ওয়াক্ত নামাজের সময়'],['next','পরের নামাজের কাউন্টডাউন'],['qibla','🧭 কিবলার দিক']]],['আবহাওয়া ও ঝড়',[['stormn','⛈ ঝড়ের সতর্কতা (নোটিশ বোর্ড ও নোটিফিকেশন)'],['cyc','🌀 ম্যাপে ঘূর্ণিঝড় ট্যাব']]]];
 function fxAdm(){const a=$('adm');if(!a||$('fxcfg'))return;const off=new Set(window.__fxOff||[]);
 let h='<div id="fxcfg" style="margin-top:18px"><h3>নতুন ফিচার (চালু/বন্ধ)</h3><p class="note">এখানে বন্ধ করলে সবার ফোনে বন্ধ হয়ে যাবে।</p>';
 FXG.forEach(g=>{h+=`<h4 style="margin:12px 0 4px;font-size:13px;opacity:.8">${g[0]}</h4>`;g[1].forEach(k=>{h+=`<label style="display:flex;align-items:center;gap:8px;padding:5px 0"><input type="checkbox" data-fk="${k[0]}" ${off.has(k[0])?'':'checked'}> ${k[1]}</label>`})});
@@ -3211,11 +3211,78 @@ if(t.children.length)scan();
 .wmap.on .wmap-lock{display:none}
 .wmap-off{display:none;position:absolute;top:8px;right:8px;width:auto;height:auto;min-height:0;margin:0;padding:6px 10px;font:inherit;font-size:12px;border-radius:10px;background:rgba(2,8,24,.8);color:#fff;border:1px solid rgba(140,200,255,.3);box-shadow:none}
 .wmap.on .wmap-off{display:block}
+.hxsc{margin:10px 0;padding:12px 14px;border-radius:14px;border:1px solid #fbbf24;background:rgba(251,191,36,.12);color:inherit;font-size:14px;line-height:1.6;text-align:left}
+.hxsc.l2{border-color:#fb923c;background:rgba(251,146,60,.14)}.hxsc.l3{border-color:#f87171;background:rgba(248,113,113,.18)}
+.hxsc b{display:block;font-size:15px}.hxsc ul{margin:4px 0 0;padding-left:20px}.hxsc li{margin:2px 0}.hxsc .t{margin-top:8px;font-weight:600}.hxsc small{display:block;margin-top:8px;opacity:.75;font-size:11.5px}
 </style>
 <script>
 window.hxWindLevel=function(sp,gu){sp=+sp;gu=+gu;var a=isFinite(sp)?(sp>=80?3:sp>=50?2:sp>=30?1:0):0,b=isFinite(gu)?(gu>=110?3:gu>=80?2:gu>=50?1:0):0;return Math.max(a,b)};
 window.hxStormInfo=function(sp,gu,wc){var lv=window.hxWindLevel(sp,gu),th=+wc>=95;return{lv:lv,th:th,on:th||lv>=2}};
 window.hxStormBadge=function(on){var b=document.getElementById('weatherBtn');if(b)b.toggleAttribute('data-storm',!!on)};
+</script>
+<script id="storm-notice">
+(function(){
+if(window.__hxSN)return;window.__hxSN=1;
+var BN=function(x){return String(x).replace(/\d/g,function(c){return '০১২৩৪৫৬৭৮৯'[+c]})};
+(window.KHAN_NOTIFY_EXTRA=window.KHAN_NOTIFY_EXTRA||[]).push(['storm','⛈ ঝড়ের সতর্কতা']);
+document.addEventListener('change',function(e){var t=e.target;if(t&&t.getAttribute&&t.getAttribute('data-pf')==='storm'){try{localStorage.setItem('hxstormpref',t.checked?'1':'0')}catch(x){}}},true);
+var fx=function(k){return typeof window.hxFx==='function'?window.hxFx(k):true};
+var WD=['রবিবার','সোমবার','মঙ্গলবার','বুধবার','বৃহস্পতিবার','শুক্রবার','শনিবার'],MB=['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'],LN=['','ঝোড়ো হাওয়া','ঝড়','প্রবল ঝড়'];
+var state=null,raf=0;
+function lvOf(sp,gu,wc){var l=window.hxWindLevel(sp,gu);if(+wc>=95)l=Math.max(l,2);return l}
+function dayLabel(i,t){if(i===0)return 'আজ';if(i===1)return 'আগামীকাল';var d=new Date(t+'T12:00:00');return WD[d.getDay()]+' ('+BN(d.getDate())+' '+MB[d.getMonth()]+')'}
+function build(j){
+ var d=j.daily||{},t=d.time||[],out=[],i;
+ for(i=0;i<t.length;i++){var wc=(d.weather_code||[])[i];out.push({t:t[i],lv:lvOf((d.wind_speed_10m_max||[])[i],(d.wind_gusts_10m_max||[])[i],wc),th:+wc>=95,sp:(d.wind_speed_10m_max||[])[i],gu:(d.wind_gusts_10m_max||[])[i]})}
+ var c=j.current||{};
+ if(out.length){var nl=lvOf(c.wind_speed_10m,c.wind_gusts_10m,c.weather_code);if(nl>=2){out[0].lv=Math.max(out[0].lv,nl);out[0].th=out[0].th||+c.weather_code>=95;out[0].gu=Math.max(+out[0].gu||0,+c.wind_gusts_10m||0)}}
+ var first=-1;for(i=0;i<out.length;i++)if(out[i].lv>=2){first=i;break}
+ if(first<0)return null;
+ var last=first;while(last+1<out.length&&out[last+1].lv>=2)last++;
+ var span=out.slice(first,last+1),n=span.length,mx=0,th=false;
+ span.forEach(function(x){mx=Math.max(mx,x.lv);th=th||x.th});
+ var sum=first===0?('চলতি ঝড়ো আবহাওয়া আজ সহ '+BN(n)+' দিন থাকতে পারে'+(n>1?' (শেষ দিন: '+dayLabel(last,out[last].t)+')':'')+'।'):('ঝড় আসছে: '+dayLabel(first,out[first].t)+' থেকে '+BN(n)+' দিন'+(n>1?' ('+dayLabel(last,out[last].t)+' পর্যন্ত)':'')+'।');
+ var tips=['ঘরের ভেতরে থাকুন, জানালা-দরজা বন্ধ রাখুন।','গাছের নিচে, বিদ্যুতের খুঁটি বা তারের কাছে ও খোলা মাঠে যাবেন না।','মোবাইল ও পাওয়ারব্যাংক আগেই চার্জ দিন, টর্চ ও খাবার পানি হাতের কাছে রাখুন।','শিশু, বৃদ্ধ ও অসুস্থদের নিরাপদ জায়গায় রাখুন। গবাদি পশু ও হাঁস-মুরগি ঘরে তুলুন।','নদী, পুকুর বা সমুদ্রে নৌকা-ট্রলার নিয়ে যাবেন না।'];
+ if(th)tips.push('বজ্রপাতের সময় ফোন চার্জে দিয়ে ব্যবহার করবেন না, ভেজা হাতে বৈদ্যুতিক জিনিস ধরবেন না।');
+ if(mx>=3)tips.push('কাঁচা ঘর বা টিনের চালার বাসিন্দারা পাকা ও নিরাপদ আশ্রয়ে যান। স্থানীয় প্রশাসনের ঘোষণা শুনুন।');
+ var bd=false;try{bd=Intl.DateTimeFormat().resolvedOptions().timeZone==='Asia/Dhaka'}catch(e){}
+ if(bd)tips.push('জরুরি সাহায্যের জন্য ৯৯৯ নম্বরে কল করুন।');
+ var rows=span.map(function(x,k){var idx=first+k;return '<li>'+dayLabel(idx,x.t)+' — '+LN[x.lv]+(x.th?' (বজ্রসহ)':'')+' · ঝাপটা '+BN(Math.round(+x.gu||0))+' কিমি/ঘণ্টা</li>'}).join('');
+ var html='<div class="hxsc l'+mx+'"><b>⛈ ঝড়ের সতর্কতা</b><span>'+sum+'</span><ul>'+rows+'</ul><div class="t">কী করবেন</div><ul>'+tips.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul><small>তথ্য: Open-Meteo · আপনার বর্তমান অবস্থানের ভিত্তিতে। ঝড় থামলে এই সতর্কতা নিজে থেকে সরে যাবে।</small></div>';
+ return{html:html,first:first,n:n,mx:mx,th:th,gu:Math.round(+span[0].gu||0),date:out[first].t,key:html.length+':'+sum}
+}
+function paint(){
+ raf=0;
+ var hs=[].filter.call(document.querySelectorAll('h3'),function(h){return /(নোটিশ বোর্ড|Notice board)\s*$/.test(h.textContent.replace(/\s+/g,' ').trim())});
+ [].forEach.call(document.querySelectorAll('.hxsc'),function(c){var p=c.previousElementSibling;if(!state||!p||hs.indexOf(p)<0||c.getAttribute('data-k')!==state.key)c.remove()});
+ if(!state)return;
+ hs.forEach(function(h){var n=h.nextElementSibling;if(n&&n.classList&&n.classList.contains('hxsc'))return;h.insertAdjacentHTML('afterend',state.html);var c=h.nextElementSibling;if(c)c.setAttribute('data-k',state.key)})
+}
+function sched(){if(!raf)raf=requestAnimationFrame(paint)}
+function notify(){
+ var s=state;if(!s||!fx('stormn'))return;
+ try{if(!('Notification' in window)||Notification.permission!=='granted'||!navigator.serviceWorker)return;if(localStorage.getItem('hxstormpref')==='0')return}catch(e){return}
+ if(s.first>1)return;
+ var key=(s.first===0?'now|':'soon|')+s.date+'|'+s.mx,old='';try{old=localStorage.getItem('hxstn')||''}catch(e){}
+ if(old===key)return;try{localStorage.setItem('hxstn',key)}catch(e){}
+ var title=s.first===0?('⛈ ঝড়ের সতর্কতা: '+LN[s.mx]):'⛈ ঝড় আসছে',
+     body=(s.first===0?'এখন ':'আগামীকাল ')+LN[s.mx]+(s.th?' ও বজ্রপাতের ঝুঁকি':'')+', ঝাপটা '+BN(s.gu)+' কিমি/ঘণ্টা'+(s.n>1?' · '+BN(s.n)+' দিন চলতে পারে':'')+'। ঘরে থাকুন, নিরাপদ থাকুন।';
+ navigator.serviceWorker.ready.then(function(r){r.showNotification(title,{body:body,icon:'icon-192.png',badge:'icon-192.png',tag:'storm'})}).catch(function(){})
+}
+function load(){
+ if(!fx('stormn')){state=null;sched();return true}
+ var L=window.hxLoc;if(!L||!isFinite(L.la)||!isFinite(L.lo))return false;
+ fetch('https://api.open-meteo.com/v1/forecast?latitude='+L.la+'&longitude='+L.lo+'&current=weather_code,wind_speed_10m,wind_gusts_10m&daily=weather_code,wind_speed_10m_max,wind_gusts_10m_max&forecast_days=5&cell_selection=nearest&timezone=auto').then(function(r){return r.json()}).then(function(j){state=build(j);notify();sched()}).catch(function(){});
+ return true
+}
+var tries=0;(function boot(){if(load()===false&&tries++<40)setTimeout(boot,3000)})();
+setInterval(function(){if(!document.hidden)load()},30*60000);
+document.addEventListener('visibilitychange',function(){if(!document.hidden)load()});
+addEventListener('fxcfg',function(){load()});
+function start(){new MutationObserver(sched).observe(document.body,{childList:true,subtree:true});sched()}
+if(document.body)start();else document.addEventListener('DOMContentLoaded',start);
+window.__hxSNbuild=build;
+})();
 </script>
 <script id="weather-dashboard-script">
 (()=>{
@@ -3300,8 +3367,8 @@ window.hxStormBadge=function(on){var b=document.getElementById('weatherBtn');if(
   updated.textContent='সর্বশেষ হালনাগাদ: '+tf(Date.now(),{hour:'numeric',minute:'2-digit'})+' · Open-Meteo · Windy';
  }
  const WM=$('weatherMap'),WF=WM&&WM.querySelector('iframe'),WB=WM&&WM.querySelector('.wmap');let wmKey='',wmOv='rain',wmLa=0,wmLo=0;
- const wmGo=()=>{if(!WF)return;const k=wmLa+','+wmLo+','+wmOv;if(k===wmKey)return;wmKey=k;WF.src='https://embed.windy.com/embed2.html?lat='+wmLa+'&lon='+wmLo+'&detailLat='+wmLa+'&detailLon='+wmLo+'&width=650&height=450&zoom=7&level=surface&overlay='+wmOv+'&product=ecmwf&menu=&message=true&marker=true&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=km%2Fh&metricTemp=%C2%B0C&radarRange=-1'};
- window.hxWmap=(la,lo)=>{if(!WM)return;la=+(+la).toFixed(3);lo=+(+lo).toFixed(3);if(!isFinite(la)||!isFinite(lo))return;wmLa=la;wmLo=lo;WM.hidden=false;wmGo()};
+ const wmGo=()=>{if(!WF)return;const cy=wmOv==='cyclone',bb=/^Asia\/(Dhaka|Kolkata|Calcutta|Colombo|Yangon|Rangoon)$/.test(Intl.DateTimeFormat().resolvedOptions().timeZone),la=cy&&bb?16:wmLa,lo=cy&&bb?88:wmLo,z=cy?4:7,ov=cy?'wind':wmOv;const k=la+','+lo+','+wmOv;if(k===wmKey)return;wmKey=k;WF.src='https://embed.windy.com/embed2.html?lat='+la+'&lon='+lo+'&detailLat='+wmLa+'&detailLon='+wmLo+'&width=650&height=450&zoom='+z+'&level=surface&overlay='+ov+'&product=ecmwf&menu=&message=true&marker=true&calendar=now&pressure='+(cy?'true':'')+'&type=map&location=coordinates&detail=&metricWind=km%2Fh&metricTemp=%C2%B0C&radarRange=-1';const fl=WM.querySelector('.wmap-full');if(fl)fl.href='https://www.windy.com/?'+ov+','+la+','+lo+','+z};
+ window.hxWmap=(la,lo)=>{if(!WM)return;la=+(+la).toFixed(3);lo=+(+lo).toFixed(3);if(!isFinite(la)||!isFinite(lo))return;wmLa=la;wmLo=lo;WM.hidden=false;const cb=WM.querySelector('[data-ov="cyclone"]');if(cb)cb.hidden=!(window.hxFx?window.hxFx('cyc'):true);wmGo()};
  if(WM){WM.addEventListener('click',e=>{const t=e.target.closest('[data-ov]');if(t){wmOv=t.dataset.ov;WM.querySelectorAll('[data-ov]').forEach(b=>b.classList.toggle('on',b===t));wmGo();return}if(e.target.closest('.wmap-lock'))WB.classList.add('on');else if(e.target.closest('.wmap-off'))WB.classList.remove('on')});
   dlg.addEventListener('close',()=>{wmKey='';if(WF)WF.src='about:blank';if(WB)WB.classList.remove('on')})}
  async function fetchWeather(){if(loading)return;loading=true;if(dlg.open&&!last)content.innerHTML='<div class="weather-loading"><div class="wspin"></div>লাইভ আবহাওয়ার তথ্য আনা হচ্ছে…</div>';
