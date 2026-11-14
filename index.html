@@ -4341,11 +4341,7 @@ function run(){tk=false;var y=window.scrollY,d=y-last,bt=h.getBoundingClientRect
 addEventListener('scroll',function(){if(!tk){tk=true;requestAnimationFrame(run)}},{passive:true});
 setTimeout(function(){if(h.getBoundingClientRect().bottom<PAUSE)set(true)},800)})();</script>
 <style id="gt-tabs-css">
-.tabs,[data-theme="light"] .tabs{background:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
-.tabs.gtk{background:linear-gradient(rgba(7,11,26,.9) 70%,transparent)!important}
-[data-theme="light"] .tabs.gtk{background:linear-gradient(rgba(238,242,251,.92) 70%,transparent)!important}
+.tabs,[data-theme="light"] .tabs{position:static!important;background:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;box-shadow:none!important}
 </style>
-<script id="gt-tabs">(function(){var t=null,tk=false;function run(){tk=false;t=t||document.querySelector('#app .tabs');if(!t)return;var on=t.getBoundingClientRect().top<=1&&(window.scrollY>2||document.documentElement.scrollTop>2);if(on!==t.classList.contains('gtk'))t.classList.toggle('gtk',on)}
-addEventListener('scroll',function(){if(!tk){tk=true;requestAnimationFrame(run)}},{passive:true,capture:true})})();</script>
 <!-- ===== শেষ ===== -->
 </body></html>
